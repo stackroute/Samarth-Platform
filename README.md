@@ -5,7 +5,7 @@
 
 ### App Subsystems
 - Platform : Backend platform
-- UIComponents : Core & Common UI Components 
+- WebComponents : Core & Common Web Components for Client Apps
 - SkillProfile : Client App for Job Aspirants
 - PlacementCenter : Client App for Placement centers & operational users
 - JobProfile: Client App for job providers (institution, organizations)
