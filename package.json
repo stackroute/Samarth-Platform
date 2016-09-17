@@ -1,0 +1,26 @@
+{
+    "name": "samarth-plateform",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Avadhesh",
+    "license": "ISC",
+    "dependencies": {
+        "body-parser": "^1.15.2",
+        "cookie-parser": "^1.4.3",
+        "express": "^4.14.0",
+        "json-server": "^0.8.19",
+        "mongodb": "~2.0",
+        "mongoose": "^4.6.0",
+        "morgan": "^1.7.0",
+        "serve-favicon": "^2.3.0"
+    },
+    "devDependencies": {
+        "chai": "^3.5.0",
+        "mocha": "^3.0.2",
+        "supertest": "^2.0.0"
+    }
+}
