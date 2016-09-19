@@ -21,7 +21,7 @@ router.get("/:candidateId", function(req, res) {
 });
 
 router.get("/", function(req, res) {
-    
+
     try {
         projectProcessor.findAllProject(
             function(projectObj) {
@@ -41,23 +41,44 @@ router.get("/", function(req, res) {
 
 router.post("/:candidateId", function(req, res) {
 
-    console.log("inside adding project",req.body);
-    try {
-        projectProcessor.createNewProject(req.body, req.params.candidateId,
-            function(projectObj) {
-                res.status(201).json(projectObj);
-            },
-            function(err) {
-                res.status(500).json(err);
+    console.log("inside adding project", req.body);
+
+    project.find({ "candidateid": req.params.candidateId }, function(err, result) {
+        if (result == "") {
+            try {
+                projectProcessor.createNewProject(req.body, req.params.candidateId,
+                    function(projectObj) {
+                        res.status(201).json(projectObj);
+                    },
+                    function(err) {
+                        res.status(500).json(err);
+                    }
+                );
+            } catch (err) {
+                console.log("Error occurred in adding project: ", err);
+                res.status(500).json({
+                    error: "Internal error occurred, please report"
+                });
             }
-        );
-    } catch (err) {
-        console.log("Error occurred in modifying old project: ", err);
-        res.status(500).json({
-            error: "Internal error occurred, please report"
-        });
-    }
-});
+        } else {
+            try {
+                projectProcessor.modifyProject(req.body, req.params.candidateId,
+                    function(projectObj) {
+                        res.status(201).json(projectObj);
+                    },
+                    function(err) {
+                        res.status(500).json(err);
+                    }
+                );
+            } catch (err) {
+                console.log("Error occurred in modifying old project: ", err);
+                res.status(500).json({
+                    error: "Internal error occurred, please report"
+                });
+            }
+        }
+    });
+}); //end post
 
 router.patch("/:candidateId/:projectName", function(req, res) {
     try {

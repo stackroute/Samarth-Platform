@@ -27,9 +27,29 @@ function findAllProject(successCB, errorCB) {
     });
 };
 
-function createNewProject(oldProjectObj, candidateId, successCB, errorCB) {
+function createNewProject(newprojectobj, candidateId, sucessCB, errorCB) {
+    var projectObj = new project({
+        candidateid:candidateId,
+        projects: []
+    });
+    projectObj.projects.push(newprojectobj.projects[0]);
+    console.log("inside createNewProject:");
+
+    projectObj.save(function(err, result) {
+        console.log("inside save");
+        if (err) {
+            console.log(err);
+            errorCB(err);
+        }
+        console.log('New Project created', result);
+        sucessCB(result);
+
+    });
+}
+
+function modifyProject(oldProjectObj, candidateId, successCB, errorCB) {
     
-    project.update({ "candidateid": candidateId }, { $push: { "projects": oldProjectObj.records[0] } },
+    project.update({ "candidateid": candidateId }, { $push: { "projects": oldProjectObj.projects[0] } },
         function() {
             successCB("project added")
 
@@ -70,6 +90,7 @@ function deleteProject(candidateId, projectName, successCB, errorCB) {
 module.exports = {
     getProject: getProject,
     findAllProject: findAllProject,
+    modifyProject:modifyProject,
     createNewProject: createNewProject,
     updateProject: updateProject,
     deleteProject: deleteProject

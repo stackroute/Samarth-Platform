@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({
 var server = http.createServer(app);
 server.listen(8081);
 
-var db = mongoose.connect('mongodb://localhost:27017/sectionproject');
+var db = mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
 console.log("Server started...");
 

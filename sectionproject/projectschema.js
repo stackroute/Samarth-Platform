@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var projectSchema = new Schema({
-    
+    'candidateid':{ type: String, required: true,unique:true},
     'projects': [{
         'name': { type: String, required: true },
         'workplace': { type: String },
@@ -18,6 +18,6 @@ var projectSchema = new Schema({
     }]
 });
 
-var project = mongoose.model('project', projectSchema, 'profiles');
+var project = mongoose.model('project', projectSchema, 'projects');
 
 module.exports = project;
