@@ -61,13 +61,13 @@ function updateProject(projectName,oldProjectObj, candidateId, successCB, errorC
     console.log("Inside update of project")
     project.update({ 'candidateid': candidateId, 'projects.name': projectName }, {
             '$set': {
-                'projects.$.name': oldProjectObj.records[0].name,
-                'projects.$.workplace': oldProjectObj.records[0].workplace,
-                'projects.$.location': oldProjectObj.records[0].location,
-                'projects.$.income': oldProjectObj.records[0].income,
-                'projects.$.duration.from': oldProjectObj.records[0].duration.from,
-                'projects.$.duration.to': oldProjectObj.records[0].duration.to,
-                'projects.$.duration.duration': oldProjectObj.records[0].duration.duration
+                'projects.$.name': oldProjectObj.projects[0].name,
+                'projects.$.workplace': oldProjectObj.projects[0].workplace,
+                'projects.$.location': oldProjectObj.projects[0].location,
+                'projects.$.income': oldProjectObj.projects[0].income,
+                'projects.$.duration.from': oldProjectObj.projects[0].duration.from,
+                'projects.$.duration.to': oldProjectObj.projects[0].duration.to,
+                'projects.$.duration.duration': oldProjectObj.projects[0].duration.duration
             }
         },
 

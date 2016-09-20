@@ -11,6 +11,7 @@ var educationRouter = require('./sectioneducation/educationrouter');
 var skillRoutes = require('./sectionskill/skillrouter');
 var profilerouter = require('./profiles/profilerouter');
 var workRouter = require('./sectionworkexperiance/workrouter');
+var quesRouter = require('./questionbox/quesrouter');
 
 var app = express();
 
@@ -76,6 +77,12 @@ app.use("/profile", function(req, res, next) {
 }, profilerouter);
 
 app.use("/work", workRouter);
+
+app.use('/questions', function(req, res, next) {
+    res.set('Access-Control-Allow-Origin', '*');
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+}, quesRouter);
 
 
 
