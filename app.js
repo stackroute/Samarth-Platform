@@ -12,11 +12,12 @@ var skillRoutes = require('./sectionskill/skillrouter');
 var profilerouter = require('./profiles/profilerouter');
 var workRouter = require('./sectionworkexperiance/workrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
-
+var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var app = express();
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -46,8 +47,7 @@ app.use(function(req, res, next) {
 */
 
 app.use('/candidate', qboxRouter);
-app.use('/fieldquestions', qboxRouter);
-app.use('/questioncollection', qboxRouter);
+app.use('/fieldquestions', fieldQRouter);
 
 app.use('/auth', authRoutes);
 app.use('/user', userRoutes);

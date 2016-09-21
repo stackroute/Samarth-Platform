@@ -1,8 +1,5 @@
 var router = require('express').Router();
-
-var fieldquestions = require('./fieldquestions');
 var qboxquestions = require('./qboxquestions');
-
 var qboxProcessor = require('./qboxprocessor');
 
 /**
@@ -43,182 +40,67 @@ router.get("/:candidateid/qboxquestions/", function(req, res) {
     }
 });
 
+/**
+ *Api for returning final query object with combination of questions and fieldquestions
+ */
+// HTTP GET /candidate/:candidateid/qboxquestions/queries/
+//     ?section=[multiple values]&limit=&skip&lang=
+// Effective url is /candidate/:candidateid/qboxquestions/queries
+router.get("/:candidateid/qboxquestions/queries", function(req, res) {
 
-/*HTTP GET / fieldquestions / : section /
-    ? fieldname = [multiple values] & lang = [multiple values]
-*/
-router.get("/:section", function(req, res) {
-            try {
-                var question = qboxProcessor.getfieldquestions(req.params.section,
-                    req.params.lang,
-                    function(question) {
+    if (!req.params.candidateid) {
+        throw new Error("Invalid request, requesting questions without candidate..!");
+    }
 
-                        res.status(200).json(question);
-                        res.end();
-                    },
-                    function(err) {
-                        res.status(500).json(err);
-                    });
+    try {
+        var sections = (req.query.sections) ? req.query.sections.split(",") : [];
+        var limit = (req.query.limit) ? req.query.limit : 3;
+        var skip = (req.query.skip) ? req.query.skip : 0;
+        var lang = (req.query.lang) ? req.query.lang : 'English';
 
-            } catch (err) {
-                console.log("Error occurred in fetching questions: ", err);
-                res.status(500).json({
-                    error: "Internal error occurred, please report"
-                });
-            }
+        var question = qboxProcessor.getqueryObject(req.params.candidateid,
+            sections,
+            skip,
+            limit,
+            lang,
+            function(question) {
 
-        }
+                res.status(200).json(question);
+                res.end();
+            },
+            function(err) {
+                res.status(500).json(err);
+            });
 
-        /* router.get("/:lang", function(req, res) {
-             console.log("Inside ques collection get req limit=", req.query.limit);
-             console.log("Inside ques collection get req offset=", req.query.offset);
-             try {
-                 var question = qboxProcessor.getAllfieldquestions(req.params.lang,
-                     function(question) {
-
-                         res.status(200).json(question);
-                         res.end();
-                     },
-                     function(err) {
-                         res.status(500).json(err);
-                     });
-
-             } catch (err) {
-                 console.log("Error occurred in fetching questions: ", err);
-                 res.status(500).json({
-                     error: "Internal error occurred, please report"
-                 });
-             }
-         });*/
-
-        /*
-        router.get("/:section/:lang", function(req, res) {
-            console.log("Inside ques collection get req");
-            try {
-                var question = quesprocessor.getfieldquestions(req.params.section, req.params.lang,
-                    function(question) {
-
-                        res.status(200).json(question);
-                        res.end();
-                    },
-                    function(err) {
-                        res.status(500).json(err);
-                    });
-
-            } catch (err) {
-                console.log("Error occurred in fetching questions: ", err);
-                res.status(500).json({
-                    error: "Internal error occurred, please report"
-                });
-            }
-        });*/
-
-        /*router.get("/:section/:name", function(req, res,next) {
-            console.log("Inside fieldquestions get");
-            try {
-                   var question=quesprocessor.getfieldquestions(req.params.section,
-                    function(question) {
-                       
-                       res.status(200).json(question);
-                        res.end();
-                    },
-                    function(err) {
-                        res.status(500).json(err);
-                    });
-
-            } catch (err) {
-                console.log("Error occurred in fetching questions: ", err);
-                res.status(500).json({
-                    error: "Internal error occurred, please report"
-                });
-            }
-            next()
+    } catch (err) {
+        console.log("Error occurred in fetching queryObject: ", err);
+        res.status(500).json({
+            error: "Internal error occurred, please report"
         });
+    }
+});
 
-        router.get("/:candidateId/:qboxquestions", function(req, res) {
-            console.log("Inside qboxquestions get req1")
-            try {
-                var question = quesprocessor.getquestions(req.params.candidateId,
-                    function(question) {
-                       
-                        var result=res.status(200).json(question);
-                        res.end();
-                    },
-                    function(err) {
-                        res.status(500).json(err);
-                    });
+// Effective url is /candidate/:candidateid
+router.post("/:candidateId", function(req, res) {
 
-            } catch (err) {
-                console.log("Error occurred in fetching questions: ", err);
-                res.status(500).json({
-                    error: "Internal error occurred, please report"
-                });
+    console.log("inside adding question req", req.body.section);
+
+    try {
+        quesprocessor.createNewQuestions(req.body, req.params.candidateId,
+            function(projectObj) {
+                res.status(201).json(projectObj);
+            },
+            function(err) {
+                res.status(500).json(err);
             }
-        });*/
-
-        router.get("/:candidateId/:qboxquestions/:section", function(req, res) {
-            console.log("Inside qboxquestions get req2")
-            try {
-                var question = quesprocessor.getquestionsFromSections(req.params.candidateId, req.params.section,
-                    function(question) {
-
-                        var result = res.status(200).json(question);
-                        res.end();
-                    },
-                    function(err) {
-                        res.status(500).json(err);
-                    });
-
-            } catch (err) {
-                console.log("Error occurred in fetching questions: ", err);
-                res.status(500).json({
-                    error: "Internal error occurred, please report"
-                });
-            }
+        );
+    } catch (err) {
+        console.log("Error occurred in adding project: ", err);
+        res.status(500).json({
+            error: "Internal error occurred, please report"
         });
+    }
 
-        router.post("/:candidateId", function(req, res) {
+}); //end post
 
-            console.log("inside adding question req", req.body.section);
-
-            try {
-                quesprocessor.createNewQuestions(req.body, req.params.candidateId,
-                    function(projectObj) {
-                        res.status(201).json(projectObj);
-                    },
-                    function(err) {
-                        res.status(500).json(err);
-                    }
-                );
-            } catch (err) {
-                console.log("Error occurred in adding project: ", err);
-                res.status(500).json({
-                    error: "Internal error occurred, please report"
-                });
-            }
-
-        }); //end post
-
-        router.post("/", function(req, res) {
-
-            console.log("inside adding field ques", req.body);
-
-            try {
-                quesprocessor.createNewFieldQuesn(req.body,
-                    function(projectObj) {
-                        res.status(201).json(projectObj);
-                    },
-                    function(err) {
-                        res.status(500).json(err);
-                    }
-                );
-            } catch (err) {
-                console.log("Error occurred in adding project: ", err);
-                res.status(500).json({
-                    error: "Internal error occurred, please report"
-                });
-            }
-
-        }); //end post
-
-        module.exports = router;
+module.exports = router;
