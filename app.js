@@ -10,15 +10,18 @@ var authRoutes = require('./auth/auth/authRoutes');
 var projectRoutes = require('./sectionproject/projectrouter');
 var educationRoutes = require('./sectioneducation/educationrouter');
 var skillRoutes = require('./sectionskill/skillrouter');
-var profileRoutes = require('./profiles/profilerouter');
-var workRoutes = require('./sectionworkexperiance/workrouter');
 var candidateRoutes= require('./candidate/candidaterouter');
 var personalinfoRoutes=require('./sectionpersonalinfo/personalinforouter');
+var profilerouter = require('./profiles/profilerouter');
+var workRouter = require('./sectionworkexperiance/workrouter');
+var qboxRouter = require('./questionbox/qboxrouter');
+var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 
 var app = express();
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
+
 app.use(bodyParser.urlencoded({
     extended: false
 }));
@@ -26,80 +29,39 @@ app.use(bodyParser.urlencoded({
 var server = http.createServer(app);
 server.listen(8081);
 
-var db = mongoose.connect('mongodb://localhost:27017/SamarthDb');
+console.log("Server started...");
+
+mongoose.set('debug', true);
+/*mongoose.set('debug', function(coll, method, query, doc[, options]) {
+    //do your thing
+});
+*/
+mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
 console.log("Server started...");
 
-app.get("/lang", function(req, res) {
 
-});
-
-app.use('/auth', function(req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-}, authRoutes);
-
-// app.use('/user', function(req, res, next) {
-//     res.set('Access-Control-Allow-Origin', '*');
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// }, userRoutes);
-
-app.use("/project", function(req, res, next) {
+app.use(function(req, res, next) {
     res.set('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
+})
 
-}, projectRoutes);
+/*app.use('/candidate', authRoutes,userRoutes,projectRoutes,educationRouter,
+                   skillRoutes,profilerouter,workRouter,quesRouter,);
+*/
 
-app.use('/education', function(req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-
-}, educationRoutes);
-
-app.use("/skill", function(req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-
-}, skillRoutes);
-
-app.use("/profile", function(req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-
-}, profileRoutes);
-
-app.use("/work",  function(req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-
-},workRoutes);
-
-app.use("/candidate",  function(req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-
-},candidateRoutes);
-
-app.use("/personalinfo",  function(req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-
-},personalinfoRoutes);
+app.use('/candidates', qboxRouter);
+app.use('/candidate', candidateRoutes);
+app.use('/fieldquestions', fieldQRouter);
+app.use('/auth', authRoutes);
+app.use('/user', userRoutes);
+app.use("/project", projectRoutes);
+app.use('/education', educationRoutes);
+app.use("/skill", skillRoutes);
+app.use("/profile", profilerouter);
+app.use("/work", workRouter);
+app.use("/personalinfo",personalinfoRoutes);
 
 module.exports = app;

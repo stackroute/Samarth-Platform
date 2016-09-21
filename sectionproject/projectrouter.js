@@ -49,10 +49,13 @@ router.post("/:candidateId", function(req, res) {
                     error: "Internal error occurred, please report"
                 });
             }
-        }
-    });
+        }//end else
+    });//end find
 
 });
+
+
+
 
 /*Update a project by passing the passing name in the api for the given candidate id NOTE:(send every field of the project obj while updating in the body) */
 //HTTP POST project/:candidateId
@@ -80,23 +83,5 @@ router.patch("/:candidateId/:projectName", function(req, res) {
         }
     }); //end find
 });
-
-// router.delete("/:candidateId/:projectName", function(req, res) {
-//     try {
-//         projectProcessor.deleteProject(req.params.candidateId, req.params.projectName,
-//             function(projectObj) {
-//                 res.status(202).json(projectObj);
-//             },
-//             function(err) {
-//                 res.status(500).json(err);
-//             }
-//         );
-//     } catch (err) {
-//         console.log("Error occurred in deleting old project: ", err);
-//         res.status(500).json({
-//             error: "Internal error occurred, please report"
-//         });
-//     }
-// });
 
 module.exports = router;

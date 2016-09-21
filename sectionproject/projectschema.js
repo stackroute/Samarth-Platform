@@ -2,7 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var projectSchema = new Schema({
-    'candidateid':{type:String ,required:true},
+
+    'candidateid':{ type: String, required: true},
     'projects': [{
         'name': { type: String, required: true },
         'workplace': { type: String },
@@ -18,6 +19,8 @@ var projectSchema = new Schema({
     }]
 });
 
-var project = mongoose.model('project', projectSchema, 'SectionProject');
+
+var project = mongoose.model('project', projectSchema, 'projects');
+
 
 module.exports = project;

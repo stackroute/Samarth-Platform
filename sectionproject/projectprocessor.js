@@ -34,7 +34,6 @@ function createNewProject(formobj, sucessCB, errorCB) {
     });
     //skillObj.skills.push(newskillobj.skills[0]);
     console.log("About to save new project:",projectObj);
-
     projectObj.save(function(err, result) {
         console.log("inside save");
         if (err) {
@@ -52,8 +51,7 @@ function createNewProject(formobj, sucessCB, errorCB) {
         project.update({ "candidateid": candidateId }, { $push: { "projects": oldProjectObj.projects[0] } },
             function() {
                 successCB("project added")
-
-            }
+               }
         );
     };
 
