@@ -43,7 +43,7 @@ router.post("/:candidateid", function(req, res) {
     }); //end find
 }); //end post
 
-/*update the types of work for the organisation and the given candidate id note:(pass every field from body) */
+/*update the types of work for the organisation with given candidate id note:(pass every field from body) */
 //HTTP PATCH /work/:candidateid
 //effective url work/:candidateid
 router.patch("/:candidateid/:organisation", function(req, res) {

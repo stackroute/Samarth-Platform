@@ -13,6 +13,6 @@ var skillSchema = new Schema({
     }]
 });
 
-var skill = mongoose.model('skill', skillSchema, 'SectionSkill');
+var skill = mongoose.model('skill', skillSchema, 'skills');
 
 module.exports = skill;

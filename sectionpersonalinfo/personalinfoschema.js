@@ -16,5 +16,5 @@ var PersonalInfoSchema = new Schema({
 
 
 });
-var personModl = mongoose.model('personModl', PersonalInfoSchema, 'Personalinfo');
+var personModl = mongoose.model('personModl', PersonalInfoSchema, 'personalinfo');
 module.exports = personModl;

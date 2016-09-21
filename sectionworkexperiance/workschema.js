@@ -14,5 +14,5 @@ var workSchema = new Schema({
 
 
 });
-var work = mongoose.model('work', workSchema, 'Work_History');
+var work = mongoose.model('work', workSchema, 'workhistory');
 module.exports = work;

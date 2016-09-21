@@ -24,6 +24,6 @@ var qualificationSchema = new Schema({
   }] 
 });
 
-var qualificationModel=mongoose.model('qualificationModel',qualificationSchema,'SectionQualification');
+var qualificationModel=mongoose.model('qualificationModel',qualificationSchema,'qualifications');
 module.exports=qualificationModel;
 // module.exports=mongoose;
