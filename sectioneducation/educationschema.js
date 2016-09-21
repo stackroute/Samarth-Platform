@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var qualificationSchema = new Schema({
+  candidateid:{type:String ,required:true},
   qualification:[
   {
   	title:{type:String,required:true}, //title of my qualification that i have done
@@ -23,6 +24,6 @@ var qualificationSchema = new Schema({
   }] 
 });
 
-var qualificationModel=mongoose.model('qualificationModel',qualificationSchema,'profiles');
+var qualificationModel=mongoose.model('qualificationModel',qualificationSchema,'SectionQualification');
 module.exports=qualificationModel;
 // module.exports=mongoose;

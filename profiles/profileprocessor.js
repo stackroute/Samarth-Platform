@@ -1,7 +1,7 @@
 var profile = require('./profileschema');
 
-function getprofile(candidateId,successCB, errorCB){
-  profile.find({ "candidateid": candidateId }, function(error, result) {
+function getprofile(candidateId, successCB, errorCB) {
+    profile.find({ "candidateid": candidateId }, function(error, result) {
         if (error) {
             console.log(error);
             errorCB(error);
@@ -12,19 +12,11 @@ function getprofile(candidateId,successCB, errorCB){
     });
 };
 
-function createNewprofile(newProjectObj, candidateid, successCB, errorCB) {
+function createNewprofile(profileobj ,successCB, errorCB) {
     var projectObj = new profile({
-        
-        // profile: [{
-           "candidateid":candidateid,
-           "candidateType":newProjectObj.profile[0].candidateType,
-            "updatedOn":newProjectObj.profile[0].updatedOn
-            
-        // }]
-    });
-    //  var id="candidateid":candidateid;
-    // projectObj.profile.push(id);
-    //  projectObj.profile.push(newProjectObj.profile[0]);
+ 
+        "candidateid": profileobj.mobile
+ });
 
     console.log("About to save a new profile: ", projectObj);
 
@@ -37,20 +29,22 @@ function createNewprofile(newProjectObj, candidateid, successCB, errorCB) {
         successCB(savedObj);
     });
 };
+function modifyprofile(profileobj,candidateid,successCB,errorCB){
 
-// function modifyprofile(oldProjectObj, candidateid, successCB, errorCB) {
 
-//     project.update({ "candidateid": candidateid }, { $push: { "records": oldProjectObj.records[0] } },
-//         function() {
-//             successCB("project added")
+   profile.update({ 'candidateid': candidateid},profileobj.profile,
+       
+      function() {
+           successCB("data updated");
+       }
 
-//         }
-//     );
-// };
+   );
+}
 
 module.exports = {
 
     createNewprofile: createNewprofile,
-    getprofile: getprofile
+    getprofile: getprofile,
+    modifyprofile:modifyprofile
 
 };

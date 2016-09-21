@@ -17,20 +17,6 @@ describe("Make GET request to URL '/' and get a 200 res within 10ms", function()
         request.get('/').expect(200, done);
     });
 
-    // it('GET Request with returning some data', function(done) {
-    //   request.get('/')
-    //     .expect(200)
-    //     .end(function(err, res) {
-    //       if (err) {
-    //         done(err)
-    //       }
-
-    //       // expect(res.body).to.be.not.equal(undefined);
-    //       expect(Object.keys(res.body).length).to.be.at.least(1);
-    //       done();
-    //     });
-    // });
-
     it('Testing for not defined route', function(done) {
         request.get('/_undefined_route').expect(404, done);
     });

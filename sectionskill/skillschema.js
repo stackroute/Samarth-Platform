@@ -3,6 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var skillSchema = new Schema({
+	'candidateid':{type:String ,required:true},
     'skills': [{
         'skillname': { type: String, required: true},
         'category': { type: String, required: true },
@@ -12,6 +13,6 @@ var skillSchema = new Schema({
     }]
 });
 
-var skill = mongoose.model('skill', skillSchema, 'profiles');
+var skill = mongoose.model('skill', skillSchema, 'SectionSkill');
 
 module.exports = skill;

@@ -1,7 +1,7 @@
 var project = require('./projectschema');
 
 function getProject(candidateId, successCB, errorCB) {
-    project.find({ "candidateid": candidateId }, 'projects', function(error, result) {
+    project.find({ "candidateid": candidateId }, function(error, result) {
         if (error) {
             console.log(error);
             errorCB(error);
@@ -10,7 +10,7 @@ function getProject(candidateId, successCB, errorCB) {
         console.log("Inside get Project Function" + result);
         successCB(result);
     });
-};
+}
 
 function findAllProject(successCB, errorCB) {
     var projectsMap = {};
@@ -25,52 +25,73 @@ function findAllProject(successCB, errorCB) {
         console.log(projects);
         successCB(projects);
     });
-};
+}
 
-function createNewProject(oldProjectObj, candidateId, successCB, errorCB) {
-    
-    project.update({ "candidateid": candidateId }, { $push: { "projects": oldProjectObj.records[0] } },
-        function() {
-            successCB("project added")
-
-        }
-    );
-};
-
-function updateProject(projectName,oldProjectObj, candidateId, successCB, errorCB) {
-    console.log("Inside update of project")
-    project.update({ 'candidateid': candidateId, 'projects.name': projectName }, {
-            '$set': {
-                'projects.$.name': oldProjectObj.records[0].name,
-                'projects.$.workplace': oldProjectObj.records[0].workplace,
-                'projects.$.location': oldProjectObj.records[0].location,
-                'projects.$.income': oldProjectObj.records[0].income,
-                'projects.$.duration.from': oldProjectObj.records[0].duration.from,
-                'projects.$.duration.to': oldProjectObj.records[0].duration.to,
-                'projects.$.duration.duration': oldProjectObj.records[0].duration.duration
-            }
-        },
-
-        function() {
-            successCB("project updated");
-        }
-    );
-
-};
-
-function deleteProject(candidateId, projectName, successCB, errorCB) {
-
-    project.update({ 'candidateid': candidateId }, {
-        $pull: { 'projects': { 'name': projectName } }
-    }, function() {
-        successCB("project object deleted")
+function createNewProject(formobj, sucessCB, errorCB) {
+    var projectObj = new project({
+        candidateid: formobj.mobile,
+        projects: []
     });
-};
+    //skillObj.skills.push(newskillobj.skills[0]);
+    console.log("About to save new project:",projectObj);
 
-module.exports = {
-    getProject: getProject,
-    findAllProject: findAllProject,
-    createNewProject: createNewProject,
-    updateProject: updateProject,
-    deleteProject: deleteProject
-};
+    projectObj.save(function(err, result) {
+        console.log("inside save");
+        if (err) {
+            console.log(err);
+            errorCB(err);
+        }
+        console.log('New project created', result);
+        sucessCB(result);
+
+    });
+}
+
+    function addProject(oldProjectObj, candidateId, successCB, errorCB) {
+
+        project.update({ "candidateid": candidateId }, { $push: { "projects": oldProjectObj.projects[0] } },
+            function() {
+                successCB("project added")
+
+            }
+        );
+    };
+
+    function updateProject(projectName, oldProjectObj, candidateId, successCB, errorCB) {
+        console.log("Inside update of project")
+        project.update({ 'candidateid': candidateId, 'projects.name': projectName }, {
+                '$set': {
+                    'projects.$.name': oldProjectObj.projects[0].name,
+                    'projects.$.workplace': oldProjectObj.projects[0].workplace,
+                    'projects.$.location': oldProjectObj.projects[0].location,
+                    'projects.$.income': oldProjectObj.projects[0].income,
+                    'projects.$.duration.from': oldProjectObj.projects[0].duration.from,
+                    'projects.$.duration.to': oldProjectObj.projects[0].duration.to,
+                    'projects.$.duration.duration': oldProjectObj.projects[0].duration.duration
+                }
+            },
+
+            function() {
+                successCB("project updated");
+            }
+        );
+
+    };
+
+    function deleteProject(candidateId, projectName, successCB, errorCB) {
+
+        project.update({ 'candidateid': candidateId }, {
+            $pull: { 'projects': { 'name': projectName } }
+        }, function() {
+            successCB("project object deleted")
+        });
+    };
+
+    module.exports = {
+        getProject: getProject,
+        findAllProject: findAllProject,
+        addProject:addProject,
+        createNewProject: createNewProject,
+        updateProject: updateProject,
+        deleteProject: deleteProject
+    };
