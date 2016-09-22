@@ -13,11 +13,11 @@ var skillRoutes = require('./sectionskill/skillrouter');
 var candidateRoutes = require('./candidate/candidaterouter');
 var personalinfoRoutes = require('./sectionpersonalinfo/personalinforouter');
 var profilerouter = require('./profiles/profilerouter');
+var skillcardrouter=require('./skillcard/skillcardrouter'); 
 var workRouter = require('./sectionworkexperiance/workrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var redisclient = require('./questionbox/radisfieldquestionsrouter');
-
 var app = express();
 
 app.use(morgan('dev'));
@@ -63,5 +63,6 @@ app.use("/skill", skillRoutes);
 app.use("/profile", profilerouter);
 app.use("/work", workRouter);
 app.use("/personalinfo", personalinfoRoutes);
+app.use("/skillcard",skillcardrouter);
 
 module.exports = app;
