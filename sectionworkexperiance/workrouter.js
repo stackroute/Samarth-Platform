@@ -44,8 +44,8 @@ router.post("/:candidateid", function(req, res) {
 }); //end post
 
 /*update the types of work for the organisation with given candidate id note:(pass every field from body) */
-//HTTP PATCH /work/:candidateid
-//effective url work/:candidateid
+//HTTP PATCH /work/:candidateid/::organisation
+//effective url work/:candidateid/::organisation
 router.patch("/:candidateid/:organisation", function(req, res) {
     work.find({ "candidateid": req.params.candidateid }, function(err, result) {
         if (result == "") {

@@ -1,6 +1,9 @@
 var router = require('express').Router();
 var educationProcessor = require('./educationprocessor');
 var eduModel = require('./educationschema');
+/*Get Qualification details of the given candidate id*/
+//HTTP GET education//:candidateid/
+//effective url /education//:candidateid
 router.get("/:candidateid", function(req, res) {
     //console.log("Request received for emp id: ", req.params.empid);
     educationProcessor.getEducation(req.params.candidateid, function(educationObject) {
@@ -12,6 +15,9 @@ router.get("/:candidateid", function(req, res) {
     //res.status(200).json(empObj);
 });
 
+/*Add Qualification details of the given candidate id after registration*/
+//HTTP Post education//:candidateid/
+//effective url /education//:candidateid
 router.post("/:candidateID", function(req, res) {
     eduModel.find({ "candidateid": req.params.candidateID }, function(err, result) {
         if (result=="") {
@@ -37,7 +43,11 @@ router.post("/:candidateID", function(req, res) {
     }); //find ends
 
 }); //post ends
-router.patch("/:candidateID/:id", function(req, res) {
+
+/*Update Qualification details of the given candidate id by giving title in the parameter NOTE:(add evry field in the object while update)*/
+//HTTP Patch education//:candidateid/:title
+//effective url /education//:candidateid/:title
+router.patch("/:candidateID/:title", function(req, res) {
     eduModel.find({ "candidateid": req.params.candidateID }, function(err, result) {
         if (err || result == "") {
 
@@ -47,21 +57,21 @@ router.patch("/:candidateID/:id", function(req, res) {
             // res.status(201).json({'success':"FOUND"});
 
             try {
-                educationProcessor.updateEducation(req.params.candidateID, req.params.id, req.body,
+                educationProcessor.updateEducation(req.params.candidateID, req.params.title, req.body,
                     function(updatedEdu) {
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {
-                        console.log("Error occurred in updating new educational detail: ", err);
-                        res.status(500).json({ error: "Internal error occurred, please report" });
+                        console.log("updating new educational detail with invalid data ", err);
+                        res.status(500).send("updating new educational detail with invalid data " );
                     });
                 // res.status(201).json(addEdu);
             } catch (err) {
                 console.log("Error occurred in adding new educational detail: ", err);
                 res.status(500).json({ error: "Internal error occurred, please report" });
             }
-        }
-    });
+        }//end else
+    });//end find
 });
 // router.delete("/:candidateID/:id", function(req, res) {
 //     eduModel.find({ "candidateID": req.params.candidateID }, function(err, result) {

@@ -58,8 +58,8 @@ router.post("/:candidateId", function(req, res) {
 
 
 /*Update a project by passing the passing name in the api for the given candidate id NOTE:(send every field of the project obj while updating in the body) */
-//HTTP POST project/:candidateId
-// effective url project/:candidateId
+//HTTP POST project/:candidateId/:projectName
+// effective url project/:candidateId/:projectName
 router.patch("/:candidateId/:projectName", function(req, res) {
     project.find({ "candidateid": req.params.candidateId }, function(err, result) {
         if (result == "") {

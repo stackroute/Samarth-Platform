@@ -50,8 +50,8 @@ router.post("/:candidateid", function(req, res) {
 }); //end post
 
 /*Update a given skill by passing the skillname for the given candidate id.. NOTE:(provide the skill object with evry field)*/
-//HTTP PATCH /skill/:candidateid
-//effective url /skill/:candidateid
+//HTTP PATCH /skill/:candidateid/:skillname
+//effective url /skill/:candidateid/:skillname
 router.patch("/:candidateid/:skillname", function(req, res) {
     skill.find({ "candidateid": req.params.candidateid }, function(err, result) {
         if (result == "") {

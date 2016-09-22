@@ -120,7 +120,7 @@ router.post("/:candidateid", function(req, res) {
                     }
 
                     console.log("final result", results)
-                    return res.status(201).json({ msg: "done", result: results.personalinfo });
+                    return res.status(201).json({ msg: "done", result: results });
                 }
             ); //end of Async            
         } //end if

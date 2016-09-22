@@ -2,22 +2,7 @@ var MongoClient = require('mongodb').MongoClient,
     assert = require('assert');
 var mongoose = require('mongoose');
 var eduModel = require('./educationschema');
-/*mongoose.connect('mongodb://localhost:27017/sectionEducationDetails');*/
-// function getEducation() {
-//   var myPromise = new Promise(function(resolve, reject){
-//     eduModel.find({},function(err,docs) {
-//     console.log("I am inside the find callback... ")
-//     if(err) { 
-//       console.log("Internal database error in fetching education document ", err);
-//       reject({error:'Internal error occurred, please report...'});
-//     }
-//     console.log("got the data from db: ", docs);
-//     resolve(docs);
-//   });  
-//   });
-//   return myPromise;
-// };
-//----------callbackway-----------------//
+
 function getAllEducation(successCB, errorCB) {
     console.log("About to do a find query... ");
     //Asynch 
@@ -69,9 +54,9 @@ function addEducation(updatedEmpObj, candidateId, successCB, errCB) {
     );
 };
 
-function updateEducation(candidateID, qualificationID, modifiedExistingObject, successCB, errorCB) {
-    console.log("got", modifiedExistingObject.record[0].title);
-    eduModel.update({ 'candidateid': candidateID, 'qualification.title': qualificationID }, {
+function updateEducation(candidateID, title, modifiedExistingObject, successCB, errorCB) {
+    //console.log("got", modifiedExistingObject.record[0].title);
+    eduModel.update({ 'candidateid': candidateID, 'qualification.title': title }, {
             $set: {
                 'qualification.$.title': modifiedExistingObject.qualification[0].title,
                 'qualification.$.batch': modifiedExistingObject.qualification[0].batch,

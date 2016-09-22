@@ -56,7 +56,6 @@ app.use('/candidates', qboxRouter);
 app.use('/candidate', candidateRoutes);
 app.use('/fieldquestions', fieldQRouter);
 app.use('/auth', authRoutes);
-app.use('/user', userRoutes);
 app.use("/project", projectRoutes);
 app.use('/education', educationRoutes);
 app.use("/skill", skillRoutes);
