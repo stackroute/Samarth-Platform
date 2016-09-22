@@ -10,12 +10,13 @@ var authRoutes = require('./auth/auth/authRoutes');
 var projectRoutes = require('./sectionproject/projectrouter');
 var educationRoutes = require('./sectioneducation/educationrouter');
 var skillRoutes = require('./sectionskill/skillrouter');
-var candidateRoutes= require('./candidate/candidaterouter');
-var personalinfoRoutes=require('./sectionpersonalinfo/personalinforouter');
+var candidateRoutes = require('./candidate/candidaterouter');
+var personalinfoRoutes = require('./sectionpersonalinfo/personalinforouter');
 var profilerouter = require('./profiles/profilerouter');
 var workRouter = require('./sectionworkexperiance/workrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
+var redisclient = require('./questionbox/radisfieldquestionsrouter');
 
 var app = express();
 
@@ -61,6 +62,6 @@ app.use('/education', educationRoutes);
 app.use("/skill", skillRoutes);
 app.use("/profile", profilerouter);
 app.use("/work", workRouter);
-app.use("/personalinfo",personalinfoRoutes);
+app.use("/personalinfo", personalinfoRoutes);
 
 module.exports = app;

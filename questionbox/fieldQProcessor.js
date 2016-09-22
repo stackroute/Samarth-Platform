@@ -1,6 +1,6 @@
 var fieldQuestionsModel = require('./fieldquestions');
 
-function getFieldQuestions(section, fieldNames, lang, successCB, errorCB) {
+function getFieldQuestions(section, fieldNames, lang, successCB, dataCB, errorCB) {
     var findClause = { "section": section };
 
     if (fieldNames.length > 0) {
@@ -16,11 +16,12 @@ function getFieldQuestions(section, fieldNames, lang, successCB, errorCB) {
             errorCB(error);
         }
         successCB(colln);
+        dataCB(colln);
     });
 };
 
 function createFieldQuestion(newquestionobj, sucessCB, errorCB) {
-
+    console.log("Inside Field questons add processor", newquestionobj);
     var questionObj = new fieldQuestionsModel({
         section: newquestionobj.section,
         fieldname: newquestionobj.fieldname,
