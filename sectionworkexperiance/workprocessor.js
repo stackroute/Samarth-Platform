@@ -7,7 +7,7 @@ function getworkexp(candidateid, successCB, errorCB) {
     //This is a asynch op
     //Go to DB and fetch record for specified empid
 
-    work.find({ "candidateid": candidateid },'workexperience', function(err, workexps) {
+    work.find({ "candidateid": candidateid }, function(err, workexps) {
         if (err) {
             console.log(err);
             errorCB(err);
@@ -18,14 +18,14 @@ function getworkexp(candidateid, successCB, errorCB) {
 }
 
 
-//add skill for the first time when no records are present by creating records
-function createworkexp(wsobj, candidateid, sucessCB, errorCB) {
+//add workexp for the first time when no records are present by creating records
+function createworkexp(formobj, sucessCB, errorCB) {
     var wrkexpObj = new work({
-        candidateid: candidateid,
+        candidateid: formobj.mobile,
         workexperience: []
     });
-    wrkexpObj.workexperience.push(wsobj.workexperience[0]);
-    console.log("inside create new work experience:");
+    
+    console.log("About to create new work experience:",wrkexpObj);
 
     wrkexpObj.save(function(err, result) {
         console.log("inside save");
@@ -54,10 +54,11 @@ function addworkexp(wsObj, candidateid, sucessCB, errorCB) {
 }
 
 
-function updateworkexp(wsobj, candidateid, sucessCB, errorCB) {
-    work.update({ 'candidateid': candidateid ,'workexperience.organisation': wsobj.workexperience[0].organisation }, 
+function updateworkexp(wsobj, candidateid,organisation, sucessCB, errorCB) {
+    work.update({ 'candidateid': candidateid ,'workexperience.organisation': organisation }, 
         {'$set': 
-        { 'workexperience.$.yearexp': wsobj.workexperience[0].yearexp,
+        {'workexperience.$.organisation': wsobj.workexperience[0].organisation,
+         'workexperience.$.yearexp': wsobj.workexperience[0].yearexp,
          'workexperience.$.organisation': wsobj.workexperience[0].organisation ,
          'workexperience.$.role': wsobj.workexperience[0].role ,
          'workexperience.$.workplace': wsobj.workexperience[0].workplace ,

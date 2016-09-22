@@ -4,16 +4,20 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+
 var authRoutes = require('./auth/auth/authRoutes');
-var userRoutes = require('./auth/user/userRoutes');
-var projectRoutes = require('./sectionproject/projectRouter');
-var educationRouter = require('./sectioneducation/educationrouter');
+// var userRoutes = require('./auth/user/userRoutes');
+var projectRoutes = require('./sectionproject/projectrouter');
+var educationRoutes = require('./sectioneducation/educationrouter');
 var skillRoutes = require('./sectionskill/skillrouter');
+var candidateRoutes = require('./candidate/candidaterouter');
+var personalinfoRoutes = require('./sectionpersonalinfo/personalinforouter');
 var profilerouter = require('./profiles/profilerouter');
 var workRouter = require('./sectionworkexperiance/workrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var redisclient = require('./questionbox/radisfieldquestionsrouter');
+
 var app = express();
 
 app.use(morgan('dev'));
@@ -26,6 +30,7 @@ app.use(bodyParser.urlencoded({
 var server = http.createServer(app);
 server.listen(8081);
 
+console.log("Server started...");
 
 mongoose.set('debug', true);
 /*mongoose.set('debug', function(coll, method, query, doc[, options]) {
@@ -35,6 +40,7 @@ mongoose.set('debug', true);
 mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
 console.log("Server started...");
+
 
 app.use(function(req, res, next) {
     res.set('Access-Control-Allow-Origin', '*');
@@ -47,17 +53,15 @@ app.use(function(req, res, next) {
                    skillRoutes,profilerouter,workRouter,quesRouter,);
 */
 
-app.use('/candidate', qboxRouter);
+app.use('/candidates', qboxRouter);
+app.use('/candidate', candidateRoutes);
 app.use('/fieldquestions', fieldQRouter);
-
 app.use('/auth', authRoutes);
-app.use('/user', userRoutes);
 app.use("/project", projectRoutes);
-app.use('/education', educationRouter);
+app.use('/education', educationRoutes);
 app.use("/skill", skillRoutes);
 app.use("/profile", profilerouter);
 app.use("/work", workRouter);
-
-
+app.use("/personalinfo", personalinfoRoutes);
 
 module.exports = app;

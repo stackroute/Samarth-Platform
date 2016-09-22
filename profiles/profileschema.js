@@ -3,15 +3,12 @@ var Schema = mongoose.Schema;
 var profileSchema = new Schema({
      
         candidateid: { type: String, required: true, unique: true },
-        candidateType: { type: String },
-        createdOn: { type: Date},
-        updatedOn: { type: Date},
-        projects:{type:Array},
-        skills:{type:Array},
-        projects:{type:Array},
-        qualification:{type:Array},
-        workexperience:{type:Array},
-        personalinfo:{type:Array}
+        candidateType: { type: String,default:"Job Seeker" },
+        createdOn: { type: Date,default:Date.now},
+        updatedOn: { type: Date,default:Date.now},
+        createdBy:{type:String,default:"user"},
+        updatedBy:{type:String,default:"user"}
+       
 });
 var profiles=mongoose.model('profiles',profileSchema,'profiles')
 module.exports = profiles;

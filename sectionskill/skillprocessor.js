@@ -2,13 +2,13 @@ var mongoose = require('mongoose');
 
 var skill = require("./skillschema");
 
-
+ 
 function getSkill(candidateid, successCB, errorCB) {
 
     //This is a asynch op
     //Go to DB and fetch record for specified empid
 
-    skill.find({ "candidateid": candidateid },'skills', function(err, skill) {
+    skill.find({ "candidateid": candidateid }, function(err, skill) {
         if (err) {
             console.log(err);
             errorCB(err);
@@ -38,12 +38,13 @@ function getallSkill(successCB, errorCB) {
 }
 
 //add skill for the first time when no records are present by creating records
-function createNewSkill(newskillobj, candidateid, sucessCB, errorCB) {
+function createNewSkill(formobj, sucessCB, errorCB) {
     var skillObj = new skill({
+        candidateid:formobj.mobile,
         skills: []
     });
-    skillObj.skills.push(newskillobj.skills[0]);
-    console.log("inside createNewSkill:");
+    //skillObj.skills.push(newskillobj.skills[0]);
+    console.log("About to save New Skill:",skillObj);
 
     skillObj.save(function(err, result) {
         console.log("inside save");
