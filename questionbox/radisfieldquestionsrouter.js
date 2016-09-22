@@ -5,9 +5,8 @@ client.on("error", function(err) {
     console.log("Error " + err);
 });
 
-client.get('foo', function(err, reply) {
-    console.log("chandan", reply);
-    //client.quit();
-});
+client.hgetall("qBoxQuery", function(err, obj) {
+    console.log("Inside get", obj);
+})
 
 module.exports = client;

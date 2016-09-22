@@ -37,5 +37,5 @@ function createNewQuestions(newquestionobj, candidateId, sucessCB, errorCB) {
 
 module.exports = {
     getQuestions: getQuestions,
-    createNewQuestions: createNewQuestions,
+    createNewQuestions: createNewQuestions
 };

@@ -4,12 +4,7 @@ var fieldQProcessor = require('./fieldQProcessor');
 var redis = require('redis');
 var client = redis.createClient();
 console.log("client created");
-/*client.set("foo", "OK");
 
-// This will return a JavaScript String 
-client.get("foo", function(err, reply) {
-    console.log(reply.toString()); // Will print `OK` 
-});*/
 /**
  * Api for returning field question query statement, for asking the candidate to answer or fill the pending field of profile data
  * can filter these query statements for a perticular section with and fieldnames (multiple) and language
@@ -25,7 +20,7 @@ router.get("/:section", function(req, res) {
     try {
         var fieldNames = (req.query.fieldname) ? req.query.fieldname.split(",") : [];
         var lang = (req.query.lang) ? req.query.lang.split(",") : [];
-
+        var obj = [];
         var querykey = req.params.section + fieldNames + lang;
         var question = fieldQProcessor.getFieldQuestions(req.params.section,
             fieldNames,
@@ -34,9 +29,11 @@ router.get("/:section", function(req, res) {
                 return res.status(200).json(question);
             },
             function(querydata) {
-                var result = querydata[1];
-                console.log(result);
-                client.set("foo", JSON.stringify(result));
+                for (var key = 0; key < querydata.length; key++) {
+                    obj.push(querydata[key].query);
+                }
+                client.hmset("qBoxQuery", querykey, obj);
+
             },
             function(err) {
                 return res.status(500).json(err);
@@ -52,7 +49,7 @@ router.get("/:section", function(req, res) {
 // Effective url is /fieldquestions/
 router.post("/", function(req, res) {
     try {
-        fieldQProcessor.createNewFieldQuesn(req.body,
+        fieldQProcessor.createFieldQuestion(req.body,
             function(createdObj) {
                 res.status(201).json(createdObj);
             },
@@ -61,7 +58,7 @@ router.post("/", function(req, res) {
             }
         );
     } catch (err) {
-        console.log("Error occurred in adding project: ", err);
+        console.log("Unexpected error ocurred during field questions post: ", err);
         res.status(500).json({
             error: "Internal error occurred, please report"
         });

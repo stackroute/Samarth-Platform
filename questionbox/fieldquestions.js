@@ -10,11 +10,11 @@ var schema = new Schema({
 });
 
 //composite unique key
-schema.index({ 
-	section: 1, 
-	fieldname: 1, 
-	lang: 1 }, 
-	{ unique: true }
-);
+schema.index({
+    section: 1,
+    fieldname: 1,
+    query: 1,
+    lang: 1
+}, { unique: true });
 
 module.exports = mongoose.model('fieldquestions', schema, 'fieldquestions');

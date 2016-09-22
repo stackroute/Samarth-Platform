@@ -21,7 +21,7 @@ function getFieldQuestions(section, fieldNames, lang, successCB, dataCB, errorCB
 };
 
 function createFieldQuestion(newquestionobj, sucessCB, errorCB) {
-
+    console.log("Inside Field questons add processor", newquestionobj);
     var questionObj = new fieldQuestionsModel({
         section: newquestionobj.section,
         fieldname: newquestionobj.fieldname,
