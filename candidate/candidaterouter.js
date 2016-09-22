@@ -8,7 +8,7 @@ var educationprocessor = require('../sectioneducation/educationprocessor');
 var personalInfoprocessor = require('../sectionpersonalinfo/personalInfoprocessor');
 var projectprocessor = require('../sectionproject/projectprocessor');
 var skillprocessor = require('../sectionskill/skillprocessor');
-workexpprocessor = require('../sectionworkexperiance/workprocessor');
+var workexpprocessor = require('../sectionworkexperiance/workprocessor');
 
 /* Get the Candidate Collection with the given Candidate id  */
 //HTTP GET /candidate/:candidateid /
