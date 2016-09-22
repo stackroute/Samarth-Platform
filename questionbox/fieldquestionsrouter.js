@@ -1,14 +1,15 @@
 var router = require('express').Router();
-/*var redis = require('redis'),
-    client = redis.createClient();*/
-
 var fieldquestions = require('./fieldquestions');
 var fieldQProcessor = require('./fieldQProcessor');
+var redis = require('redis');
+var client = redis.createClient();
+console.log("client created");
+/*client.set("foo", "OK");
 
-/*client.on("error", function(err) {
-    console.log("Error " + err);
+// This will return a JavaScript String 
+client.get("foo", function(err, reply) {
+    console.log(reply.toString()); // Will print `OK` 
 });*/
-
 /**
  * Api for returning field question query statement, for asking the candidate to answer or fill the pending field of profile data
  * can filter these query statements for a perticular section with and fieldnames (multiple) and language
@@ -25,11 +26,17 @@ router.get("/:section", function(req, res) {
         var fieldNames = (req.query.fieldname) ? req.query.fieldname.split(",") : [];
         var lang = (req.query.lang) ? req.query.lang.split(",") : [];
 
+        var querykey = req.params.section + fieldNames + lang;
         var question = fieldQProcessor.getFieldQuestions(req.params.section,
             fieldNames,
             lang,
             function(question) {
                 return res.status(200).json(question);
+            },
+            function(querydata) {
+                var result = querydata[1];
+                console.log(result);
+                client.set("foo", JSON.stringify(result));
             },
             function(err) {
                 return res.status(500).json(err);
