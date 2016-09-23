@@ -1,6 +1,16 @@
 var fieldQuestionsModel = require('./fieldquestions');
 
-function getFieldQuestions(section, fieldNames, lang, successCB, dataCB, errorCB) {
+function getAllFieldQuestions(successCB, errorCB) {
+    fieldQuestionsModel.find({}, { _id: 0, __v: 0 }, function(error, colln) {
+        if (error) {
+            errorCB(error);
+        }
+        successCB(colln);
+    });
+}
+
+
+function getFieldQuestions(section, fieldNames, lang, successCB, errorCB) {
     var findClause = { "section": section };
 
     if (fieldNames.length > 0) {
@@ -16,7 +26,6 @@ function getFieldQuestions(section, fieldNames, lang, successCB, dataCB, errorCB
             errorCB(error);
         }
         successCB(colln);
-        dataCB(colln);
     });
 };
 
@@ -38,8 +47,8 @@ function createFieldQuestion(newquestionobj, sucessCB, errorCB) {
     });
 }
 
-
 module.exports = {
     getFieldQuestions: getFieldQuestions,
-    createFieldQuestion: createFieldQuestion
+    createFieldQuestion: createFieldQuestion,
+    getAllFieldQuestions: getAllFieldQuestions
 };

@@ -54,21 +54,22 @@ function addworkexp(wsObj, candidateid, sucessCB, errorCB) {
 }
 
 
-function updateworkexp(wsobj, candidateid,organisation, sucessCB, errorCB) {
-    work.update({ 'candidateid': candidateid ,'workexperience.organisation': organisation }, 
+function updateworkexp(wsobj, candidateid,workplace, sucessCB, errorCB) {
+    work.update({ 'candidateid': candidateid ,'workexperience.workplace': workplace }, 
         {'$set': 
-        {'workexperience.$.organisation': wsobj.workexperience[0].organisation,
-         'workexperience.$.yearexp': wsobj.workexperience[0].yearexp,
-         'workexperience.$.organisation': wsobj.workexperience[0].organisation ,
-         'workexperience.$.role': wsobj.workexperience[0].role ,
-         'workexperience.$.workplace': wsobj.workexperience[0].workplace ,
-         'workexperience.$.Location': wsobj.workexperience[0].Location}},
+        {'workexperience.$.designation': wsobj.workexperience[0].designation,
+         'workexperience.$.workplace': wsobj.workexperience[0].workplace,
+         'workexperience.$.Location': wsobj.workexperience[0].Location ,
+         'workexperience.$.duration.duration': wsobj.workexperience[0].duration.duration ,
+         'workexperience.$.duration.from': wsobj.workexperience[0].duration.from ,
+         'workexperience.$.duration.to': wsobj.workexperience[0].duration.to,
+         'workexperience.$.skills':wsobj.workexperience[0].skills}},
         function() {
             sucessCB("workexperience updated");
         }
 
     );
-}
+}       
 
 module.exports = {
     getworkexp: getworkexp,

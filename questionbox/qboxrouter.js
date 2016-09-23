@@ -2,6 +2,9 @@ var router = require('express').Router();
 var qboxquestions = require('./qboxquestions');
 var qboxProcessor = require('./qboxprocessor');
 
+var async = require('async');
+var fieldQCache = require('./fieldQCache');
+
 /**
  * API for returning questions pending to be answered by the candidate for completion or updation of profile
  * Supports filtering for a given section of the profile, paginate the questions
@@ -19,14 +22,32 @@ router.get("/:candidateid/qboxquestions/", function(req, res) {
         var sections = (req.query.sections) ? req.query.sections.split(",") : [];
         var limit = (req.query.limit) ? req.query.limit : 3;
         var skip = (req.query.skip) ? req.query.skip : 0;
+        var lang = (req.query.lang) ? req.query.lang : 'English';
 
         var question = qboxProcessor.getQuestions(req.params.candidateid,
             sections,
             skip,
             limit,
-            function(questionColln) {
-                res.status(200).json(questionColln);
-                res.end();
+            function(colln) {
+                async.map(colln,
+                    function(question, cb) {
+                        fieldQCache.getFieldQuestion(question.section, question.fieldname, lang,
+                            function(err, query) {
+                                var transformed = JSON.stringify(question);
+                                transformed = JSON.parse(transformed);
+                                transformed['query'] = query;
+                                transformed['lang'] = lang;
+                                cb(null, transformed);
+                            });
+                    },
+                    function(err, questionColln) {
+                        if (err) {
+                            return res.status(500).json(err);
+                        }
+
+                        return res.status(200).json(questionColln);
+                    }
+                );
             },
             function(err) {
                 //log the err
@@ -86,7 +107,7 @@ router.post("/:candidateId", function(req, res) {
     console.log("inside adding question req", req.body.section);
 
     try {
-        quesprocessor.createNewQuestions(req.body, req.params.candidateId,
+        qboxProcessor.createNewQuestions(req.body, req.params.candidateId,
             function(projectObj) {
                 res.status(201).json(projectObj);
             },

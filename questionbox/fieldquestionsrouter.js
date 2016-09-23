@@ -1,9 +1,6 @@
 var router = require('express').Router();
 var fieldquestions = require('./fieldquestions');
 var fieldQProcessor = require('./fieldQProcessor');
-var redis = require('redis');
-var client = redis.createClient();
-console.log("client created");
 
 /**
  * Api for returning field question query statement, for asking the candidate to answer or fill the pending field of profile data
@@ -21,19 +18,12 @@ router.get("/:section", function(req, res) {
         var fieldNames = (req.query.fieldname) ? req.query.fieldname.split(",") : [];
         var lang = (req.query.lang) ? req.query.lang.split(",") : [];
         var obj = [];
-        var querykey = req.params.section + fieldNames + lang;
+
         var question = fieldQProcessor.getFieldQuestions(req.params.section,
             fieldNames,
             lang,
             function(question) {
                 return res.status(200).json(question);
-            },
-            function(querydata) {
-                for (var key = 0; key < querydata.length; key++) {
-                    obj.push(querydata[key].query);
-                }
-                client.hmset("qBoxQuery", querykey, obj);
-
             },
             function(err) {
                 return res.status(500).json(err);

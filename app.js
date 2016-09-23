@@ -4,50 +4,68 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-
 var authRoutes = require('./auth/auth/authRoutes');
-// var userRoutes = require('./auth/user/userRoutes');
+
 var projectRoutes = require('./sectionproject/projectrouter');
 var educationRoutes = require('./sectioneducation/educationrouter');
 var skillRoutes = require('./sectionskill/skillrouter');
 var candidateRoutes = require('./candidate/candidaterouter');
 var personalinfoRoutes = require('./sectionpersonalinfo/personalinforouter');
 var profilerouter = require('./profiles/profilerouter');
-var skillcardrouter=require('./skillcard/skillcardrouter'); 
 var workRouter = require('./sectionworkexperiance/workrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
+<<<<<<< HEAD
 var redisclient = require('./questionbox/radisfieldquestionsrouter');
 var resourcebundle=require('./resourcebundle/resourcebundlerouter');
+=======
+
+var fieldQCache = require('./questionbox/fieldQCache');
+
+>>>>>>> deb2c1c6bd71edef283665f8d15fa5c9b6ef8079
 var app = express();
+
+
+app.onAppStart = function(addr) {
+  console.log("Samarth Platform web services is now Running on port:", addr.port);
+
+  mongoose.set('debug', true);
+  /*mongoose.set('debug', function(coll, method, query, doc[, options]) {
+      //do your thing
+  });
+  */
+
+  mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
+
+  //Call any cache loading here if required
+  fieldQCache.loadCache();
+
+}
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({
-    extended: false
+  extended: false
 }));
 
-var server = http.createServer(app);
-server.listen(8081);
 
-console.log("Server started...");
-
-mongoose.set('debug', true);
-/*mongoose.set('debug', function(coll, method, query, doc[, options]) {
-    //do your thing
+process.on('SIGINT', function() {
+  console.log("Going to unload all data from field questions cache...!");
+  fieldQCache.clearCache(function() {
+    console.log("Done unloading Field Question Cache ");
+    process.exit(0);
+  });
 });
-*/
-mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
-
-console.log("Server started...");
 
 
-app.use(function(req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
+app.use('*', function(req, res, next) {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods',
+    'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.header("Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Authorization, Content-Type, Accept");
+  next();
 })
 
 /*app.use('/candidate', authRoutes,userRoutes,projectRoutes,educationRouter,

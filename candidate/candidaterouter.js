@@ -45,60 +45,60 @@ router.post("/:candidateid", function(req, res) {
                     candidate: function(callback) {
                         candidateprocessor.createNewcandidate(req.body,
                             function(candidateobj) {
-                                callback(null,candidateobj);
+                                callback(null, candidateobj);
                             },
                             function(err) {
-                              callback(err,null);
+                                callback(err, null);
                             }
                         )
                     },
                     profile: function(callback) {
                         profileprocessor.createNewprofile(req.body,
                             function(profileobj) {
-                                callback(null,profileobj);
+                                callback(null, profileobj);
                             },
                             function(err) {
-                                 callback(err,null);
+                                callback(err, null);
                             }
                         )
                     },
                     education: function(callback) {
                         educationprocessor.createNewEducation(req.body,
                             function(educationobj) {
-                                 callback(null,educationobj);
+                                callback(null, educationobj);
                             },
                             function(err) {
-                                callback(err,null);
+                                callback(err, null);
                             }
                         )
                     },
                     personalinfo: function(callback) {
                         personalInfoprocessor.createNewpersonalinfo(req.body,
                             function(personalinfoobj) {
-                                callback(null,personalinfoobj);
+                                callback(null, personalinfoobj);
                             },
                             function(err) {
-                                callback(err,null);
+                                callback(err, null);
                             }
                         )
                     },
                     project: function(callback) {
                         projectprocessor.createNewProject(req.body,
                             function(projectobj) {
-                                callback(null,projectobj);
+                                callback(null, projectobj);
                             },
                             function(err) {
-                                callback(err,null);
+                                callback(err, null);
                             }
                         )
                     },
                     skill: function(callback) {
                         skillprocessor.createNewSkill(req.body,
                             function(skillobj) {
-                                callback (null,skillobj);
+                                callback(null, skillobj);
                             },
                             function(err) {
-                                callback(err,null);
+                                callback(err, null);
                             }
                         )
                     },
@@ -140,29 +140,27 @@ router.patch("/:candidateid", function(req, res) {
 
                 res.status(500).send("Candidate doesnt exists, Add Candidate before updating...!");
             } else {
-                console.log("candidate id:",req.body.candidateid);
-                if(!req.body.candidateid)
-                {
-                try {
-                    candidateprocessor.updatecandidate(req.body, req.params.candidateid,
-                        function(candidateObj) {
-                            res.status(201).json(candidateObj);
-                        },
-                        function(err) {
-                            res.status(500).json(err);
-                        }
-                    );
-                } catch (err) {
-                    console.log("Error occurred in updating candidate: ", err);
-                    res.status(500).json({
-                        error: "Internal error occurred, please report"
-                    });
-                }//end catch
-            }//end if
-            else
-            {
-                res.status(500).send("Alert! Can't update Candidate id... ");
-            }
+                console.log("candidate id:", req.body.candidateid);
+                if (!req.body.candidateid) {
+                    try {
+                        candidateprocessor.updatecandidate(req.body, req.params.candidateid,
+                            function(candidateObj) {
+                                res.status(201).json(candidateObj);
+                            },
+                            function(err) {
+                                res.status(500).json(err);
+                            }
+                        );
+                    } catch (err) {
+                        console.log("Error occurred in updating candidate: ", err);
+                        res.status(500).json({
+                            error: "Internal error occurred, please report"
+                        });
+                    } //end catch
+                } //end if
+                else {
+                    res.status(500).send("Alert! Can't update Candidate id... ");
+                }
             } //end else
 
         }) //end find
