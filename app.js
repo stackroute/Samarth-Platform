@@ -50,13 +50,19 @@ process.on('SIGINT', function() {
         process.exit(0);
     });
 });
-
+/*
 app.use('*', function(req, res, next) {
     res.set('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-})
+});*/
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 /*app.use('/candidate', authRoutes,userRoutes,projectRoutes,educationRouter,
                    skillRoutes,profilerouter,workRouter,quesRouter,);
