@@ -14,6 +14,7 @@ var candidateRoutes = require('./candidate/candidaterouter');
 var personalinfoRoutes = require('./sectionpersonalinfo/personalinforouter');
 var profilerouter = require('./profiles/profilerouter');
 var workRouter = require('./sectionworkexperiance/workrouter');
+var skillcardRouter = require('./skillcard/skillcardrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 
@@ -79,5 +80,6 @@ app.use("/skill", skillRoutes);
 app.use("/profile", profilerouter);
 app.use("/work", workRouter);
 app.use("/personalinfo", personalinfoRoutes);
+app.use("/skillcard", skillcardRouter);
 
 module.exports = app;

@@ -1,7 +1,7 @@
 var qboxquestionModel = require('./qboxquestions');
 
 function getQuestions(candidateid, sections, skip, limit, successCB, errorCB) {
-    var findClause = { "candidateid": candidateid };
+    var findClause = { "candidateid": candidateid, "status": "pending" };
     var pagination = { skip: parseInt(skip), limit: parseInt(limit) };
 
     if (sections.length > 0) {
