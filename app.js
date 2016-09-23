@@ -51,6 +51,7 @@ process.on('SIGINT', function() {
     });
 });
 
+
 app.use('*', function(req, res, next) {
     res.set('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -63,9 +64,10 @@ app.use('*', function(req, res, next) {
 */
 
 app.use('/redistest', function(req, res) {
-    fieldQCache.getFieldQuestion(req.query.sc, req.query.fn, req.query.ln, function(err, data) {
-        return res.json(data);
-    });
+    fieldQCache.getFieldQuestion(req.query.sc, req.query.fn, req.query.ln,
+        function(err, data) {
+            return res.json(data);
+        });
 });
 app.use('/candidates', qboxRouter);
 app.use('/candidate', candidateRoutes);
