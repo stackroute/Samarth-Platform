@@ -8,13 +8,27 @@ var skill = require("./skillschema");
 //effective URL skill/:candidateid
 router.get("/:candidateid", function(req, res) {
     //console.log("Request received for emp id: ", req.params.empid);
-    skillProcessor.getSkill(req.params.candidateid, function(skill) {
-        console.log(skill);
-        res.status(201).json(skill);
+    try {
+        skillProcessor.getSkill(req.params.candidateid,
+            function(skill) {
+                console.log(skill);
+                res.status(200).json(skill);
+            },
+            function(err) {
+                res.status(500).json(err);
+            });
 
-    }, function(err) {
-        res.status(500).json({ error: "Internal error occurred" });
-    });
+    } catch (err) {
+        console.log("Error occurred in fetching skill: ", err);
+        res.status(500).json({
+            error: "Internal error occurred, please report"
+        });
+    }
+
+
+    // }, function(err) {
+    //     res.status(500).json({ error: "Internal error occurred" });
+    // });
     //res.status(200).json(empObj);
 });
 
