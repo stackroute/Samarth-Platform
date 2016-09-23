@@ -15,14 +15,10 @@ var profilerouter = require('./profiles/profilerouter');
 var workRouter = require('./sectionworkexperiance/workrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
-<<<<<<< HEAD
 var redisclient = require('./questionbox/radisfieldquestionsrouter');
 var resourcebundle=require('./resourcebundle/resourcebundlerouter');
-=======
 
 var fieldQCache = require('./questionbox/fieldQCache');
-
->>>>>>> deb2c1c6bd71edef283665f8d15fa5c9b6ef8079
 var app = express();
 
 
