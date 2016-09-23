@@ -16,7 +16,6 @@ var profilerouter = require('./profiles/profilerouter');
 var workRouter = require('./sectionworkexperiance/workrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
-var redisclient = require('./questionbox/radisfieldquestionsrouter');
 
 var fieldQCache = require('./questionbox/fieldQCache');
 
