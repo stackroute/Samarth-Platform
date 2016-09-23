@@ -25,7 +25,7 @@ app.use(morgan('dev'));
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({
-    extended: false
+  extended: false
 }));
 
 var server = http.createServer(app);
@@ -44,23 +44,17 @@ mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 fieldQCache.loadCache();
 
 process.on('SIGINT', function() {
-    console.log("Going to unload all data from field questions cache...!");
-    fieldQCache.clearCache(function() {
-        console.log("Done unloading Field Question Cache ");
-        process.exit(0);
-    });
+  console.log("Going to unload all data from field questions cache...!");
+  fieldQCache.clearCache(function() {
+    console.log("Done unloading Field Question Cache ");
+    process.exit(0);
+  });
 });
-/*
-app.use('*', function(req, res, next) {
-    res.set('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});*/
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Authorization, Content-Type, Accept");
   next();
 });
 
@@ -69,8 +63,9 @@ app.use(function(req, res, next) {
 */
 
 app.use('/redistest', function(req, res) {
-    fieldQCache.getFieldQuestion(req.query.sc, req.query.fn, req.query.ln, function(err, data) {
-        return res.json(data);
+  fieldQCache.getFieldQuestion(req.query.sc, req.query.fn, req.query.ln,
+    function(err, data) {
+      return res.json(data);
     });
 });
 app.use('/candidates', qboxRouter);
