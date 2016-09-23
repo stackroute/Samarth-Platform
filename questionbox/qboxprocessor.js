@@ -17,7 +17,7 @@ function getQuestions(candidateid, sections, skip, limit, successCB, errorCB) {
 }
 
 function createNewQuestions(newquestionobj, candidateId, sucessCB, errorCB) {
-    var questionObj = new qboxquestions({
+    var questionObj = new qboxquestionModel({
         candidateid: candidateId,
         section: newquestionobj.section,
         fieldname: newquestionobj.fieldname,

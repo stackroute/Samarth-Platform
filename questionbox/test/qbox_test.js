@@ -6,21 +6,31 @@ var request = require("supertest");
 request = request(app);
 
 describe('Scenarios for API End point "GET /candidate/:candidateid/qboxquestions"', function() {
-    it('', function(done) {
-        
+    it('get questions pending to be answered', function(done) {
+        request.get("/:candidateid/qboxquestions/")
+            .expect(200)
+            .end(function(err, res) {
+                if (err) {
+                    //done(err);
+                }
+                expect(res.body).to.be.not.equal(undefined);
+                done();
+            });
     });
 
-    it('', function(done) {
-        
-    });
 }); //end of get scearnio
 
-describe('Scenarios for API End point "GET /fieldquestions/:section/"', function() {
-    it('Try to get a query for perticular section,fieldname and language', function(done) {
-        
+describe('Api for returning field question query statement "GET /fieldquestions/:section/"', function() {
+    it('asking the candidate to answer or fill the pending field of profile data', function(done) {
+        request.get("/:section")
+            .expect(200)
+            .end(function(err, res) {
+                if (err) {
+                    //done(err);
+                }
+                expect(res.body).to.be.not.equal(undefined);
+                done();
+            });
     });
 
-    it('Try to get queries for all section with perticular language', function(done) {
-        
-    });
 }); //end of get scearnio

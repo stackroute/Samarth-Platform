@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 
 
 var authRoutes = require('./auth/auth/authRoutes');
-// var userRoutes = require('./auth/user/userRoutes');
+
 var projectRoutes = require('./sectionproject/projectrouter');
 var educationRoutes = require('./sectioneducation/educationrouter');
 var skillRoutes = require('./sectionskill/skillrouter');
@@ -17,6 +17,8 @@ var workRouter = require('./sectionworkexperiance/workrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var redisclient = require('./questionbox/radisfieldquestionsrouter');
+
+var fieldQCache = require('./questionbox/fieldQCache');
 
 var app = express();
 
@@ -39,10 +41,19 @@ mongoose.set('debug', true);
 */
 mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
-console.log("Server started...");
+//Call any cache loading here if required
+fieldQCache.loadCache();
 
+process.on('SIGINT', function() {
+    console.log("Going to unload all data from field questions cache...!");
+    fieldQCache.clearCache(function() {
+        console.log("Done unloading Field Question Cache ");
+        process.exit(0);
+    });
+});
 
-app.use(function(req, res, next) {
+app.use('*', function(req, res, next) {
+    console.log("chandsan");
     res.set('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -53,6 +64,11 @@ app.use(function(req, res, next) {
                    skillRoutes,profilerouter,workRouter,quesRouter,);
 */
 
+app.use('/redistest', function(req, res) {
+    fieldQCache.getFieldQuestion(req.query.sc, req.query.fn, req.query.ln, function(err, data) {
+        return res.json(data);
+    });
+});
 app.use('/candidates', qboxRouter);
 app.use('/candidate', candidateRoutes);
 app.use('/fieldquestions', fieldQRouter);
