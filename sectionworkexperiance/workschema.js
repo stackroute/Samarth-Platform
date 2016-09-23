@@ -5,11 +5,15 @@ var Schema = mongoose.Schema;
 var workSchema = new Schema({
 	'candidateid':{type:String ,required:true},
     'workexperience': [{
-        'yearexp': { type: String, required: true ,default:0,min:0},
-        'organisation': { type: String, required: true },
-        'role': { type: String, required: true },
+        'designation': { type: String, required: true },
         'workplace': { type: String, required: true },
-        'Location': { type: String, required: true }
+        'Location': { type: String, required: true },
+        'duration':{
+        	'from':{type:Date},
+        	'to':{type:Date},
+        	'duration':{type:String}
+        },
+        'skills':{type:Array}
     }]
 
 

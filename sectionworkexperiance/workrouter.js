@@ -2,7 +2,6 @@ var router = require('express').Router();
 var workProcessor = require('./workprocessor');
 var work = require("./workschema");
 
-console.log("work processor: ", workProcessor);
 
 /*Get the types of work for the given candidate id*/
 //HTTP GET /work/:candidateid
@@ -26,7 +25,7 @@ router.post("/:candidateid", function(req, res) {
 
     work.find({ "candidateid": req.params.candidateid }, function(err, result) {
         console.log("inside get");
-        if (result=="") {
+        if (result == "") {
 
             res.status(500).send("Register the Candidate before adding work experience ");
         } //end if
@@ -46,14 +45,14 @@ router.post("/:candidateid", function(req, res) {
 /*update the types of work for the organisation with given candidate id note:(pass every field from body) */
 //HTTP PATCH /work/:candidateid/::organisation
 //effective url work/:candidateid/::organisation
-router.patch("/:candidateid/:organisation", function(req, res) {
+router.patch("/:candidateid/:workplace", function(req, res) {
     work.find({ "candidateid": req.params.candidateid }, function(err, result) {
         if (result == "") {
             res.status(500).send("Add the work experience with the candidate id before updating");
         } else {
             try {
                 console.log("inside new workexperiance post")
-                workProcessor.updateworkexp(req.body, req.params.candidateid,req.params.organisation,
+                workProcessor.updateworkexp(req.body, req.params.candidateid, req.params.workplace,
                     function(work) {
                         console.log(work);
                         res.status(201).json(work);
@@ -69,7 +68,7 @@ router.patch("/:candidateid/:organisation", function(req, res) {
                     error: "Internal error occurred, please report"
                 });
             }
-        }//end else
-    });//end find
+        } //end else
+    }); //end find
 }); //end patch
 module.exports = router;

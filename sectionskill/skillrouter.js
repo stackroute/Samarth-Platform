@@ -2,7 +2,6 @@ var router = require('express').Router();
 var skillProcessor = require('./skillprocessor');
 var skill = require("./skillschema");
 
-console.log("Skill processor: ", skillProcessor);
 
 /*Get the skills for the given candidate id*/
 //HHTP GET skill/:candidateid
@@ -24,7 +23,7 @@ router.get("/:candidateid", function(req, res) {
 //effective url  /skill/:candidateid
 router.post("/:candidateid", function(req, res) {
     skill.find({ "candidateid": req.params.candidateid }, function(err, result) {
-        if (result=="") {
+        if (result == "") {
             res.status(500).send("Register candidate for the given candidate id");
 
         } //end if 
@@ -46,7 +45,7 @@ router.post("/:candidateid", function(req, res) {
                 });
             } //end catch
         }
-    });//end find
+    }); //end find
 }); //end post
 
 /*Update a given skill by passing the skillname for the given candidate id.. NOTE:(provide the skill object with evry field)*/
@@ -76,8 +75,8 @@ router.patch("/:candidateid/:skillname", function(req, res) {
                     error: "Internal error occurred, please report"
                 });
             }
-        }//end else
-    });//end find
+        } //end else
+    }); //end find
 }); //end patch
 
 // router.delete("/:candidateid/:skillname", function(req, res) {
