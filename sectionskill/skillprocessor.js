@@ -5,9 +5,6 @@ var skill = require("./skillschema");
  
 function getSkill(candidateid, successCB, errorCB) {
 
-    //This is a asynch op
-    //Go to DB and fetch record for specified empid
-
     skill.find({ "candidateid": candidateid }, function(err, skill) {
         if (err) {
             console.log(err);

@@ -18,6 +18,7 @@ var workRouter = require('./sectionworkexperiance/workrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var redisclient = require('./questionbox/radisfieldquestionsrouter');
+var resourcebundle=require('./resourcebundle/resourcebundlerouter');
 var app = express();
 
 app.use(morgan('dev'));
@@ -64,5 +65,6 @@ app.use("/profile", profilerouter);
 app.use("/work", workRouter);
 app.use("/personalinfo", personalinfoRoutes);
 app.use("/skillcard",skillcardrouter);
+app.use("/resource",resourcebundle);
 
 module.exports = app;

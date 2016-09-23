@@ -9,13 +9,27 @@ console.log("Skill processor: ", skillProcessor);
 //effective URL skill/:candidateid
 router.get("/:candidateid", function(req, res) {
     //console.log("Request received for emp id: ", req.params.empid);
-    skillProcessor.getSkill(req.params.candidateid, function(skill) {
-        console.log(skill);
-        res.status(201).json(skill);
+    try {
+        skillProcessor.getSkill(req.params.candidateid,
+            function(skill) {
+                console.log(skill);
+                res.status(200).json(skill);
+            },
+            function(err) {
+                res.status(500).json(err);
+            });
 
-    }, function(err) {
-        res.status(500).json({ error: "Internal error occurred" });
-    });
+    } catch (err) {
+        console.log("Error occurred in fetching skill: ", err);
+        res.status(500).json({
+            error: "Internal error occurred, please report"
+        });
+    }
+
+
+    // }, function(err) {
+    //     res.status(500).json({ error: "Internal error occurred" });
+    // });
     //res.status(200).json(empObj);
 });
 
@@ -24,7 +38,7 @@ router.get("/:candidateid", function(req, res) {
 //effective url  /skill/:candidateid
 router.post("/:candidateid", function(req, res) {
     skill.find({ "candidateid": req.params.candidateid }, function(err, result) {
-        if (result=="") {
+        if (result == "") {
             res.status(500).send("Register candidate for the given candidate id");
 
         } //end if 
@@ -46,7 +60,7 @@ router.post("/:candidateid", function(req, res) {
                 });
             } //end catch
         }
-    });//end find
+    }); //end find
 }); //end post
 
 /*Update a given skill by passing the skillname for the given candidate id.. NOTE:(provide the skill object with evry field)*/
@@ -76,8 +90,8 @@ router.patch("/:candidateid/:skillname", function(req, res) {
                     error: "Internal error occurred, please report"
                 });
             }
-        }//end else
-    });//end find
+        } //end else
+    }); //end find
 }); //end patch
 
 // router.delete("/:candidateid/:skillname", function(req, res) {
