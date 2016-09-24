@@ -5,7 +5,8 @@ var candidateprocessor = require('./candidateprocessor');
 var candidate = require('./candidateschema');
 var profileprocessor = require('../profiles/profileprocessor');
 var educationprocessor = require('../sectioneducation/educationprocessor');
-var personalInfoprocessor = require('../sectionpersonalinfo/personalInfoprocessor');
+var personalInfoprocessor = require(
+    '../sectionpersonalinfo/personalInfoprocessor');
 var projectprocessor = require('../sectionproject/projectprocessor');
 var skillprocessor = require('../sectionskill/skillprocessor');
 var workexpprocessor = require('../sectionworkexperiance/workprocessor');
@@ -38,7 +39,9 @@ router.get("/:candidateid", function(req, res) {
 router.post("/:candidateid", function(req, res) {
 
     //create every section,candidate,profile if candidate is created for first time 
-    candidate.find({ "candidateid": req.params.candidateid }, function(error, candidate) {
+    candidate.find({
+        "candidateid": req.params.candidateid
+    }, function(error, candidate) {
         if (candidate == "") {
 
             async.parallel({
@@ -116,16 +119,20 @@ router.post("/:candidateid", function(req, res) {
                 function(err, results) {
                     if (err) {
                         console.log('ERR: ', err);
-                        return res.status(500).json({ msg: err });
+                        return res.status(500).json({
+                            msg: err
+                        });
                     }
 
                     console.log("final result", results)
-                    return res.status(201).json({ msg: "done", result: results });
+                        // return res.status(201).json({ msg: "done", result: results });
+                    return res.status(201).json(results.personalinfo);
                 }
             ); //end of Async            
         } //end if
         else {
-            res.status(500).send("Candidate already exists, try editing instead...!");
+            res.status(500).send(
+                "Candidate already exists, try editing instead...!");
         }
     }); //end find
 });
@@ -135,10 +142,13 @@ router.post("/:candidateid", function(req, res) {
 //effective url /candidate/:candidateid
 
 router.patch("/:candidateid", function(req, res) {
-    candidate.find({ "candidateid": req.params.candidateid }, function(error, candidate) {
+    candidate.find({
+            "candidateid": req.params.candidateid
+        }, function(error, candidate) {
             if (candidate = "") {
 
-                res.status(500).send("Candidate doesnt exists, Add Candidate before updating...!");
+                res.status(500).send(
+                    "Candidate doesnt exists, Add Candidate before updating...!");
             } else {
                 console.log("candidate id:", req.body.candidateid);
                 if (!req.body.candidateid) {
