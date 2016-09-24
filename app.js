@@ -45,7 +45,6 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-
 process.on('SIGINT', function() {
     console.log("Going to unload all data from field questions cache...!");
     fieldQCache.clearCache(function() {
@@ -53,7 +52,6 @@ process.on('SIGINT', function() {
         process.exit(0);
     });
 });
-
 
 app.use('*', function(req, res, next) {
     res.set('Access-Control-Allow-Origin', '*');
