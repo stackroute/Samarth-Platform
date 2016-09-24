@@ -2,6 +2,7 @@ var router = require('express').Router();
 var skillProcessor = require('./skillprocessor');
 var skill = require("./skillschema");
 
+console.log("Skill processor: ", skillProcessor);
 
 /*Get the skills for the given candidate id*/
 //HHTP GET skill/:candidateid
@@ -24,7 +25,6 @@ router.get("/:candidateid", function(req, res) {
             error: "Internal error occurred, please report"
         });
     }
-
 
     // }, function(err) {
     //     res.status(500).json({ error: "Internal error occurred" });
