@@ -3,16 +3,16 @@ var Schema = mongoose.Schema;
 
 var projectSchema = new Schema({
 
-    'candidateid':{ type: String, required: true},
+    'candidateid': { type: String, required: true },
     'projects': [{
         'name': { type: String, required: true },
         'workplace': { type: String },
         'location': { type: String },
-        'income': { type: Number ,min:0},
+        'income': { type: Number, min: 0 },
         'duration': {
             'from': { type: Date },
             'to': { type: Date },
-            'duration': { type: String }
+            'durationInMonths': { type: String }
         },
         'skills': { type: Array },
         'meta': { type: Array }
