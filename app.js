@@ -16,8 +16,8 @@ var workRouter = require('./sectionworkexperiance/workrouter');
 var skillcardRouter = require('./skillcard/skillcardrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
-var resourcebundle=require('./resourcebundle/resourcebundlerouter');
-var skillcardrouter=require('./sectionskill/skillrouter');
+var resourcebundle = require('./resourcebundle/resourcebundlerouter');
+var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
 var app = express();
 
@@ -60,7 +60,8 @@ app.use('*', function(req, res, next) {
     res.header('Access-Control-Allow-Methods',
         'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header("Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Authorization, Content-Type, Accept");
+        "Origin, X-Requested-With, Authorization, x-access-token, Content-Type, Accept"
+    );
     next();
 })
 
