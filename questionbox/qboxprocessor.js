@@ -35,7 +35,22 @@ function createNewQuestions(newquestionobj, candidateId, sucessCB, errorCB) {
     });
 }
 
+function updateQuestion(questionobj, candidateId, answer, sucessCB, errorCB) {
+    qboxquestionModel.update({ "candidateid": candidateId, 'section': questionobj.section, 'fieldname': questionobj.fieldname, 'instancename': questionobj.instancename }, {
+            '$set': {
+                'response': answer,
+                'status': 'answered',
+            }
+        },
+        function() {
+            sucessCB("Question updated");
+        }
+
+    );
+}
+
 module.exports = {
     getQuestions: getQuestions,
-    createNewQuestions: createNewQuestions
+    createNewQuestions: createNewQuestions,
+    updateQuestion: updateQuestion
 };

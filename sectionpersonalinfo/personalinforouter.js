@@ -7,11 +7,11 @@ var persons = require("./personalinfoschema");
 //effective url personalinfo/:candidateid/
 router.post("/:candidateid", function(req, res) {
     persons.find({ "candidateid": req.params.candidateid }, function(err, result) {
-        if(result==""){
+        if (result == "") {
             res.status(500).send("Register candidates before updating personal info");
-        }//end if
-        else{
-            if(!req.body.candidateid){
+        } //end if
+        else {
+            if (!req.body.candidateid) {
                 try {
                     personalInfoProcessor.updatePersonalinfo(req.body, req.params.candidateid,
                         function(personalinfo) {
@@ -27,8 +27,8 @@ router.post("/:candidateid", function(req, res) {
                     console.log("Error occurred in adding new perosnal info detail: ", err);
                     res.status(500).json({ error: "Internal error occurred, please report" });
                 }
-            }//end if inside else
-            else{
+            } //end if inside else
+            else {
                 res.status(500).send("Alert !!! Cant update the Candidate id");
             }
         }

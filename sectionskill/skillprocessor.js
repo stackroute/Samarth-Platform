@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var skill = require("./skillschema");
 
- 
+
 function getSkill(candidateid, successCB, errorCB) {
 
     skill.find({ "candidateid": candidateid }, function(err, skill) {
@@ -37,11 +37,11 @@ function getallSkill(successCB, errorCB) {
 //add skill for the first time when no records are present by creating records
 function createNewSkill(formobj, sucessCB, errorCB) {
     var skillObj = new skill({
-        candidateid:formobj.mobile,
+        candidateid: formobj.mobile,
         skills: []
     });
     //skillObj.skills.push(newskillobj.skills[0]);
-    console.log("About to save New Skill:",skillObj);
+    console.log("About to save New Skill:", skillObj);
 
     skillObj.save(function(err, result) {
         console.log("inside save");
@@ -70,35 +70,35 @@ function addSkill(skillObj, candidateid, sucessCB, errorCB) {
 }
 
 
-function updateSkill(skillname,skillobj, candidateid, sucessCB, errorCB) {
-    skill.update({ 'candidateid': candidateid ,'skills.skillname': skillname }, 
-        {'$set': 
-        { 
-         'skills.$.skillname': skillobj.skills[0].skillname,
-         'skills.$.category': skillobj.skills[0].category,
-         'skills.$.expertise': skillobj.skills[0].expertise ,
-         'skills.$.experience': skillobj.skills[0].experience ,
-         'skills.$.metadata': skillobj.skills[0].metadata }},
+function updateSkill(skillname, skillobj, candidateid, sucessCB, errorCB) {
+    skill.update({ 'candidateid': candidateid, 'skills.skillname': skillname }, {
+            '$set': {
+                'skills.$.skillname': skillobj.skills[0].skillname,
+                'skills.$.category': skillobj.skills[0].category,
+                'skills.$.expertise': skillobj.skills[0].expertise,
+                'skills.$.experience': skillobj.skills[0].experience,
+                'skills.$.metadata': skillobj.skills[0].metadata
+            }
+        },
         function() {
             sucessCB("skill updated");
         }
 
     );
 }
-function deleteASkill(skillname,candidateid, sucessCB, errorCB) {
-     skill.update({'candidateid': candidateid,'skills.skillname':skillname }, 
-        { $pull  : { 'skills':{'skillname':skillname}}}, function(){
-    // console.log('affected: ', affected);
-    sucessCB("skill object deleted");
-});
+
+function deleteASkill(skillname, candidateid, sucessCB, errorCB) {
+    skill.update({ 'candidateid': candidateid, 'skills.skillname': skillname }, { $pull: { 'skills': { 'skillname': skillname } } }, function() {
+        // console.log('affected: ', affected);
+        sucessCB("skill object deleted");
+    });
 }
 
 function deleteSkill(candidateid, sucessCB, errorCB) {
-     skill.update({'candidateid': candidateid,'skills.skillname':skillname }, 
-        { $pullAll  : { 'skills':{'skillname':skillname}}}, function(){
-    // console.log('affected: ', affected);
-    sucessCB("skill object deleted");
-});
+    skill.update({ 'candidateid': candidateid, 'skills.skillname': skillname }, { $pullAll: { 'skills': { 'skillname': skillname } } }, function() {
+        // console.log('affected: ', affected);
+        sucessCB("skill object deleted");
+    });
 }
 
 module.exports = {
@@ -107,5 +107,5 @@ module.exports = {
     getallSkill: getallSkill,
     addSkill: addSkill,
     updateSkill: updateSkill,
-    deleteSkill:deleteSkill
+    deleteSkill: deleteSkill
 };

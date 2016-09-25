@@ -30,7 +30,7 @@ router.post("/:candidateId", function(req, res) {
 
     console.log("inside adding project", req.body);
     project.find({ "candidateid": req.params.candidateId }, function(err, result) {
-        if (result=="") {
+        if (result == "") {
             res.status(500).send("Register the candidate first before adding a project");
         } //end if
         else {
@@ -49,8 +49,8 @@ router.post("/:candidateId", function(req, res) {
                     error: "Internal error occurred, please report"
                 });
             }
-        }//end else
-    });//end find
+        } //end else
+    }); //end find
 
 });
 

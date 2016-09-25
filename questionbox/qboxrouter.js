@@ -101,7 +101,7 @@ router.get("/:candidateid/qboxquestions/queries", function(req, res) {
     }
 });
 
-// Effective url is /candidate/:candidateid
+// Effective url is /candidates/:candidateid
 router.post("/:candidateId", function(req, res) {
 
     console.log("inside adding question req", req.body.section);
@@ -117,6 +117,29 @@ router.post("/:candidateId", function(req, res) {
         );
     } catch (err) {
         console.log("Error occurred in adding project: ", err);
+        res.status(500).json({
+            error: "Internal error occurred, please report"
+        });
+    }
+
+}); //end post
+
+// Effective url is /candidates/:candidateid
+router.patch("/:candidateId/:answer", function(req, res) {
+
+    console.log("inside updating question answer", req.body);
+
+    try {
+        qboxProcessor.updateQuestion(req.body, req.params.candidateId, req.params.answer,
+            function(updatedQuesn) {
+                res.status(201).json(updatedQuesn);
+            },
+            function(err) {
+                res.status(500).json(err);
+            }
+        );
+    } catch (err) {
+        console.log("Error occurred in updating question: ", err);
         res.status(500).json({
             error: "Internal error occurred, please report"
         });

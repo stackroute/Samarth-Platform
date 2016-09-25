@@ -13,6 +13,7 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
         mothertongue: "",
         maritialstatus: "",
         address: "",
+        location: formobj.location,
         pincode: ""
 
     });
@@ -45,9 +46,9 @@ function getPersonalinfo(candidateid, successCB, errorCB) {
 
 function updatePersonalinfo(piObj, candidateId, successCB, errCB) {
     console.log(piObj.personalInfo.gender);
-    person.update({ "candidateid": candidateId },piObj.personalInfo, 
-       
-        function(err,result) {
+    person.update({ "candidateid": candidateId }, piObj.personalInfo,
+
+        function(err, result) {
             //errCB(err);
             successCB(result)
         }
