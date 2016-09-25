@@ -16,9 +16,8 @@ var workRouter = require('./sectionworkexperiance/workrouter');
 var skillcardRouter = require('./skillcard/skillcardrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
-
 var resourcebundle = require('./resourcebundle/resourcebundlerouter');
-
+var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
 var app = express();
 
@@ -46,7 +45,6 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 
-
 process.on('SIGINT', function() {
     console.log("Going to unload all data from field questions cache...!");
     fieldQCache.clearCache(function() {
@@ -55,13 +53,13 @@ process.on('SIGINT', function() {
     });
 });
 
-
 app.use('*', function(req, res, next) {
     res.set('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods',
         'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header("Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Authorization, Content-Type, Accept");
+        "Origin, X-Requested-With, Authorization, x-access-token, Content-Type, Accept"
+    );
     next();
 })
 
