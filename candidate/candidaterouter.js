@@ -36,7 +36,8 @@ router.get("/:candidateid", function(req, res) {
 /*Register the Candidate by creating Candidate and other collections using form data and default values */
 //HTTP POST /candidate/:candidateid /
 //effective url /candidate/:candidateid
-router.post("/:candidateid", function(req, res) {
+router.post("/", function(req, res) {
+
 
     //create every section,candidate,profile if candidate is created for first time 
     candidate.find({

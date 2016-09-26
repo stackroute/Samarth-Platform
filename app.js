@@ -4,7 +4,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var authRoutes = require('./auth/auth/authRoutes');
+var authRoutes = require('./auth/authrouter');
+var authByToken = require('./auth/authbytoken');
 
 var projectRoutes = require('./sectionproject/projectrouter');
 var educationRoutes = require('./sectioneducation/educationrouter');
@@ -67,10 +68,23 @@ app.use('*', function(req, res, next) {
                    skillRoutes,profilerouter,workRouter,quesRouter,);
 */
 
+function isAuthenticated(req, res, next) {
+    authByToken.isCandidateAuthenticated(req.body.cid, req.body.ctkn, function(
+        candidateProfile) {
+        req.candidate = candidateProfile;
+        next();
+    }, function(err) {
+        return res.status(403).json({
+            error: err
+        });
+    });
+}
+
+app.use('/auth', authRoutes);
+
 app.use('/candidates', qboxRouter);
 app.use('/candidate', candidateRoutes);
 app.use('/fieldquestions', fieldQRouter);
-app.use('/auth', authRoutes);
 app.use("/project", projectRoutes);
 app.use('/education', educationRoutes);
 app.use("/skill", skillRoutes);
