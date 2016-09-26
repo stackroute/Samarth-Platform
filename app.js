@@ -4,7 +4,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var authRoutes = require('./auth/auth/authRoutes');
+var authRoutes = require('./auth/authrouter');
+var authByToken = require('./auth/authbytoken');
 
 var projectRoutes = require('./sectionproject/projectrouter');
 var educationRoutes = require('./sectioneducation/educationrouter');
@@ -58,7 +59,7 @@ app.use('*', function(req, res, next) {
     res.header('Access-Control-Allow-Methods',
         'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header("Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Authorization, x-access-token, Content-Type, Accept"
+        "Origin, X-Requested-With, Authorization, x-user-access-token, x-access-token, Content-Type, Accept"
     );
     next();
 })
@@ -67,10 +68,34 @@ app.use('*', function(req, res, next) {
                    skillRoutes,profilerouter,workRouter,quesRouter,);
 */
 
+function isAuthenticated(req, res, next) {
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+    if (!token) {
+        console.log("Token not found for authentication validation....!");
+        return res.status(403).json({
+            error: 'Invalid user request or unauthorised request..!'
+        });
+    }
+
+    clientToken = "@todo";
+
+    authByToken.isCandidateAuthenticated(token, clientToken, function(
+        candidateProfile) {
+        req.candidate = candidateProfile;
+        next();
+    }, function(err) {
+        return res.status(403).json({
+            error: err
+        });
+    });
+}
+
+app.use('/auth', authRoutes);
+
 app.use('/candidates', qboxRouter);
 app.use('/candidate', candidateRoutes);
 app.use('/fieldquestions', fieldQRouter);
-app.use('/auth', authRoutes);
 app.use("/project", projectRoutes);
 app.use('/education', educationRoutes);
 app.use("/skill", skillRoutes);
