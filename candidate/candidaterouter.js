@@ -35,7 +35,7 @@ router.get("/:candidateid", function(req, res) {
 
 /*Register the Candidate by creating Candidate and other collections using form data and default values */
 //HTTP POST /candidate/:candidateid /
-//effective url /candidate/:candidateid
+//effective url /candidate/
 router.post("/", function(req, res) {
 
 
