@@ -2,7 +2,6 @@ var router = require('express').Router();
 var skillProcessor = require('./skillprocessor');
 var skill = require("./skillschema");
 
-console.log("Skill processor: ", skillProcessor);
 
 /*Get the skills for the given candidate id*/
 //HHTP GET skill/:candidateid

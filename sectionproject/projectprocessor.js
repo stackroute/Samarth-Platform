@@ -65,7 +65,8 @@ function updateProject(projectName, oldProjectObj, candidateId, successCB, error
                 'projects.$.income': oldProjectObj.projects[0].income,
                 'projects.$.duration.from': oldProjectObj.projects[0].duration.from,
                 'projects.$.duration.to': oldProjectObj.projects[0].duration.to,
-                'projects.$.duration.durationInMonths': oldProjectObj.projects[0].duration.durationInMonths
+                'projects.$.duration.durationInMonths': oldProjectObj.projects[0].duration.durationInMonths,
+                'projects.$.skills': oldProjectObj.projects[0].skills
             }
         },
 
