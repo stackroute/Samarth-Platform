@@ -37,105 +37,110 @@ router.get("/:candidateid", function(req, res) {
 //HTTP POST /candidate/:candidateid /
 //effective url /candidate/
 router.post("/", function(req, res) {
+    try {
+        //create every section,candidate,profile if candidate is created for first time 
+        candidate.find({
+            "candidateid": req.body.mobile
+        }, function(error, candidate) {
+            if (candidate == "") {
 
+                async.parallel({
+                        candidate: function(callback) {
+                            candidateprocessor.createNewcandidate(req.body,
+                                function(candidateobj) {
+                                    callback(null, candidateobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            )
+                        },
+                        profile: function(callback) {
+                            profileprocessor.createNewprofile(req.body,
+                                function(profileobj) {
+                                    callback(null, profileobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            )
+                        },
+                        education: function(callback) {
+                            educationprocessor.createNewEducation(req.body,
+                                function(educationobj) {
+                                    callback(null, educationobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            )
+                        },
+                        personalinfo: function(callback) {
+                            personalInfoprocessor.createNewpersonalinfo(req.body,
+                                function(personalinfoobj) {
+                                    callback(null, personalinfoobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            )
+                        },
+                        project: function(callback) {
+                            projectprocessor.createNewProject(req.body,
+                                function(projectobj) {
+                                    callback(null, projectobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            )
+                        },
+                        skill: function(callback) {
+                            skillprocessor.createNewSkill(req.body,
+                                function(skillobj) {
+                                    callback(null, skillobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            )
+                        },
+                        workexp: function(callback) {
+                            workexpprocessor.createworkexp(req.body,
+                                function(workexpobj) {
+                                    callback(null, workexpobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            )
+                        }
+                    },
+                    function(err, results) {
+                        if (err) {
+                            console.log('ERR: ', err);
+                            return res.status(500).json({
+                                msg: err
+                            });
+                        }
 
-    //create every section,candidate,profile if candidate is created for first time 
-    candidate.find({
-        "candidateid": req.params.candidateid
-    }, function(error, candidate) {
-        if (candidate == "") {
-
-            async.parallel({
-                    candidate: function(callback) {
-                        candidateprocessor.createNewcandidate(req.body,
-                            function(candidateobj) {
-                                callback(null, candidateobj);
-                            },
-                            function(err) {
-                                callback(err, null);
-                            }
-                        )
-                    },
-                    profile: function(callback) {
-                        profileprocessor.createNewprofile(req.body,
-                            function(profileobj) {
-                                callback(null, profileobj);
-                            },
-                            function(err) {
-                                callback(err, null);
-                            }
-                        )
-                    },
-                    education: function(callback) {
-                        educationprocessor.createNewEducation(req.body,
-                            function(educationobj) {
-                                callback(null, educationobj);
-                            },
-                            function(err) {
-                                callback(err, null);
-                            }
-                        )
-                    },
-                    personalinfo: function(callback) {
-                        personalInfoprocessor.createNewpersonalinfo(req.body,
-                            function(personalinfoobj) {
-                                callback(null, personalinfoobj);
-                            },
-                            function(err) {
-                                callback(err, null);
-                            }
-                        )
-                    },
-                    project: function(callback) {
-                        projectprocessor.createNewProject(req.body,
-                            function(projectobj) {
-                                callback(null, projectobj);
-                            },
-                            function(err) {
-                                callback(err, null);
-                            }
-                        )
-                    },
-                    skill: function(callback) {
-                        skillprocessor.createNewSkill(req.body,
-                            function(skillobj) {
-                                callback(null, skillobj);
-                            },
-                            function(err) {
-                                callback(err, null);
-                            }
-                        )
-                    },
-                    workexp: function(callback) {
-                        workexpprocessor.createworkexp(req.body,
-                            function(workexpobj) {
-                                callback(null, workexpobj);
-                            },
-                            function(err) {
-                                callback(err, null);
-                            }
-                        )
+                        console.log("final result", results)
+                            // return res.status(201).json({ msg: "done", result: results });
+                        return res.status(201).json(results.personalinfo);
                     }
-                },
-                function(err, results) {
-                    if (err) {
-                        console.log('ERR: ', err);
-                        return res.status(500).json({
-                            msg: err
-                        });
-                    }
+                ); //end of Async            
+            } //end if
+            else {
+                return res.status(500).send(
+                    "Candidate already exists, try editing instead...!");
+            }
+        }); //end find
 
-                    console.log("final result", results)
-                        // return res.status(201).json({ msg: "done", result: results });
-                    return res.status(201).json(results.personalinfo);
-                }
-            ); //end of Async            
-        } //end if
-        else {
-            res.status(500).send(
-                "Candidate already exists, try editing instead...!");
-        }
-    }); //end find
+    } catch (err) {
+        console.error("Error in registration of candidate ", err);
+        return res.status(500).send(
+            "Internal error occurred, please report or try later...!");
+    }
 });
 
 /*Update the candidate collection of the given candidate id NOTE:(Candidate id cant get update)*/

@@ -59,7 +59,7 @@ app.use('*', function(req, res, next) {
     res.header('Access-Control-Allow-Methods',
         'GET, POST, OPTIONS, PUT, PATCH, DELETE');
     res.header("Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Authorization, x-access-token, Content-Type, Accept"
+        "Origin, X-Requested-With, Authorization, x-user-access-token, x-access-token, Content-Type, Accept"
     );
     next();
 })
@@ -69,7 +69,18 @@ app.use('*', function(req, res, next) {
 */
 
 function isAuthenticated(req, res, next) {
-    authByToken.isCandidateAuthenticated(req.body.cid, req.body.ctkn, function(
+    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+
+    if (!token) {
+        console.log("Token not found for authentication validation....!");
+        return res.status(403).json({
+            error: 'Invalid user request or unauthorised request..!'
+        });
+    }
+
+    clientToken = "@todo";
+
+    authByToken.isCandidateAuthenticated(token, clientToken, function(
         candidateProfile) {
         req.candidate = candidateProfile;
         next();

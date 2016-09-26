@@ -18,7 +18,7 @@ var authenticateCandidate = function(candidateId, clientToken, callback,
 
     //@TODO Validate clientToken and authorize candidate if clientToken is valid
 
-    PersonalInfoModel.find({
+    PersonalInfoModel.findOne({
             candidateid: candidateId
         }, {
             _id: 0,
@@ -36,7 +36,6 @@ var authenticateCandidate = function(candidateId, clientToken, callback,
             if (!candidateProfile) {
                 unauthCB("Candidate profile not found..!", null);
             }
-
             generateCandidateJWTToken(candidateProfile, callback); //generate JWTToken
         });
 };
@@ -56,7 +55,7 @@ var generateClientJWTToken = function(client, cb) {
 }
 
 var generateCandidateJWTToken = function(candidateProfile, cb) {
-    var payload = candidateProfile.candidateid;
+    var payload = candidateProfile;
     var secretOrPrivateKey = getCandidateTokenSecret();
     var options = {
         algorithm: "HS256",
@@ -65,12 +64,16 @@ var generateCandidateJWTToken = function(candidateProfile, cb) {
     };
 
     jwt.sign(payload, secretOrPrivateKey, options, function(err, jwtToken) {
+        if (err) {
+            console.error("Error in generating token ", err);
+        }
         cb(err, candidateProfile, jwtToken);
     });
 }
 
-var verifyCandidateJWTToken = function(candidateId, token, callback, unauthCB) {
-    var payload = candidateId;
+var verifyCandidateJWTToken = function(token, clientToken, callback, unauthCB) {
+    //@TODO verify clientToken
+
     var secretOrPrivateKey = getCandidateTokenSecret();
 
     jwt.verify(token, secretOrPrivateKey,
@@ -80,29 +83,7 @@ var verifyCandidateJWTToken = function(candidateId, token, callback, unauthCB) {
                 unauthCB(err);
                 return;
             }
-
-            PersonalInfoModel.find({
-                    candidateid: candidateId
-                }, {
-                    _id: 0,
-                    __v: 0,
-                    address: 0,
-                    pincode: 0
-                },
-                function(err, candidateProfile) {
-                    if (err) {
-                        console.error("Error in lookup for candidate profile ", err);
-                        callback(err, null);
-                        return;
-                    }
-
-                    if (!candidateProfile) {
-                        unauthCB("Candidate profile not found..!", null);
-                    }
-
-                    callback(candidateProfile);
-                }
-            );
+            callback(payload);
         }
     ); //end of verify
 }
