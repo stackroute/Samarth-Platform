@@ -5,8 +5,7 @@ var candidateprocessor = require('./candidateprocessor');
 var candidate = require('./candidateschema');
 var profileprocessor = require('../profiles/profileprocessor');
 var educationprocessor = require('../sectioneducation/educationprocessor');
-var personalInfoprocessor = require(
-    '../sectionpersonalinfo/personalInfoprocessor');
+var personalInfoprocessor = require('../sectionpersonalinfo/personalinfoprocessor');
 var projectprocessor = require('../sectionproject/projectprocessor');
 var skillprocessor = require('../sectionskill/skillprocessor');
 var workexpprocessor = require('../sectionworkexperiance/workprocessor');
