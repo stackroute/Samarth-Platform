@@ -1,5 +1,5 @@
 # Samarth - Large scale placement platform
-Samarth uses technology to solve Skill & Job deficit by covering large amount of population to its skill database and Job database. Hence Samarth can be viewed as a large database of skilled people, jobs currently available, past placement history
+Samarth uses technology to solve Skill & Job deficit by covering large amount of population to its skill database and Job database. Hence Samarth can be viewed as a large database of skilled people, jobs currently available, past placement history and outcomes from the placement history, with intelligence to identify next successful placement for either job provider or skilled people
 
 ### Challenges being solved
 - Finding right skill for a opening is too time consuming and frustrating
