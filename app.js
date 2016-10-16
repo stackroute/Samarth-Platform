@@ -20,6 +20,7 @@ var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var resourcebundle = require('./resourcebundle/resourcebundlerouter');
 var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
+var rubricRoute = require('./rubricbackend/rubricroute');
 var app = express();
 
 
@@ -105,6 +106,7 @@ app.use("/personalinfo", personalinfoRoutes);
 app.use("/skillcard", skillcardRouter);
 
 app.use("/resource", resourcebundle);
+app.use('/rubric', rubricRoute);
 
 
 module.exports = app;

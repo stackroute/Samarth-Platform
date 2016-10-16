@@ -1,7 +1,7 @@
 var rubric = require('./rubricmodel');
 
-function getrubric(profiletype, successCB, errorCB) {
-    rubric.find({ "profiletype": profiletype }, function(error, result) {
+function getrubric(name, profiletype, successCB, errorCB) {
+    rubric.find({ "name": name, "profiletype": profiletype }, function(error, result) {
         if (error) {
             console.log(error);
             errorCB(error);
@@ -12,13 +12,15 @@ function getrubric(profiletype, successCB, errorCB) {
     });
 };
 
+module.exports = {
+    getrubric: getrubric
+};
 // function updaterubric(newrubricObj, profiletype, successCB, errorCB) {
 
-    //     rubric.update({ 'profiletype': profiletype }, newcandidateObj,
-    //         function() {
-    //             successCB("rubric updated");
-    //         }
+//     rubric.update({ 'profiletype': profiletype }, newcandidateObj,
+//         function() {
+//             successCB("rubric updated");
+//         }
 
-    //     );
-    // };
-
+//     );
+// };

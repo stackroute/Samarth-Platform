@@ -1,12 +1,14 @@
-var rubric = require('./rubricschema');
+var rubric = require('./rubricmodel');
 var router = require('express').Router();
-var mongoose = require('mongoose');
-var rubricprocessor = require('./rubricprocessor');
 
-router.get("/:profiletype", function(req, res) {
+var rubricprocessor = require('./rubricprocesser');
+
+/* Effective url /rubric/name/profiletype
+ */
+router.get("/:name/:profiletype", function(req, res) {
     console.log("Inside get");
     try {
-        rubricprocessor.getrubric(req.params.profiletype,
+        rubricprocessor.getrubric(req.params.name, req.params.profiletype,
             function(rubricdata) {
                 res.status(200).json(rubricdata);
             },
@@ -21,6 +23,7 @@ router.get("/:profiletype", function(req, res) {
         });
     }
 });
+module.exports = router;
 // router.patch("/:profiletype", function(req, res) {
 //     rubric.find({
 //             "profiletype": req.params.profiletype
