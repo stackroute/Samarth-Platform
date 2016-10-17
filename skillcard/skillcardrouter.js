@@ -8,76 +8,19 @@ var skillprocessor = require('../sectionskill/skillprocessor');
 var workexpprocessor = require('../sectionworkexperiance/workprocessor');
 
 
-router.get('/',function(req,res) {
+//This will return all the candidateid in candidate
+router.get('/searchcandidate/',function(req,res) {
     candidate.find(function(err,candidates) {
       if (err) {
         console.log(err);
+        return res.status(500).json({message:err});
     } else {
-
-        var details = [];
-        for(var i = 0;i<candidates.length ; i++) {
-            async.parallel({
-
-                personalinfo : function(callback) {
-                  personalInfoprocessor.getPersonalinfo(candidates[i].candidateid,
-                      function(personalinfoobj) {
-
-                        callback(null,personalinfoobj)
-                    }),function(err){
-
-                    callback(err,null);
-                }
-            },
-            project: function(callback) {
-                projectprocessor.getProject(candidates[i].candidateid,
-                    function(projectobj) {
-                        callback(null, projectobj);
-                    },
-                    function(err) {
-                        callback(err, null);
-                    }
-                    )
-            },
-            skill: function(callback) {
-                skillprocessor.getSkill(candidates[i].candidateid,
-                    function(skillobj) {
-                        callback(null, skillobj);
-                    },
-                    function(err) {
-                        callback(err, null);
-                    }
-                    )
-            },
-            workexp: function(callback) {
-                workexpprocessor.getworkexp(candidates[i].candidateid,
-                    function(workexpobj) {
-                        callback(null, workexpobj);
-                    },
-                    function(err) {
-                        callback(err, null);
-                    }
-                    )
-            }
-        },function(err,results){
-            if(err){
-              console.log('ERR: ', err);
-              return res.status(500).json({ msg: err });
-          }else{
-            // console.log( "**********************************************from api", results);
-            details.push(results);
-            console.log("pushed",details);
-        }
-    }
-
-        );//endofAsync
-
-      }//end of for
-      console.log("about to return");
-      return res.status(201).json({result : details});
-
+        var candidateid = {};
+        console.log ("Found candidates",candidates);
+        return res.status(201).json({results:candidates});
     }// end of else
   });//end of find
-});// end of get /
+});// end of get /candidatesearch
 
 
 
