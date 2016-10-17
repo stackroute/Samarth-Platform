@@ -13,7 +13,7 @@ var rubricSchema = new Schema({
             { 'title': String, 'desc': String, 'value': Number }
         ],
         'headers': [{ type: String }], //The Top headers in the rubric with the description and value
-        'model': Number // The selected value of the rubric
+        'model': Number // The selected value of the rubric this will be bounded
     }]
 
 

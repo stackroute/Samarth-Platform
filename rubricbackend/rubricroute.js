@@ -4,6 +4,7 @@ var router = require('express').Router();
 var rubricprocessor = require('./rubricprocesser');
 
 /* Effective url /rubric/name/profiletype
+
  */
 router.get("/:name/:profiletype", function(req, res) {
     console.log("Inside get");
@@ -24,6 +25,7 @@ router.get("/:name/:profiletype", function(req, res) {
     }
 });
 module.exports = router;
+//end router
 // router.patch("/:profiletype", function(req, res) {
 //     rubric.find({
 //             "profiletype": req.params.profiletype

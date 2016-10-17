@@ -1,5 +1,6 @@
 var rubric = require('./rubricmodel');
 
+// The rubric processor
 function getrubric(name, profiletype, successCB, errorCB) {
     rubric.find({ "name": name, "profiletype": profiletype }, function(error, result) {
         if (error) {
