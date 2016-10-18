@@ -8,13 +8,19 @@ function getverification(candidateid, successCB, errorCB) {
             errorCB(error);
         }
 
-        console.log("Inside getverification Function" + result);
+        // console.log("Inside getverification Function" + result);
         successCB(result);
     });
 };
 
 function updateverification(candidatedata, sucessCB, errorCB) {
-    candidateid.update({ "candidateid": candidatedata.candidateid }, { '$set': verification_status }, { '$set': verification_rating },
+    console.log("update method", candidatedata);
+    verification.update({ candidateid: candidatedata.candidateid }, {
+            '$set': {
+                verification_status: candidatedata.verification_status,
+                verification_ratings: candidatedata.verification_ratings
+            }
+        },
 
         function(err, result) {
             if (err) {
@@ -28,5 +34,6 @@ function updateverification(candidatedata, sucessCB, errorCB) {
 };
 
 module.exports = {
-    getverification: getverification
+    getverification: getverification,
+    updateverification: updateverification
 };

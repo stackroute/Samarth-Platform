@@ -7,7 +7,7 @@ var verificationprocessor = require('./verificationprocesser');
 
  */
 router.get("/:candidateid", function(req, res) {
-    console.log("Inside get");
+
     try {
         verificationprocessor.getverification(req.params.candidateid,
             function(verificationdata) {
@@ -24,20 +24,27 @@ router.get("/:candidateid", function(req, res) {
         });
     }
 });
+/* Effective url /verification/updateverification
+ */
 router.patch("/updateverification", function(req, res) {
     try {
-        var candidatedata = req.body;
 
-        verificationprocessor.updateverification(candidatedata,
+        // var candidatedata = req.body;
+        // console.log("in patch", candidatedata);
+
+
+        verificationprocessor.updateverification(req.body,
             function sucessCB(result) {
                 res.status(200).send("OK");
             },
             function errorCB(error) {
+                console.log('errorCB');
                 res.status(500).send(err);
             });
     } catch (err) {
-        console.log("Some other error");
-        return res.status(500).send("Some error occured");
+
+        console.log("Some other error", err);
+        res.status(500).json({ error: "Internal Server Error" });
     }
 });
 
