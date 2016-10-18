@@ -24,7 +24,7 @@ router.get("/:candidateid", function(req, res) {
         });
     }
 });
-router.patch("updateverification", function(req, res) {
+router.patch("/updateverification", function(req, res) {
     try {
         var candidatedata = req.body;
 
