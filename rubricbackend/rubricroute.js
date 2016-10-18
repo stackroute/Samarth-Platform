@@ -11,8 +11,8 @@ router.get("/:name/:profiletype", function(req, res) {
     try {
         rubricprocessor.getrubric(req.params.name, req.params.profiletype,
             function(rubricdata) {
-                console.log("*****************", rubricdata[0])
-                res.status(200).json({ result: rubricdata[0] });
+
+                res.status(200).json(rubricdata);
             },
             function(err) {
                 res.status(500).json(err);

@@ -4,11 +4,11 @@ var rubric = require('./rubricmodel');
 function getrubric(name, profiletype, successCB, errorCB) {
     rubric.find({ "name": name, "profiletype": profiletype }, function(error, result) {
         if (error) {
-            console.log(error);
+            //  console.log(error);
             errorCB(error);
         }
 
-        console.log("Inside getrubric Function" + result);
+        // console.log("Inside getrubric Function" + result);
         successCB(result);
     });
 };
