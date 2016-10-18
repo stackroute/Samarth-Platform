@@ -28,7 +28,7 @@ router.patch("updateverification", function(req, res) {
     try {
         var candidatedata = req.body;
 
-        verificationprocessor.updateverification(candidatedata
+        verificationprocessor.updateverification(candidatedata,
             function sucessCB(result) {
                 res.status(200).send("OK");
             },

@@ -2,7 +2,7 @@ var verification = require('./verificationmodel');
 
 // The verification processor
 function getverification(candidateid, successCB, errorCB) {
-    verification.find({ "candidateid": name }, function(error, result) {
+    verification.find({ "candidateid": candidateid }, function(error, result) {
         if (error) {
             console.log(error);
             errorCB(error);
@@ -14,7 +14,7 @@ function getverification(candidateid, successCB, errorCB) {
 };
 
 function updateverification(candidatedata, sucessCB, errorCB) {
-    candidateid.update({ "candidateid": candidatedata.candidateid }, { '$set': verification_status }, { '$set': verification_rating }
+    candidateid.update({ "candidateid": candidatedata.candidateid }, { '$set': verification_status }, { '$set': verification_rating },
 
         function(err, result) {
             if (err) {
@@ -25,7 +25,8 @@ function updateverification(candidatedata, sucessCB, errorCB) {
                 sucessCB("OK");
             }
         });
+};
 
-    module.exports = {
-        getverification: getverification
-    };
+module.exports = {
+    getverification: getverification
+};
