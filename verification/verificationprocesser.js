@@ -18,7 +18,8 @@ function updateverification(candidatedata, sucessCB, errorCB) {
     verification.update({ candidateid: candidatedata.candidateid }, {
             '$set': {
                 verification_status: candidatedata.verification_status,
-                verification_ratings: candidatedata.verification_ratings
+                verification_ratings: candidatedata.verification_ratings,
+                updated_on: candidatedata.updated_on
             }
         },
 

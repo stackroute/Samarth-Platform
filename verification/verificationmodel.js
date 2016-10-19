@@ -7,7 +7,8 @@ verification schema
 var verificationSchema = new Schema({
     'candidateid': { type: Number, require: true },
     'verification_status': { type: String },
-    'verification_ratings': { type: Number }
+    'verification_ratings': { type: Number },
+    'updated_on': { type: Date }
 
 
 
