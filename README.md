@@ -2,6 +2,7 @@
 Samarth uses technology to organise Skill & Job marketplace by covering large amount of population to its skill database and Job database. 
 
 Samarth does what UBER did to Taxi based transportation, to skilled people recruitment across all possible industry and service segments of India
+
 This is done by organising Skilled people finding for a job of any industry and/or service segment as a well organised, predictable, trustable and reliable online marketplace 
 
 Hence Samarth can be viewed as a large database of skilled people, jobs currently available, past placement history and outcomes from the placement history, with intelligence to identify next successful placement for either job provider or skilled people
@@ -17,5 +18,6 @@ Hence Samarth can be viewed as a large database of skilled people, jobs currentl
 - Language barriers have to be crossed, if Samarth needs to cover all industry segments, large number of skilled people, geographical locations and openings
 - Intuitive and forgiving user interface is needed as it is expected to be used by large number people with varied level of familiarity with computer interfaces
 - As coordinators are involved, there is a implicit middleman in the process of placement, which demands transparency among coordinators, among job providers and skilled people. Transparency has to be default nature of the app
+- Standardising process of placement, verification, profile posting so that system capability is not diluted or compromised because of personal bias of people involved, human interferences 
 - System aiding is needed in all the steps of the process so that manual efforts can be reduced and mistakes can be avoided to possible extent and constantly improved 
 
