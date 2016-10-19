@@ -1,7 +1,7 @@
 # Samarth - Large scale placement platform
 Samarth uses technology to organise Skill & Job marketplace by covering large amount of population to its skill database and Job database. 
 
-Samarth does what UBER did to Taxi based transportation, to skilled people recruitment across all possible industry and service segments of India
+Samarth does what UBER did to Taxi based transportation, for the skilled people recruitment across all possible industry and service segments in India as a first goal
 
 This is done by organising Skilled people finding for a job of any industry and/or service segment as a well organised, predictable, trustable and reliable online marketplace 
 
