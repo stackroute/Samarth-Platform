@@ -3,9 +3,11 @@ var morgan = require('morgan');
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var neo4j = require('neo4j');
 
 var authRoutes = require('./auth/authrouter');
 var authByToken = require('./auth/authbytoken');
+var circleRoute = require('./circlesBackEnd/circleRout');
 
 var projectRoutes = require('./sectionproject/projectrouter');
 var educationRoutes = require('./sectioneducation/educationrouter');
@@ -20,11 +22,24 @@ var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var resourcebundle = require('./resourcebundle/resourcebundlerouter');
 var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
+<<<<<<< HEAD
 var jobProfileRoutes = require('./jobprofile/jobprofileroute');
+=======
+<<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+var jobProfileRoutes = require('./jobProfile/jobProfileRoute');
+>>>>>>> cbfdeecc3251462f79a4b7b465ee3b40a21b4c93
 var employerRoutes = require('./employer/employerroute.js')
 var rubricRoute = require('./rubricbackend/rubricroute');
 
 var verificationRoute = require('./verification/verificationroute');
+<<<<<<< HEAD
+=======
+>>>>>>> 82c2a229655253e73df89150b706c496fe13ba43
+>>>>>>> 637c4acb2f0e44c395c958e074f54b4d09125b4b
+>>>>>>> cbfdeecc3251462f79a4b7b465ee3b40a21b4c93
 var app = express();
 
 
@@ -36,6 +51,8 @@ app.onAppStart = function(addr) {
         //do your thing
     });
     */
+    var db = new neo4j.GraphDatabase('http://neo4j:akanksha@localhost:7474');
+
 
     mongoose.connect('mongodb://localhost:27018/samarthplatformdb');
 
@@ -110,9 +127,22 @@ app.use("/personalinfo", personalinfoRoutes);
 app.use("/skillcard", skillcardRouter);
 app.use("/jobprofile", jobProfileRoutes);
 app.use("/resource", resourcebundle);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+app.use('/circle', circleRoute);
+
+=======
+<<<<<<< HEAD
+>>>>>>> cbfdeecc3251462f79a4b7b465ee3b40a21b4c93
 app.use("/employer", employerRoutes);
 app.use('/rubric', rubricRoute);
 app.use('/verification', verificationRoute);
+<<<<<<< HEAD
+=======
+>>>>>>> 82c2a229655253e73df89150b706c496fe13ba43
+>>>>>>> 637c4acb2f0e44c395c958e074f54b4d09125b4b
+>>>>>>> cbfdeecc3251462f79a4b7b465ee3b40a21b4c93
 
 
 module.exports = app;
