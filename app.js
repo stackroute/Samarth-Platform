@@ -23,7 +23,7 @@ var resourcebundle = require('./resourcebundle/resourcebundlerouter');
 var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
 var jobProfileRoutes = require('./jobprofile/jobprofileroute');
-var jobProfileRoutes = require('./jobProfile/jobProfileRoute');
+var jobProfileRoutes = require('./jobprofile/jobprofileroute');
 var employerRoutes = require('./employer/employerroute.js')
 var rubricRoute = require('./rubricbackend/rubricroute');
 
