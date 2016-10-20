@@ -3,9 +3,11 @@ var morgan = require('morgan');
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
+var neo4j = require('neo4j');
 
 var authRoutes = require('./auth/authrouter');
 var authByToken = require('./auth/authbytoken');
+var circleRoute = require('./circlesBackEnd/circleRout');
 
 var projectRoutes = require('./sectionproject/projectrouter');
 var educationRoutes = require('./sectioneducation/educationrouter');
@@ -20,6 +22,7 @@ var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var resourcebundle = require('./resourcebundle/resourcebundlerouter');
 var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
+
 var app = express();
 
 
@@ -31,6 +34,8 @@ app.onAppStart = function(addr) {
         //do your thing
     });
     */
+    var db = new neo4j.GraphDatabase('http://neo4j:akanksha@localhost:7474');
+
 
     mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
@@ -105,6 +110,8 @@ app.use("/personalinfo", personalinfoRoutes);
 app.use("/skillcard", skillcardRouter);
 
 app.use("/resource", resourcebundle);
+app.use('/circle', circleRoute);
+
 
 
 module.exports = app;
