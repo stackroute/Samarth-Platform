@@ -1,4 +1,4 @@
-var jobProfile = require('./jobProfileSchema');
+var jobProfile = require('./jobprofileschema');
 /*get job details by ID*/
 function getJobByID(jobID, sucessCB, errorCB) {
     jobProfile.find({ "jobID": jobID }, function(error, result) {

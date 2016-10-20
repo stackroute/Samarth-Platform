@@ -20,14 +20,11 @@ var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var resourcebundle = require('./resourcebundle/resourcebundlerouter');
 var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
-<<<<<<< HEAD
-var jobProfileRoutes = require('./jobProfile/jobProfileRoute');
+var jobProfileRoutes = require('./jobprofile/jobprofileroute');
 var employerRoutes = require('./employer/employerroute.js')
-=======
 var rubricRoute = require('./rubricbackend/rubricroute');
 
 var verificationRoute = require('./verification/verificationroute');
->>>>>>> 82c2a229655253e73df89150b706c496fe13ba43
 var app = express();
 
 
@@ -113,12 +110,9 @@ app.use("/personalinfo", personalinfoRoutes);
 app.use("/skillcard", skillcardRouter);
 app.use("/jobprofile", jobProfileRoutes);
 app.use("/resource", resourcebundle);
-<<<<<<< HEAD
 app.use("/employer", employerRoutes);
-=======
 app.use('/rubric', rubricRoute);
 app.use('/verification', verificationRoute);
->>>>>>> 82c2a229655253e73df89150b706c496fe13ba43
 
 
 module.exports = app;
