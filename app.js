@@ -28,6 +28,9 @@ var employerRoutes = require('./employer/employerroute.js')
 var rubricRoute = require('./rubricbackend/rubricroute');
 
 var verificationRoute = require('./verification/verificationroute');
+
+
+var coordinatorRouter = require('./coordinator/coordinatorroute');
 var app = express();
 
 
@@ -119,4 +122,5 @@ app.use('/circle', circleRoute);
 app.use("/employer", employerRoutes);
 app.use('/rubric', rubricRoute);
 app.use('/verification', verificationRoute);
+app.use("/coordinatorregister", coordinatorRouter);
 module.exports = app;
