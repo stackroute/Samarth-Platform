@@ -20,6 +20,8 @@ var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var resourcebundle = require('./resourcebundle/resourcebundlerouter');
 var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
+var jobProfileRoutes = require('./jobProfile/jobProfileRoute');
+var employerRoutes = require('./employer/employerroute.js')
 var app = express();
 
 
@@ -32,7 +34,7 @@ app.onAppStart = function(addr) {
     });
     */
 
-    mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
+    mongoose.connect('mongodb://localhost:27018/samarthplatformdb');
 
     //Call any cache loading here if required
     fieldQCache.loadCache();
@@ -103,8 +105,9 @@ app.use("/profile", profilerouter);
 app.use("/work", workRouter);
 app.use("/personalinfo", personalinfoRoutes);
 app.use("/skillcard", skillcardRouter);
-
+app.use("/jobprofile", jobProfileRoutes);
 app.use("/resource", resourcebundle);
+app.use("/employer", employerRoutes);
 
 
 module.exports = app;
