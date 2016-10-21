@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var jobProfile = require('./jobProfileSchema');
+var jobProfile = require('./jobprofileschema');
 var jobProfileProcessor = require('./jobprofileprocessor');
 
 /*Effective url : /jobProfile/jobPost*/

@@ -26,10 +26,16 @@ var fieldQCache = require('./questionbox/fieldQCache');
 var jobProfileRoutes = require('./jobProfile/jobProfileRoute');
 var employerRoutes = require('./employer/employerroute.js')
 
+var jobProfileRoutes = require('./jobprofile/jobprofileroute');
+var jobProfileRoutes = require('./jobprofile/jobprofileroute');
+var employerRoutes = require('./employer/employerroute.js')
+
 var rubricRoute = require('./rubricbackend/rubricroute');
 
 var verificationRoute = require('./verification/verificationroute');
 
+
+var coordinatorRouter = require('./coordinator/coordinatorroute');
 var app = express();
 
 
@@ -117,7 +123,6 @@ app.use("/personalinfo", personalinfoRoutes);
 app.use("/skillcard", skillcardRouter);
 app.use("/jobprofile", jobProfileRoutes);
 app.use("/resource", resourcebundle);
-
 app.use('/circle', circleRoute);
 
 
@@ -125,7 +130,9 @@ app.use("/employer", employerRoutes);
 
 app.use('/rubric', rubricRoute);
 app.use('/verification', verificationRoute);
-
-
-
+app.use('/circle', circleRoute);
+app.use("/employer", employerRoutes);
+app.use('/rubric', rubricRoute);
+app.use('/verification', verificationRoute);
+app.use("/coordinatorregister", coordinatorRouter);
 module.exports = app;
