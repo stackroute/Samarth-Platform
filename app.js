@@ -22,18 +22,14 @@ var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var resourcebundle = require('./resourcebundle/resourcebundlerouter');
 var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
 var jobProfileRoutes = require('./jobProfile/jobProfileRoute');
 var employerRoutes = require('./employer/employerroute.js')
-=======
+
 var rubricRoute = require('./rubricbackend/rubricroute');
 
 var verificationRoute = require('./verification/verificationroute');
->>>>>>> 82c2a229655253e73df89150b706c496fe13ba43
->>>>>>> 637c4acb2f0e44c395c958e074f54b4d09125b4b
+
 var app = express();
 
 
@@ -48,7 +44,7 @@ app.onAppStart = function(addr) {
     var db = new neo4j.GraphDatabase('http://neo4j:akanksha@localhost:7474');
 
 
-    mongoose.connect('mongodb://localhost:27018/samarthplatformdb');
+    mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
     //Call any cache loading here if required
     fieldQCache.loadCache();
@@ -121,17 +117,15 @@ app.use("/personalinfo", personalinfoRoutes);
 app.use("/skillcard", skillcardRouter);
 app.use("/jobprofile", jobProfileRoutes);
 app.use("/resource", resourcebundle);
-<<<<<<< HEAD
+
 app.use('/circle', circleRoute);
 
-=======
-<<<<<<< HEAD
+
 app.use("/employer", employerRoutes);
-=======
+
 app.use('/rubric', rubricRoute);
 app.use('/verification', verificationRoute);
->>>>>>> 82c2a229655253e73df89150b706c496fe13ba43
->>>>>>> 637c4acb2f0e44c395c958e074f54b4d09125b4b
+
 
 
 module.exports = app;

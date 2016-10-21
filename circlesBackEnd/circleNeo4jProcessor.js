@@ -4,7 +4,7 @@ var db = new neo4j.GraphDatabase('http://neo4j:akanksha@localhost:7474');
 getCircles = function(entityname, successres, errRes) {
     // console.log(entityname)
     db.cypher({
-            query: 'MATCH (n:coordinator{username:{entityname}})-[r]->(c:circle)-[rel]-() RETURN c.name as name,c.domain as domain, count(rel) as rCount',
+            query: 'MATCH (n:coordinator{username:{entityname}})-[r]->(c:circle) MERGE (c)-[rel:associatedWith ]-() RETURN c.name,c.domain,count(rel) as rCount',
             params: {
                 entityname: entityname
             }
