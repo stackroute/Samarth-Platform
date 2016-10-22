@@ -1,5 +1,4 @@
 var router = require('express').Router();
-console.log("in route");
 var coordinatorprocessor = require('./coordinatorprocessor');
 var coordinator = require('./coordinatorschema');
 router.post('/createcoordinator', function(req, res) {
@@ -20,6 +19,19 @@ router.post('/createcoordinator', function(req, res) {
                     function(err) {
                         return err;
                     });
+                coordinatorprocessor.insertCoordinator(req.body,
+                    function(err, user) {
+                        if (err) {
+                            return res.status(500).json({
+                                error: "Internal error in processing request, please retry later..!"
+                            });
+                        }
+
+                        return res.status(200).json(user);
+                    },
+                    function(err) {
+                        return res.status(403).json(err);
+                    }); //insertCoordinator ends
             }
 
         });

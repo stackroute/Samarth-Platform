@@ -8,9 +8,9 @@ var coordinatorSchema = new Schema({
     coordinatorRole: { type: String },
     coordinatorLocation: { type: String },
     coordinatorGender: { type: String },
-    coordinatorEmail:{type:String},
-    coordinatorPwd:{type:String}
+    coordinatorEmail: { type: String },
+    coordinatorPwd: { type: String }
 });
-var coordinator = mongoose.model('coordinator', coordinatorSchema, 'coordinator')
+var coordinator = mongoose.model('coordinators', coordinatorSchema, 'coordinators');
 
 module.exports = coordinator;

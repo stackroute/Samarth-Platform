@@ -7,6 +7,8 @@ var neo4j = require('neo4j');
 
 var authRoutes = require('./auth/authrouter');
 var authByToken = require('./auth/authbytoken');
+var authCoordinatorRouter = require('./authcoordinator/authroutes');
+var authCoordinator = require('./authcoordinator/authbytoken');
 var circleRoute = require('./circlesBackEnd/circleRout');
 
 var projectRoutes = require('./sectionproject/projectrouter');
@@ -106,9 +108,20 @@ function isAuthenticated(req, res, next) {
             error: err
         });
     });
+
+    authCoordinator.isCoordinatorAuthenticated(token, clientToken, function(
+        coordinator) {
+        req.coordinator = coordinator;
+        next();
+    }, function(err) {
+        return res.status(403).json({
+            error: err
+        });
+    });
 }
 
 app.use('/auth', authRoutes);
+app.use('/details', authCoordinatorRouter);
 
 app.use('/candidates', qboxRouter);
 app.use('/candidate', candidateRoutes);
@@ -126,12 +139,8 @@ app.use('/circle', circleRoute);
 
 
 app.use("/employer", employerRoutes);
-
 app.use('/rubric', rubricRoute);
 app.use('/verification', verificationRoute);
-
-
-
-
 app.use("/coordinatorregister", coordinatorRouter);
+
 module.exports = app;
