@@ -4,7 +4,7 @@ var async = require('async');
 var candidateprocessor = require('./candidateprocessor');
 var candidate = require('./candidateschema');
 var profileprocessor = require('../profiles/profileprocessor');
-var educationprocessor = require('../sectioneducation/educationprocessor');
+var educationprocess
 var personalInfoprocessor = require(
     '../sectionpersonalinfo/personalInfoprocessor');
 var projectprocessor = require('../sectionproject/projectprocessor');

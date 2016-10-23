@@ -7,7 +7,6 @@ var candidateSchema = new Schema({
 	updatedOn: { type: Date,default:Date.now},
 	createdBy:{type:String,default:"user"},
 	updatedBy:{type:String,default:"user"},
-	// profession:{type: String,required: true}
 });
 var candidates=mongoose.model('candidates',candidateSchema,'candidates')
 module.exports = candidates;
