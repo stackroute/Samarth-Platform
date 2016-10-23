@@ -3,7 +3,7 @@ var db = new neo4j.GraphDatabase('http://neo4j:Mad@1995@localhost:7474');
 
 createNode = function(req, errRes) {
 	db.cypher({
-		query:'MERGE (l:Location{name:{location}}) CREATE (p:Person{name:{candidateid}})-[r:belongs_to]-> (l)',
+		query:'MERGE (l:Location{name:{location}}) MERGE (p:Person{name:{candidateid}})-[r:belongs_to]-> (l)',
 		params: {
 			location: req.location,
 			candidateid: req.candidateid
@@ -12,9 +12,10 @@ createNode = function(req, errRes) {
 	function(err, results) {
 		if (err) {
 			console.log(err);
-			errRes(results);
 		}
-		
+		console.log("*******************************************************Location Finished");
+
+		errRes(results);
 	});
 }
 

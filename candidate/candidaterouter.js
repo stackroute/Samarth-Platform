@@ -4,14 +4,15 @@ var async = require('async');
 var candidateprocessor = require('./candidateprocessor');
 var candidate = require('./candidateschema');
 var profileprocessor = require('../profiles/profileprocessor');
-var educationprocess
+var educationprocessor = require('../sectioneducation/educationprocessor');
 var personalInfoprocessor = require(
     '../sectionpersonalinfo/personalInfoprocessor');
 var projectprocessor = require('../sectionproject/projectprocessor');
 var skillprocessor = require('../sectionskill/skillprocessor');
 var workexpprocessor = require('../sectionworkexperiance/workprocessor');
-var neopersonalinfo = require('../sectionpersonalinfo/personalinfoneoprocessor');
-
+var candidateneo = require('./candidateneoprocessor');
+// var neopersonalinfo = require('../sectionpersonalinfo/personalinfoneoprocessor');
+// var neoprofession = require('../profiles/profileneoprocessor');
 /* Get the Candidate Collection with the given Candidate id  */
 //HTTP GET /candidate/:candidateid /
 //effective url /candidate/:candidateid
@@ -39,6 +40,14 @@ router.get("/:candidateid", function(req, res) {
 //effective url /candidate/
 router.post("/", function(req, res) {
     try {
+
+        candidateneo.createCandidate(req.body,function(err,stat) {
+            if(err) {
+                console.log(err);
+            }else{
+                console.log(stat);
+            }
+        });
         //create every section,candidate,profile if candidate is created for first time 
         candidate.find({
             "candidateid": req.body.mobile
@@ -59,6 +68,14 @@ router.post("/", function(req, res) {
                     profile: function(callback) {
                         profileprocessor.createNewprofile(req.body,
                             function(profileobj) {
+                                // console.log("From Profile Processor",profileobj)
+                                // neoprofession.createProfessionNode(profileobj,function(err,succ) {
+                                //     if(err) {
+                                //         console.log(err);
+                                //     }else{
+                                //         console.log(succ);
+                                //     }
+                                // });
                                 callback(null, profileobj);
                             },
                             function(err) {
@@ -79,15 +96,14 @@ router.post("/", function(req, res) {
                     personalinfo: function(callback) {
                         personalInfoprocessor.createNewpersonalinfo(req.body,
                             function(personalinfoobj) {
-                                // console.log("************************",personalinfoobj)
-                                neopersonalinfo.createNode(personalinfoobj,function(err,succ) {
-                                    if(err) {
-                                        console.log(err);
-                                    }
-                                    else {
-                                        console.log(succ);
-                                    }
-                                });
+                                // neopersonalinfo.createNode(personalinfoobj,function(err,succ) {
+                                //     if(err) {
+                                //         console.log(err);
+                                //     }
+                                //     else {
+                                //         console.log(succ);
+                                //     }
+                                // });
                                 callback(null, personalinfoobj);
 
 
@@ -127,6 +143,16 @@ router.post("/", function(req, res) {
                             }
                             )
                     }
+                    // createcandidate: function(callback) {
+                    //     candidateneo.createCandidate(req.body,
+                    //         function(success) {
+                    //             callback(null,sucess);
+                    //         },
+                    //         function(err) {
+                    //             callback(err,null);
+                    //         }
+                    //         )
+                    // }
                 },
                 function(err, results) {
                     if (err) {
