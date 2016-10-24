@@ -8,22 +8,22 @@ function getverification(candidateid, successCB, errorCB) {
             errorCB(error);
         }
 
-        // console.log("Inside getverification Function" + result);
+
         successCB(result);
     });
 };
 
-function updateverification(candidatedata, sucessCB, errorCB) {
+function updateverification(candidatedata, typename, sucessCB, errorCB) {
     console.log("update method", candidatedata);
-    verification.update({ candidateid: candidatedata.candidateid }, {
-            '$set': {
-                verification_status: candidatedata.verification_status,
-                verification_ratings: candidatedata.verification_ratings,
-                updated_on: candidatedata.updated_on
-            }
-        },
+    if (typename == 'Personal_Information') {
 
-        function(err, result) {
+        verification.update({ candidateid: candidatedata.candidateid }, {
+            '$set': {
+                updated_on: candidatedata.updated_on,
+                "Personal_Information.value": candidatedata.Personal_Information.value,
+                "Personal_Information.remarks": candidatedata.Personal_Information.remarks
+            }
+        }, function(err, result) {
             if (err) {
                 console.log("Error occured on save" + err);
                 errorCB(err);
@@ -32,6 +32,83 @@ function updateverification(candidatedata, sucessCB, errorCB) {
                 sucessCB("OK");
             }
         });
+    }
+    if (typename == "Work_History") {
+        verification.update({ candidateid: candidatedata.candidateid }, {
+            '$set': {
+                updated_on: candidatedata.updated_on,
+                "Work_History.value": candidatedata.Work_History.value,
+                "Work_History.remarks": candidatedata.Work_History.remarks
+            }
+        }, function(err, result) {
+            if (err) {
+                console.log("Error occured on save" + err);
+                errorCB(err);
+            } else {
+                console.log("updated successfully");
+                sucessCB("OK");
+            }
+        });
+
+    }
+    if (typename == "Project") {
+        verification.update({ candidateid: candidatedata.candidateid }, {
+            '$set': {
+                updated_on: candidatedata.updated_on,
+                "Project.value": candidatedata.Project.value,
+                "Project.remarks": candidatedata.Project.remarks
+            }
+        }, function(err, result) {
+            if (err) {
+                console.log("Error occured on save" + err);
+                errorCB(err);
+            } else {
+                console.log("updated successfully");
+                sucessCB("OK");
+            }
+        });
+
+    }
+    if (typename == "Qualification") {
+        verification.update({ candidateid: candidatedata.candidateid }, {
+            '$set': {
+                updated_on: candidatedata.updated_on,
+                "Qualification.value": candidatedata.Qualification.value,
+                "Qualification.remarks": candidatedata.Qualification.remarks
+            }
+        }, function(err, result) {
+            if (err) {
+                console.log("Error occured on save" + err);
+                errorCB(err);
+            } else {
+                console.log("updated successfully");
+                sucessCB("OK");
+            }
+        });
+
+
+
+
+    }
+    if (typename == "Skills") {
+        verification.update({ candidateid: candidatedata.candidateid }, {
+            '$set': {
+                updated_on: candidatedata.updated_on,
+                "Skills.value": candidatedata.Skills.value,
+                "Skills.remarks": candidatedata.Skills.remarks
+            }
+        }, function(err, result) {
+            if (err) {
+                console.log("Error occured on save" + err);
+                errorCB(err);
+            } else {
+                console.log("updated successfully");
+                sucessCB("OK");
+            }
+        });
+
+    }
+
 };
 
 module.exports = {
