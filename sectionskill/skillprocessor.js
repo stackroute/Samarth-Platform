@@ -63,26 +63,26 @@ function createNewSkill(formobj, sucessCB, errorCB) {
 function addSkill(skillObj, candidateid, sucessCB, errorCB) {
     skill.update({ "candidateid": candidateid }, { $push: { "skills": skillObj.skills[0] } },
         function() {
-            // console.log("successfully added to ",doc);
-            sucessCB("skill added")
+            console.log("successfully added skill ",skillObj.skills[0].skillname);
+            sucessCB(skillObj.skills[0].skillname,candidateid);
         }
-    );
+        );
 }
 
 
 function updateSkill(skillname, skillobj, candidateid, sucessCB, errorCB) {
     skill.update({ 'candidateid': candidateid, 'skills.skillname': skillname }, {
-            '$set': {
-                'skills.$.skillname': skillobj.skills[0].skillname,
-                'skills.$.category': skillobj.skills[0].category,
-                'skills.$.expertise': skillobj.skills[0].expertise,
-                'skills.$.experience': skillobj.skills[0].experience,
-                'skills.$.metadata': skillobj.skills[0].metadata
-            }
-        },
-        function() {
-            sucessCB("skill updated");
+        '$set': {
+            'skills.$.skillname': skillobj.skills[0].skillname,
+            'skills.$.category': skillobj.skills[0].category,
+            'skills.$.expertise': skillobj.skills[0].expertise,
+            'skills.$.experience': skillobj.skills[0].experience,
+            'skills.$.metadata': skillobj.skills[0].metadata
         }
+    },
+    function() {
+        sucessCB("skill updated");
+    }
 
     );
 }

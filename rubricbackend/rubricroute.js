@@ -3,13 +3,14 @@ var router = require('express').Router();
 
 var rubricprocessor = require('./rubricprocesser');
 
-/* Effective url /rubric/name/profiletype
+/* Effective url /rubric/name
 
  */
-router.get("/:name/:profiletype", function(req, res) {
+router.get("/:typename", function(req, res) {
     console.log("Inside get");
+    console.log(req.params.typename);
     try {
-        rubricprocessor.getrubric(req.params.name, req.params.profiletype,
+        rubricprocessor.getrubric(req.params.typename,
             function(rubricdata) {
 
                 res.status(200).json(rubricdata);

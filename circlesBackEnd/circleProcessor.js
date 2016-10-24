@@ -6,21 +6,24 @@ getCircle = function(req, successRes, errorRes) {
 
         circleNeo4jProcessor.getCircles(req.entityname,
             function(neodata) {
-                // console.log(neodata);
+                console.log(neodata);
                 //  successRes(neodata);
                 var mongoarray = [];
-                var newcircle = {};
+                var newcircle = "";
                 for (var circle in neodata) {
-
+                    // console.log(circle);
+                    // console.log(neodata[circle].name);
                     newcircle = neodata[circle].name;
+                    // console.log(newcircle);
                     mongoarray.push(newcircle);
                 }
-                //console.log(mongoarray);
+                // console.log(mongoarray);
+
 
 
                 circleMongoProcessor.findCirclesByName(mongoarray,
                     function(mongodata) {
-                        //      console.log(mongodata);
+                        console.log(mongodata);
                         // Loop through each circle object 
                         // update the object with the DomainName, Count obtained from newo4j 
                         var uicircles = [];

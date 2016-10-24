@@ -24,16 +24,11 @@ router.get("/:candidateid", function(req, res) {
         });
     }
 });
-/* Effective url /verification/updateverification
+/* Effective url /verification/updateverification/typename
  */
-router.patch("/updateverification", function(req, res) {
+router.patch("/updateverification/:typename", function(req, res) {
     try {
-
-        // var candidatedata = req.body;
-        // console.log("in patch", candidatedata);
-
-
-        verificationprocessor.updateverification(req.body,
+        verificationprocessor.updateverification(req.body, req.params.typename,
             function sucessCB(result) {
                 res.status(200).send("OK");
             },

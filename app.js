@@ -7,6 +7,8 @@ var neo4j = require('neo4j');
 
 var authRoutes = require('./auth/authrouter');
 var authByToken = require('./auth/authbytoken');
+var authCoordinatorRouter = require('./authcoordinator/authroutes');
+var authCoordinator = require('./authcoordinator/authbytoken');
 var circleRoute = require('./circlesBackEnd/circleRout');
 
 var projectRoutes = require('./sectionproject/projectrouter');
@@ -22,12 +24,19 @@ var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var resourcebundle = require('./resourcebundle/resourcebundlerouter');
 var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
-var jobProfileRoutes = require('./jobprofile/jobprofileroute');
-var jobProfileRoutes = require('./jobprofile/jobprofileroute');
+
+var jobProfileRoutes = require('./jobProfile/jobProfileRoute');
 var employerRoutes = require('./employer/employerroute.js')
+
+
+
+
 var rubricRoute = require('./rubricbackend/rubricroute');
 
 var verificationRoute = require('./verification/verificationroute');
+
+
+var coordinatorRouter = require('./coordinator/coordinatorroute');
 var app = express();
 
 
@@ -99,9 +108,20 @@ function isAuthenticated(req, res, next) {
             error: err
         });
     });
+
+    authCoordinator.isCoordinatorAuthenticated(token, clientToken, function(
+        coordinator) {
+        req.coordinator = coordinator;
+        next();
+    }, function(err) {
+        return res.status(403).json({
+            error: err
+        });
+    });
 }
 
 app.use('/auth', authRoutes);
+app.use('/details', authCoordinatorRouter);
 
 app.use('/candidates', qboxRouter);
 app.use('/candidate', candidateRoutes);
@@ -116,7 +136,11 @@ app.use("/skillcard", skillcardRouter);
 app.use("/jobprofile", jobProfileRoutes);
 app.use("/resource", resourcebundle);
 app.use('/circle', circleRoute);
+
+
 app.use("/employer", employerRoutes);
 app.use('/rubric', rubricRoute);
 app.use('/verification', verificationRoute);
+app.use("/coordinatorregister", coordinatorRouter);
+
 module.exports = app;

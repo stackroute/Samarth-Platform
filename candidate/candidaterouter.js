@@ -10,7 +10,10 @@ var personalInfoprocessor = require(
 var projectprocessor = require('../sectionproject/projectprocessor');
 var skillprocessor = require('../sectionskill/skillprocessor');
 var workexpprocessor = require('../sectionworkexperiance/workprocessor');
-
+var candidateneo = require('./candidateneoprocessor');
+var verificationprocessor = require('../verification/verificationprocesser');
+// var neopersonalinfo = require('../sectionpersonalinfo/personalinfoneoprocessor');
+// var neoprofession = require('../profiles/profileneoprocessor');
 /* Get the Candidate Collection with the given Candidate id  */
 //HTTP GET /candidate/:candidateid /
 //effective url /candidate/:candidateid
@@ -38,6 +41,14 @@ router.get("/:candidateid", function(req, res) {
 //effective url /candidate/
 router.post("/", function(req, res) {
     try {
+
+        candidateneo.createCandidate(req.body, function(err, stat) {
+            if (err) {
+                console.log(err);
+            } else {
+                console.log(stat);
+            }
+        });
         //create every section,candidate,profile if candidate is created for first time 
         candidate.find({
             "candidateid": req.body.mobile
@@ -58,6 +69,14 @@ router.post("/", function(req, res) {
                         profile: function(callback) {
                             profileprocessor.createNewprofile(req.body,
                                 function(profileobj) {
+                                    // console.log("From Profile Processor",profileobj)
+                                    // neoprofession.createProfessionNode(profileobj,function(err,succ) {
+                                    //     if(err) {
+                                    //         console.log(err);
+                                    //     }else{
+                                    //         console.log(succ);
+                                    //     }
+                                    // });
                                     callback(null, profileobj);
                                 },
                                 function(err) {
@@ -78,7 +97,17 @@ router.post("/", function(req, res) {
                         personalinfo: function(callback) {
                             personalInfoprocessor.createNewpersonalinfo(req.body,
                                 function(personalinfoobj) {
+                                    // neopersonalinfo.createNode(personalinfoobj,function(err,succ) {
+                                    //     if(err) {
+                                    //         console.log(err);
+                                    //     }
+                                    //     else {
+                                    //         console.log(succ);
+                                    //     }
+                                    // });
                                     callback(null, personalinfoobj);
+
+
                                 },
                                 function(err) {
                                     callback(err, null);
@@ -114,7 +143,26 @@ router.post("/", function(req, res) {
                                     callback(err, null);
                                 }
                             )
-                        }
+                        },
+                        verificationdata: function(callback) {
+                            verificationprocessor.createNewVerification(req.body,
+                                function(verifyobj) {
+                                    callback(null, verifyobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                })
+                        },
+                        // createcandidate: function(callback) {
+                        //     candidateneo.createCandidate(req.body,
+                        //         function(success) {
+                        //             callback(null,sucess);
+                        //         },
+                        //         function(err) {
+                        //             callback(err,null);
+                        //         }
+                        //         )
+                        // }
                     },
                     function(err, results) {
                         if (err) {

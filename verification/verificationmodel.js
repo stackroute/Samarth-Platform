@@ -6,9 +6,13 @@ verification schema
 
 var verificationSchema = new Schema({
     'candidateid': { type: Number, require: true },
-    'verification_status': { type: String },
-    'verification_ratings': { type: Number },
-    'updated_on': { type: Date }
+    'candidatename': { type: String, require: true },
+    'updated_on': { type: Date },
+    'Personal_Information': { 'value': { type: Number, default: 0 }, 'remarks': { type: String, default: "" } },
+    'Skills': { 'value': { type: Number, default: 0 }, 'remarks': { type: String, default: "" } },
+    'Qualification': { 'value': { type: Number, default: 0 }, 'remarks': { type: String, default: "" } },
+    'Project': { 'value': { type: Number, default: 0 }, 'remarks': { type: String, default: "" } },
+    'Work_History': { 'value': { type: Number, default: 0 }, 'remarks': { type: String, default: "" } }
 
 
 
