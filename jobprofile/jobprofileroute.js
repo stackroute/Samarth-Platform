@@ -15,6 +15,7 @@ router.post("/jobpost", function(req, res) {
                 jobProfileProcessor.postJob(jobData, function sucessCB(message) {
                     res.status(200).send("OK");
                 }, function errorCB(error) {
+                    console.log("eror update : " + error);
                     res.status(500).send(error);
                 });
             }
@@ -23,7 +24,7 @@ router.post("/jobpost", function(req, res) {
         });
     } catch (err) {
         console.log("Some other error" + err);
-        return res.status(500).send("Some error occured");
+        return res.status(500).send(err);
     }
 });
 
