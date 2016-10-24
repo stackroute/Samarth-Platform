@@ -13,6 +13,30 @@ function getverification(candidateid, successCB, errorCB) {
     });
 };
 
+function createNewVerification(candidatedata, successCB, errorCB) {
+    console.log(candidatedata.mobile);
+    console.log(candidatedata.candidatename);
+
+    var newVerfobj = new verification({
+
+        "candidateid": candidatedata.mobile,
+        "candidatename": candidatedata.name
+
+    });
+
+    console.log("about to save new verification object", newVerfobj);
+
+    newVerfobj.save(function(err, savedobj) {
+        if (err) {
+            console.log("error in saving the verification data");
+            errorCB(err);
+        }
+        successCB(savedobj);
+
+    });
+
+}
+
 function updateverification(candidatedata, typename, sucessCB, errorCB) {
     console.log("update method", candidatedata);
     if (typename == 'Personal_Information') {
@@ -113,5 +137,6 @@ function updateverification(candidatedata, typename, sucessCB, errorCB) {
 
 module.exports = {
     getverification: getverification,
-    updateverification: updateverification
+    updateverification: updateverification,
+    createNewVerification: createNewVerification
 };

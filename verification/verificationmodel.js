@@ -6,12 +6,13 @@ verification schema
 
 var verificationSchema = new Schema({
     'candidateid': { type: Number, require: true },
+    'candidatename': { type: String, require: true },
     'updated_on': { type: Date },
-    'Personal_Information': { 'value': Number, 'remarks': String },
-    'Skills': { 'value': Number, 'remarks': String },
-    'Qualification': { 'value': Number, 'remarks': String },
-    'Project': { 'value': Number, 'remarks': String },
-    'Work_History': { 'value': Number, 'remarks': String }
+    'Personal_Information': { 'value': { type: Number, default: 0 }, 'remarks': { type: String, default: "" } },
+    'Skills': { 'value': { type: Number, default: 0 }, 'remarks': { type: String, default: "" } },
+    'Qualification': { 'value': { type: Number, default: 0 }, 'remarks': { type: String, default: "" } },
+    'Project': { 'value': { type: Number, default: 0 }, 'remarks': { type: String, default: "" } },
+    'Work_History': { 'value': { type: Number, default: 0 }, 'remarks': { type: String, default: "" } }
 
 
 
