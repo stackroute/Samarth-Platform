@@ -51,7 +51,7 @@ app.onAppStart = function(addr) {
     var db = new neo4j.GraphDatabase('http://neo4j:akanksha@localhost:7474');
 
 
-    mongoose.connect('mongodb://localhost:27018/samarthplatformdb');
+    mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
     //Call any cache loading here if required
     fieldQCache.loadCache();
