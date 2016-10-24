@@ -3,7 +3,7 @@ var router = require('express').Router();
 var candidate = require('../candidate/candidateschema');
 var async = require('async');
 
-var personalInfoprocessor = require('../sectionpersonalinfo/personalInfoprocessor');
+var personalInfoprocessor = require('../sectionpersonalinfo/personalinfoprocessor');
 var projectprocessor = require('../sectionproject/projectprocessor');
 var skillprocessor = require('../sectionskill/skillprocessor');
 var workexpprocessor = require('../sectionworkexperiance/workprocessor');

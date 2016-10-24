@@ -1,5 +1,5 @@
 var router = require('express').Router();
-var personalInfoProcessor = require('./personalInfoprocessor');
+var personalInfoProcessor = require('./personalinfoprocessor');
 var persons = require("./personalinfoschema");
 
 /*update personal info only after registration of candidate*/

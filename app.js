@@ -17,7 +17,6 @@ var workRouter = require('./sectionworkexperiance/workrouter');
 var skillcardRouter = require('./skillcard/skillcardrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
-var resourcebundle = require('./resourcebundle/resourcebundlerouter');
 var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
 var app = express();
@@ -104,7 +103,6 @@ app.use("/work", workRouter);
 app.use("/personalinfo", personalinfoRoutes);
 app.use("/skillcard", skillcardRouter);
 
-app.use("/resource", resourcebundle);
 
 
 module.exports = app;
