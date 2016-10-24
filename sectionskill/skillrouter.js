@@ -1,7 +1,7 @@
 var router = require('express').Router();
 var skillProcessor = require('./skillprocessor');
 var skill = require("./skillschema");
-
+var skillRelationBuilder = require("./skillRelationBuilder");
 
 /*Get the skills for the given candidate id*/
 //HHTP GET skill/:candidateid
@@ -42,8 +42,14 @@ router.post("/:candidateid", function(req, res) {
         } //end if 
         else {
             try {
-                skillProcessor.addSkill(req.body, req.params.candidateid, function(skills) {
-                    console.log(skills);
+                skillProcessor.addSkill(req.body, req.params.candidateid, function(skills,id) {
+                    console.log("***************************",id);
+                    // console.log("***************************",req.params.candidateid);
+                    skillRelationBuilder.skillRelationBuilder(skills,id,
+                        function(success) {
+                            console.log("created relationship");
+                        }); 
+
                     // res.status(201).json(skills);
                     res.status(201).json(skills);
 
