@@ -2,7 +2,7 @@ var router = require('express').Router();
 var skillProcessor = require('./skillprocessor');
 var skill = require("./skillschema");
 var skillRelationBuilder = require("./skillrelationbuilder");
-
+var professionstoskillprocessor = require("./professionstoskillprocessor");
 /*Get the skills for the given candidate id*/
 //HHTP GET skill/:candidateid
 //effective URL skill/:candidateid
@@ -35,6 +35,9 @@ router.get("/:candidateid", function(req, res) {
 //HTTP POST /skill/:candidateid
 //effective url  /skill/:candidateid
 router.post("/:candidateid", function(req, res) {
+    console.log("inside router of skillcard",req.body.skills[0].skillname);
+    console.log(req.params.candidateid);
+
     skill.find({ "candidateid": req.params.candidateid }, function(err, result) {
         if (result == "") {
             res.status(500).send("Register candidate for the given candidate id");
@@ -42,12 +45,23 @@ router.post("/:candidateid", function(req, res) {
         } //end if 
         else {
             try {
-                skillProcessor.addSkill(req.body, req.params.candidateid, function(skills,id) {
-                    console.log("***************************",id);
+
+     professionstoskillprocessor.professionskill(req.body.skills[0].skillname,req.params.candidateid,function(success){
+                    //console.log("---------------------------------------skills matched",success);
+                     var v = success;
+                    if (v>0){
+
+                    skillProcessor.addSkill(req.body, req.params.candidateid, function(skills,id) {
+                  //  console.log("***************************",id);
+
                     // console.log("***************************",req.params.candidateid);
                     skillRelationBuilder.skillRelationBuilder(skills,id,
-                        function(success) {
-                            console.log("created relationship");
+                        function(err,success) {
+                            if(err){
+                                console.log(err);
+                        }else{
+                           // console.log("created relationship");                            
+                        }
                         }); 
 
                     // res.status(201).json(skills);
@@ -56,9 +70,39 @@ router.post("/:candidateid", function(req, res) {
                 }, function(err) {
                     res.status(500).send("invalid data");
                 });
+                }
+                else{
+                   // console.log("Error in 0 skill match");
+                    res.status(500).json({err:"No related Skills found!"});
+                }
+            }
+                ,function(err){
+                   // console.log("error in skills ------------------");
+                });
+
+
+            
+
+                    
+
+                // skillProcessor.addSkill(req.body, req.params.candidateid, function(skills,id) {
+                //     console.log("***************************",id);
+
+                //     // console.log("***************************",req.params.candidateid);
+                //     skillRelationBuilder.skillRelationBuilder(skills,id,
+                //         function(success) {
+                //             console.log("created relationship");
+                //         }); 
+
+                //     // res.status(201).json(skills);
+                //     res.status(201).json(skills);
+
+                // }, function(err) {
+                //     res.status(500).send("invalid data");
+                // });
             } //end try
             catch (err) {
-                console.log("Error occurred in creating new skill: ", err);
+               // console.log("Error occurred in creating new skill: ", err);
                 res.status(500).json({
                     error: "Internal error occurred, please report"
                 });

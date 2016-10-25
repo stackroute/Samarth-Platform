@@ -1,23 +1,25 @@
 var neo4j = require('neo4j');
-var db = new neo4j.GraphDatabase('http://neo4j:Mad@1995@localhost:7474');
+var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
 
 
 
-skillRelationBuilder = function(data) {
-	console.log("*****************from skillRelationBuilder",data);
+skillRelationBuilder = function(skill,candidateid,errCB) {
+	//console.log("*****************from skillRelationBuilder",candidateid);
+	//console.log("*****************from skillRelationBuilder",skill);
 
 	db.cypher({
-		query:'MERGE (c:Candidate{name:{candidateid}}) MERGE(sk:Skills{skill_name:{skillname},experience:{experience}}) MERGE (c)-[r:KNOWS]->(sk)',
+		query:'MERGE (c:Candidate{name:{candidateid}}) MERGE(sk:Skills{name:{skillname}}) MERGE (c)-[r:KNOWS]->(sk)',
 		params: {
-			candidateid : data.candidateid,
-			skillname : data.skillname,
-			experience : data.experience
+			candidateid : candidateid,
+			skillname : skill
 		}
 	},function(err,results) {
 		if(err) {
-			console.log(err);
+			//console.log(err);
+			errCB(err,null);
 		}else{
-			console.log("Vetri..Vetri...",results);
+			//console.log("Vetri..Vetri...",results);
+			errCB(null,results);
 		}
 	});
 }
