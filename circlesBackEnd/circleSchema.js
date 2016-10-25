@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var circleSchema = new Schema({
-    name: { type: String, required: true, unque: true },
+    name: { type: String, required: true, unique: true },
     circleDiscription: { type: String },
     domain: { type: String },
     circleType: { type: String, require: true },

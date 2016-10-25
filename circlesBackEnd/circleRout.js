@@ -35,6 +35,9 @@ router.post('/circlerelation',
             circleProcessor.createRelation(req, function(err) {
                 console.log(err);
 
+            }, function(result) {
+                console.log(result);
+
             });
 
         } catch (err) {
