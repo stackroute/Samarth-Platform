@@ -1,0 +1,20 @@
+{
+
+    "coordinatordata": [{
+        "coordinatorName": "benny",
+        "coordinatorId": "1233456778",
+        "coordinatorRole": "coordinator",
+        "coordinatorLocation": "Bangalore",
+        "coordinatorGender": "Male",
+        "coordinatorEmail": "benny@gmail.com",
+        "coordinatorPwd": "benny@123"
+    }, {
+        "coordinatorName": "jenny",
+        "coordinatorId": "5689432167",
+        "coordinatorRole": "coordinator",
+        "coordinatorLocation": "Bangalore",
+        "coordinatorGender": "Female",
+        "coordinatorEmail": "jenny@gmail.com",
+        "coordinatorPwd": "jenny@123"
+    }]
+}
