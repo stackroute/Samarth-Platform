@@ -23,24 +23,29 @@ findCirclesByName = function(circleNameArray, successRes, errorRes) {
 circlePostMongo = function(req, errRes, successRes) {
 
     console.log("**************************From cirlce mongo processm", req);
-    circles.create({
-            name: req.name,
-            circleDiscription: req.circleDiscription,
-            domain: req.domain,
-            circleType: req.circleType,
-            visuality: req.visuality,
-            profilePic: req.profilePic
 
-        }, function(err) {
-            if (err) {
+    circles.find({ name: req.name }, function(err, res) {
+        if (res != "") {
+            circles.create({
+                name: req.name,
+                circleDiscription: req.circleDiscription,
+                domain: req.domain,
+                circleType: req.circleType,
+                visuality: req.visuality,
+                profilePic: req.profilePic
 
-                errRes(err);
-            } else {
-                successRes("sucesss");
-            }
+            }, function(err) {
+                if (err) {
+
+                    errRes(err);
+                } else {
+                    successRes("sucesss");
+                }
+            });
+
+
         }
-
-    );
+    });
 
 }
 

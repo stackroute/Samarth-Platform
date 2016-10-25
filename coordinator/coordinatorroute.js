@@ -7,19 +7,23 @@ router.post('/createcoordinator', function(req, res) {
     console.log("inside post request", req.body.mobile);
     try {
 
-        coordinator.find({
+        coordinator.findOne({
             "coordinatorId": req.body.mobile
-        }, function(error, coordinatorid) {
-            // console.log("********************************", req.body.mobile);
-            if (coordinatorid == "") {
+        }, function(err, crdntrObj) {
+            if (err) {
+                return res.send({ error: 'Something went wrong, please report' });
+            }
 
+            if (crdntrObj) {
+                //Already exists
+                console.log("Coordinator already exists ", crdntrObj);
+            } else {
+                //Does not exists
                 coordinatorprocessor.createCoordinator(req.body,
-                    function suces(coordinatorObj) {
-
-
+                    function(coordinatorObj) {
                         return coordinatorObj;
                     },
-                    function error(err) {
+                    function(err) {
                         return err;
                     });
 
@@ -36,29 +40,16 @@ router.post('/createcoordinator', function(req, res) {
                 circleProcessor.circlePost(circle,
                     function errorCB(err) {
                         if (err) {
-                            console.log("In router post neo");
-                            res.status(500).json({ error: "Something went wrong internally, please try later or report issue" });
+                            console.log("Error occurred in circle posting ", err);
+                            return res.status(500).json({ error: "Something went wrong internally, please try later or report issue" });
                         }
-
-                    },
-                    function sucessCB(result) {
-                        circleProcessor.createRelation(req.body, function(err) {
-                            if (err) {
-                                console.log(err);
-
-                                // return res.status(500).json({
-                                //     error: "Internal error in processing request"
-                                // });
-
-                            }
-                            console.log("inside the function create relation");
-
-                        });
-
                     });
-
-
-
+                circleProcessor.createRelation(req.body, function(err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    console.log("inside the function create relation");
+                });
 
                 coordinatorprocessor.insertCoordinator(req.body,
                     function(err, user) {
@@ -68,16 +59,13 @@ router.post('/createcoordinator', function(req, res) {
                             });
                         }
 
-
                         return res.status(200).json(user);
-
 
                     },
                     function(err) {
                         return res.status(403).json(err);
                     }); //insertCoordinator ends
             }
-
         });
     } catch (err) {
         console.log("Error occurred in creating new coordinator : ", err);
