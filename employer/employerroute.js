@@ -5,7 +5,7 @@ var employerProcessor = require('./employerproccessor');
 router.post("/registeremployer", function(req, res) {
     try {
         var employerData = req.body;
-        console.log("Employer data: " + JSON.stringify(employerData));
+        //console.log("Employer data: " + JSON.stringify(employerData));
         employerProcessor.getEmployerByID(employerData.employerID, function sucessCB(result) {
             var length = result.length;
             if (length > 0) {
@@ -21,13 +21,13 @@ router.post("/registeremployer", function(req, res) {
             res.status(500).json(error);
         });
     } catch (err) {
-        console.log("Some other error" + err);
+        //console.log("Some other error" + err);
         return res.status(500).send("Some error occured");
     }
 });
 
 router.get("/getbyemployerid/:employerId", function(req, res) {
-    console.log("Hello inside get by id" + req.params.employerId);
+    //console.log("Hello inside get by id" + req.params.employerId);
     try {
         employerProcessor.getEmployerByID(req.params.employerId, function sucessCB(result) {
             res.status(200).send(result);
@@ -35,7 +35,7 @@ router.get("/getbyemployerid/:employerId", function(req, res) {
             res.status(500).json(error);
         })
     } catch (err) {
-        console.log("Error occurred in getting employer object: ", err);
+        //  console.log("Error occurred in getting employer object: ", err);
         res.status(500).json({
             error: "Internal error occurred, please report"
         });

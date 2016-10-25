@@ -3,10 +3,10 @@ var employer = require('./employerschema');
 function getEmployerByID(employerID, sucessCB, errorCB) {
     employer.find({ "employerID": employerID }, function(error, result) {
         if (error) {
-            console.log(error);
+            //console.log(error);
             errorCB(error);
         } else {
-            console.log("Found  the employer with jobID");
+            //console.log("Found  the employer with jobID");
             sucessCB(result);
         }
     });
@@ -16,10 +16,10 @@ function postEmployer(employerData, sucessCB, errorCB) {
     var employerObj = new employer(employerData);
     employerObj.save(function(err) {
         if (err) {
-            console.log("Error occured on save" + err);
+            //console.log("Error occured on save" + err);
             errorCB(err);
         } else {
-            console.log("employer Posted successfully");
+            //console.log("employer Posted successfully");
             sucessCB("successfully inserted data");
         }
     });
@@ -28,10 +28,10 @@ function postEmployer(employerData, sucessCB, errorCB) {
 function getEmployers(sucessCB, errorCB) {
     employer.find(function(error, result) {
         if (error) {
-            console.log(error);
+            //console.log(error);
             errorCB(error);
         } else {
-            console.log("All the emloyers is fetched");
+            //console.log("All the emloyers is fetched");
             sucessCB(result);
         }
     })
