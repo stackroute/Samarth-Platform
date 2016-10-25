@@ -63,8 +63,14 @@ function createNewSkill(formobj, sucessCB, errorCB) {
 function addSkill(skillObj, candidateid, sucessCB, errorCB) {
     skill.update({ "candidateid": candidateid }, { $push: { "skills": skillObj.skills[0] } },
         function() {
-            console.log("successfully added skill ",skillObj.skills[0].skillname);
-            sucessCB(skillObj.skills[0].skillname,candidateid);
+            console.log("successfully added skill ",skillObj.skills[0].experience);
+            var data= {
+                skillname: skillObj.skills[0].skillname,
+                candidateid: candidateid,
+                experience: skillObj.skills[0].experience
+            }
+            // sucessCB(skillObj.skills[0].skillname,candidateid,skillObj.skills[0].experience);
+            sucessCB(data);
         }
         );
 }
