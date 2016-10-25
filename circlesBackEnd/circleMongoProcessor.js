@@ -20,7 +20,7 @@ findCirclesByName = function(circleNameArray, successRes, errorRes) {
         });
 }
 
-circlePostMongo = function(req, errRes) {
+circlePostMongo = function(req, errRes, successRes) {
 
     console.log("**************************From cirlce mongo processm", req);
     circles.create({
@@ -35,6 +35,8 @@ circlePostMongo = function(req, errRes) {
             if (err) {
 
                 errRes(err);
+            } else {
+                successRes("sucesss");
             }
         }
 

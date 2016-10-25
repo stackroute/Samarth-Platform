@@ -68,11 +68,13 @@ createRelation = function(req, errorRes) {
 
     });
 }
-circlePost = function(req, errRes) {
+circlePost = function(req, errRes, sucessCB) {
     console.log("********************************************FROM circle Processor", req)
     circleMongoProcessor.circlePostMongo(req, function(err) {
         console.log("******************************************in mongodb processor", err);
         errRes(err);
+    }, function(result) {
+        sucessCB(result);
     });
 
     circleNeo4jProcessor.creacteNode(req, function(err) {

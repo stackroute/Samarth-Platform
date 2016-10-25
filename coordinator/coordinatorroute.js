@@ -34,25 +34,30 @@ router.post('/createcoordinator', function(req, res) {
 
 
                 circleProcessor.circlePost(circle,
-                    function(err) {
+                    function errorCB(err) {
                         if (err) {
                             console.log("In router post neo");
                             res.status(500).json({ error: "Something went wrong internally, please try later or report issue" });
                         }
+
+                    },
+                    function sucessCB(result) {
+                        circleProcessor.createRelation(req.body, function(err) {
+                            if (err) {
+                                console.log(err);
+
+                                // return res.status(500).json({
+                                //     error: "Internal error in processing request"
+                                // });
+
+                            }
+                            console.log("inside the function create relation");
+
+                        });
+
                     });
 
-                circleProcessor.createRelation(req.body, function(err) {
-                    if (err) {
-                        console.log(err);
 
-                        // return res.status(500).json({
-                        //     error: "Internal error in processing request"
-                        // });
-
-                    }
-                    console.log("inside the function create relation");
-
-                });
 
 
                 coordinatorprocessor.insertCoordinator(req.body,

@@ -21,7 +21,7 @@ getCircles = function(entityname, successres, errRes) {
 
 creacteNode = function(req, errRes) {
     db.cypher({
-            query: 'CREATE (n:circle{name: {name},domain:{domain}})',
+            query: 'merge (n:circle{name: {name},domain:{domain}})',
             params: {
                 name: req.name,
                 domain: req.domain
@@ -41,11 +41,11 @@ createRelation = function(req, res) {
     console.log("neo4jrelation", req);
     //console.log(relation);
     db.cypher({
-            query: 'merge (n:coordinator{username:{username}}) merge (c:circle{domain:{Profession},name:{name}}) create (n)-[r:primaryOwner ]->(c)',
+            query: 'merge (n:coordinator{username:{username}}) merge (c:circle{domain:{profession},name:{name}}) merge (n)-[r:primaryOwner ]->(c)',
             params: {
                 username: req.email,
                 name: req.profession,
-                Profession: "Profession"
+                profession: "profession"
             }
         },
         function(err, results) {
