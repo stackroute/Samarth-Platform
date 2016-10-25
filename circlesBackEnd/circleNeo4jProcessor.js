@@ -4,7 +4,7 @@ var db = new neo4j.GraphDatabase('http://neo4j:akanksha@localhost:7474');
 getCircles = function(entityname, successres, errRes) {
     // console.log(entityname)
     db.cypher({
-            query: 'MATCH (n:coordinator{username:{entityname}})-[r]->(c:circle) MERGE (c)-[rel:associatedWith ]-() RETURN c.name as name,c.domain as domain,count(rel) as rCount',
+            query: 'MATCH (n:coordinator{username:{entityname}})-[r]->(c:circle) RETURN c.name as name,c.domain as domain,count(r) as rCount',
             params: {
                 entityname: entityname
             }
@@ -30,8 +30,9 @@ creacteNode = function(req, errRes) {
         function(err, results) {
             if (err) {
                 //  console.log(err);
+                errRes(results);
             }
-            errRes(results);
+
         });
 
 }
@@ -40,11 +41,11 @@ createRelation = function(req, res) {
     console.log("neo4jrelation", req);
     //console.log(relation);
     db.cypher({
-            query: 'merge (n:coordinator{username:{username}}) merge (c:circle{domain:{Profition},name:{name}}) create (n)-[r:primaryOwner ]->(c)',
+            query: 'merge (n:coordinator{username:{username}}) merge (c:circle{domain:{Profession},name:{name}}) create (n)-[r:primaryOwner ]->(c)',
             params: {
                 username: req.email,
                 name: req.profession,
-                Profition: "Profession"
+                Profession: "Profession"
             }
         },
         function(err, results) {
