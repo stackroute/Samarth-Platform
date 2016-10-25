@@ -37,20 +37,19 @@ creacteNode = function(req, errRes) {
 }
 
 createRelation = function(req, res) {
-    console.log(req);
-    var relation = req.relation;
+    console.log("neo4jrelation", req);
     //console.log(relation);
     db.cypher({
-            query: 'match(n:coordinator{username:{username}}),(c:circle{name:{circleName}}) create (n)-[r:' + relation + ' ]->(c)',
+            query: 'merge (n:coordinator{username:{username}}) merge (c:circle{domain:{Profition},name:{name}}) create (n)-[r:primaryOwner ]->(c)',
             params: {
-                username: req.username,
-                circleName: req.circleName,
-
+                username: req.email,
+                name: req.profession,
+                Profition: "Profession"
             }
         },
         function(err, results) {
             if (err) {
-                // console.log(err);
+                res(err);
             }
             res(results);
         });

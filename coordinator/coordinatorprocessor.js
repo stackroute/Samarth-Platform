@@ -1,5 +1,7 @@
 var coordinator = require('./coordinatorschema');
 var UserModel = require('./coordinatoruserschema');
+
+
 var mongoose = require('mongoose');
 
 var login = mongoose.model('login', UserModel);
@@ -9,6 +11,7 @@ function createCoordinator(formobj, successPC, errorPC) {
         coordinatorName: formobj.name,
         coordinatorId: formobj.mobile,
         coordinatorRole: formobj.role,
+        coordinatorProfession: formobj.profession,
         coordinatorLocation: formobj.location,
         coordinatorGender: formobj.gender,
         coordinatorEmail: formobj.email,
@@ -22,6 +25,7 @@ function createCoordinator(formobj, successPC, errorPC) {
             console.log("not posted", err);
             errorPC(err);
         } else {
+
             console.log('coordinator created', postdetails);
             successPC(postdetails);
         }

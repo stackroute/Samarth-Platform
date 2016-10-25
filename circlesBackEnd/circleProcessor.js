@@ -61,9 +61,9 @@ getCircle = function(req, successRes, errorRes) {
 
 }
 createRelation = function(req, errorRes) {
-
-    circleNeo4jProcessor.createRelation(req.body, function(err) {
-        //  console.log(err);
+    console.log("circle processor create relation");
+    circleNeo4jProcessor.createRelation(req, function(err) {
+        console.log(err);
         errorRes(err);
 
     });

@@ -51,8 +51,9 @@ router.post('/', function(req, res) {
     try {
         circleProcessor.circlePost(req.body,
             function(err) {
-                res.status(500).json({ error: "Something went wrong internally, please try later or report issue" });
-
+                if (err) {
+                    res.status(500).json({ error: "Something went wrong internally, please try later or report issue" });
+                }
             });
 
     } //end try
