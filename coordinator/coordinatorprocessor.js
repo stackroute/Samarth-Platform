@@ -1,6 +1,7 @@
 var coordinator = require('./coordinatorschema');
 var UserModel = require('./coordinatoruserschema');
 var mongoose = require('mongoose');
+var bCrypt = require('bcrypt-nodejs');
 
 var coordinatoruser = mongoose.model('coordinatorusers', UserModel);
 
@@ -32,9 +33,14 @@ function createCoordinator(formobj, successPC, errorPC) {
 }
 
 var insertCoordinator = function(newUser, callback, unauth) {
+
+        var hashed_pwd = UserModel.methods.generateHash(newUser.pwd);
+        console.log("storing the hashed password");
+        console.log(hashed_pwd);
+
         var newUserObj = new coordinatoruser({
             "email": newUser.email,
-            "password": newUser.pwd,
+            "password": hashed_pwd,
             "role": newUser.role
         });
 

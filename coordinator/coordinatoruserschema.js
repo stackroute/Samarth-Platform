@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var bCrypt = require('bcrypt-nodejs');
 
 var login = mongoose.Schema({
     email: {
@@ -12,5 +13,10 @@ var login = mongoose.Schema({
     role: { type: String, required: true }
     //functionality: [{ type: String, required: true }]
 });
+
+// // generating a hash
+login.methods.generateHash = function(password) {
+    return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
+};
 
 module.exports = login;
