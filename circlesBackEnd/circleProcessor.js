@@ -61,21 +61,22 @@ getCircle = function(req, successRes, errorRes) {
 
 }
 createRelation = function(req, errorRes) {
-
-    circleNeo4jProcessor.createRelation(req.body, function(err) {
-        //  console.log(err);
+    console.log("circle processor create relation");
+    circleNeo4jProcessor.createRelation(req, function(err) {
+        console.log(err);
         errorRes(err);
 
     });
 }
 circlePost = function(req, errRes) {
+    console.log("********************************************FROM circle Processor", req)
     circleMongoProcessor.circlePostMongo(req, function(err) {
-        //console.log(err);
+        console.log("******************************************in mongodb processor", err);
         errRes(err);
     });
 
     circleNeo4jProcessor.creacteNode(req, function(err) {
-        //console.log(err);
+        console.log("****************************************************", err);
         errRes(err);
     });
 

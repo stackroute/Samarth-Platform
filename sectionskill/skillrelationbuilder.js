@@ -3,15 +3,15 @@ var db = new neo4j.GraphDatabase('http://neo4j:Mad@1995@localhost:7474');
 
 
 
-skillRelationBuilder = function(skill,candidateid) {
-	console.log("*****************from skillRelationBuilder",candidateid);
-	console.log("*****************from skillRelationBuilder",skill);
+skillRelationBuilder = function(data) {
+	console.log("*****************from skillRelationBuilder",data);
 
 	db.cypher({
-		query:'MERGE (c:Candidate{name:{candidateid}}) MERGE(sk:Skills{skill_name:{skillname}}) MERGE (c)-[r:KNOWS]->(sk)',
+		query:'MERGE (c:Candidate{name:{candidateid}}) MERGE(sk:Skills{skill_name:{skillname},experience:{experience}}) MERGE (c)-[r:KNOWS]->(sk)',
 		params: {
-			candidateid : candidateid,
-			skillname : skill
+			candidateid : data.candidateid,
+			skillname : data.skillname,
+			experience : data.experience
 		}
 	},function(err,results) {
 		if(err) {

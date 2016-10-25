@@ -6,6 +6,7 @@ var coordinatorSchema = new Schema({
     coordinatorName: { type: String },
     coordinatorId: { type: String, unique: true, required: true },
     coordinatorRole: { type: String },
+    coordinatorProfession: { type: String },
     coordinatorLocation: { type: String },
     coordinatorGender: { type: String },
     coordinatorEmail: { type: String },

@@ -47,12 +47,14 @@ router.post('/circlerelation',
 //Effective URL is HTTP POST /circles/
 // router.post('/', function(req, res) {
 router.post('/', function(req, res) {
-    console.log("inside post request");
+    console.log("inside post request", req.body);
     try {
         circleProcessor.circlePost(req.body,
             function(err) {
-                res.status(500).json({ error: "Something went wrong internally, please try later or report issue" });
-
+                if (err) {
+                    console.log("In router post neo");
+                    res.status(500).json({ error: "Something went wrong internally, please try later or report issue" });
+                }
             });
 
     } //end try

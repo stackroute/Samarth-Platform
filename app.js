@@ -5,6 +5,8 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var neo4j = require('neo4j');
 
+var baseDataRoutes = require('./basedata/basedataroutes');
+
 var authRoutes = require('./auth/authrouter');
 var authByToken = require('./auth/authbytoken');
 var authCoordinatorRouter = require('./authcoordinator/authroutes');
@@ -120,6 +122,7 @@ function isAuthenticated(req, res, next) {
     });
 }
 
+app.use('/basedata', baseDataRoutes);
 app.use('/auth', authRoutes);
 app.use('/details', authCoordinatorRouter);
 

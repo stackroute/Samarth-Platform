@@ -21,6 +21,8 @@ findCirclesByName = function(circleNameArray, successRes, errorRes) {
 }
 
 circlePostMongo = function(req, errRes) {
+
+    console.log("**************************From cirlce mongo processm", req);
     circles.create({
             name: req.name,
             circleDiscription: req.circleDiscription,

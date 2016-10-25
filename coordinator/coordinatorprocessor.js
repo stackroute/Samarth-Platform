@@ -2,13 +2,14 @@ var coordinator = require('./coordinatorschema');
 var UserModel = require('./coordinatoruserschema');
 var mongoose = require('mongoose');
 
-var login = mongoose.model('login', UserModel);
+var coordinatoruser = mongoose.model('coordinatorusers', UserModel);
 
 function createCoordinator(formobj, successPC, errorPC) {
     var coordinatorObj = new coordinator({
         coordinatorName: formobj.name,
         coordinatorId: formobj.mobile,
         coordinatorRole: formobj.role,
+        coordinatorProfession: formobj.profession,
         coordinatorLocation: formobj.location,
         coordinatorGender: formobj.gender,
         coordinatorEmail: formobj.email,
@@ -22,6 +23,7 @@ function createCoordinator(formobj, successPC, errorPC) {
             console.log("not posted", err);
             errorPC(err);
         } else {
+
             console.log('coordinator created', postdetails);
             successPC(postdetails);
         }
@@ -30,7 +32,7 @@ function createCoordinator(formobj, successPC, errorPC) {
 }
 
 var insertCoordinator = function(newUser, callback, unauth) {
-        var newUserObj = new login({
+        var newUserObj = new coordinatoruser({
             "email": newUser.email,
             "password": newUser.pwd,
             "role": newUser.role
