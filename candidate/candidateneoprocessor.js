@@ -1,8 +1,9 @@
 var neo4j = require('neo4j');
-var db = new neo4j.GraphDatabase('http://neo4j:Mad@1995@localhost:7474');
+var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
 
 
-createCandidate = function(req,res) {
+createCandidate = function(req,successCB,errorCB) {
+	console.log("*********************************************",req);
 	db.cypher({
 		query:'MERGE (c:Candidate{name:{candidateid}}) MERGE (l:Location{name:{location}}) MERGE (pr:Profession{name:{profession}}) MERGE (c)-[r:belongs_to]->(l) MERGE (c)-[rel:working_as]->(pr)',
 		params: {
@@ -13,8 +14,28 @@ createCandidate = function(req,res) {
 	},function(err,results) {
 		if(err) {
 			console.log(err);
+			errorCB(err);
 		}else{
+			successCB();
 			//console.log("Success....",results);
+		}
+	});
+}
+
+getcircle = function(circle,successCB,errorCB) {
+	console.log("from circle neo",circle);
+
+	db.cypher({
+		query:'MATCH (c:Candidate),(p:Profession{name:{circlename}}) WHERE (c)-[:working_as]->(p) RETURN c.name as candidateid',
+		params: {
+			circlename : circle
+		}
+	},function(err,results) {
+		if(err){
+			console.log("Circle",err);
+		}else{
+			console.log("from circle neo",results);
+			successCB(results);
 		}
 	});
 }
@@ -74,7 +95,7 @@ parselocation = function(req,successCB,errorCB) {
 }
 
 parseskill = function(req,successCB,errorCB) {
-	
+	console.log("working in search");
 
 	db.cypher({
 		query:'MATCH (s:Skills) WHERE s.skill_name IN {searchtext} RETURN s.skill_name as skill;',
@@ -101,7 +122,7 @@ if(req.profession!="" && req.location!=null && req.skill!=null) {
 	'(c)-[:working_as]->(p) AND p.name={profession} AND '+
 	'(c)-[:belongs_to]->(l) AND l.name={location} AND '+
 	'(c)-[:KNOWS]->(s) AND '+
-	's.skill_name={skill} RETURN c.name as candidates;';
+	's.skill_name={skill} RETURN c.name as candidateid;';
 
 	db.cypher({
 		query:query1,
@@ -125,7 +146,7 @@ else if(req.profession!=null && req.location!=null && req.skill==null) {
 	var query2 = 'MATCH (c:Candidate),(p:Profession),(l:Location) WHERE '+
 	'(c)-[:working_as]->(p) AND p.name={profession} AND '+
 	'(c)-[:belongs_to]->(l) AND l.name={location}  '+
-	'RETURN c.name as candidates;';
+	'RETURN c.name as candidateid;';
 
 
 	db.cypher({
@@ -149,7 +170,7 @@ else if(req.profession!=null && req.location==null && req.skill!=null) {
 	var query3 = 'MATCH (c:Candidate),(p:Profession),(s:Skills) WHERE '+
 	'(c)-[:working_as]->(p) AND p.name={profession} AND '+
 	'(c)-[:KNOWS]->(s)  AND'+
-	's.skill_name={skill} RETURN c.name as candidates;';
+	's.skill_name={skill} RETURN c.name as candidateid;';
 
 
 	db.cypher({
@@ -173,7 +194,7 @@ else if(req.profession==null && req.location!=null && req.skill!=null) {
 	var query4 = 'MATCH (c:Candidate),(l:Location),(s:Skills) WHERE '+
 	'(c)-[:belongs_to]->(l) AND l.name={location} AND '+
 	'(c)-[:KNOWS]->(s) AND '+
-	's.skill_name={skill} RETURN c.name as candidates;';
+	's.skill_name={skill} RETURN c.name as candidateid;';
 
 	db.cypher({
 		query:query4,
@@ -196,7 +217,7 @@ else if(req.profession==null && req.location!=null && req.skill!=null) {
 	//returns all the candidates with  a profession
 	else if(req.profession!="" && req.location==null && req.skill==null){
 		db.cypher({
-			query:'MATCH (c:Candidate),(p:Profession) WHERE (c)-[:working_as]->(p) AND p.name={profession} RETURN c.name as candidates;',
+			query:'MATCH (c:Candidate),(p:Profession) WHERE (c)-[:working_as]->(p) AND p.name={profession} RETURN c.name as candidateid;',
 			params : {
 				profession: req.profession.profession   
 
@@ -213,7 +234,7 @@ else if(req.profession==null && req.location!=null && req.skill!=null) {
 //returns all the candidates with a location
 else if(req.location!="" && req.profession==null && req.skill==null){
 	db.cypher({
-		query:'MATCH (c:Candidate),(l:Location) WHERE (c)-[:belongs_to]->(l) AND l.name={location} RETURN c.name as candidates;',
+		query:'MATCH (c:Candidate),(l:Location) WHERE (c)-[:belongs_to]->(l) AND l.name={location} RETURN c.name as candidateid;',
 		params : {
 			location: req.location.location   
 
@@ -231,7 +252,7 @@ else if(req.location!="" && req.profession==null && req.skill==null){
 // returns all candidates with a skill.
 else if(req.skill!=null && req.profession==null && req.location==null){
 	db.cypher({
-		query:'MATCH (c:Candidate),(s:Skills) WHERE (c)-[r:KNOWS]->(s) AND s.skill_name={skill} RETURN c.name as candidates;',
+		query:'MATCH (c:Candidate),(s:Skills) WHERE (c)-[r:KNOWS]->(s) AND s.skill_name={skill} RETURN c.name as candidateid;',
 		params : {
 			skill: req.skill.skill 
 
@@ -249,11 +270,16 @@ else if(req.skill!=null && req.profession==null && req.location==null){
 
 }
 
+
+
+
+
 module.exports = {
 	createCandidate : createCandidate,
 	parseprofession : parseprofession,
 	parselocation : parselocation,
 	parseskill : parseskill, 
 	getProfessions : getProfessions,
-	searchquery : searchquery
+	searchquery : searchquery,
+	getcircle : getcircle
 }

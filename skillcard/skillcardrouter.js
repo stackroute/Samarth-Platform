@@ -6,10 +6,10 @@ var personalInfoprocessor = require('../sectionpersonalinfo/personalInfoprocesso
 var projectprocessor = require('../sectionproject/projectprocessor');
 var skillprocessor = require('../sectionskill/skillprocessor');
 var workexpprocessor = require('../sectionworkexperiance/workprocessor');
+var candidateneo = require('../candidate/candidateneoprocessor');
 
 
-//This will return all the candidateid in candidate
-router.get('/searchcandidate/',function(req,res) {
+router.get('/allcandidates',function(req,res) {
     candidate.find(function(err,candidates) {
       if (err) {
         console.log(err);
@@ -19,7 +19,31 @@ router.get('/searchcandidate/',function(req,res) {
         console.log ("Found candidates",candidates);
         return res.status(201).json({results:candidates});
     }// end of else
-  });//end of find
+  });//end of find  
+});
+
+
+//This will return all the candidates in the circle
+router.get('/searchcandidate/:circle',function(req,res) {
+  //   candidate.find(function(err,candidates) {
+  //     if (err) {
+  //       console.log(err);
+  //       return res.status(500).json({message:err});
+  //   } else {
+  //       var candidateid = {};
+  //       console.log ("Found candidates",candidates);
+  //       return res.status(201).json({results:candidates});
+  //   }// end of else
+  // });//end of find
+
+  console.log(req.params.circle);
+  candidateneo.getcircle(req.params.circle,function(candidates) {
+    console.log("from router",candidates);
+    res.status(200).json(candidates);
+},function(err) {
+    res.status(500).json(err);
+});
+
 });// end of get /candidatesearch
 
 

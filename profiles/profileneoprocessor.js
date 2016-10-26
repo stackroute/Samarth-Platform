@@ -1,5 +1,5 @@
 var neo4j = require('neo4j');
-var db = new neo4j.GraphDatabase('http://neo4j:Mad@1995@localhost:7474');
+var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
 
 
 createProfessionNode = function(req,res) {
