@@ -20,14 +20,15 @@ createCandidate = function(req,res) {
 }
 
 
-getProfessions = function(req,res) {
-	db.cyper({
-		query:'MATCH (p:{Profession}) RETURN p.name as professions',
+getProfessions = function(successCB,errorCB) {
+	db.cypher({
+		query:'MATCH (p:Profession) RETURN p.name as professions',
 	},function(err,professions) {
 		if(err) {
 			console.log(err);
+			errorCB(err);
 		}else{
-			res.json(professions);
+			successCB(professions);
 		}
 	}
 	)
