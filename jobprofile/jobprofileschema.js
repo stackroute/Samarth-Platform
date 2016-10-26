@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var jobProfileSchema = new Schema({
+    'jobProfession': { type: String, required: true },
     'jobRole': { type: String, required: true },
     'departmentName': { type: String, required: true },
     'jobID': { type: String, required: true, index: true },

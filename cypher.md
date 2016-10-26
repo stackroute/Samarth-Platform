@@ -12,6 +12,14 @@ FOREACH (skillName in ["Angular","React","HTML","CSS","Bootstrap"] |
   MERGE (s:Skill {name:skillName})
   MERGE (p)-[:PRIMARY]->(s)
   MERGE (s)-[:USEDIN]->(p))
+
+
+  MERGE (p:Profession {name:"IT/ITES"})
+FOREACH (skillName in ["Angular","React","HTML","CSS","Bootstrap"] |
+  MERGE (s:Skill {name:skillName})
+  MERGE (p)-[:PRIMARY]->(s)
+  MERGE (s)-[:USEDIN]->(p))
+ FOREACH (roleName in ["Software Engineer", "Front-end Developer", "UI Developer", "Tester"," Web Developer"," Backend Developer"," Programmer"," Sr. Programmer"," Product engineer"," Support Engineer", "Sr. Engineer"] |  MERGE (ro:Role {name:roleName})  MERGE (p)-[r3:HASDESIGNATION]->(ro)) MERGE (c:circle {name:"IT/ITES"})  MERGE (p)-[r4:HASCIRCLE]->(c)
   
 
 MATCH (p:Profession)-[r:PRIMARY]-(s:Skill) return p, r, s
