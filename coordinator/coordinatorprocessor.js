@@ -32,6 +32,7 @@ function createCoordinator(formobj, successPC, errorPC) {
     });
 }
 
+
 var insertCoordinator = function(newUser, callback, unauth) {
 
         var hashed_pwd = UserModel.methods.generateHash(newUser.pwd);
@@ -65,6 +66,7 @@ var insertCoordinator = function(newUser, callback, unauth) {
 
 module.exports = {
     createCoordinator: createCoordinator,
-    insertCoordinator: insertCoordinator
+    insertCoordinator: insertCoordinator,
+    getProfessions: getProfessions
 
 };

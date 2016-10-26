@@ -3,6 +3,7 @@ var coordinatorprocessor = require('./coordinatorprocessor');
 var coordinator = require('./coordinatorschema');
 var circleProcessor = require('../circlesBackEnd/circleProcessor');
 
+
 router.post('/createcoordinator', function(req, res) {
     console.log("inside post request", req.body.mobile);
     try {
@@ -54,7 +55,8 @@ router.post('/createcoordinator', function(req, res) {
                 coordinatorprocessor.insertCoordinator(req.body,
                     function(err, user) {
                         if (err) {
-                            //return res.status(500).json({
+
+                            // return res.status(500).json({
                             error: "Internal error in processing request, please retry later..!";
 
                         }
