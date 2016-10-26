@@ -3,6 +3,7 @@ var coordinatorprocessor = require('./coordinatorprocessor');
 var coordinator = require('./coordinatorschema');
 var circleProcessor = require('../circlesBackEnd/circleProcessor');
 
+
 router.post('/createcoordinator', function(req, res) {
     console.log("inside post request", req.body.mobile);
     try {
