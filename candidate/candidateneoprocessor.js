@@ -20,6 +20,7 @@ createCandidate = function(req, res) {
 }
 
 
+
 getProfessions = function(successCB, errCB) {
     db.cypher({
         query: 'MATCH (p:Profession) RETURN p.name as professions',
@@ -30,6 +31,7 @@ getProfessions = function(successCB, errCB) {
         } else {
             console.log(professions);
             successCB(professions);
+
 
         }
     })
