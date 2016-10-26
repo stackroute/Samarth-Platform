@@ -69,6 +69,18 @@ router.get("/getbyjobid/:jobID", function(req, res) {
     }
 });
 
+router.get("/getjobs", function(req, res) {
+    try {
+        jobProfileProcessor.getJobs(function sucessCB(result) {
+            res.status(200).send(result);
+        }, function errorCB(error) {
+            res.status(500).send(error);
+        })
+    } catch (err) {
+        res.status(500).json({ error: "Internal error occured, please report" });
+    }
+})
+
 router.get("/getjobdetail/:jobID/:employerID", function(req, res) {
     //console.log("Hello inside get job");
     try {
