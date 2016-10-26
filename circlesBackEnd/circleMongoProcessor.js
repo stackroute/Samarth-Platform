@@ -20,7 +20,7 @@ findCirclesByName = function(circleNameArray, successRes, errorRes) {
         });
 }
 
-circlePostMongo = function(req, errRes, successRes) {
+circlePostMongo = function(req, errRes) {
 
     console.log("**************************From cirlce mongo processm", req);
 
@@ -38,8 +38,6 @@ circlePostMongo = function(req, errRes, successRes) {
                 if (err) {
 
                     errRes(err);
-                } else {
-                    successRes("sucesss");
                 }
             });
 
