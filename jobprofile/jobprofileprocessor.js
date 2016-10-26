@@ -11,6 +11,18 @@ function getJobByID(jobID, sucessCB, errorCB) {
         }
     });
 }
+
+function getJobs(sucessCB, errorCB) {
+    jobProfile.find(function(error, result) {
+        if (error) {
+            //console.log(error);
+            errorCB(error);
+        } else {
+            //console.log("Find the job with jobID");
+            sucessCB(result);
+        }
+    });
+}
 /* post a job into mongodb collection jobProfiles*/
 function postJob(job, sucessCB, errorCB) {
     var job = new jobProfile(job);
@@ -55,5 +67,6 @@ module.exports = {
     getJobByID: getJobByID,
     postJob: postJob,
     updateJob: updateJob,
-    getJobDetails: getJobDetails
+    getJobDetails: getJobDetails,
+    getJobs: getJobs
 };
