@@ -1,13 +1,18 @@
 var neo4j = require('neo4j');
-var db = new neo4j.GraphDatabase('http://neo4j:Govindam@123@localhost:7474');
+var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
 
 
 createEmployerNode = function(job, res) {
     db.cypher({
-        query: 'MERGE (ee: Employer{employerID:{employerID}}) MERGE (jb:Job{jobID:{jobID}}) MERGE (ee)-[r:posted]->(jb)',
+        query: 'MERGE (ee: employer{name:{employerName},employerID:{employerID}}) MERGE (jb:job{jobID:{jobID},employerID:{employerID}}) MERGE (l:location{name:{locationName}}) MERGE (rl:role{name:{roleName}}) MERGE (p:profession{name:{professionName}}) MERGE (ee)-[r1:POSTED]->(jb) MERGE (jb)-[r2:LOCATEDAT]->(l) MERGE (jb)-[r3:NEEDAPROFESSION]->(p) MERGE (jb)-[r4:NEEDROLE]->(rl) MERGE (rl)-[r5:HAVINGJOB]->(jb) MERGE (p)-[r6:HAVEJOB]->(jb) FOREACH (skillreq in {skills} | MERGE (s:skill{name:skillreq.skillName}) MERGE (s)-[r7:USEDIN]->(p) MERGE (p)-[r8:PRIMARY]->(s) MERGE (jb)-[r9:NEEDS]->(s) MERGE (s)-[r10:REQUIREDJOB]->(jb))',
         params: {
+            employerName: job.employer.employerName,
             employerID: job.employer.employerID,
-            jobID: job.jobID
+            jobID: job.jobID,
+            locationName: job.jobLocation,
+            roleName: job.jobRole,
+            professionName: job.jobProfession,
+            skills: job.skillsRequired
         }
     }, function(err, results) {
         if (err) {
@@ -18,6 +23,23 @@ createEmployerNode = function(job, res) {
     });
 }
 
+/*relateLocationNode = function(job, res) {
+    db.cypher({
+        query: 'MERGE (jb: Job{jobID:{jobID},employerID:{employerID}}) MERGE (l:location{name:{location}}) MERGE (jb)-[r:belongsTo]->(l)',
+        params: {
+            employerID: job.employer.employerID,
+            jobID: job.jobID,
+            locationName: job.jobLocation
+        }
+    }, function(err, results) {
+        if (err) {
+            console.log("Error in inserting relation in neo4j" + err);
+        } else {
+            console.log("Success in inserting neo4j...." + results);
+        }
+    });
+}
+*/
 module.exports = {
     createEmployerNode: createEmployerNode
 }

@@ -54,9 +54,9 @@ router.post('/createcoordinator', function(req, res) {
                 coordinatorprocessor.insertCoordinator(req.body,
                     function(err, user) {
                         if (err) {
-                            return res.status(500).json({
-                                error: "Internal error in processing request, please retry later..!"
-                            });
+                            //return res.status(500).json({
+                            error: "Internal error in processing request, please retry later..!";
+
                         }
 
                         return res.status(200).json(user);
