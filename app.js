@@ -28,11 +28,8 @@ var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
 
 var jobProfileRoutes = require('./jobProfile/jobProfileRoute');
-var employerRoutes = require('./employer/employerroute.js')
-
-
-
-
+var employerRoutes = require('./employer/employerroute.js');
+var professiontoskillroutr = require('./professiontoskillsgraphdata/professiontoskillrouter.js');
 var rubricRoute = require('./rubricbackend/rubricroute');
 
 var verificationRoute = require('./verification/verificationroute');
@@ -50,7 +47,7 @@ app.onAppStart = function(addr) {
         //do your thing
     });
     */
-    var db = new neo4j.GraphDatabase('http://neo4j:Govindam@123@localhost:7474');
+    // var db = new neo4j.GraphDatabase('http://neo4j:Govindam@123@localhost:7474');
 
 
     mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
@@ -139,11 +136,11 @@ app.use("/skillcard", skillcardRouter);
 app.use("/jobprofile", jobProfileRoutes);
 app.use("/resource", resourcebundle);
 app.use('/circle', circleRoute);
-
-
 app.use("/employer", employerRoutes);
 app.use('/rubric', rubricRoute);
 app.use('/verification', verificationRoute);
 app.use("/coordinatorregister", coordinatorRouter);
+
+app.use("/profession", professiontoskillroutr);
 
 module.exports = app;
