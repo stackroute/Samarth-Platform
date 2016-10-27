@@ -6,7 +6,7 @@ professionskill = function(skillname, candidateid, successCB, errorCB) {
 
     //console.log("----------------------------",req);
     db.cypher({
-        query: 'MATCH (c:Candidate{name:{candidateid}})-[r:working_as]->(p:Profession) MATCH (p)-[rel:requires]->(sk:Skills{name:{skillname}}) RETURN count(rel) as x',
+        query: 'MATCH (c:Candidate{name:{candidateid}})-[r:working_as]->(p:Profession) MATCH (p)-[rel:PRIMARY]->(sk:Skill{name:{skillname}}) RETURN count(rel) as x',
         params: {
             candidateid: candidateid,
             skillname: skillname
