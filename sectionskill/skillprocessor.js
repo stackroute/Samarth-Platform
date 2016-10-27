@@ -7,10 +7,10 @@ function getSkill(candidateid, successCB, errorCB) {
 
     skill.find({ "candidateid": candidateid }, function(err, skill) {
         if (err) {
-          //  console.log(err);
+            //  console.log(err);
             errorCB(err);
         }
-       // console.log(skill);
+        // console.log(skill);
         successCB(skill);
     });
 }
@@ -23,13 +23,13 @@ function getallSkill(successCB, errorCB) {
     var skillMap = {};
     skill.find({}, function(err, skills) {
         if (err) {
-          //  console.log(err);
+            //  console.log(err);
             errorCB(err);
         }
         skills.forEach(function(skill) {
             skillMap[skill._id] = skill;
         });
-       // console.log(skills);
+        // console.log(skills);
         successCB(skills);
     });
 }
@@ -41,15 +41,15 @@ function createNewSkill(formobj, sucessCB, errorCB) {
         skills: []
     });
     //skillObj.skills.push(newskillobj.skills[0]);
-   // console.log("About to save New Skill:", skillObj);
+    // console.log("About to save New Skill:", skillObj);
 
     skillObj.save(function(err, result) {
-       // console.log("inside save");
+        // console.log("inside save");
         if (err) {
-           // console.log(err);
+            // console.log(err);
             errorCB(err);
         }
-      //  console.log('New Skill created', result);
+        //  console.log('New Skill created', result);
         sucessCB(result);
 
 
@@ -64,25 +64,25 @@ function addSkill(skillObj, candidateid, sucessCB, errorCB) {
     skill.update({ "candidateid": candidateid }, { $push: { "skills": skillObj.skills[0] } },
         function() {
             //console.log("successfully added skill ",skillObj.skills[0].skillname);
-            sucessCB(skillObj.skills[0].skillname,candidateid);
+            sucessCB(skillObj.skills[0].skillname, candidateid);
         }
-        );
+    );
 }
 
 
 function updateSkill(skillname, skillobj, candidateid, sucessCB, errorCB) {
     skill.update({ 'candidateid': candidateid, 'skills.skillname': skillname }, {
-        '$set': {
-            'skills.$.skillname': skillobj.skills[0].skillname,
-            'skills.$.category': skillobj.skills[0].category,
-            'skills.$.expertise': skillobj.skills[0].expertise,
-            'skills.$.experience': skillobj.skills[0].experience,
-            'skills.$.metadata': skillobj.skills[0].metadata
+            '$set': {
+                'skills.$.skillname': skillobj.skills[0].skillname,
+                'skills.$.category': skillobj.skills[0].category,
+                'skills.$.expertise': skillobj.skills[0].expertise,
+                'skills.$.experience': skillobj.skills[0].experience,
+                'skills.$.metadata': skillobj.skills[0].metadata
+            }
+        },
+        function() {
+            sucessCB("skill updated");
         }
-    },
-    function() {
-        sucessCB("skill updated");
-    }
 
     );
 }
