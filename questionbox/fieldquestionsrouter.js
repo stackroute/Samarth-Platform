@@ -1,8 +1,8 @@
-var router = require('express').Router();
+ var router = require('express').Router();
 var fieldquestions = require('./fieldquestions');
 var fieldQProcessor = require('./fieldQProcessor');
-
-/**
+ 
+/** 
  * Api for returning field question query statement, for asking the candidate to answer or fill the pending field of profile data
  * can filter these query statements for a perticular section with and fieldnames (multiple) and language
  */
@@ -10,6 +10,7 @@ var fieldQProcessor = require('./fieldQProcessor');
 //     ?fieldname=[multiple values]&lang=[multiple values]
 // Effective url is /fieldquestions/:section
 router.get("/:section", function(req, res) {
+    console.log("route------"+req.query);
     if (!req.params.section) {
         throw new Error("Invalid request, requesting field question query without mentioning profile section..!");
     }
@@ -38,6 +39,7 @@ router.get("/:section", function(req, res) {
 
 // Effective url is /fieldquestions/
 router.post("/", function(req, res) {
+    console.log("-----------post----------------------");
     try {
         fieldQProcessor.createFieldQuestion(req.body,
             function(createdObj) {

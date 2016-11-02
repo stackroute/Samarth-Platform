@@ -19,6 +19,7 @@ router.get("/:candidateid", function(req, res) {
 //HTTP Post education//:candidateid/
 //effective url /education//:candidateid
 router.post("/:candidateID", function(req, res) {
+    console.log(req.body);
     eduModel.find({ "candidateid": req.params.candidateID }, function(err, result) {
         if (result=="") {
 

@@ -9,7 +9,7 @@ var schema = new Schema({
     'lang': { type: String, required: true }
 });
 
-//composite unique key
+//composite  unique key
 schema.index({
     section: 1,
     fieldname: 1,

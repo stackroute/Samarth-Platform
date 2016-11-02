@@ -1,10 +1,10 @@
 var router = require('express').Router();
 var qboxquestions = require('./qboxquestions');
 var qboxProcessor = require('./qboxprocessor');
-
+// var qboxquestionModel = require('./qboxquestions'); 
 var async = require('async');
 var fieldQCache = require('./fieldQCache');
-
+ 
 /**
  * API for returning questions pending to be answered by the candidate for completion or updation of profile
  * Supports filtering for a given section of the profile, paginate the questions
@@ -12,17 +12,23 @@ var fieldQCache = require('./fieldQCache');
 // HTTP GET /candidate/:candidateid/qboxquestions
 // ?sections=[multiple values]&limit=&offset
 // Effective url is /candidate/:candidateid/qboxquestions
+
 router.get("/:candidateid/qboxquestions/", function(req, res) {
+   console.log("under get of ques");
     if (!req.params.candidateid) {
         throw new Error("Invalid request, requesting questions without candidate..!");
     }
 
     try {
+
         // sections=[multiple values] Eg: sections='skills,qualification,projects'
         var sections = (req.query.sections) ? req.query.sections.split(",") : [];
         var limit = (req.query.limit) ? req.query.limit : 3;
         var skip = (req.query.skip) ? req.query.skip : 0;
         var lang = (req.query.lang) ? req.query.lang : 'English';
+
+
+
 
         var question = qboxProcessor.getQuestions(req.params.candidateid,
             sections,
@@ -35,6 +41,7 @@ router.get("/:candidateid/qboxquestions/", function(req, res) {
                             function(err, query) {
                                 var transformed = JSON.stringify(question);
                                 transformed = JSON.parse(transformed);
+                                query = query + question.instancename;
                                 transformed['query'] = query;
                                 transformed['lang'] = lang;
                                 cb(null, transformed);
