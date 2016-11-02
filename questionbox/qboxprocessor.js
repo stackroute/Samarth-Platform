@@ -23,7 +23,7 @@ function getQuestions(candidateid, sections, skip, limit, successCB, errorCB) {
         if (error) {
             errorCB(error);
         }
-        successCB(`);
+        successCB(colln);
     });
 }
 
