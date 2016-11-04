@@ -23,21 +23,18 @@ var workRouter = require('./sectionworkexperiance/workrouter');
 var skillcardRouter = require('./skillcard/skillcardrouter');
 var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
-var resourcebundle = require('./resourcebundle/resourcebundlerouter');
 var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
-
 var jobProfileRoutes = require('./jobProfile/jobProfileRoute');
 var employerRoutes = require('./employer/employerroute.js');
-var professiontoskillroutr = require('./professiontoskillsgraphdata/professiontoskillrouter.js');
+var professiontoskillroutr = require(
+    './professiontoskillsgraphdata/professiontoskillrouter.js');
 var rubricRoute = require('./rubricbackend/rubricroute');
-
 var verificationRoute = require('./verification/verificationroute');
-
-
 var coordinatorRouter = require('./coordinator/coordinatorroute');
-var app = express();
+var misDetailRoute = require('./questionbox/missingDetailsRouter');
 
+var app = express();
 
 app.onAppStart = function(addr) {
     console.log("Samarth Platform web services is now Running on port:", addr.port);
@@ -121,7 +118,6 @@ function isAuthenticated(req, res, next) {
 app.use('/basedata', baseDataRoutes);
 app.use('/auth', authRoutes);
 app.use('/details', authCoordinatorRouter);
-
 app.use('/candidates', qboxRouter);
 app.use('/candidate', candidateRoutes);
 app.use('/fieldquestions', fieldQRouter);
@@ -135,6 +131,7 @@ app.use("/skillcard", skillcardRouter);
 app.use("/jobprofile", jobProfileRoutes);
 app.use("/resource", resourcebundle);
 app.use('/circle', circleRoute);
+
 app.use("/employer", employerRoutes);
 app.use('/rubric', rubricRoute);
 app.use('/verification', verificationRoute);
