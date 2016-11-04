@@ -34,3 +34,8 @@ node_modules
 
 # Bower modules are not needed to be in Git
 bower_modules
+
+# For ensuring CI
+Jenkinsfile
+.htmlhintrc
+.eslintrc.js

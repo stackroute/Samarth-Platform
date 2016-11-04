@@ -10,12 +10,128 @@ var personalInfoprocessor = require(
 var projectprocessor = require('../sectionproject/projectprocessor');
 var skillprocessor = require('../sectionskill/skillprocessor');
 var workexpprocessor = require('../sectionworkexperiance/workprocessor');
+var candidateneo = require('./candidateneoprocessor');
+var verificationprocessor = require('../verification/verificationprocesser');
+
+
+
+router.post("/parse", function(req, res) {
+    console.log("****************************************************Request", req.body);
+    try {
+        var data = [];
+        async.parallel({
+
+            profession: function(callback) {
+                candidateneo.parseprofession(req.body,
+                    function(profession) {
+                        callback(null, profession);
+                    },
+                    function(err) {
+                        callback(err, null);
+                    });
+            },
+            location: function(callback) {
+                candidateneo.parselocation(req.body,
+                    function(location) {
+                        callback(null, location);
+                    },
+                    function(err) {
+                        callback(err, null);
+                    });
+            },
+            skill: function(callback) {
+                candidateneo.parseskill(req.body,
+                    function(skill) {
+                        callback(null, skill);
+                    },
+                    function(err) {
+                        callback(err, null);
+                    });
+            }
+
+        }, function success(err, query) {
+            if (err) {
+                res.status(500).json({ msg: err });
+            } else {
+                console.log("*********************************QUERY", query);
+                console.log("dhekav", query.skill);
+                candidateneo.searchquery(query, function(results) {
+                    res.status(200).json(results);
+                }, function(err) {
+                    res.status(500).json({ message: "No matches found" });
+                });
+            }
+        });
+
+
+        // candidateneo.parseprofession(req.body,function(profession) {
+        //     console.log("Found profession in search text",profession);
+        //     if(profession!="") {
+        //         console.log(profession);
+        //         data.push(profession);
+        //     }
+        // },function(err) {
+        //     res.status(500).json(err);
+        // });
+
+        // candidateneo.parselocation(req.body,function(location) {
+        //     console.log("Found profession in search text",location);
+        //     if(location!="") {
+        //         console.log(location);
+
+        //         data.push(location)
+        //     }
+        // },function(err) {
+        //     res.status(500).json(err);
+        // });
+
+        // candidateneo.parseskill(req.body,function(skill) {
+        //     console.log("Found profession in search text",skill);
+        //     if(skill!="") {
+        //         console.log(skill);
+
+        //         data.push(skill);
+        //     }
+        // },function(err) {
+        //     res.status(500).json(err);
+        // });
+
+        // console.log("finally parsed query is",data);
+
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+
+
+
+router.get("/profession", function(req, res) {
+    try {
+        console.log("insert in get profition");
+        candidateneo.getProfessions(function(professions) {
+            console.log("*******************************from route", professions);
+            res.status(200).json(professions);
+        }, function(err) {
+            res.status(500).json(err);
+        });
+    } catch (err) {
+        console.log("Error occurred in getting the professions: ", err);
+        res.status(500).json({
+            error: "Server error...try again later"
+        });
+    }
+});
+
+
+
 
 /* Get the Candidate Collection with the given Candidate id  */
 //HTTP GET /candidate/:candidateid /
 //effective url /candidate/:candidateid
 router.get("/:candidateid", function(req, res) {
-    console.log("Inside get");
+    // console.log("Inside get");
     try {
         candidateprocessor.getcandidate(req.params.candidateid,
             function(candidateObj) {
@@ -38,6 +154,14 @@ router.get("/:candidateid", function(req, res) {
 //effective url /candidate/
 router.post("/", function(req, res) {
     try {
+        console.log("******************************************************888888888888",req.body);
+        candidateneo.createCandidate(req.body, function(err, stat) {
+            if (err) {
+                console.log(err);
+            } else {
+                //  console.log(stat);
+            }
+        });
         //create every section,candidate,profile if candidate is created for first time 
         candidate.find({
             "candidateid": req.body.mobile
@@ -58,6 +182,14 @@ router.post("/", function(req, res) {
                         profile: function(callback) {
                             profileprocessor.createNewprofile(req.body,
                                 function(profileobj) {
+                                    // console.log("From Profile Processor",profileobj)
+                                    // neoprofession.createProfessionNode(profileobj,function(err,succ) {
+                                    //     if(err) {
+                                    //         console.log(err);
+                                    //     }else{
+                                    //         console.log(succ);
+                                    //     }
+                                    // });
                                     callback(null, profileobj);
                                 },
                                 function(err) {
@@ -79,6 +211,8 @@ router.post("/", function(req, res) {
                             personalInfoprocessor.createNewpersonalinfo(req.body,
                                 function(personalinfoobj) {
                                     callback(null, personalinfoobj);
+
+
                                 },
                                 function(err) {
                                     callback(err, null);
@@ -114,7 +248,26 @@ router.post("/", function(req, res) {
                                     callback(err, null);
                                 }
                             )
-                        }
+                        },
+                        verificationdata: function(callback) {
+                            verificationprocessor.createNewVerification(req.body,
+                                function(verifyobj) {
+                                    callback(null, verifyobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                })
+                        },
+                        // createcandidate: function(callback) {
+                        //     candidateneo.createCandidate(req.body,
+                        //         function(success) {
+                        //             callback(null,sucess);
+                        //         },
+                        //         function(err) {
+                        //             callback(err,null);
+                        //         }
+                        //         )
+                        // }
                     },
                     function(err, results) {
                         if (err) {
@@ -124,8 +277,7 @@ router.post("/", function(req, res) {
                             });
                         }
 
-                        console.log("final result", results)
-                            // return res.status(201).json({ msg: "done", result: results });
+
                         return res.status(201).json(results.personalinfo);
                     }
                 ); //end of Async            
@@ -156,7 +308,7 @@ router.patch("/:candidateid", function(req, res) {
                 res.status(500).send(
                     "Candidate doesnt exists, Add Candidate before updating...!");
             } else {
-                console.log("candidate id:", req.body.candidateid);
+                // console.log("candidate id:", req.body.candidateid);
                 if (!req.body.candidateid) {
                     try {
                         candidateprocessor.updatecandidate(req.body, req.params.candidateid,

@@ -1,5 +1,5 @@
 FROM mhart/alpine-node
- 
+
 RUN apk add --update git
 
 # Create app directory

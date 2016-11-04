@@ -47,10 +47,11 @@ function createworkexp(formobj, sucessCB, errorCB) {
 function addworkexp(wsObj, candidateid, sucessCB, errorCB) {
     work.update({ "candidateid": candidateid }, { $push: { "workexperience": wsObj.workexperience[0] } },
         function() {
+            // console.log("*************************************************************",wsObj.workexperience[0].duration.duration);
             // console.log("successfully added to ",doc);
-            sucessCB("work experience added")
+            sucessCB()
         }
-    );
+        );
 }
 
 
@@ -58,17 +59,17 @@ function updateworkexp(wsobj, candidateid,workplace, sucessCB, errorCB) {
     work.update({ 'candidateid': candidateid ,'workexperience.workplace': workplace }, 
         {'$set': 
         {'workexperience.$.designation': wsobj.workexperience[0].designation,
-         'workexperience.$.workplace': wsobj.workexperience[0].workplace,
-         'workexperience.$.Location': wsobj.workexperience[0].Location ,
-         'workexperience.$.duration.duration': wsobj.workexperience[0].duration.duration ,
-         'workexperience.$.duration.from': wsobj.workexperience[0].duration.from ,
-         'workexperience.$.duration.to': wsobj.workexperience[0].duration.to,
-         'workexperience.$.skills':wsobj.workexperience[0].skills}},
+        'workexperience.$.workplace': wsobj.workexperience[0].workplace,
+        'workexperience.$.Location': wsobj.workexperience[0].Location ,
+        'workexperience.$.duration.duration': wsobj.workexperience[0].duration.duration ,
+        'workexperience.$.duration.from': wsobj.workexperience[0].duration.from ,
+        'workexperience.$.duration.to': wsobj.workexperience[0].duration.to,
+        'workexperience.$.skills':wsobj.workexperience[0].skills}},
         function() {
             sucessCB("workexperience updated");
         }
 
-    );
+        );
 }       
 
 module.exports = {
@@ -78,4 +79,4 @@ module.exports = {
     updateworkexp:updateworkexp
 
 
-    };
+};

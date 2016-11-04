@@ -2,42 +2,43 @@ var candidate = require('./candidateschema');
 
 function getcandidate(candidateId,successCB, errorCB){
   candidate.find({ "candidateid": candidateId }, function(error, result) {
-        if (error) {
-            console.log(error);
-            errorCB(error);
-        }
+    if (error) {
+        console.log(error);
+        errorCB(error);
+    }
 
-        console.log("Inside get candidate Function" + result);
-        successCB(result);
-    });
+    //console.log("Inside get candidate Function" + result);
+    successCB(result);
+});
 };
 
 function createNewcandidate(formObj, successCB, errorCB) {
     var candidateObj = new candidate({
-        "candidateid":formObj.mobile
+        "candidateid":formObj.mobile,
+        "profession":formObj.profession
     });
     //  var id="candidateid":candidateid;
     // projectObj.profile.push(id);
     //  projectObj.profile.push(newProjectObj.profile[0]);
 
-    console.log("About to save a new candidate: ", candidateObj);
+ //   console.log("About to save a new candidate: ", candidateObj);
 
-    candidateObj.save(function(err, savedObj) {
-        if (err) {
-            console.log("Error in saving candidate: ", err);
-            errorCB(err);
-        }
+ candidateObj.save(function(err, savedObj) {
+    if (err) {
+        console.log("Error in saving candidate: ", err);
+        errorCB(err);
+    }
 
-        successCB(savedObj);
-    });
+    successCB(savedObj);
+});
 };
 
 function updatecandidate(newcandidateObj, candidateid, successCB, errorCB) {
 
-     candidate.update({ 'candidateid': candidateid},newcandidateObj, 
-        function() {
-            successCB("candidate updated");
-        }
+ candidate.update({ 'candidateid': candidateid},newcandidateObj, 
+    function() {
+        successCB("candidate updated");
+    }
 
     );
 };

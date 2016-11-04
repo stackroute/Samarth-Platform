@@ -14,9 +14,10 @@ function getprofile(candidateId, successCB, errorCB) {
 
 function createNewprofile(profileobj ,successCB, errorCB) {
     var projectObj = new profile({
- 
-        "candidateid": profileobj.mobile
- });
+     
+        "candidateid": profileobj.mobile,
+        "profession": profileobj.profession
+    });
 
     console.log("About to save a new profile: ", projectObj);
 
@@ -35,8 +36,8 @@ function modifyprofile(profileobj,candidateid,successCB,errorCB){
    profile.update({ 'candidateid': candidateid},profileobj.profile,
        
       function() {
-           successCB("data updated");
-       }
+       successCB("data updated");
+   }
 
    );
 }

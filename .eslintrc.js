@@ -238,5 +238,69 @@ module.exports = {
     "react/react-in-jsx-scope": 2, // Prevent missing React when using JSX
     "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
     "react/jsx-wrap-multilines": 2, // Prevent missing parentheses around multilines JSX
+
+    //
+        // eslint-plugin-angular
+        //
+        // Angular JS specific linting rules for ESLint
+        //
+        //
+        // eslint-plugin-angular
+        //
+        // Angular JS specific linting rules for ESLint
+        //
+        "angular/module-getter": 2, //disallow to reference modules with variables and require to use the getter syntax instead angular.module('myModule')
+        "angular/module-setter": 2, //disallow to assign modules to variables (linked to module-getter
+        "angular/no-private-call": 2, //disallow use of internal angular properties prefixed with $$
+        "angular/component-limit": 2, //limit the number of angular components per file (y001)
+        "angular/controller-as-route": 1, //require the use of controllerAs in routes or states (y031)
+        "angular/controller-as-vm": 1, //require and specify a capture variable for this in controllers (y032)
+        "angular/controller-as": 1, //disallow assignments to $scope in controllers (y031)
+        "angular/deferred": 2, //use $q(function(resolve, reject){}) instead of $q.deferred
+        "angular/di-unused": 2, //disallow unused DI parameters
+        "angular/directive-restrict": 1, //disallow any other directive restrict than 'A' or 'E' (y074)
+        "angular/empty-controller": 2, //disallow empty controllers
+        "angular/no-controller": 1, //disallow use of controllers (according to the component first pattern)
+        "angular/no-inline-template": 1, //disallow the use of inline templates
+        "angular/no-run-logic": 2, //keep run functions clean and simple (y171)
+        "angular/no-services": 2, //disallow DI of specified services for other angular components ($http for controllers, filters and directives)
+        "angular/on-watch": 2, //require $on and $watch deregistration callbacks to be saved in a variable
+        "angular/prefer-component": 1, //Since AngularJS 1.5, we can use a new API when creating directives
+        "angular/no-cookiestore": 2, //use $cookies instead of $cookieStore
+        "angular/no-directive-replace": 1, //disallow the deprecated directive replace property
+        "angular/no-http-callback": 2, //disallow the $http methods success() and error()
+        "angular/component-name": 1, //require and specify a prefix for all component names
+        "angular/controller-name": 1, //require and specify a prefix for all controller names (y123, y124)
+        "angular/directive-name": 1, //require and specify a prefix for all directive names (y073, y126)
+        "angular/file-name": 1, //require and specify a consistent component name pattern (y120, y121)
+        "angular/filter-name": 1, //require and specify a prefix for all filter names
+        "angular/module-name": 1, //require and specify a prefix for all module names (y127)
+        "angular/service-name": 1, //require and specify a prefix for all service names (y125)
+        "angular/di-order": 1, //require DI parameters to be sorted alphabetically
+        "angular/di": [2, "array"], //require a consistent DI syntax
+        "angular/dumb-inject": 2, //unittest inject functions should only consist of assignments from injected values to describe block variables
+        "angular/function-type": 2, //require and specify a consistent function style for components ('named' or 'anonymous') (y024)
+        "angular/module-dependency-order": 2, //require a consistent order of module dependencies
+        "angular/no-service-method": 2, //use factory() instead of service() (y040)
+        "angular/one-dependency-per-line": 2, //require all DI parameters to be located in their own line
+        "angular/rest-service": [2, "$http"], //disallow different rest service and specify one of '$http', '$resource', 'Restangular'
+        "angular/watchers-execution": [2, '$apply'], //require and specify consistent use $scope.digest() or $scope.apply()
+        "angular/angularelement": 2, //use angular.element instead of $ or jQuery
+        "angular/definedundefined": 1, //use angular.isDefined and angular.isUndefined instead of other undefined checks
+        "angular/document-service": 2, //use $document instead of document (y180)
+        "angular/foreach": 2, //use angular.forEach instead of native Array.prototype.forEach
+        "angular/interval-service": 2, //use $interval instead of setInterval (y181)
+        "angular/json-functions": 1, //use angular.fromJson and 'angular.toJson' instead of JSON.parse and JSON.stringify
+        "angular/log": 2, //use the $log service instead of the console methods
+        "angular/no-angular-mock": 1, //require to use angular.mock methods directly
+        "angular/no-jquery-angularelement": 2, //disallow to wrap angular.element objects with jQuery or $
+        "angular/timeout-service": 2, //use $timeout instead of setTimeout (y181)
+        "angular/typecheck-array": 2, //use angular.isArray instead of typeof comparisons
+        "angular/typecheck-date": 2, //use angular.isDate instead of typeof comparisons
+        "angular/typecheck-function": 2, //use angular.isFunction instead of typeof comparisons
+        "angular/typecheck-number": 2, //use angular.isNumber instead of typeof comparisons
+        "angular/typecheck-object": 2, //use angular.isObject instead of typeof comparisons
+        "angular/typecheck-string": 2, //use angular.isString instead of typeof comparisons
+        "angular/window-service": 2, //use $window instead of window (y180)
   }
 }

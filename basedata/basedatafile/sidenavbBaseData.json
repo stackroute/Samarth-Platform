@@ -1,0 +1,34 @@
+{
+    "sidenavcontents": [{
+        "role": "coordinator",
+        "sidenavmenuitems": [{
+            "name": "Dashboard",
+            "state": "index.coordinator",
+            "icon": "dashboard"
+        }, {
+            "name": "Search Candidate",
+            "state": "index.candidatessearch",
+            "icon": "search"
+        }, {
+            "name": "Register Candidate",
+            "state": "index.registercandidate",
+            "icon": "person_add"
+        }, {
+            "name": "Verify Candidate",
+            "state": "index.verifycandidate",
+            "icon": "verified user"
+        }, {
+            "name": "Post Job",
+            "state": "index.postjob",
+            "icon": "add box"
+        }, {
+            "name": "Search Job",
+            "state": "index.searchjob",
+            "icon": "search"
+        }, {
+            "name": "Verify Job",
+            "state": "index.verifyjob",
+            "icon": "verified user"
+        }]
+    }]
+}
