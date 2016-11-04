@@ -1,7 +1,7 @@
  var mongoose = require('mongoose');
 
 var skill = require("./skillschema");
- 
+  
 
 function getSkill(candidateid, successCB, errorCB) {
 
@@ -68,7 +68,7 @@ function addSkill(skillObj, candidateid, sucessCB, errorCB) {
         }
     );
 }
-
+ 
 
 function updateSkill(skillname, skillobj, candidateid, sucessCB, errorCB) {
     skill.update({ 'candidateid': candidateid, 'skills.skillname': skillname }, {
