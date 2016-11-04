@@ -1,11 +1,11 @@
   var router = require('express').Router();
 var skillProcessor = require('./skillprocessor');
-var skill = require("./skillschema");
+var skill = require("./skillschema"); 
 var misDetailProcessor = require('.././questionbox/missingDetailsProcessor');
 var qboxProcessor = require('.././questionbox/qboxprocessor');
 /*Get the skills for the given candidate id*/
 //HHTP GET skill/:candidateid
-//effective URL skill/:candidateid
+//effective URL skill/:candidateid 
 router.get("/:candidateid", function(req, res) {
     //console.log("Request received for emp id: ", req.params.empid);
     try { 
@@ -30,27 +30,16 @@ router.get("/:candidateid", function(req, res) {
     // });
     //res.status(200).json(empObj);
 });
-
+ 
 /*Add new skill with candidate id only if the candidate is registered*/
 //HTTP POST /skill/:candidateid
+
 //effective url  /skill/:candidateid
 router.post("/:candidateid", function(req, res) {
-    // console.log(req.body.skills[0].skillname);
-    // // console.log("under post");
+    
 
-    var SkillMissingFields = misDetailProcessor.SkillMissingFields(req.body , req.params.candidateid);
-        // console.log("------>"+SkillMissingFields);
-           var candidateId =req.params.candidateid;
-    //    for(var i =0;i<SkillMissingFields.length;i++)
-    //    {
-    //     var newquestionobj={
-    //         section : "Skills",
-    //         fieldname : SkillMissingFields[i],
-    //         instancename: req.body.skills[0].skillname,
-    //         response : " ",
-    //         status :"pending"
-    //     }
-    //     qboxProcessor.createNewQuestions(newquestionobj,candidateId);
+     misDetailProcessor.SkillMissingFields(req.body , req.params.candidateid);
+         
 
     // }//end for
     skill.find({ "candidateid": req.params.candidateid }, function(err, result) {
@@ -93,6 +82,7 @@ router.post("/:candidateid", function(req, res) {
 //HTTP PATCH /skill/:candidateid/:skillname
 //effective url /skill/:candidateid/:skillname
 router.patch("/:candidateid/:skillname", function(req, res) {
+    console.log("under patch fxn of skill --------------------------------------------------------->"+req.body);
     skill.find({ "candidateid": req.params.candidateid }, function(err, result) {
         if (result == "") {
             res.status(500).send("skill section doesnt exist while updating new skill");
@@ -103,7 +93,7 @@ router.patch("/:candidateid/:skillname", function(req, res) {
                     function(skill) {
                         // console.log(skill);
                         res.status(201).json(skill);
-
+ 
                     },
                     function(err) {
                         res.status(500).send("Invalid data");

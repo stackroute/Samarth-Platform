@@ -79,14 +79,14 @@
                   if (colln.length <= 0) {
                       return;
                   } //end if
-
-                  var multi = redisClient.multi();
+  
+                   var multi = redisClient.multi();
 
                   for (i = 0; i < colln.length; ++i) {
                       var fieldQuestion = colln[i];
 
                       var key = cache.makeFieldQCacheKey(fieldQuestion.section, fieldQuestion.fieldname, fieldQuestion.lang);
-                      // console.log("-----keyCache-------"+key);
+                      console.log("-----keyCache-------"+key);
                       var value = fieldQuestion.query;
                       missingDetailsProcessor.questions(key, value);
                       multi.set(key, value);

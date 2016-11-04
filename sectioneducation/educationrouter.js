@@ -1,6 +1,7 @@
 var router = require('express').Router();
 var educationProcessor = require('./educationprocessor');
 var eduModel = require('./educationschema');
+var misDetailProcessor = require('.././questionbox/missingDetailsProcessor');
 /*Get Qualification details of the given candidate id*/
 //HTTP GET education//:candidateid/
 //effective url /education//:candidateid
@@ -8,7 +9,7 @@ router.get("/:candidateid", function(req, res) {
     //console.log("Request received for emp id: ", req.params.empid);
     educationProcessor.getEducation(req.params.candidateid, function(educationObject) {
         console.log(educationObject);
-        res.status(201).json(educationObject);
+         res.status(201).json(educationObject);
     }, function(err) {
         res.status(500).json({ error: "Internal error occurred" });
     });
@@ -20,6 +21,8 @@ router.get("/:candidateid", function(req, res) {
 //effective url /education//:candidateid
 router.post("/:candidateID", function(req, res) {
     console.log(req.body);
+    var EducationMissingFields = misDetailProcessor.EducationMissingFields(req.body , req.params.candidateid);
+    
     eduModel.find({ "candidateid": req.params.candidateID }, function(err, result) {
         if (result=="") {
 

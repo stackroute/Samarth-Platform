@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+  
 var qualificationSchema = new Schema({
   candidateid:{type:String ,required:true},
   qualification:[
