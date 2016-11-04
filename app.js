@@ -129,7 +129,6 @@ app.use("/work", workRouter);
 app.use("/personalinfo", personalinfoRoutes);
 app.use("/skillcard", skillcardRouter);
 app.use("/jobprofile", jobProfileRoutes);
-app.use("/resource", resourcebundle);
 app.use('/circle', circleRoute);
 
 app.use("/employer", employerRoutes);
