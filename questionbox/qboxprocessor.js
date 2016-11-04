@@ -1,6 +1,19 @@
-var qboxquestionModel = require('./qboxquestions');
+var qboxquestionModel = require('./qboxquestions'); 
+var skillProcessor = require('.././sectionskill/skillprocessor');
+// var skill = require("./skillschema");
+//var fieldQCache = require('./fieldQCache');
+ 
+function getAllBoxQuestions(successCB, errorCB) {
+       qboxquestionModel.find({}, { _id: 0, __v: 0 }, function(error, colln) {
+        if (error) {
+            errorCB(error);
+        }
+        successCB(colln);
+    });
+} 
 
 function getQuestions(candidateid, sections, skip, limit, successCB, errorCB) {
+  console.log("under ques processor");
     var findClause = { "candidateid": candidateid, "status": "pending" };
     var pagination = { skip: parseInt(skip), limit: parseInt(limit) };
 
@@ -15,8 +28,9 @@ function getQuestions(candidateid, sections, skip, limit, successCB, errorCB) {
         successCB(colln);
     });
 }
-
-function createNewQuestions(newquestionobj, candidateId, sucessCB, errorCB) {
+ 
+ function createNewQuestions(newquestionobj, candidateId, sucessCB, errorCB) {
+   console.log("under create new ques------------------------->");
     var questionObj = new qboxquestionModel({
         candidateid: candidateId,
         section: newquestionobj.section,
@@ -25,7 +39,7 @@ function createNewQuestions(newquestionobj, candidateId, sucessCB, errorCB) {
         response: newquestionobj.response,
         status: newquestionobj.status
     });
-
+    //fieldQCache.getQboxQuestions(questionObj);
     questionObj.save(function(err, result) {
         if (err) {
             console.log(err);
@@ -33,23 +47,40 @@ function createNewQuestions(newquestionobj, candidateId, sucessCB, errorCB) {
         }
         sucessCB(result);
     });
-}
-
+} 
+  
 function updateQuestion(questionobj, candidateId, answer, sucessCB, errorCB) {
+    //inserting data into skill database after entering and in question
+   /* var findClause = { "candidateid": candidateid };
+   
+        findClause['skillname'] = { $in: questionobj.instancename };
+    
+     skill.find(findClause, function(error, colln) {
+        if (error) {
+            errorCB(error);
+        }
+        console.log(colln);
+        successCB(colln);
+    });
+   */
+
     qboxquestionModel.update({ "candidateid": candidateId, 'section': questionobj.section, 'fieldname': questionobj.fieldname, 'instancename': questionobj.instancename }, {
+            
             '$set': {
                 'response': answer,
                 'status': 'answered',
             }
-        },
+
+        }, 
         function() {
             sucessCB("Question updated");
         }
 
     );
 }
-
+ 
 module.exports = {
+    getAllBoxQuestions : getAllBoxQuestions,
     getQuestions: getQuestions,
     createNewQuestions: createNewQuestions,
     updateQuestion: updateQuestion

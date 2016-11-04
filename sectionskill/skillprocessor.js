@@ -1,16 +1,16 @@
-var mongoose = require('mongoose');
+ var mongoose = require('mongoose');
 
 var skill = require("./skillschema");
-
+  
 
 function getSkill(candidateid, successCB, errorCB) {
 
     skill.find({ "candidateid": candidateid }, function(err, skill) {
         if (err) {
-            console.log(err);
+            // console.log(err);
             errorCB(err);
         }
-        console.log(skill);
+        // console.log(skill);
         successCB(skill);
     });
 }
@@ -20,16 +20,16 @@ function getallSkill(successCB, errorCB) {
     //This is a asynch op
     //Go to DB and fetch record for specified empid
 
-    var skillMap = {};
+     var skillMap = {};
     skill.find({}, function(err, skills) {
         if (err) {
-            console.log(err);
+            // console.log(err);
             errorCB(err);
         }
         skills.forEach(function(skill) {
             skillMap[skill._id] = skill;
         });
-        console.log(skills);
+        // console.log(skills);
         successCB(skills);
     });
 }
@@ -39,17 +39,17 @@ function createNewSkill(formobj, sucessCB, errorCB) {
     var skillObj = new skill({
         candidateid: formobj.mobile,
         skills: []
-    });
+     });
     //skillObj.skills.push(newskillobj.skills[0]);
-    console.log("About to save New Skill:", skillObj);
+    // console.log("About to save New Skill:", skillObj);
 
     skillObj.save(function(err, result) {
-        console.log("inside save");
+        // console.log("inside save");
         if (err) {
-            console.log(err);
+            // console.log(err);
             errorCB(err);
         }
-        console.log('New Skill created', result);
+        // console.log('New Skill created', result);
         sucessCB(result);
 
 
@@ -57,7 +57,7 @@ function createNewSkill(formobj, sucessCB, errorCB) {
         //Save empObj to DB
 
     });
-}
+} 
 
 //add skills into the existing records
 function addSkill(skillObj, candidateid, sucessCB, errorCB) {
@@ -68,7 +68,7 @@ function addSkill(skillObj, candidateid, sucessCB, errorCB) {
         }
     );
 }
-
+ 
 
 function updateSkill(skillname, skillobj, candidateid, sucessCB, errorCB) {
     skill.update({ 'candidateid': candidateid, 'skills.skillname': skillname }, {
@@ -79,7 +79,7 @@ function updateSkill(skillname, skillobj, candidateid, sucessCB, errorCB) {
                 'skills.$.experience': skillobj.skills[0].experience,
                 'skills.$.metadata': skillobj.skills[0].metadata
             }
-        },
+        }, 
         function() {
             sucessCB("skill updated");
         }

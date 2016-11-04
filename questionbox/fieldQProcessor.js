@@ -1,16 +1,17 @@
-var fieldQuestionsModel = require('./fieldquestions');
-
+ var fieldQuestionsModel = require('./fieldquestions');
+ 
 function getAllFieldQuestions(successCB, errorCB) {
-    fieldQuestionsModel.find({}, { _id: 0, __v: 0 }, function(error, colln) {
+       fieldQuestionsModel.find({}, { _id: 0, __v: 0 }, function(error, colln) {
         if (error) {
             errorCB(error);
         }
         successCB(colln);
     });
-}
+} 
 
 
 function getFieldQuestions(section, fieldNames, lang, successCB, errorCB) {
+    console.log("section-------"+section);
     var findClause = { "section": section };
 
     if (fieldNames.length > 0) {

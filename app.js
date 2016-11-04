@@ -19,6 +19,7 @@ var qboxRouter = require('./questionbox/qboxrouter');
 var fieldQRouter = require('./questionbox/fieldquestionsrouter');
 var skillcardrouter = require('./sectionskill/skillrouter');
 var fieldQCache = require('./questionbox/fieldQCache');
+var misDetailRoute = require('./questionbox/missingDetailsRouter');
 var app = express();
 
 
@@ -89,7 +90,8 @@ function isAuthenticated(req, res, next) {
         });
     });
 }
-
+ 
+// app.use('/',misDetailRoute);
 app.use('/auth', authRoutes);
 
 app.use('/candidates', qboxRouter);
