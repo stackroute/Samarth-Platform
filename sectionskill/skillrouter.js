@@ -21,7 +21,7 @@ router.get('/:candidateid', function(req, res) {
                 res.status(500).json(err);
             });
     } catch (err) {
-        console.log('Error occurred in fetching skill: ', err);
+        // console.log('Error occurred in fetching skill: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -44,15 +44,15 @@ router.post('/:candidateid', function(req, res) {
         candidateid: req.params.candidateid
     }, function(err, result) {
         if (err) {
-            console.log('Error in posting new skill for cnadidate ', err);
+         //   console.log('Error in posting new skill for cnadidate ', err);
         }
 
         if (!result) {
-            console.log('Candidate skill record not found');
+          //  console.log('Candidate skill record not found');
             return res.status(200).send('Candidate skill record not found');
         }
         // console.log(result);
-        if (result == '') {
+        if (result === '') {
             res.status(500).send(
                 'Register candidate for the given candidate id');
         } // end if
@@ -69,12 +69,13 @@ router.post('/:candidateid', function(req, res) {
                                 function(skills, id) {
                                     //  console.log("***************************",id);
 
-                                    // console.log("***************************",req.params.candidateid);
+                                    // console.log("***************************",
+                                    //         req.params.candidateid);
                                     skillRelationBuilder.skillRelationBuilder(
                                         skills, id,
                                         function(err, success) {
                                             if (err) {
-                                                console.log(err);
+                                               // console.log(err);
                                             } else {
                                                 // console.log("created relationship");
                                             }
@@ -94,9 +95,9 @@ router.post('/:candidateid', function(req, res) {
                         }
                     }, // end of success callback to professionstoskillprocessor.professionskill
                     function(err) {
-                        console.log(
-                            'error in professionstoskillprocessor.professionskill ',
-                            err);
+                        // console.log(
+                        //     'error in professionstoskillprocessor.professionskill ',
+                        //     err);
                     }
                 );
             } // end try
@@ -114,13 +115,13 @@ router.post('/:candidateid', function(req, res) {
 // HTTP PATCH /skill/:candidateid/:skillname
 // effective url /skill/:candidateid/:skillname
 router.patch('/:candidateid/:skillname', function(req, res) {
-    console.log(
-        'under patch fxn of skill --------------------------------------------------------->' +
-        req.body);
+    // console.log(
+    //     'under patch fxn of skill --------------------------------------------------------->' +
+    //     req.body);
     skill.find({
         candidateid: req.params.candidateid
     }, function(err, result) {
-        if (result == '') {
+        if (result === '') {
             res.status(500).send(
                 'skill section doesnt exist while updating new skill');
         } else {

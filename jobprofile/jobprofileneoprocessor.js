@@ -23,23 +23,7 @@ createEmployerNode = function(job, res) {
     });
 };
 
-/* relateLocationNode = function(job, res) {
-    db.cypher({
-        query: 'MERGE (jb: Job{jobID:{jobID},employerID:{employerID}}) MERGE (l:location{name:{location}}) MERGE (jb)-[r:belongsTo]->(l)',
-        params: {
-            employerID: job.employer.employerID,
-            jobID: job.jobID,
-            locationName: job.jobLocation
-        }
-    }, function(err, results) {
-        if (err) {
-            console.log("Error in inserting relation in neo4j" + err);
-        } else {
-            console.log("Success in inserting neo4j...." + results);
-        }
-    });
-}
-*/
+
 module.exports = {
     createEmployerNode: createEmployerNode
 };

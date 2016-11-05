@@ -4,7 +4,7 @@ let verification = require('./verificationmodel');
 function getverification(candidateid, successCB, errorCB) {
     verification.find({ candidateid: candidateid }, function(error, result) {
         if (error) {
-            console.log(error);
+         //   console.log(error);
             errorCB(error);
         }
 
@@ -14,8 +14,8 @@ function getverification(candidateid, successCB, errorCB) {
 }
 
 function createNewVerification(candidatedata, successCB, errorCB) {
-    console.log(candidatedata.mobile);
-    console.log(candidatedata.candidatename);
+    // console.log(candidatedata.mobile);
+    // console.log(candidatedata.candidatename);
 
     let newVerfobj = new verification({
 
@@ -24,11 +24,11 @@ function createNewVerification(candidatedata, successCB, errorCB) {
 
     });
 
-    console.log('about to save new verification object', newVerfobj);
+   // console.log('about to save new verification object', newVerfobj);
 
     newVerfobj.save(function(err, savedobj) {
         if (err) {
-            console.log('error in saving the verification data');
+           // console.log('error in saving the verification data');
             errorCB(err);
         }
         successCB(savedobj);
@@ -36,8 +36,8 @@ function createNewVerification(candidatedata, successCB, errorCB) {
 }
 
 function updateverification(candidatedata, typename, sucessCB, errorCB) {
-    console.log('update method', candidatedata);
-    if (typename == 'Personal_Information') {
+   // console.log('update method', candidatedata);
+    if (typename === 'Personal_Information') {
         verification.update({ candidateid: candidatedata.candidateid }, {
             $set: {
                 updated_on: candidatedata.updated_on,
@@ -46,15 +46,15 @@ function updateverification(candidatedata, typename, sucessCB, errorCB) {
             }
         }, function(err, result) {
             if (err) {
-                console.log('Error occured on save' + err);
+               // console.log('Error occured on save' + err);
                 errorCB(err);
             } else {
-                console.log('updated successfully');
+               // console.log('updated successfully');
                 sucessCB('OK');
             }
         });
     }
-    if (typename == 'Work_History') {
+    if (typename === 'Work_History') {
         verification.update({ candidateid: candidatedata.candidateid }, {
             $set: {
                 updated_on: candidatedata.updated_on,
@@ -63,15 +63,15 @@ function updateverification(candidatedata, typename, sucessCB, errorCB) {
             }
         }, function(err, result) {
             if (err) {
-                console.log('Error occured on save' + err);
+              //  console.log('Error occured on save' + err);
                 errorCB(err);
             } else {
-                console.log('updated successfully');
+                // console.log('updated successfully');
                 sucessCB('OK');
             }
         });
     }
-    if (typename == 'Project') {
+    if (typename === 'Project') {
         verification.update({ candidateid: candidatedata.candidateid }, {
             $set: {
                 updated_on: candidatedata.updated_on,
@@ -80,15 +80,15 @@ function updateverification(candidatedata, typename, sucessCB, errorCB) {
             }
         }, function(err, result) {
             if (err) {
-                console.log('Error occured on save' + err);
+              //  console.log('Error occured on save' + err);
                 errorCB(err);
             } else {
-                console.log('updated successfully');
+               // console.log('updated successfully');
                 sucessCB('OK');
             }
         });
     }
-    if (typename == 'Qualification') {
+    if (typename === 'Qualification') {
         verification.update({ candidateid: candidatedata.candidateid }, {
             $set: {
                 updated_on: candidatedata.updated_on,
@@ -97,15 +97,15 @@ function updateverification(candidatedata, typename, sucessCB, errorCB) {
             }
         }, function(err, result) {
             if (err) {
-                console.log('Error occured on save' + err);
+              //  console.log('Error occured on save' + err);
                 errorCB(err);
             } else {
-                console.log('updated successfully');
+               // console.log('updated successfully');
                 sucessCB('OK');
             }
         });
     }
-    if (typename == 'Skills') {
+    if (typename === 'Skills') {
         verification.update({ candidateid: candidatedata.candidateid }, {
             $set: {
                 updated_on: candidatedata.updated_on,
@@ -114,10 +114,10 @@ function updateverification(candidatedata, typename, sucessCB, errorCB) {
             }
         }, function(err, result) {
             if (err) {
-                console.log('Error occured on save' + err);
+               // console.log('Error occured on save' + err);
                 errorCB(err);
             } else {
-                console.log('updated successfully');
+               // console.log('updated successfully');
                 sucessCB('OK');
             }
         });

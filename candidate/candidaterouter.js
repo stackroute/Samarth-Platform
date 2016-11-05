@@ -15,7 +15,7 @@ let verificationprocessor = require('../verification/verificationprocesser');
 
 
 router.post('/parse', function(req, res) {
-    console.log('****************************************************Request', req.body);
+   // console.log('****************************************************Request', req.body);
     try {
         let data = [];
         async.parallel({
@@ -52,8 +52,8 @@ router.post('/parse', function(req, res) {
             if (err) {
                 res.status(500).json({ msg: err });
             } else {
-                console.log('*********************************QUERY', query);
-                console.log('dhekav', query.skill);
+                // console.log('*********************************QUERY', query);
+                // console.log('dhekav', query.skill);
                 candidateneo.searchquery(query, function(results) {
                     res.status(200).json(results);
                 }, function(err) {
@@ -63,39 +63,6 @@ router.post('/parse', function(req, res) {
         });
 
 
-        // candidateneo.parseprofession(req.body,function(profession) {
-        //     console.log("Found profession in search text",profession);
-        //     if(profession!="") {
-        //         console.log(profession);
-        //         data.push(profession);
-        //     }
-        // },function(err) {
-        //     res.status(500).json(err);
-        // });
-
-        // candidateneo.parselocation(req.body,function(location) {
-        //     console.log("Found profession in search text",location);
-        //     if(location!="") {
-        //         console.log(location);
-
-        //         data.push(location)
-        //     }
-        // },function(err) {
-        //     res.status(500).json(err);
-        // });
-
-        // candidateneo.parseskill(req.body,function(skill) {
-        //     console.log("Found profession in search text",skill);
-        //     if(skill!="") {
-        //         console.log(skill);
-
-        //         data.push(skill);
-        //     }
-        // },function(err) {
-        //     res.status(500).json(err);
-        // });
-
-        // console.log("finally parsed query is",data);
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -105,15 +72,15 @@ router.post('/parse', function(req, res) {
 
 router.get('/profession', function(req, res) {
     try {
-        console.log('insert in get profition');
+       // console.log('insert in get profition');
         candidateneo.getProfessions(function(professions) {
-            console.log('*******************************from route', professions);
+          //  console.log('*******************************from route', professions);
             res.status(200).json(professions);
         }, function(err) {
             res.status(500).json(err);
         });
     } catch (err) {
-        console.log('Error occurred in getting the professions: ', err);
+      //  console.log('Error occurred in getting the professions: ', err);
         res.status(500).json({
             error: 'Server error...try again later'
         });
@@ -136,7 +103,7 @@ router.get('/:candidateid', function(req, res) {
             }
         );
     } catch (err) {
-        console.log('Error occurred in getting candidate object: ', err);
+      //  console.log('Error occurred in getting candidate object: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -148,7 +115,7 @@ router.get('/:candidateid', function(req, res) {
 // effective url /candidate/
 router.post('/', function(req, res) {
     try {
-        console.log('******************************************************888888888888', req.body);
+       // console.log('******************************************************888888888888', req.body);
         candidateneo.createCandidate(req.body, function(err, stat) {
             if (err) {
                 console.log(err);
@@ -160,7 +127,7 @@ router.post('/', function(req, res) {
         candidate.find({
             candidateid: req.body.mobile
         }, function(error, candidate) {
-            if (candidate == '') {
+            if (candidate === '') {
                 async.parallel({
                         candidate: function(callback) {
                             candidateprocessor.createNewcandidate(req.body,
@@ -175,14 +142,7 @@ router.post('/', function(req, res) {
                         profile: function(callback) {
                             profileprocessor.createNewprofile(req.body,
                                 function(profileobj) {
-                                    // console.log("From Profile Processor",profileobj)
-                                    // neoprofession.createProfessionNode(profileobj,function(err,succ) {
-                                    //     if(err) {
-                                    //         console.log(err);
-                                    //     }else{
-                                    //         console.log(succ);
-                                    //     }
-                                    // });
+                                    
                                     callback(null, profileobj);
                                 },
                                 function(err) {
@@ -249,20 +209,11 @@ router.post('/', function(req, res) {
                                     callback(err, null);
                                 });
                         }
-                        // createcandidate: function(callback) {
-                        //     candidateneo.createCandidate(req.body,
-                        //         function(success) {
-                        //             callback(null,sucess);
-                        //         },
-                        //         function(err) {
-                        //             callback(err,null);
-                        //         }
-                        //         )
-                        // }
+                        
                     },
                     function(err, results) {
                         if (err) {
-                            console.log('ERR: ', err);
+                           // console.log('ERR: ', err);
                             return res.status(500).json({
                                 msg: err
                             });
@@ -279,7 +230,7 @@ router.post('/', function(req, res) {
             }
         }); // end find
     } catch (err) {
-        console.error('Error in registration of candidate ', err);
+       // console.error('Error in registration of candidate ', err);
         return res.status(500).send(
             'Internal error occurred, please report or try later...!');
     }
@@ -309,7 +260,7 @@ router.patch('/:candidateid', function(req, res) {
                             }
                         );
                     } catch (err) {
-                        console.log('Error occurred in updating candidate: ', err);
+                       // console.log('Error occurred in updating candidate: ', err);
                         res.status(500).json({
                             error: 'Internal error occurred, please report'
                         });

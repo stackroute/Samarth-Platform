@@ -5,7 +5,7 @@ getCircle = function(req, successRes, errorRes) {
     try {
         circleNeo4jProcessor.getCircles(req.entityname,
             function(neodata) {
-                console.log(neodata);
+               // console.log(neodata);
                 //  successRes(neodata);
                 let mongoarray = [];
                 let newcircle = '';
@@ -21,7 +21,7 @@ getCircle = function(req, successRes, errorRes) {
 
                 circleMongoProcessor.findCirclesByName(mongoarray,
                     function(mongodata) {
-                        console.log(mongodata);
+                      //  console.log(mongodata);
                         // Loop through each circle object
                         // update the object with the DomainName, Count obtained from newo4j
                         let uicircles = [];
@@ -53,23 +53,23 @@ getCircle = function(req, successRes, errorRes) {
     }
 };
 createRelation = function(req, errorRes) {
-    console.log('circle processor create relation');
+   // console.log('circle processor create relation');
     circleNeo4jProcessor.createRelation(req, function(err) {
-        console.log(err);
+       // console.log(err);
         errorRes(err);
     });
 };
 circlePost = function(req, errRes) {
-    console.log('********************************************FROM circle Processor', req);
+   // console.log('********************************************FROM circle Processor', req);
     circleMongoProcessor.circlePostMongo(req, function(err) {
-        console.log('******************************************in mongodb processor', err);
+      //  console.log('******************************************in mongodb processor', err);
         errRes(err);
         // } //, function(result) {
         //     sucessCB(result);
     });
 
     circleNeo4jProcessor.creacteNode(req, function(err) {
-        console.log('****************************************************', err);
+       // console.log('****************************************************', err);
         errRes(err);
     });
 };

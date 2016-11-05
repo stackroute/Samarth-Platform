@@ -18,15 +18,15 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
 
     });
     // penalInfo = formobj;
-    console.log('About to Save personalinfo', personObj);
+   // console.log('About to Save personalinfo', personObj);
 
     personObj.save(function(err, postdetails) {
-        console.log('inside save');
+       // console.log('inside save');
         if (err) {
-            console.log('not posted', err);
+          //  console.log('not posted', err);
             errorCB(err);
         }
-        console.log('New person created', postdetails);
+       // console.log('New person created', postdetails);
         successCB(postdetails);
     });
 }
@@ -34,16 +34,16 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
 function getPersonalinfo(candidateid, successCB, errorCB) {
     person.find({ candidateid: candidateid }, function(err, getpersons) {
         if (err) {
-            console.log(err);
+           // console.log(err);
             errorCB(err);
         }
-        console.log(getpersons);
+       // console.log(getpersons);
         successCB(getpersons);
     });
 }
 
 function updatePersonalinfo(piObj, candidateId, successCB, errCB) {
-    console.log(piObj.personalInfo.gender);
+   // console.log(piObj.personalInfo.gender);
     person.update({ candidateid: candidateId }, piObj.personalInfo,
 
         function(err, result) {

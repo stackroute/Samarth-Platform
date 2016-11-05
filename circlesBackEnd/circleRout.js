@@ -14,7 +14,7 @@ router.get('/:entityname', function(req, res) {
     try {
         circleProcessor.getCircle(req.params,
             function(data) {
-                console.log(data);
+               // console.log(data);
                 res.json(data);
             },
             function(err) {
@@ -30,7 +30,7 @@ router.get('/:entityname', function(req, res) {
 // router.post('/:circlename/relation/',
 router.post('/circlerelation',
     function(req, res) {
-        console.log('post request for relation');
+       // console.log('post request for relation');
         try {
             circleProcessor.createRelation(req, function(err) {
                 console.log(err);
@@ -46,12 +46,12 @@ router.post('/circlerelation',
 // Effective URL is HTTP POST /circles/
 // router.post('/', function(req, res) {
 router.post('/', function(req, res) {
-    console.log('inside post request', req.body);
+   // console.log('inside post request', req.body);
     try {
         circleProcessor.circlePost(req.body,
             function(err) {
                 if (err) {
-                    console.log('In router post neo');
+                  //  console.log('In router post neo');
                     res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
                 }
             });

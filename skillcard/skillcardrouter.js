@@ -12,11 +12,12 @@ let candidateneo = require('../candidate/candidateneoprocessor');
 router.get('/allcandidates', function(req, res) {
     candidate.find(function(err, candidates) {
       if (err) {
-        console.log(err);
+        //console.log(err);
         return res.status(500).json({message: err});
-    } else {
+    }
+     else {
         let candidateid = {};
-        console.log('Found candidates', candidates);
+       // console.log('Found candidates', candidates);
         return res.status(201).json({results: candidates});
     }// end of else
   });// end of find
@@ -25,20 +26,10 @@ router.get('/allcandidates', function(req, res) {
 
 // This will return all the candidates in the circle
 router.get('/searchcandidate/:circle', function(req, res) {
-  //   candidate.find(function(err,candidates) {
-  //     if (err) {
-  //       console.log(err);
-  //       return res.status(500).json({message:err});
-  //   } else {
-  //       var candidateid = {};
-  //       console.log ("Found candidates",candidates);
-  //       return res.status(201).json({results:candidates});
-  //   }// end of else
-  // });//end of find
-
-  console.log(req.params.circle);
+  
+  // console.log(req.params.circle);
   candidateneo.getcircle(req.params.circle, function(candidates) {
-    console.log('from router', candidates);
+    // console.log('from router', candidates);
     res.status(200).json(candidates);
 }, function(err) {
     res.status(500).json(err);
@@ -52,7 +43,7 @@ router.get('/searchcandidate/:circle', function(req, res) {
 
 router.get('/:candidateid', function(req, res) {
     candidate.find({ candidateid: req.params.candidateid }, function(error, candidate) {
-        if (candidate == '') {
+        if (candidate === '') {
             res.status(500).send('Candidate doesnt exist.. Register with candidate id');
         } else {
             async.parallel({
@@ -99,11 +90,11 @@ router.get('/:candidateid', function(req, res) {
             },
             function(err, results) {
                 if (err) {
-                    console.log('ERR: ', err);
+                   // console.log('ERR: ', err);
                     return res.status(500).json({ msg: err });
                 }
 
-                console.log('final result', results);
+               // console.log('final result', results);
                 return res.status(201).json({ result: results });
             }
             ); // end of Async

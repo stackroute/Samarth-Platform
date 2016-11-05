@@ -8,7 +8,7 @@ let schema = new Schema({
     fieldname: { type: String, required: true },
     instancename: { type: String, required: true },
     response: { type: String },
-    status: { type: String, required: true, default: 'pending', enum: ['pending', 'answered', 'closed'] }
+    status: { type: String, required:true, default:'pending', enum:['pending','answered','closed']}
 });
 
 // composite unique key

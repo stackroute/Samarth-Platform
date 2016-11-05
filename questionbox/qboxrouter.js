@@ -14,7 +14,7 @@ let fieldQCache = require('./fieldQCache');
 // Effective url is /candidate/:candidateid/qboxquestions
 
 router.get('/:candidateid/qboxquestions/', function(req, res) {
-   console.log('under get of ques');
+  // console.log('under get of ques');
     if (!req.params.candidateid) {
         throw new Error('Invalid request, requesting questions without candidate..!');
     }
@@ -58,7 +58,7 @@ router.get('/:candidateid/qboxquestions/', function(req, res) {
                 res.status(500).json(err);
             });
     } catch (err) {
-        console.log('Unexpected error occurred in fetching qbox questions: ', err);
+       // console.log('Unexpected error occurred in fetching qbox questions: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -95,7 +95,7 @@ router.get('/:candidateid/qboxquestions/queries', function(req, res) {
                 res.status(500).json(err);
             });
     } catch (err) {
-        console.log('Error occurred in fetching queryObject: ', err);
+      //  console.log('Error occurred in fetching queryObject: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -104,7 +104,7 @@ router.get('/:candidateid/qboxquestions/queries', function(req, res) {
 
 // Effective url is /candidates/:candidateid
 router.post('/:candidateId', function(req, res) {
-    console.log('inside adding question req', req.body.section);
+  //  console.log('inside adding question req', req.body.section);
 
     try {
         qboxProcessor.createNewQuestions(req.body, req.params.candidateId,
@@ -116,7 +116,7 @@ router.post('/:candidateId', function(req, res) {
             }
         );
     } catch (err) {
-        console.log('Error occurred in adding project: ', err);
+      //  console.log('Error occurred in adding project: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -125,7 +125,7 @@ router.post('/:candidateId', function(req, res) {
 
 // Effective url is /candidates/:candidateid
 router.patch('/:candidateId/:answer', function(req, res) {
-    console.log('inside updating question answer', req.body);
+   // console.log('inside updating question answer', req.body);
 
     try {
         qboxProcessor.updateQuestion(req.body, req.params.candidateId, req.params.answer,
@@ -137,7 +137,7 @@ router.patch('/:candidateId/:answer', function(req, res) {
             }
         );
     } catch (err) {
-        console.log('Error occurred in updating question: ', err);
+      //  console.log('Error occurred in updating question: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });

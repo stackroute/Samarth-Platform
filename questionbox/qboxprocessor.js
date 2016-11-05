@@ -13,7 +13,7 @@ function getAllBoxQuestions(successCB, errorCB) {
 }
 
 function getQuestions(candidateid, sections, skip, limit, successCB, errorCB) {
-  console.log('under ques processor');
+ // console.log('under ques processor');
     let findClause = { candidateid: candidateid, status: 'pending' };
     let pagination = { skip: parseInt(skip), limit: parseInt(limit) };
 
@@ -30,7 +30,7 @@ function getQuestions(candidateid, sections, skip, limit, successCB, errorCB) {
 }
 
  function createNewQuestions(newquestionobj, candidateId, sucessCB, errorCB) {
-   console.log('under create new ques------------------------->');
+  // console.log('under create new ques------------------------->');
     let questionObj = new qboxquestionModel({
         candidateid: candidateId,
         section: newquestionobj.section,
@@ -42,7 +42,7 @@ function getQuestions(candidateid, sections, skip, limit, successCB, errorCB) {
     // fieldQCache.getQboxQuestions(questionObj);
     questionObj.save(function(err, result) {
         if (err) {
-            console.log(err);
+          //  console.log(err);
             errorCB(err);
         }
         sucessCB(result);
@@ -50,21 +50,10 @@ function getQuestions(candidateid, sections, skip, limit, successCB, errorCB) {
 }
 
 function updateQuestion(questionobj, candidateId, answer, sucessCB, errorCB) {
-    // inserting data into skill database after entering and in question
-   /* var findClause = { "candidateid": candidateid };
+   
 
-        findClause['skillname'] = { $in: questionobj.instancename };
-
-     skill.find(findClause, function(error, colln) {
-        if (error) {
-            errorCB(error);
-        }
-        console.log(colln);
-        successCB(colln);
-    });
-   */
-
-    qboxquestionModel.update({ candidateid: candidateId, section: questionobj.section, fieldname: questionobj.fieldname, instancename: questionobj.instancename }, {
+    qboxquestionModel.update({candidateid: candidateId, section: questionobj.section,
+     fieldname: questionobj.fieldname, instancename: questionobj.instancename }, {
 
             $set: {
                 response: answer,

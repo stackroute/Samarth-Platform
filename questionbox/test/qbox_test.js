@@ -17,7 +17,8 @@ describe('Scenarios for API End point "GET /candidate/:candidateid/qboxquestions
                 done();
             });
     });
-}); // end of get scearnio
+}); 
+// end of get scearnio
 
 describe('Api for returning field question query statement "GET /fieldquestions/:section/"', function() {
     it('asking the candidate to answer or fill the pending field of profile data', function(done) {
@@ -31,4 +32,5 @@ describe('Api for returning field question query statement "GET /fieldquestions/
                 done();
             });
     });
-}); // end of get scearnio
+}); 
+// end of get scearnio

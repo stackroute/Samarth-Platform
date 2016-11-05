@@ -15,7 +15,7 @@ router.post('/client', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-        console.error('Error occurred in authorizing client ', err);
+       // console.error('Error occurred in authorizing client ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });
@@ -29,7 +29,7 @@ router.post('/candidate', function(req, res) {
             function(err, candidateProfile, token) {
                 // Success callback
                 if (err) {
-                    console.log('Err in authenticating ', err);
+                   // console.log('Err in authenticating ', err);
                     return res.status(403).json(err);
                 }
 
@@ -43,7 +43,7 @@ router.post('/candidate', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-        console.error('Error occurred in authorizing candidate ', err);
+       // console.error('Error occurred in authorizing candidate ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });

@@ -17,14 +17,14 @@ function createCoordinator(formobj, successPC, errorPC) {
         coordinatorPwd: formobj.pwd
     });
 
-    console.log('Going to save Coordinator');
+   // console.log('Going to save Coordinator');
     coordinatorObj.save(function(err, postdetails) {
-        console.log('inside save');
+       // console.log('inside save');
         if (err) {
-            console.log('not posted', err);
+           // console.log('not posted', err);
             errorPC(err);
         } else {
-            console.log('coordinator created', postdetails);
+           // console.log('coordinator created', postdetails);
             successPC(postdetails);
         }
     });
@@ -33,8 +33,8 @@ function createCoordinator(formobj, successPC, errorPC) {
 
 let insertCoordinator = function(newUser, callback, unauth) {
         let hashed_pwd = UserModel.methods.generateHash(newUser.pwd);
-        console.log('storing the hashed password');
-        console.log(hashed_pwd);
+        // console.log('storing the hashed password');
+        // console.log(hashed_pwd);
 
         let newUserObj = new coordinatoruser({
             email: newUser.email,
@@ -44,17 +44,17 @@ let insertCoordinator = function(newUser, callback, unauth) {
 
         newUserObj.save(function(err, user) {
             if (err) {
-                console.error('Error in signup user ', err);
+               // console.error('Error in signup user ', err);
                 callback(err, null);
                 return;
             }
 
             if (!user) {
-                console.error('Empty user signed up..!');
+              //  console.error('Empty user signed up..!');
                 callback('Unable to insert the user', null);
             }
 
-            console.log('from insertCoordinatort', user);
+           // console.log('from insertCoordinatort', user);
             callback(err, user);
         });
     }; // end of insertCoordinator

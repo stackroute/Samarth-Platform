@@ -9,7 +9,7 @@ route.post('/:candidateid/check', function(req, res)
 	try
 	{
 		let SkillMissingFields = misDetailProcessor.SkillMissingFields(req.body);
-		console.log(SkillMissingFields);
+	//	console.log(SkillMissingFields);
 	}
 	catch(err)
 	{
@@ -25,7 +25,7 @@ route.post('/education/clear/:candidateid', function(req, res)
 	try
 	{
 		let EducationMissingFields = misDetailProcessor.EducationMissingFields(req.body);
-		console.log(EducationMissingFields);
+	//	console.log(EducationMissingFields);
 	}
 	catch(err)
 	{
@@ -37,21 +37,22 @@ route.post('/education/clear/:candidateid', function(req, res)
 // for work section
 route.post('/work/:candidateid', function(req, res)
 {
-	console.log('hii m work');
+//	console.log('hii m work');
 	let a3 = misDetailProcessor.WorkMissingFields();
-	console.log(a3);
+//	console.log(a3);
 });// end of route.get req for work
 // for personalinfo section
 route.get('/personalinfo/:candidateid', function(req, res)
 {
 	let a4 = misDetailProcessor.PersonalInfoMissingFields();
-	console.log(a4);
+//	console.log(a4);
 });// end of route.get req for personalinfo
 // for projec section
 route.post('/project/:candidateid', function(req, res)
 {
-	console.log('under project');
+  //	console.log('under project');
 	let a5 = misDetailProcessor.ProjectMissingFields();
-	console.log(a5);
+  //	console.log(a5);
 });// end of route.get req for project
+
 module.exports = route;

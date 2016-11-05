@@ -11,10 +11,11 @@ let qualificationSchema = new Schema({
   	to: {type: String},
   	academicType: {type: String},							// whether primary,secondary,college etc
   	institute: {
-  		name: {type: String, required: true},				// name of the institute from where qualification attained
+  		name: {type: String, required:true},//name of the institute from where qualification attained
   		type: {type: String, required: true, enum: ['school', 'work', 'college']},
   		location: {type: String, required: true},						// location of institute
-  		affiliation: {type: String, required: true},					// Board name if a school, University name if a college etc
+  		affiliation: {type: String, required: true},/* Board name if a school, University name 
+                                                    if a college etc */
   		metadata: []
   	},
   	outcome: {
@@ -24,6 +25,6 @@ let qualificationSchema = new Schema({
   }]
 });
 
-let qualificationModel = mongoose.model('qualificationModel', qualificationSchema, 'qualifications');
+let qualificationModel = mongoose.model('qualificationModel',qualificationSchema,'qualifications');
 module.exports = qualificationModel;
 // module.exports=mongoose;

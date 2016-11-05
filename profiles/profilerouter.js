@@ -7,7 +7,7 @@ let profile = require('./profileschema');
 // effective url /profile/:candidateid
 
 router.get('/:candidateid', function(req, res) {
-    console.log('Inside get');
+   // console.log('Inside get');
     try {
         profileprocessor.getprofile(req.params.candidateid,
             function(profileObj) {
@@ -18,7 +18,7 @@ router.get('/:candidateid', function(req, res) {
             }
         );
     } catch (err) {
-        console.log('Error occurred in modifying old project: ', err);
+      //  console.log('Error occurred in modifying old project: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -45,9 +45,9 @@ router.post('/:candidateid', function(req, res) {
 // effective url /profile/:candidateid
 
 router.patch('/:candidateid', function(req, res) {
-    console.log('Inside patch');
+   // console.log('Inside patch');
     profile.find({ candidateid: req.params.candidateid }, function(error, profiles) {
-        if (profile == '') {
+        if (profile === '') {
             res.status(500).send('profile doesnt exist for given candidate id');
         } else if (!req.body.candidateid) {
                 try {
@@ -60,7 +60,7 @@ router.patch('/:candidateid', function(req, res) {
                         }
                     );
                 } catch (err) {
-                    console.log('Error occurred in modifying profile: ', err);
+                //  console.log('Error occurred in modifying profile: ', err);
                     res.status(500).json({
                         error: 'Internal error occurred, please report'
                     });
@@ -74,3 +74,4 @@ router.patch('/:candidateid', function(req, res) {
 });
 
 module.exports = router;
+    

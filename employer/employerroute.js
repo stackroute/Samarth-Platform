@@ -50,7 +50,7 @@ router.get('/getemployers', function(req, res) {
             res.status(500).json(error);
         });
     } catch (err) {
-        console.log('Error occurred in getting employers: ', err);
+      //  console.log('Error occurred in getting employers: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });

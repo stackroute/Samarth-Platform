@@ -17,7 +17,7 @@ describe('Get test suit for Qualification section', function()
 });
 
 describe('post Qualification Data Testing Suite', function() {
-    it('check for duplicate candidate_id while creating qualification section first time', function() {
+    it('check for duplicate candidate_id while creating qualification section first time',function(){
 
     });
 

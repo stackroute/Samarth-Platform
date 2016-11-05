@@ -8,11 +8,11 @@ router.post('/getcoordinator/', function(req, res) {
             function(err, coordinatorDetails, token) {
                 // Success callback
                 if (err) {
-                    console.log('Err in authenticating ', err);
+                   // console.log('Err in authenticating ', err);
                     return res.status(403).json(err);
                 }
 
-                console.log('from authroutes', coordinatorDetails);
+               // console.log('from authroutes', coordinatorDetails);
 
                 return res.json({
                     coordinator: coordinatorDetails,
@@ -24,7 +24,7 @@ router.post('/getcoordinator/', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-        console.error('Error occurred in authorizing coordinator ', err);
+       // console.error('Error occurred in authorizing coordinator ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });

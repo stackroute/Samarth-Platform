@@ -28,7 +28,7 @@ var authenticateCandidate = function(candidateId, clientToken, callback,
         },
         function(err, candidateProfile) {
             if (err) {
-                console.error("Error in lookup for candidate profile ", err);
+              //  console.error("Error in lookup for candidate profile ", err);
                 callback(err, null);
                 return;
             }
@@ -79,7 +79,7 @@ var verifyCandidateJWTToken = function(token, clientToken, callback, unauthCB) {
     jwt.verify(token, secretOrPrivateKey,
         function(err, payload) {
             if (err) {
-                console.error("Error in decoding token: ", err);
+              //  console.error("Error in decoding token: ", err);
                 unauthCB(err);
                 return;
             }

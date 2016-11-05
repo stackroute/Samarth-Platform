@@ -18,7 +18,7 @@ router.post('/sidenavdata', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-        console.error('Error in loading contents ', err);
+       // console.error('Error in loading contents ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });
@@ -41,7 +41,7 @@ router.post('/rubricdata', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-        console.error('Error in loading contents ', err);
+       // console.error('Error in loading contents ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });
@@ -64,7 +64,7 @@ router.post('/coordinatordata', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-        console.error('Error in loading contents ', err);
+       // console.error('Error in loading contents ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });
@@ -87,7 +87,7 @@ router.post('/coordinatoruserdata', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-        console.error('Error in loading contents ', err);
+       // console.error('Error in loading contents ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });
@@ -110,7 +110,7 @@ router.post('/circledata', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-        console.error('Error in loading contents ', err);
+       // console.error('Error in loading contents ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });

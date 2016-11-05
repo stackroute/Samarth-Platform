@@ -12,12 +12,3 @@ let circleSchema = new Schema({
 
 module.exports = circleSchema;
 
-// var circle = mongoose.model('Circle', circleSchema);
-// module.exports = circle;
-//     name: req.body.name,
-//        circleDiscription: req.body.circleDiscription,
-//        domain:req.body.domain
-//        circleType: req.body.circleType,
-//        visuality:req.body.visuality,
-//        admin:req.body.admin,
-//        profilePic:req.body.profilePic,

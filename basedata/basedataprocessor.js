@@ -16,7 +16,7 @@ let insertSidenavContents = function(items, callback, errfunc) {
 
         sidenavObj.save(function(err, contents) {
             if (err) {
-                console.error('Error in fetching the contents ', err);
+              //  console.error('Error in fetching the contents ', err);
                 callback(err, null);
                 return;
             }
@@ -26,8 +26,8 @@ let insertSidenavContents = function(items, callback, errfunc) {
     }; // end of insertSidenavContents
 
 let insertRubricContents = function(items, callback, errfunc) {
-        console.log(items.scale);
-        console.log(items.type);
+      //  console.log(items.scale);
+       // console.log(items.type);
 
         let rubricObj = new profileRubric({
             scale: items.scale,
@@ -40,12 +40,12 @@ let insertRubricContents = function(items, callback, errfunc) {
 
         rubricObj.save(function(err, contents) {
             if (err) {
-                console.error('Error in fetching the contents ', err);
+               // console.error('Error in fetching the contents ', err);
                 callback(err, null);
                 return;
             }
 
-            console.log('from insertRubricContents', contents);
+           // console.log('from insertRubricContents', contents);
             callback(err, contents);
         });
     }; // end of insertSidenavContents
@@ -63,7 +63,7 @@ let insertCoordinatorContents = function(items, callback, errfunc) {
 
         coordinatorObj.save(function(err, contents) {
             if (err) {
-                console.error('Error in fetching the contents ', err);
+               // console.error('Error in fetching the contents ', err);
                 callback(err, null);
                 return;
             }
@@ -82,7 +82,7 @@ let insertCoordinatorUserContents = function(items, callback, errfunc) {
 
         coordinatorUserObj.save(function(err, contents) {
             if (err) {
-                console.error('Error in fetching the contents ', err);
+               // console.error('Error in fetching the contents ', err);
                 callback(err, null);
                 return;
             }
@@ -92,7 +92,7 @@ let insertCoordinatorUserContents = function(items, callback, errfunc) {
     }; // end of insertCoordinatorContents
 
 let insertCircleContents = function(items, callback, errfunc) {
-        console.log(items);
+       // console.log(items);
 
         let circleObj = new circle({
             name: items.name,
@@ -105,7 +105,7 @@ let insertCircleContents = function(items, callback, errfunc) {
 
         circleObj.save(function(err, contents) {
             if (err) {
-                console.error('Error in fetching the contents ', err);
+              //  console.error('Error in fetching the contents ', err);
                 callback(err, null);
                 return;
             }

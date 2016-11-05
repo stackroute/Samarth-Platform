@@ -11,7 +11,7 @@ function getAllFieldQuestions(successCB, errorCB) {
 
 
 function getFieldQuestions(section, fieldNames, lang, successCB, errorCB) {
-    console.log('section-------' + section);
+   // console.log('section-------' + section);
     let findClause = { section: section };
 
     if (fieldNames.length > 0) {
@@ -31,7 +31,7 @@ function getFieldQuestions(section, fieldNames, lang, successCB, errorCB) {
 }
 
 function createFieldQuestion(newquestionobj, sucessCB, errorCB) {
-    console.log('Inside Field questons add processor', newquestionobj);
+   // console.log('Inside Field questons add processor', newquestionobj);
     let questionObj = new fieldQuestionsModel({
         section: newquestionobj.section,
         fieldname: newquestionobj.fieldname,
@@ -41,7 +41,7 @@ function createFieldQuestion(newquestionobj, sucessCB, errorCB) {
 
     questionObj.save(function(err, result) {
         if (err) {
-            console.log(err);
+           // console.log(err);
             errorCB(err);
         }
         sucessCB(result);

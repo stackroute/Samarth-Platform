@@ -5,7 +5,7 @@ let circleProcessor = require('../circlesBackEnd/circleProcessor');
 
 
 router.post('/createcoordinator', function(req, res) {
-    console.log('inside post request', req.body.mobile);
+   // console.log('inside post request', req.body.mobile);
     try {
         coordinator.findOne({
             coordinatorId: req.body.mobile
@@ -16,7 +16,7 @@ router.post('/createcoordinator', function(req, res) {
 
             if (crdntrObj) {
                 // Already exists
-                console.log('Coordinator already exists ', crdntrObj);
+              //  console.log('Coordinator already exists ', crdntrObj);
             } else {
                 // Does not exists
                 coordinatorprocessor.createCoordinator(req.body,
@@ -28,7 +28,7 @@ router.post('/createcoordinator', function(req, res) {
                     });
 
                 // for nepo4j rellation
-                console.log('create coordinatior request');
+               // console.log('create coordinatior request');
                 let circle = {
                     name: req.body.profession,
                     domain: 'profession',
@@ -40,7 +40,7 @@ router.post('/createcoordinator', function(req, res) {
                 circleProcessor.circlePost(circle,
                     function errorCB(err) {
                         if (err) {
-                            console.log('Error occurred in circle posting ', err);
+                           // console.log('Error occurred in circle posting ', err);
                             return res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
                         }
                     });
@@ -48,7 +48,7 @@ router.post('/createcoordinator', function(req, res) {
                     if (err) {
                         console.log(err);
                     }
-                    console.log('inside the function create relation');
+                   // console.log('inside the function create relation');
                 });
 
                 coordinatorprocessor.insertCoordinator(req.body,

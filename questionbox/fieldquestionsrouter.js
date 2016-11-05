@@ -3,16 +3,18 @@ let fieldquestions = require('./fieldquestions');
 let fieldQProcessor = require('./fieldQProcessor');
 
 /**
- * Api for returning field question query statement, for asking the candidate to answer or fill the pending field of profile data
- * can filter these query statements for a perticular section with and fieldnames (multiple) and language
+ * Api for returning field question query statement, for asking the candidate to answer or fill
+             the pending field of profile data
+ * can filter these query statements for a perticular section with and fieldnames (multiple) and
+     language
  */
 // HTTP GET /fieldquestions/:section/
 //     ?fieldname=[multiple values]&lang=[multiple values]
 // Effective url is /fieldquestions/:section
 router.get('/:section', function(req, res) {
-    console.log('route------' + req.query);
+   // console.log('route------' + req.query);
     if (!req.params.section) {
-        throw new Error('Invalid request, requesting field question query without mentioning profile section..!');
+      throw new Error('Invalid request, requesting field question query without mentioning profile section..!');
     }
 
     try {
@@ -30,7 +32,7 @@ router.get('/:section', function(req, res) {
                 return res.status(500).json(err);
             });
     } catch (err) {
-        console.log('Error occurred in fetching questions: ', err);
+       // console.log('Error occurred in fetching questions: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -39,7 +41,7 @@ router.get('/:section', function(req, res) {
 
 // Effective url is /fieldquestions/
 router.post('/', function(req, res) {
-    console.log('-----------post----------------------');
+   // console.log('-----------post----------------------');
     try {
         fieldQProcessor.createFieldQuestion(req.body,
             function(createdObj) {
@@ -50,7 +52,7 @@ router.post('/', function(req, res) {
             }
         );
     } catch (err) {
-        console.log('Unexpected error ocurred during field questions post: ', err);
+      //  console.log('Unexpected error ocurred during field questions post: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });

@@ -36,7 +36,7 @@
             let skillData = body.skills[0];
             let emptyFields = [];
             var j = 0;
-            var k = 0;
+           // var k = 0;
             for (var i in skillData) {
                 let key = i;
                 let val = skillData[i];
@@ -64,11 +64,11 @@
                         status: 'pending'
                     };
 
-                    console.log('question object --------->', newquestionobj);
+                  //  console.log('question object --------->', newquestionobj);
                     qboxProcessor.createNewQuestions(newquestionobj, candidateid, function(result) {
-                        console.log('Result from Suucess ------->', result);
+                      //  console.log('Result from Suucess ------->', result);
                     }, function(error) {
-                        console.log('Result from error', error);
+                      //  console.log('Result from error', error);
                     });
 
                     // ===================================================================
@@ -83,8 +83,8 @@
             return SkillsEmptyFieldQuery;
         }; // end skill missing fields
     let EducationMissingFields = function(body, candidateid) {
-        console.log('------------------------------------------------------------------------>');
-        console.log(body);
+       // console.log('------------------------------------------------------------------------>');
+       // console.log(body);
          let educationKeys = [];
             let educationQuery = [];
             let educationEmptyFieldQuery = [];
@@ -96,40 +96,7 @@
                     k++;
                 }
             }
-        // console.log(body);
-        // var i = 0;
-        // var k = 0;
-        // // console.log("------------------------------body------------------");
-        // var fields = {
-        //     title: body.qualification[0].title,
-        //     academicType: body.qualification[0].academicType,
-        //     batch: body.qualification[0].batch,
-        //     result: body.qualification[0].outcome.result,
-        //     unit: body.qualification[0].outcome.unit,
-        //     name: body.qualification[0].institute.name,
-        //     type: body.qualification[0].institute.type,
-        //     affiliation: body.qualification[0].institute.affiliation,
-        //     location: body.qualification[0].institute.location
-        // };
-        // var tempArray = [];
-        // var fieldsName = ["title", "academicType", "batch",
-        //     "result", "unit", "name",
-        //     "type", "affiliation", "location"
-        // ];
-        // var arrayFields = [fields.title, fields.academicType, fields.batch,
-        //     fields.result, fields.unit, fields.name,
-        //     fields.type, fields.affiliation, fields.location
-        // ];
-        // for (i = 0; i < arrayFields.length; i++) {
-        //     if (arrayFields[i] == null) {
-        //         console.log(k);
-        //         tempArray[k] = fieldsName[i];
-        //         k++;
-
-        //     } //end if
-
-        // } //end for
-        // return tempArray;
+        
     };// end education missing fields
     let WorkMissingFields = function() {
         return 'work';
@@ -140,6 +107,7 @@
     let ProjectMissingFields = function() {
         return 'project';
     };
+
     module.exports = {
         questions: questions,
         SkillMissingFields: SkillMissingFields,

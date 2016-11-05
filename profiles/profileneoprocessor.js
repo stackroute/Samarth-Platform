@@ -4,7 +4,7 @@ let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
 
 createProfessionNode = function(req, res) {
 	db.cypher({
-		query: 'MERGE (pr:Profession {name:{profession}}) MERGE (p:Person{name:{candidateid}}) CREATE (p)-[:working_as]->(pr)',
+		query: 'MERGE(pr:Profession {name:{profession}})MERGE (p:Person{name:{candidateid}}) CREATE (p)-[:working_as]->(pr)',
 		params: {
 			profession: req.profession,
 			candidateid: req.candidateid
@@ -13,9 +13,9 @@ createProfessionNode = function(req, res) {
 	},
 	function(err, results) {
 		if(err) {
-			console.log(err);
+		//	console.log(err);
 		}else{
-			console.log('***************************************** Profession Finished');
+		// console.log('***************************************** Profession Finished');
 		}
 	});
 };

@@ -15,7 +15,7 @@ router.get('/:candidateId', function(req, res) {
                 res.status(500).json(err);
             });
     } catch (err) {
-        console.log('Error occurred in fetching project: ', err);
+       // console.log('Error occurred in fetching project: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -26,9 +26,9 @@ router.get('/:candidateId', function(req, res) {
 // HTTP POST project/:candidateId
 // effective url project/:candidateId
 router.post('/:candidateId', function(req, res) {
-    console.log('inside adding project', req.body);
+  //  console.log('inside adding project', req.body);
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
-        if (result == '') {
+        if (result === '') {
             res.status(500).send('Register the candidate first before adding a project');
         } // end if
         else {
@@ -42,7 +42,7 @@ router.post('/:candidateId', function(req, res) {
                     }
                 );
             } catch (err) {
-                console.log('Error occurred in adding project: ', err);
+               // console.log('Error occurred in adding project: ', err);
                 res.status(500).json({
                     error: 'Internal error occurred, please report'
                 });
@@ -57,7 +57,7 @@ router.post('/:candidateId', function(req, res) {
 // effective url project/:candidateId/:projectName
 router.patch('/:candidateId/:projectName', function(req, res) {
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
-        if (result == '') {
+        if (result === '') {
             res.status(500).send('Add Project with Candidate id before update');
         } else {
             try {
@@ -70,7 +70,7 @@ router.patch('/:candidateId/:projectName', function(req, res) {
                     }
                 );
             } catch (err) {
-                console.log('Error occurred in updating: ', err);
+              //  console.log('Error occurred in updating: ', err);
                 res.status(500).json({
                     error: 'Internal error occurred, please report'
                 });

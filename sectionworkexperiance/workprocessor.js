@@ -8,10 +8,10 @@ function getworkexp(candidateid, successCB, errorCB) {
 
     work.find({ candidateid: candidateid }, function(err, workexps) {
         if (err) {
-            console.log(err);
+          //  console.log(err);
             errorCB(err);
         }
-        console.log(workexps);
+       // console.log(workexps);
         successCB(workexps);
     });
 }
@@ -24,15 +24,15 @@ function createworkexp(formobj, sucessCB, errorCB) {
         workexperience: []
     });
 
-    console.log('About to create new work experience:', wrkexpObj);
+   // console.log('About to create new work experience:', wrkexpObj);
 
     wrkexpObj.save(function(err, result) {
-        console.log('inside save');
+       // console.log('inside save');
         if (err) {
-            console.log(err);
+           // console.log(err);
             errorCB(err);
         }
-        console.log('New work experience created', result);
+       // console.log('New work experience created', result);
         sucessCB(result);
 
 

@@ -9,7 +9,7 @@ let work = require('./workschema');
 router.get('/:candidateid', function(req, res) {
     // console.log("Request received for emp id: ", req.params.empid);
     workProcessor.getworkexp(req.params.candidateid, function(workexps) {
-        console.log(workexps);
+        // console.log(workexps);
         res.status(201).json(workexps);
     }, function(err) {
         res.status(500).json({ error: 'Internal error occurred' });
@@ -22,13 +22,13 @@ router.get('/:candidateid', function(req, res) {
 // effective url work/:candidateid
 router.post('/:candidateid', function(req, res) {
     work.find({ candidateid: req.params.candidateid }, function(err, result) {
-        console.log('inside get');
-        if (result == '') {
+        // console.log('inside get');
+        if (result === '') {
             res.status(500).send('Register the Candidate before adding work experience ');
         } // end if
         else {
             workProcessor.addworkexp(req.body, req.params.candidateid, function(works) {
-                console.log(works);
+                // console.log(works);
 
                 res.status(201).json(works);
             }, function(err) {
@@ -38,19 +38,21 @@ router.post('/:candidateid', function(req, res) {
     }); // end find
 }); // end post
 
-/* update the types of work for the organisation with given candidate id note:(pass every field from body) */
+/* update the types of work for the organisation with given candidate id 
+note:(pass every field from body) */
+
 // HTTP PATCH /work/:candidateid/::organisation
 // effective url work/:candidateid/::organisation
 router.patch('/:candidateid/:workplace', function(req, res) {
     work.find({ candidateid: req.params.candidateid }, function(err, result) {
-        if (result == '') {
+        if (result === '') {
             res.status(500).send('Add the work experience with the candidate id before updating');
         } else {
             try {
-                console.log('inside new workexperiance post');
+                // console.log('inside new workexperiance post');
                 workProcessor.updateworkexp(req.body, req.params.candidateid, req.params.workplace,
                     function(work) {
-                        console.log(work);
+                        // console.log(work);
                         res.status(201).json(work);
                     },
                     function(err) {
@@ -58,7 +60,7 @@ router.patch('/:candidateid/:workplace', function(req, res) {
                     });
             } // end try
             catch (err) {
-                console.log('Error occurred in updating new workexperiance: ', err);
+                // console.log('Error occurred in updating new workexperiance: ', err);
                 res.status(500).json({
                     error: 'Internal error occurred, please report'
                 });

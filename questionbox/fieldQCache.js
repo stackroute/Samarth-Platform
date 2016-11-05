@@ -26,7 +26,7 @@
           },
 
           getFieldQuestion: function(section, fieldName, lang, callback) {
-              console.log('--sectionInCache----' + section);
+             // console.log('--sectionInCache----' + section);
               let queykey = this.makeFieldQCacheKey(section, fieldName, lang);
               redisClient.get(queykey, callback);
           },
@@ -80,11 +80,11 @@
 
                    let multi = redisClient.multi();
 
-                  for (i = 0; i < colln.length; ++i) {
+                  for ( var i = 0; i < colln.length; ++i) {
                       let fieldQuestion = colln[i];
 
                       let key = cache.makeFieldQCacheKey(fieldQuestion.section, fieldQuestion.fieldname, fieldQuestion.lang);
-                      console.log('-----keyCache-------' + key);
+                    //  console.log('-----keyCache-------' + key);
                       let value = fieldQuestion.query;
                       missingDetailsProcessor.questions(key, value);
                       multi.set(key, value);

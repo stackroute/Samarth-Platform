@@ -3,11 +3,11 @@ let profile = require('./profileschema');
 function getprofile(candidateId, successCB, errorCB) {
     profile.find({ candidateid: candidateId }, function(error, result) {
         if (error) {
-            console.log(error);
+           // console.log(error);
             errorCB(error);
         }
 
-        console.log('Inside get Project Function' + result);
+       // console.log('Inside get Project Function' + result);
         successCB(result);
     });
 }
@@ -19,11 +19,11 @@ function createNewprofile(profileobj, successCB, errorCB) {
         profession: profileobj.profession
     });
 
-    console.log('About to save a new profile: ', projectObj);
+   // console.log('About to save a new profile: ', projectObj);
 
     projectObj.save(function(err, savedObj) {
         if (err) {
-            console.log('Error in saving profile: ', err);
+          //  console.log('Error in saving profile: ', err);
             errorCB(err);
         }
 
