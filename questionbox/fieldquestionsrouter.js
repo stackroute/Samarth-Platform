@@ -1,5 +1,5 @@
  let router = require('express').Router();
-let fieldquestions = require('./fieldquestions');
+// let fieldquestions = require('./fieldquestions');
 let fieldQProcessor = require('./fieldQProcessor');
 
 /**
@@ -14,15 +14,16 @@ let fieldQProcessor = require('./fieldQProcessor');
 router.get('/:section', function(req, res) {
    // console.log('route------' + req.query);
     if (!req.params.section) {
-      throw new Error('Invalid request, requesting field question query without mentioning profile section..!');
+      throw new Error('Invalid request, requesting field question query' +
+       'without mentioning profile section..!');
     }
 
     try {
         let fieldNames = req.query.fieldname ? req.query.fieldname.split(',') : [];
         let lang = req.query.lang ? req.query.lang.split(',') : [];
-        let obj = [];
+        // let obj = [];
 
-        let question = fieldQProcessor.getFieldQuestions(req.params.section,
+         fieldQProcessor.getFieldQuestions(req.params.section,
             fieldNames,
             lang,
             function(question) {

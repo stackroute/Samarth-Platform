@@ -1,22 +1,16 @@
-  let fieldQuestionsModel = require('./fieldquestions');
-  let qboxQuestionsModel = require('./qboxquestions');
+  // let fieldQuestionsModel = require('./fieldquestions');
+  // let qboxQuestionsModel = require('./qboxquestions');
   let fieldQProcessor = require('./fieldQProcessor');
-  let qboxprocessor = require('./qboxprocessor');
+  // let qboxprocessor = require('./qboxprocessor');
   let missingDetailsProcessor = require('./missingDetailsProcessor');
   let async = require('async');
   let redis = require('redis');
   let redisClient = redis.createClient();
-  let boxQuestion;
+  // let boxQuestion;
 
   module.exports = (function() {
       return {
           redisKeyPrefix: 'samarth_fieldqs_',
-          makeQboxCacheKey: function(section, fieldname, status, response) {
-              let Questionkey = this.redisKeyPrefix + section + '_' + fieldname + '_' + status + '_' + response;
-              Questionkey = Questionkey.toLowerCase();
-              return key;
-          },
-
           makeFieldQCacheKey: function(section, fieldName, lang) {
               // console.log("-------sectioncache-----"+section);
               let key = this.redisKeyPrefix + section + '_' + fieldName + '_' + lang;
@@ -31,19 +25,19 @@
               redisClient.get(queykey, callback);
           },
           setBoxQuestion: function(boxQuestion) {
-              let Questionkey = this.makeQboxCacheKey(boxQuestion.section, boxQuestion.fieldname, boxQuestion.status, boxQuestion.response);
+              let Questionkey = 
+              this.makeQboxCacheKey(boxQuestion.section, 
+                boxQuestion.fieldname, boxQuestion.status, boxQuestion.response);
               let questionvalue = boxQuestion.instancename;
               redisClient.set(Questionkey, questionvalue);
           },
           setFieldQuestion: function(fieldQuestion) {
-              let key = this.makeFieldQCacheKey(fieldQuestion.section, fieldQuestion.fieldnamem, fieldQuestion.lang);
+              let key = 
+              this.makeFieldQCacheKey(fieldQuestion.section, 
+                fieldQuestion.fieldnamem, fieldQuestion.lang);
               let value = fieldQuestion.query;
 
               redisClient.set(key, value);
-          },
-          getQboxQuestions: function(quesObj) {
-              boxQuestion = quesObj;
-              // console.log("--------->getQboxQuestions------------>"+boxQuestion.section);
           },
           clearCache: function(callback) {
               let fqKey = this.redisKeyPrefix + '*';
@@ -80,25 +74,29 @@
 
                    let multi = redisClient.multi();
 
-                  for ( var i = 0; i < colln.length; ++i) {
+                  for ( let i = 0; i < colln.length; i=i+1) {
                       let fieldQuestion = colln[i];
 
-                      let key = cache.makeFieldQCacheKey(fieldQuestion.section, fieldQuestion.fieldname, fieldQuestion.lang);
+                      let key = 
+                      cache.makeFieldQCacheKey(fieldQuestion.section, 
+                        fieldQuestion.fieldname, fieldQuestion.lang);
                     //  console.log('-----keyCache-------' + key);
                       let value = fieldQuestion.query;
                       missingDetailsProcessor.questions(key, value);
                       multi.set(key, value);
                   } // end for
 
-                  multi.exec(function(err, replies) {
+                  multi.exec(function(err) {
                       if (err) {
-                          console.log('Error in loading field questions to redis ', err);
+                          // console.log('Error in loading field questions to redis ', err);
                       } // end if
 
-                      console.log('Loadded ', replies.length, ' number of field questions out of ', colln.length);
+                      // console.log('Loadded ', replies.length, ' number of 
+                      // field questions out of ', colln.length);
                   }); // end multi exec
               }, function(err) {
-                  throw new Error('Could not load Field Questions to cache.., please check error and retry..!', err);
+                  throw new Error('Could not load Field Questions'+
+                  ' to cache.., please check error and retry..!', err);
               }); // end loadcache
           }
       };

@@ -32,7 +32,7 @@ let professiontoskillroutr = require(
 let rubricRoute = require('./rubricbackend/rubricroute');
 let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
-let misDetailRoute = require('./questionbox/missingDetailsRouter');
+
 
 let app = express();
 

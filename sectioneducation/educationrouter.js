@@ -21,7 +21,7 @@ router.get('/:candidateid', function(req, res) {
 // effective url /education//:candidateid
 router.post('/:candidateID', function(req, res) {
    // console.log(req.body);
-    let EducationMissingFields = misDetailProcessor.EducationMissingFields(req.body, req.params.candidateid);
+    let EducationMissingFields = misDetailProcessor.EducationMissingFields();
 
     eduModel.find({ candidateid: req.params.candidateID }, function(err, result) {
         if (result === '') {
