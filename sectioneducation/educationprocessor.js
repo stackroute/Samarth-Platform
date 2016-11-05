@@ -47,7 +47,8 @@ function createNewEducation(formobj, successCB, errorCB) {
 }
 
 function addEducation(updatedEmpObj, candidateId, successCB, errCB) {
-    eduModel.update({ candidateid: candidateId }, { $push: { qualification: updatedEmpObj.qualification[0] } },
+    eduModel.update({ candidateid: candidateId }, { $push: 
+                                { qualification: updatedEmpObj.qualification[0] } },
         function() {
             successCB('qualification updateded');
         }

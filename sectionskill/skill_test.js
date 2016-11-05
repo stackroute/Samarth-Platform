@@ -21,9 +21,10 @@ describe('Get Skill Data Testing Suite', function() {
                 expect(res.body).to.be.not.equal(undefined);
                 done();
             });
-        it('check if skill section exits while retreiving skills for candidate profile', function(done) {
+        it('check if skill section exits while retreiving skills for candidate profile',
+                     function(done) {
 
-        });
+                });
     });
 }); // end of describe
 describe('post Skill Data Testing Suite', function() {
@@ -83,13 +84,13 @@ describe('post Skill Data Testing Suite', function() {
 describe('Update Skill Data Testing Suite', function() {
     it('updating a skill while skill section doesnt exists ', function() {
         request.patch('/skill/:candidateId')
-                .expect(500)
-                .end(function(err, res) {
-                    if (err) {
-                        // done(err);
-                    }
-                    expect(res.body).to.equal('skill section doesnt exist while updating new skill');
-                    done();
+            .expect(500)
+            .end(function(err, res) {
+                if (err) {
+                    // done(err);
+                }
+                expect(res.body).to.equal('skill section doesnt exist while updating new skill');
+                done();
         });
     });
 

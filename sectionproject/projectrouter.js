@@ -52,7 +52,8 @@ router.post('/:candidateId', function(req, res) {
 });
 
 
-/* Update a project by passing the passing name in the api for the given candidate id NOTE:(send every field of the project obj while updating in the body) */
+/* Update a project by passing the passing name in the api for the given candidate id 
+            NOTE:(send every field of the project obj while updating in the body) */
 // HTTP POST project/:candidateId/:projectName
 // effective url project/:candidateId/:projectName
 router.patch('/:candidateId/:projectName', function(req, res) {
@@ -61,8 +62,8 @@ router.patch('/:candidateId/:projectName', function(req, res) {
             res.status(500).send('Add Project with Candidate id before update');
         } else {
             try {
-                projectProcessor.updateProject(req.params.projectName, req.body, req.params.candidateId,
-                    function(projectObj) {
+                projectProcessor.updateProject(req.params.projectName, req.body, 
+                    req.params.candidateId, function(projectObj) {
                         res.status(201).json(projectObj);
                     },
                     function(err) {

@@ -30,7 +30,8 @@ function createNewprofile(profileobj, successCB, errorCB) {
         successCB(savedObj);
     });
 }
-function modifyprofile(profileobj, candidateid, successCB, errorCB) {
+                                                        // , errorCB
+function modifyprofile(profileobj, candidateid, successCB) {
    profile.update({ candidateid: candidateid}, profileobj.profile,
 
       function() {
