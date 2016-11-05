@@ -54,7 +54,8 @@ function createNewSkill(formobj, sucessCB, errorCB) {
 }
 
 // add skills into the existing records
-function addSkill(skillObj, candidateid, sucessCB, errorCB) {
+                                                // , errorCB
+function addSkill(skillObj, candidateid, sucessCB) {
     skill.update({
             candidateid: candidateid
         }, {
@@ -69,8 +70,8 @@ function addSkill(skillObj, candidateid, sucessCB, errorCB) {
     );
 }
 
-
-function updateSkill(skillname, skillobj, candidateid, sucessCB, errorCB) {
+                                                            // , errorCB
+function updateSkill(skillname, skillobj, candidateid, sucessCB) {
     skill.update({
             candidateid: candidateid,
             'skills.skillname': skillname
@@ -89,8 +90,8 @@ function updateSkill(skillname, skillobj, candidateid, sucessCB, errorCB) {
 
     );
 }
-
-function deleteASkill(skillname, candidateid, sucessCB, errorCB) {
+                                                    // , errorCB
+function deleteASkill(skillname, candidateid, sucessCB) {
     skill.update({
         candidateid: candidateid,
         'skills.skillname': skillname
@@ -105,8 +106,8 @@ function deleteASkill(skillname, candidateid, sucessCB, errorCB) {
         sucessCB('skill object deleted');
     });
 }
-
-function deleteSkill(candidateid, sucessCB, errorCB) {
+                                        // , errorCB
+function deleteSkill(candidateid, sucessCB) {
     skill.update({
         candidateid: candidateid,
         'skills.skillname': skillname

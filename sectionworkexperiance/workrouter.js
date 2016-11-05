@@ -51,9 +51,9 @@ router.patch('/:candidateid/:workplace', function(req, res) {
             try {
                 // console.log('inside new workexperiance post');
                 workProcessor.updateworkexp(req.body, req.params.candidateid, req.params.workplace,
-                    function(work) {
+                    function(work1) {
                         // console.log(work);
-                        res.status(201).json(work);
+                        res.status(201).json(work1);
                     },
                     function(err) {
                         res.status(500).json({ error: 'Internal error occurred' });

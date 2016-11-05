@@ -42,18 +42,20 @@ function createworkexp(formobj, sucessCB, errorCB) {
 }
 
 // add skills into the existing records
-function addworkexp(wsObj, candidateid, sucessCB, errorCB) {
-    work.update({ candidateid: candidateid }, { $push: { workexperience: wsObj.workexperience[0] } },
+                                            // , errorCB
+function addworkexp(wsObj, candidateid, sucessCB) {
+    work.update({ candidateid: candidateid }, { $push: { workexperience:
+                                                 wsObj.workexperience[0] } },
         function() {
-            // console.log("*************************************************************",wsObj.workexperience[0].duration.duration);
+            
             // console.log("successfully added to ",doc);
             sucessCB();
         }
         );
 }
 
-
-function updateworkexp(wsobj, candidateid, workplace, sucessCB, errorCB) {
+                                                             // , errorCB
+function updateworkexp(wsobj, candidateid, workplace, sucessCB) {
     work.update({ candidateid: candidateid, 'workexperience.workplace': workplace },
         {$set:
         {'workexperience.$.designation': wsobj.workexperience[0].designation,

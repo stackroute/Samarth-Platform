@@ -13,9 +13,9 @@ router.get('/:candidateid', function(req, res) {
     // console.log("Request received for emp id: ", req.params.empid);
     try {
         skillProcessor.getSkill(req.params.candidateid,
-            function(skill) {
+            function(skill1) {
                 // console.log(skill);
-                res.status(200).json(skill);
+                res.status(200).json(skill1);
             },
             function(err) {
                 res.status(500).json(err);
@@ -62,7 +62,7 @@ router.post('/:candidateid', function(req, res) {
                     req.body.skills[0].skillname,
                     req.params.candidateid,
                     function(success) {
-                        // console.log("---------------------------------------skills matched",success);
+                        
                         let v = success;
                         if (v > 0) {
                             skillProcessor.addSkill(req.body, req.params.candidateid,
@@ -84,7 +84,7 @@ router.post('/:candidateid', function(req, res) {
                                     // res.status(201).json(skills);
                                     res.status(201).json(skills);
                                 },
-                                function(err) {
+                                function(err1) {
                                     res.status(500).send('invalid data');
                                 });
                         } else {
@@ -111,7 +111,8 @@ router.post('/:candidateid', function(req, res) {
     }); // end find
 }); // end post
 
-/* Update a given skill by passing the skillname for the given candidate id.. NOTE:(provide the skill object with evry field)*/
+/* Update a given skill by passing the skillname for the given candidate id.. 
+                    NOTE:(provide the skill object with evry field)*/
 // HTTP PATCH /skill/:candidateid/:skillname
 // effective url /skill/:candidateid/:skillname
 router.patch('/:candidateid/:skillname', function(req, res) {
@@ -129,11 +130,11 @@ router.patch('/:candidateid/:skillname', function(req, res) {
                 // console.log("inside new skill post")
                 skillProcessor.updateSkill(req.params.skillname, req.body,
                     req.params.candidateid,
-                    function(skill) {
+                    function(skill2) {
                         // console.log(skill);
-                        res.status(201).json(skill);
+                        res.status(201).json(skill2);
                     },
-                    function(err) {
+                    function(err2) {
                         res.status(500).send('Invalid data');
                     });
             } // end try

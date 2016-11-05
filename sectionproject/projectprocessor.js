@@ -44,16 +44,16 @@ function createNewProject(formobj, sucessCB, errorCB) {
         sucessCB(result);
     });
 }
-
-function addProject(oldProjectObj, candidateId, successCB, errorCB) {
+                                                        //, errorCB
+function addProject(oldProjectObj, candidateId, successCB) {
     project.update({ candidateid: candidateId }, { $push: { projects: oldProjectObj.projects[0] } },
         function() {
             successCB('project added');
         }
     );
 }
-
-function updateProject(projectName, oldProjectObj, candidateId, successCB, errorCB) {
+                                                                    // , errorCB
+function updateProject(projectName, oldProjectObj, candidateId, successCB) {
    // console.log('Inside update of project');
     project.update({ candidateid: candidateId, 'projects.name': projectName }, {
             $set: {
@@ -73,8 +73,8 @@ function updateProject(projectName, oldProjectObj, candidateId, successCB, error
         }
     );
 }
-
-function deleteProject(candidateId, projectName, successCB, errorCB) {
+                                                        //, errorCB 
+function deleteProject(candidateId, projectName, successCB) {
     project.update({ candidateid: candidateId }, {
         $pull: { projects: { name: projectName } }
     }, function() {
