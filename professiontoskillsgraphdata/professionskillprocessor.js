@@ -16,7 +16,12 @@ createprofessiontoskill = function(profession, skills, roles, success, error) {
           MERGE (s:Skill {name:skillName})
           MERGE (p)-[:PRIMARY]->(s)
           MERGE (s)-[:USEDIN]->(p))
-         FOREACH (roleName in ["Software Engineer", "Front-end Developer", "UI Developer", "Tester"," Web Developer"," Backend Developer"," Programmer"," Sr. Programmer"," Product engineer"," Support Engineer", "Sr. Engineer"] |  MERGE (ro:Role {name:roleName})  MERGE (p)-[r3:HASDESIGNATION]->(ro)) MERGE (c:circle {name:"IT/ITES"})  MERGE (p)-[r4:HASCIRCLE]->(c)
+         FOREACH (roleName in ["Software Engineer", "Front-end Developer", "UI Developer",
+          "Tester"," Web Developer"," Backend Developer"," Programmer"," Sr. Programmer",
+          " Product engineer"," Support Engineer", "Sr. Engineer"] |  
+          MERGE (ro:Role {name:roleName}) 
+           MERGE (p)-[r3:HASDESIGNATION]->(ro)) MERGE (c:circle {name:"IT/ITES"}) 
+            MERGE (p)-[r4:HASCIRCLE]->(c)
         */
 
         params: {

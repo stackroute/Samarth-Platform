@@ -3,8 +3,11 @@ module.exports = {
   "env": {
     "browser": true,
     "node": true,
-    "es6": true
+    "es6": true,
+    "mocha": true
+       
   },
+
   
   "plugins": ["react", "angular"],
 
@@ -154,7 +157,7 @@ module.exports = {
     //
     //"indent": [1, 2], // this option sets a specific tab width for your code (off by default)
     // "brace-style": 1, // enforce one true brace style (off by default)
-    "camelcase": 1, // require camel case names
+    "camelcase": 0, // require camel case names
     "comma-spacing": [1, {"before": false, "after": true}], // enforce spacing before and after comma
     "comma-style": [1, "last"], // enforce one true comma style (off by default)
     "consistent-this": [1, "_this"], // enforces consistent naming when capturing the current execution context (off by default)
@@ -167,7 +170,7 @@ module.exports = {
     "new-parens": 1, // disallow the omission of parentheses when invoking a constructor with no arguments
     "newline-after-var": 0, // allow/disallow an empty newline after var statement (off by default)
     "no-array-constructor": 1, // disallow use of the Array constructor
-    "no-inline-comments": 1, // disallow comments inline after code (off by default)
+    "no-inline-comments": 0, // disallow comments inline after code (off by default)
     "no-lonely-if": 1, // disallow if as the only statement in an else block (off by default)
     "no-mixed-spaces-and-tabs": 1, // disallow mixed spaces and tabs for indentation
     "no-multiple-empty-lines": [1, {"max": 2}], // disallow multiple empty lines (off by default)
@@ -214,7 +217,7 @@ module.exports = {
     // the functionality is the same.
     //
     "max-depth": [2, 3], // specify the maximum depth that blocks can be nested (off by default)
-    "max-len": [2, 100, 2], // specify the maximum length of a line in your program (off by default)
+    "max-len": [2, 160, 2], // specify the maximum length of a line in your program (off by default)
     "max-params": [2, 5], // limits the number of parameters that can be used in the function declaration. (off by default)
     "max-statements": 0, // specify the maximum number of statement allowed in a function (off by default)
     "no-bitwise": 0, // disallow use of bitwise operators (off by default)
