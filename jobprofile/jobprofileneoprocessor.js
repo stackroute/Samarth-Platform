@@ -16,9 +16,9 @@ createEmployerNode = function(job, res) {
         }
     }, function(err, results) {
         if (err) {
-            console.log('Error in inserting relation in neo4j' + err);
+          //  console.log('Error in inserting relation in neo4j' + err);
         } else {
-            console.log('Success in inserting neo4j....' + results);
+          //  console.log('Success in inserting neo4j....' + results);
         }
     });
 };

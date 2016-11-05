@@ -15,9 +15,9 @@ router.post('/jobpost', function(req, res) {
                 } else {
                     jobProfileNeo.createEmployerNode(jobData, function(err, stat) {
                         if (err) {
-                            console.log(err);
+                          //  console.log(err);
                         } else {
-                            console.log(stat);
+                          //  console.log(stat);
                         }
                     });
                     jobProfileProcessor.postJob(jobData, function sucessCB(message) {
@@ -101,7 +101,7 @@ router.get('/getjobdetail/:jobID/:employerID', function(req, res) {
 /* Effective url : /jobProfile/checkIDAvailable/:jobID/:companyName*/
 router.get('/checkidavailable/:jobID/:employerID', function(req, res) {
     try {
-        jobProfileProcessor.getJobDetails(req.params.jobID, req.params.employerID, 
+        jobProfileProcessor.getJobDetails(req.params.jobID, req.params.employerID,
             function sucessCB(result) {
             let length = result.length;
             res.status(200).json(length);

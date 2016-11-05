@@ -46,7 +46,7 @@ router.post('/createcoordinator', function(req, res) {
                     });
                 circleProcessor.createRelation(req.body, function(err) {
                     if (err) {
-                        console.log(err);
+                      //  console.log(err);
                     }
                    // console.log('inside the function create relation');
                 });
@@ -66,7 +66,7 @@ router.post('/createcoordinator', function(req, res) {
             }
         });
     } catch (err) {
-        console.log('Error occurred in creating new coordinator : ', err);
+      //  console.log('Error occurred in creating new coordinator : ', err);
     } // end c
 });
 

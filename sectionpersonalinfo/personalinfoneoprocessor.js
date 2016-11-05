@@ -11,9 +11,9 @@ createNode = function(req, errRes) {
 	},
 	function(err, results) {
 		if (err) {
-			console.log(err);
+			// console.log(err);
 		}
-		console.log('*******************************************************Location Finished');
+	//	console.log('*******************************************************Location Finished');
 
 		errRes(results);
 	});
@@ -27,7 +27,7 @@ getbyLocation = function(req, err) {
 	},
 	function(err, results) {
 		if(err) {
-			console.log(err);
+		//	console.log(err);
 		}else{
 			return results;
 		}

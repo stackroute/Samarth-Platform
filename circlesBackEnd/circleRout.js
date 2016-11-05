@@ -33,9 +33,9 @@ router.post('/circlerelation',
        // console.log('post request for relation');
         try {
             circleProcessor.createRelation(req, function(err) {
-                console.log(err);
+            //    console.log(err);
             }, function(result) {
-                console.log(result);
+              //  console.log(result);
             });
         } catch (err) {
             res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });

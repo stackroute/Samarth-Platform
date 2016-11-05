@@ -66,7 +66,7 @@ let SkillMissingFields = function(body, candidateid) {
                 response: ' ',
                 status: 'pending'
             };
-            console.log('question object --------->', newquestionobj);
+          //  console.log('question object --------->', newquestionobj);
             qboxProcessor.createNewQuestions(newquestionobj, candidateid, function(result) {
                 // console.log("--------->result for pendind fields------->"+result);
             }, function(error) {
