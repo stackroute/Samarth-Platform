@@ -37,7 +37,7 @@ let misDetailRoute = require('./questionbox/missingDetailsRouter');
 let app = express();
 
 app.onAppStart = function(addr) {
-    console.log('Samarth Platform web services is now Running on port:', addr.port);
+   // console.log('Samarth Platform web services is now Running on port:', addr.port);
 
     mongoose.set('debug', true);
     /* mongoose.set('debug', function(coll, method, query, doc[, options]) {
@@ -60,9 +60,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 process.on('SIGINT', function() {
-    console.log('Going to unload all data from field questions cache...!');
+   // console.log('Going to unload all data from field questions cache...!');
     fieldQCache.clearCache(function() {
-        console.log('Done unloading Field Question Cache ');
+     //   console.log('Done unloading Field Question Cache ');
         process.exit(0);
     });
 });
@@ -85,7 +85,7 @@ function isAuthenticated(req, res, next) {
     let token = req.body.token || req.query.token || req.headers['x-access-token'];
 
     if (!token) {
-        console.log('Token not found for authentication validation....!');
+      //  console.log('Token not found for authentication validation....!');
         return res.status(403).json({
             error: 'Invalid user request or unauthorised request..!'
         });

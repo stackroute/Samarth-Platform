@@ -9,7 +9,7 @@ gulp.task('lint-fix', ['eslint-fix']);
 
 function isFixed(file) {
 	// Has ESLint fixed the file contents?
-	return file.eslint != null && file.eslint.fixed;
+	return file.eslint !== null && file.eslint.fixed;
 }
 
 function getSrc() {
