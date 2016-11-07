@@ -1,12 +1,13 @@
 let router = require('express').Router();
-let qboxquestions = require('./qboxquestions');
+// let qboxquestions = require('./qboxquestions');
 let qboxProcessor = require('./qboxprocessor');
 // var qboxquestionModel = require('./qboxquestions');
 let async = require('async');
 let fieldQCache = require('./fieldQCache');
 
 /**
- * API for returning questions pending to be answered by the candidate for completion or updation of profile
+ * API for returning questions pending to be answered by the 
+    candidate for completion or updation of profile
  * Supports filtering for a given section of the profile, paginate the questions
  */
 // HTTP GET /candidate/:candidateid/qboxquestions
@@ -27,7 +28,7 @@ router.get('/:candidateid/qboxquestions/', function(req, res) {
         let lang = req.query.lang ? req.query.lang : 'English';
 
 
-        let question = qboxProcessor.getQuestions(req.params.candidateid,
+         qboxProcessor.getQuestions(req.params.candidateid,
             sections,
             skip,
             limit,
@@ -82,7 +83,7 @@ router.get('/:candidateid/qboxquestions/queries', function(req, res) {
         let skip = req.query.skip ? req.query.skip : 0;
         let lang = req.query.lang ? req.query.lang : 'English';
 
-        let question = qboxProcessor.getqueryObject(req.params.candidateid,
+        qboxProcessor.getqueryObject(req.params.candidateid,
             sections,
             skip,
             limit,

@@ -13,14 +13,15 @@ describe('Scenarios for API End point "GET /candidate/:candidateid/qboxquestions
                 if (err) {
                     // done(err);
                 }
-                expect(res.body).to.be.not.equal(undefined);
+                expect(res.body).to.be.not.equal("undefined");
                 done();
             });
     });
 }); 
 // end of get scearnio
 
-describe('Api for returning field question query statement "GET /fieldquestions/:section/"', function() {
+describe('Api for returning field question query statement "GET /fieldquestions/:section/"', 
+    function() {
     it('asking the candidate to answer or fill the pending field of profile data', function(done) {
         request.get('/:section')
             .expect(200)
@@ -28,7 +29,7 @@ describe('Api for returning field question query statement "GET /fieldquestions/
                 if (err) {
                     // done(err);
                 }
-                expect(res.body).to.be.not.equal(undefined);
+                expect(res.body).to.be.not.equal("undefined");
                 done();
             });
     });
