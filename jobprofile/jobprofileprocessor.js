@@ -3,10 +3,8 @@ let jobProfile = require('./jobprofileschema');
 function getJobByID(jobID, sucessCB, errorCB) {
     jobProfile.find({ jobID: jobID }, function(error, result) {
         if (error) {
-            // console.log(error);
             errorCB(error);
         } else {
-            // console.log("Find the job with jobID");
             sucessCB(result);
         }
     });
@@ -14,11 +12,9 @@ function getJobByID(jobID, sucessCB, errorCB) {
 
 function getJobs(sucessCB, errorCB) {
     jobProfile.find(function(error, result) {
-        if (error) {
-            // console.log(error);
+        if (error)
             errorCB(error);
         } else {
-            // console.log("Find the job with jobID");
             sucessCB(result);
         }
     });
@@ -29,10 +25,8 @@ function postJob(job, sucessCB, errorCB) {
 
     job.save(function(err) {
         if (err) {
-            // console.log("Error occured on save" + err);
             errorCB(err);
         } else {
-            // console.log("Job Posted successfully");
             sucessCB('successfully inserted data');
         }
     });
@@ -41,11 +35,8 @@ function postJob(job, sucessCB, errorCB) {
 function getJobDetails(id, employerID, sucessCB, errorCB) {
     jobProfile.find({ jobID: id, 'employer.employerID': employerID }, function(error, result) {
         if (error) {
-            // console.log(error);
             errorCB(error);
         } else {
-            // console.log("Find the job with jobID");
-            // var length = result.length;
             sucessCB(result);
         }
     });
@@ -54,10 +45,8 @@ function getJobDetails(id, employerID, sucessCB, errorCB) {
 function updateJob(jobData, sucessCB, errorCB) {
     jobProfile.update({ _id: jobData._id }, { $set: jobData }, function(err, result) {
         if (err) {
-            // console.log("Error occured on save" + err);
             errorCB(err);
         } else {
-            // console.log("Job Posted successfully");
             sucessCB('OK');
         }
     });

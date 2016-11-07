@@ -4,28 +4,21 @@ let mongoose = require('mongoose');
 let eduModel = require('./educationschema');
 
 function getAllEducation(successCB, errorCB) {
-   // console.log('About to do a find query... ');
     // Asynch
     eduModel.find({}, function(err, docs) {
-      //  console.log('I am inside the find callback... ');
 
         if (err) {
-          //  console.log('Internal database error in fetching education document ', err);
             errorCB({ error: 'Internal error occurred, please report...' });
         }
-     //   console.log('got the data from db: ', docs);
         successCB(docs);
     });
-  //  console.log('returning  ');
 }
 // --------ends--callbackway-----------------//
 function getEducation(candidateid, successCB, errorCB) {
     eduModel.find({ candidateid: candidateid }, function(err, educationObject) {
         if (err) {
-           // console.log(err);
             errorCB(err);
         }
-       // console.log(educationObject);
         successCB(educationObject);
     });
 }
@@ -35,11 +28,10 @@ function createNewEducation(formobj, successCB, errorCB) {
         candidateid: formobj.mobile,
         qualification: []
     });
-    // addEduObj.qualification.push(newEmpObj.record[0]);
-   // console.log('About to save a new Education obj: ', addEduObj);
+
     addEduObj.save(function(err, res) {
         if (err) {
-          //  console.log('Error in saving project: ', err);
+
             errorCB(err);
         }
         successCB(res);
@@ -47,7 +39,7 @@ function createNewEducation(formobj, successCB, errorCB) {
 }
 
 function addEducation(updatedEmpObj, candidateId, successCB, errCB) {
-    eduModel.update({ candidateid: candidateId }, { $push: 
+    eduModel.update({ candidateid: candidateId }, { $push:
                                 { qualification: updatedEmpObj.qualification[0] } },
         function() {
             successCB('qualification updateded');
@@ -56,7 +48,7 @@ function addEducation(updatedEmpObj, candidateId, successCB, errCB) {
 }
 
 function updateEducation(candidateID, title, modifiedExistingObject, successCB, errorCB) {
-    // console.log("got", modifiedExistingObject.record[0].title);
+    
    eduModel.update({ candidateid: candidateID, 'qualification.title': title }, {
      $set: {
         'qualification.$.title': modifiedExistingObject.qualification[0].title,

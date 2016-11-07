@@ -15,7 +15,6 @@ getCircles = function(entityname, successres, errRes) {
             if (err) {
                 console.log(err);
             }
-           // console.log(results);
             successres(results);
         });
 };
@@ -30,15 +29,13 @@ creacteNode = function(req, errRes) {
         },
         function(err, results) {
             if (err) {
-                //  console.log(err);
+
                 errRes(results);
             }
         });
 };
 
 createRelation = function(req, res) {
-    console.log('neo4jrelation', req);
-    // console.log(relation);
     db.cypher({
             query: 'merge (n:coordinator{username:{username}}) merge (c:circle{domain:{profession},name:{name}}) merge (n)-[r:primaryOwner ]->(c)',
             params: {

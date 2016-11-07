@@ -7,7 +7,6 @@ function getcandidate(candidateId, successCB, errorCB) {
         errorCB(error);
     }
 
-    // console.log("Inside get candidate Function" + result);
     successCB(result);
 });
 }
@@ -17,18 +16,12 @@ function createNewcandidate(formObj, successCB, errorCB) {
         candidateid: formObj.mobile,
         profession: formObj.profession
     });
-    //  var id="candidateid":candidateid;
-    // projectObj.profile.push(id);
-    //  projectObj.profile.push(newProjectObj.profile[0]);
-
- //   console.log("About to save a new candidate: ", candidateObj);
 
  candidateObj.save(function(err, savedObj) {
     if (err) {
        // console.log('Error in saving candidate: ', err);
         errorCB(err);
     }
-
     successCB(savedObj);
 });
 }

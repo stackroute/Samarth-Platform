@@ -13,9 +13,9 @@ createProfessionNode = function(req, res) {
 	},
 	function(err, results) {
 		if(err) {
-		//	console.log(err);
+			console.log(err);
 		}else{
-		// console.log('***************************************** Profession Finished');
+	 console.log('***************************************** Profession Finished');
 		}
 	});
 };

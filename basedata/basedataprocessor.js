@@ -121,24 +121,3 @@ module.exports = {
     insertCoordinatorUserContents: insertCoordinatorUserContents,
     insertCircleContents: insertCircleContents
 };
-
-
-// console.log(items);
-// var sidenavmenuitems = [],
-//     menuItems = [];
-
-// sidenavcontent.create(items.sidenavmenuitems, function() {
-//     // args[0] should be the error
-//     // if (sidenavmenuitems[0]) {
-//     //     throw sidenavmenuitems[0]
-//     // } else {
-//     for (var i = 1; i < items.sidenavmenuitems.length; i++)
-//         menuItems.push(items.sidenavmenuitems[i]);
-//     // }
-// });
-
-// items.sidenavmenuitems.forEach(function(a) {
-//     sidenavmenuitems.push(new sidenavcontent(a));
-// })
-
-// console.log(menuItems);

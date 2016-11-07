@@ -4,7 +4,6 @@ router.post('/profession', function(req, res) {
     try {
         professionskillprocessor.createprofessiontoskill(req.body.profession, req.body.skills,
              req.body.roles, function(success) {
-                // console.log("success");
                 return res.status(200).send(success);
             },
             function(err) {

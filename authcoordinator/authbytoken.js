@@ -53,7 +53,7 @@ var generateCoordinatorJWTToken = function(details, cb) {
 
     jwt.sign(payload, secretOrPrivateKey, options, function(err, jwtToken) {
         if (err) {
-            console.error("Error in generating token ", err);
+          //  console.error("Error in generating token ", err);
         }
         cb(err, details, jwtToken);
     });

@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken');
 var PersonalInfoModel = require("../sectionpersonalinfo/personalinfoschema");
 
 var authenticateClient = function(clientId, clientSecret, callback, unauthCB) {
-    if (clientId == "SAMARTH-SKILL-PROFILE") {
+    if (clientId === "SAMARTH-SKILL-PROFILE") {
         candidateProfile = {
             client: "SAMARTH-SKILL-PROFILE",
             role: 'webapp'

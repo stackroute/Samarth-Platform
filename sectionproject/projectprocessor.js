@@ -3,11 +3,8 @@ let project = require('./projectschema');
 function getProject(candidateId, successCB, errorCB) {
     project.find({ candidateid: candidateId }, function(error, result) {
         if (error) {
-           // console.log(error);
             errorCB(error);
         }
-
-       // console.log('Inside get Project Function' + result);
         successCB(result);
     });
 }
@@ -16,13 +13,11 @@ function findAllProject(successCB, errorCB) {
     let projectsMap = {};
     project.find({}, function(err, projects) {
         if (err) {
-          //  console.log(err);
             errorCB(err);
         }
         projects.forEach(function(result) {
             projectsMap[result._id] = result;
         });
-       // console.log(projects);
         successCB(projects);
     });
 }
@@ -32,15 +27,10 @@ function createNewProject(formobj, sucessCB, errorCB) {
         candidateid: formobj.mobile,
         projects: []
     });
-    // skillObj.skills.push(newskillobj.skills[0]);
-   // console.log('About to save new project:', projectObj);
     projectObj.save(function(err, result) {
-       // console.log('inside save');
         if (err) {
-           // console.log(err);
             errorCB(err);
         }
-       // console.log('New project created', result);
         sucessCB(result);
     });
 }
@@ -54,7 +44,6 @@ function addProject(oldProjectObj, candidateId, successCB) {
 }
                                                                     // , errorCB
 function updateProject(projectName, oldProjectObj, candidateId, successCB) {
-   // console.log('Inside update of project');
     project.update({ candidateid: candidateId, 'projects.name': projectName }, {
             $set: {
                 'projects.$.name': oldProjectObj.projects[0].name,
@@ -73,7 +62,7 @@ function updateProject(projectName, oldProjectObj, candidateId, successCB) {
         }
     );
 }
-                                                        //, errorCB 
+                                                        //, errorCB
 function deleteProject(candidateId, projectName, successCB) {
     project.update({ candidateid: candidateId }, {
         $pull: { projects: { name: projectName } }

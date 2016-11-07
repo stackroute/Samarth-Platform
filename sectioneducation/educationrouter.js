@@ -6,21 +6,20 @@ let pendingDataProcessor = require('.././questionbox/pendingDataProcessor');
 // HTTP GET education//:candidateid/
 // effective url /education//:candidateid
 router.get('/:candidateid', function(req, res) {
-    // console.log("Request received for emp id: ", req.params.empid);
     educationProcessor.getEducation(req.params.candidateid, function(educationObject) {
-       // console.log(educationObject);
+
          res.status(201).json(educationObject);
     }, function(err) {
         res.status(500).json({ error: 'Internal error occurred' });
     });
-    // res.status(200).json(empObj);
+
 });
 
 /* Add Qualification details of the given candidate id after registration*/
 // HTTP Post education//:candidateid/
 // effective url /education//:candidateid
 router.post('/:candidateID', function(req, res) {
-   // console.log(req.body);
+
     let EducationMissingFields =  pendingDataProcessor.EducationMissingFields();
 
     eduModel.find({ candidateid: req.params.candidateID }, function(err, result) {
@@ -34,12 +33,9 @@ router.post('/:candidateID', function(req, res) {
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {
-                    //    console.log('Error occurred in updating new educational detail: ', err);
                         res.status(500).json({ error: 'Internal error occurred, please report' });
                     });
-                // res.status(201).json(addEdu);
             } catch (err) {
-              //  console.log('Error occurred in adding new educational detail: ', err);
                 res.status(500).json({ error: 'Internal error occurred, please report' });
             }
         }
@@ -55,8 +51,6 @@ router.patch('/:candidateID/:title', function(req, res) {
       if (err || result === '') {
         res.status(500).send('Add Education collection with the given candidate id before Update');
         } else {
-           // console.log('CANDIDATE FOUND');
-            // res.status(201).json({'success':"FOUND"});
 
             try {
                 educationProcessor.updateEducation(req.params.candidateID, req.params.title,
@@ -64,12 +58,9 @@ router.patch('/:candidateID/:title', function(req, res) {
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {
-                     //   console.log('updating new educational detail with invalid data ', err);
                         res.status(500).send('updating new educational detail with invalid data ');
                     });
-                // res.status(201).json(addEdu);
             } catch (err) {
-               // console.log('Error occurred in adding new educational detail: ', err);
                 res.status(500).json({ error: 'Internal error occurred, please report' });
             }
         }// end else
