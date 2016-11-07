@@ -185,7 +185,7 @@ searchquery = function(req, successCB, errorCB) {
 
 
     // returns all the candidates with  a profession
-    else if (req.profession !=== null && req.location === null && req.skill ===
+    else if (req.profession !== null && req.location === null && req.skill ===
         null) {
         db.cypher({
             query: 'MATCH (c:Candidate),(p:Profession) WHERE (c)-[:working_as]->(p) AND p.name={profession} RETURN c.name as candidateid;',

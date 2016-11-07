@@ -12,9 +12,10 @@ function getJobByID(jobID, sucessCB, errorCB) {
 
 function getJobs(sucessCB, errorCB) {
     jobProfile.find(function(error, result) {
-        if (error)
+        if (error){
             errorCB(error);
-        } else {
+        }
+         else {
             sucessCB(result);
         }
     });

@@ -75,7 +75,7 @@ router.get('/getjobs', function(req, res) {
     }
 });
 
-router.get('/getjobdetail/:jobID/:employerID', function(req, res)
+router.get('/getjobdetail/:jobID/:employerID', function(req, res){
     try {
         jobProfileProcessor.getJobDetails(req.params.jobID, req.params.employerID,
          function sucessCB(result) {
@@ -99,7 +99,7 @@ router.get('/checkidavailable/:jobID/:employerID', function(req, res) {
         }, function errorCB(error) {
             res.status(500).json(error);
         });
-    } catch (err) 
+    } catch (err) {
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });

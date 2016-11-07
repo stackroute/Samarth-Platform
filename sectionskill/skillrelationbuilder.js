@@ -11,12 +11,14 @@ let skillRelationBuilder = function(skill, candidateid, errCB) {
             skillname: skill
         }
     }, function(err, results) {
-        if (err)
+        if (err){
             errCB(err, null);
-        } else {
+        }
+         else {
             errCB(null, results);
         }
-    });
+    }
+    );
 };
 
 module.exports = {
