@@ -96,7 +96,7 @@ searchquery = function(req, successCB, errorCB) {
     if (req.profession != null && req.location != null && req.skill != null) {
 
        // console.log('I found you in query1');
-     
+
 
        // console.log('I found you in query1');
         let query1 =
@@ -122,7 +122,7 @@ searchquery = function(req, successCB, errorCB) {
                 successCB(results);
             }
         });
- 
+
     } else if (req.profession != null && req.location != null && req.skill ==
         null) {
 
@@ -196,7 +196,7 @@ searchquery = function(req, successCB, errorCB) {
 
 
     // returns all the candidates with  a profession
-    else if (req.profession != null && req.location == null && req.skill ==
+    else if (req.profession !== null && req.location === null && req.skill ===
         null) {
         db.cypher({
             query: 'MATCH (c:Candidate),(p:Profession) WHERE (c)-[:working_as]->(p) AND p.name={profession} RETURN c.name as candidateid;',
