@@ -3,7 +3,7 @@ let skillProcessor = require('./skillprocessor');
 let skillRelationBuilder = require('./skillrelationbuilder');
 let professionstoskillprocessor = require('./professionstoskillprocessor');
 let skill = require('./skillschema');
-let misDetailProcessor = require('.././questionbox/missingDetailsProcessor');
+let pendingDataProcessor = require('.././questionbox/pendingDataProcessor');
 let qboxProcessor = require('.././questionbox/qboxprocessor');
 
 /* Get the skills for the given candidate id*/
@@ -38,7 +38,7 @@ router.get('/:candidateid', function(req, res) {
 
 // effective url  /skill/:candidateid
 router.post('/:candidateid', function(req, res) {
-    misDetailProcessor.SkillMissingFields(req.body, req.params.candidateid);
+    pendingDataProcessor.SkillMissingFields(req.body, req.params.candidateid);
 
     skill.find({
         candidateid: req.params.candidateid

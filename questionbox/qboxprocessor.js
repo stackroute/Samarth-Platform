@@ -1,5 +1,5 @@
 let qboxquestionModel = require('./qboxquestions');
-let skillProcessor = require('.././sectionskill/skillprocessor');
+// let skillProcessor = require('.././sectionskill/skillprocessor');
 // var skill = require("./skillschema");
 // var fieldQCache = require('./fieldQCache');
 
@@ -61,10 +61,15 @@ function updateQuestion(questionobj, candidateId, answer, sucessCB, errorCB) {
             }
 
         },
-        function() {
+        function(err) {
+             if (err) {
+          //  console.log(err);
+            errorCB(err);
+        }
             sucessCB('Question updated');
         }
 
+       
     );
 }
 

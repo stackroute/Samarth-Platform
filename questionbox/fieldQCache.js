@@ -2,7 +2,7 @@
   // let qboxQuestionsModel = require('./qboxquestions');
   let fieldQProcessor = require('./fieldQProcessor');
   // let qboxprocessor = require('./qboxprocessor');
-  let missingDetailsProcessor = require('./missingDetailsProcessor');
+  let pendingDataProcessor = require('./pendingDataProcessor');
   let async = require('async');
   let redis = require('redis');
   let redisClient = redis.createClient();
@@ -82,7 +82,7 @@
                         fieldQuestion.fieldname, fieldQuestion.lang);
                     //  console.log('-----keyCache-------' + key);
                       let value = fieldQuestion.query;
-                      missingDetailsProcessor.questions(key, value);
+                     pendingDataProcessor.questions(key, value);
                       multi.set(key, value);
                   } // end for
 
