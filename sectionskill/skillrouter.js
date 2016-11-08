@@ -1,10 +1,7 @@
 var router = require('express').Router();
 var skillProcessor = require('./skillprocessor');
 var skillRelationBuilder = require("./skillrelationbuilder");
-var professionstoskillprocessor = require("./professionstoskillprocessor");
 var skill = require("./skillschema");
-var misDetailProcessor = require('.././questionbox/missingDetailsProcessor');
-var qboxProcessor = require('.././questionbox/qboxprocessor');
 
 /*Get the skills for the given candidate id*/
 //HHTP GET skill/:candidateid
@@ -39,8 +36,6 @@ router.get("/:candidateid", function(req, res) {
 
 //effective url  /skill/:candidateid
 router.post("/:candidateid", function(req, res) {
-    misDetailProcessor.SkillMissingFields(req.body, req.params.candidateid);
-
     skill.find({
         "candidateid": req.params.candidateid
     }, function(err, result) {
@@ -53,57 +48,33 @@ router.post("/:candidateid", function(req, res) {
             console.log("Candidate skill record not found");
             return res.status(200).send("Candidate skill record not found");
         }
-        // console.log(result);
+
+        console.log("Got the result as : ", result);
+
         if (result == "") {
             res.status(500).send(
                 "Register candidate for the given candidate id");
-
         } //end if  
         else {
             try {
-                professionstoskillprocessor.professionskill(
-                    req.body.skills[0].skillname,
-                    req.params.candidateid,
-                    function(success) {
-                        //console.log("---------------------------------------skills matched",success);
-                        var v = success;
-                        if (v > 0) {
-
-                            skillProcessor.addSkill(req.body, req.params.candidateid,
-                                function(skills, id) {
-                                    //  console.log("***************************",id);
-
-                                    // console.log("***************************",req.params.candidateid);
-                                    skillRelationBuilder.skillRelationBuilder(
-                                        skills, id,
-                                        function(err, success) {
-                                            if (err) {
-                                                console.log(err);
-                                            } else {
-                                                // console.log("created relationship");                            
-                                            }
-                                        });
-
-                                    // res.status(201).json(skills);
-                                    res.status(201).json(skills);
-
-                                },
-                                function(err) {
-                                    res.status(500).send("invalid data");
-                                });
-                        } else {
-                            // console.log("Error in 0 skill match");
-                            res.status(500).json({
-                                err: "No related Skills found!"
+                skillProcessor.addSkill(req.body, req.params.candidateid,
+                    function(skills, id) {
+                        skillRelationBuilder.skillRelationBuilder(
+                            skills, id,
+                            function(err, success) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    // console.log("created relationship");                            
+                                }
                             });
-                        }
-                    }, //end of success callback to professionstoskillprocessor.professionskill
+
+                        res.status(201).json(skills);
+                    },
                     function(err) {
-                        console.log(
-                            "error in professionstoskillprocessor.professionskill ",
-                            err);
-                    }
-                );
+                        console.log("Error occurred in adding skill: ", err);
+                        res.status(500).send("invalid data");
+                    });
             } //end try
             catch (err) {
                 // console.log("Error occurred in creating new skill: ", err);

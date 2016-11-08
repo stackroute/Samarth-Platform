@@ -2,7 +2,6 @@ var neo4j = require('neo4j');
 var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
 
 
-
 skillRelationBuilder = function(skill, candidateid, errCB) {
     //console.log("*****************from skillRelationBuilder",candidateid);
     //console.log("*****************from skillRelationBuilder",skill);

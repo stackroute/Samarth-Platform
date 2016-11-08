@@ -33,6 +33,7 @@ var rubricRoute = require('./rubricbackend/rubricroute');
 var verificationRoute = require('./verification/verificationroute');
 var coordinatorRouter = require('./coordinator/coordinatorroute');
 var misDetailRoute = require('./questionbox/missingDetailsRouter');
+var neo4jConnection = require("./connections/neo4jconnection.js");
 
 var app = express();
 
@@ -44,7 +45,7 @@ app.onAppStart = function(addr) {
         //do your thing
     });
     */
-    var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
+    // var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
 
     mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
