@@ -1,18 +1,18 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-var skillSchema = new Schema({
-	'candidateid':{type:String ,required:true},
-    'skills': [{
-        'skillname': { type: String, required: true},
-        'category': { type: String, required: true },
-        'expertise': { type: String, required: true },
-        'experience': { type: Number, required: true, min: 0 },
-        'metadata':{type:Array ,default:[]}
+let skillSchema = new Schema({
+	candidateid: {type: String, required: true},
+    skills: [{
+        skillname: { type: String, required: true},
+        category: { type: String, required: true },
+        expertise: { type: String, required: true },
+        experience: { type: Number, required: true, min: 0 },
+        metadata: {type: Array, default: []}
     }]
 });
 
-var skill = mongoose.model('skill', skillSchema, 'skills');
+let skill = mongoose.model('skill', skillSchema, 'skills');
 
 module.exports = skill;

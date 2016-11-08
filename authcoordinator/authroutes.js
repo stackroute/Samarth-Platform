@@ -1,18 +1,18 @@
-var authByToken = require("./authbytoken");
-var router = require('express').Router();
+let authByToken = require('./authbytoken');
+let router = require('express').Router();
 
-//Effective url /details/getcoordinator/
+// Effective url /details/getcoordinator/
 router.post('/getcoordinator/', function(req, res) {
     try {
         authByToken.authenticateCoordinator(req.body.email, req.body.ct,
             function(err, coordinatorDetails, token) {
-                //Success callback
+                // Success callback
                 if (err) {
-                    console.log("Err in authenticating ", err);
+                   // console.log('Err in authenticating ', err);
                     return res.status(403).json(err);
                 }
 
-                console.log("from authroutes", coordinatorDetails);
+               // console.log('from authroutes', coordinatorDetails);
 
                 return res.json({
                     coordinator: coordinatorDetails,
@@ -20,13 +20,13 @@ router.post('/getcoordinator/', function(req, res) {
                 });
             },
             function(err) {
-                //Unauthorized call back
+                // Unauthorized call back
                 return res.status(403).json(err);
             });
     } catch (err) {
-        console.error("Error occurred in authorizing coordinator ", err);
+       // console.error('Error occurred in authorizing coordinator ', err);
         return res.status(500).json({
-            error: "Internal error in processing request, please retry later..!"
+            error: 'Internal error in processing request, please retry later..!'
         });
     }
 });

@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-var PersonalInfoSchema = new Schema({
+let PersonalInfoSchema = new Schema({
 
     candidateid: { type: String, unique: true, required: true },
     name: { type: String, required: true },
@@ -17,5 +17,5 @@ var PersonalInfoSchema = new Schema({
 
 
 });
-var personModl = mongoose.model('personModl', PersonalInfoSchema, 'personalinfo');
+let personModl = mongoose.model('personModl', PersonalInfoSchema, 'personalinfo');
 module.exports = personModl;

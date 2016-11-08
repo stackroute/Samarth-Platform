@@ -9,7 +9,7 @@ gulp.task('lint-fix', ['eslint-fix']);
 
 function isFixed(file) {
 	// Has ESLint fixed the file contents?
-	return file.eslint != null && file.eslint.fixed;
+	return file.eslint !== null && file.eslint.fixed;
 }
 
 function getSrc() {
@@ -47,7 +47,7 @@ gulp.task('eslint', function() {
 
 gulp.task('eslint-fix', function() {
     return gulp.src(getSrc())
-        .pipe(eslint({fix:true}))
+        .pipe(eslint({fix: true}))
         .pipe(gulpIf(isFixed, gulp.dest('lintfixes/')))
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());

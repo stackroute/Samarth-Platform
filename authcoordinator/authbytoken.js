@@ -12,7 +12,7 @@ var authenticateCoordinator = function(email, clientToken, callback,
         },
         function(err, details) {
             if (err) {
-                console.error("Error in lookup for coordinator details ", err);
+               // console.error("Error in lookup for coordinator details ", err);
                 callback(err, null);
                 return;
             }
@@ -20,7 +20,7 @@ var authenticateCoordinator = function(email, clientToken, callback,
             if (!details) {
                 unauthCB("Coordinator profile not found..!", null);
             }
-            console.log("From authenticateCoordinator", details);
+           // console.log("From authenticateCoordinator", details);
             generateCoordinatorJWTToken(details, callback); //generate JWTToken
         });
 };
@@ -33,7 +33,7 @@ var verifyCoordinatorJWTToken = function(token, clientToken, callback, unauthCB)
     jwt.verify(token, secretOrPrivateKey,
         function(err, payload) {
             if (err) {
-                console.error("Error in decoding token: ", err);
+               // console.error("Error in decoding token: ", err);
                 unauthCB(err);
                 return;
             }
@@ -53,7 +53,7 @@ var generateCoordinatorJWTToken = function(details, cb) {
 
     jwt.sign(payload, secretOrPrivateKey, options, function(err, jwtToken) {
         if (err) {
-            console.error("Error in generating token ", err);
+          //  console.error("Error in generating token ", err);
         }
         cb(err, details, jwtToken);
     });

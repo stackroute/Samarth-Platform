@@ -1,13 +1,12 @@
-var verification = require('./verificationmodel');
-var router = require('express').Router();
+let verification = require('./verificationmodel');
+let router = require('express').Router();
 
-var verificationprocessor = require('./verificationprocesser');
+let verificationprocessor = require('./verificationprocesser');
 
 /* Effective url /verification/candidateid
 
  */
-router.get("/:candidateid", function(req, res) {
-
+router.get('/:candidateid', function(req, res) {
     try {
         verificationprocessor.getverification(req.params.candidateid,
             function(verificationdata) {
@@ -18,28 +17,24 @@ router.get("/:candidateid", function(req, res) {
             }
         );
     } catch (err) {
-        console.log("Error occurred in getting verification object: ", err);
         res.status(500).json({
-            error: "Internal error occurred, please report"
+            error: 'Internal error occurred, please report'
         });
     }
 });
 /* Effective url /verification/updateverification/typename
  */
-router.patch("/updateverification/:typename", function(req, res) {
+router.patch('/updateverification/:typename', function(req, res) {
     try {
         verificationprocessor.updateverification(req.body, req.params.typename,
             function sucessCB(result) {
-                res.status(200).send("OK");
+                res.status(200).send('OK');
             },
             function errorCB(error) {
-                console.log('errorCB');
                 res.status(500).send(err);
             });
     } catch (err) {
-
-        console.log("Some other error", err);
-        res.status(500).json({ error: "Internal Server Error" });
+        res.status(500).json({ error: 'Internal Server Error' });
     }
 });
 

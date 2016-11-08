@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
 
-var coordinatorSchema = new Schema({
+let coordinatorSchema = new Schema({
 
     coordinatorName: { type: String },
     coordinatorId: { type: String, unique: true, required: true },
@@ -12,6 +12,6 @@ var coordinatorSchema = new Schema({
     coordinatorEmail: { type: String },
     coordinatorPwd: { type: String }
 });
-var coordinator = mongoose.model('coordinators', coordinatorSchema, 'coordinators');
+let coordinator = mongoose.model('coordinators', coordinatorSchema, 'coordinators');
 
 module.exports = coordinator;

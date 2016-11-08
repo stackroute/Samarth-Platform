@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var bCrypt = require('bcrypt-nodejs');
+let mongoose = require('mongoose');
+let bCrypt = require('bcrypt-nodejs');
 
-var login = mongoose.Schema({
+let login = mongoose.Schema({
     email: {
         type: String,
         required: true,
@@ -11,7 +11,7 @@ var login = mongoose.Schema({
     },
     password: { type: String, required: true },
     role: { type: String, required: true }
-    //functionality: [{ type: String, required: true }]
+    // functionality: [{ type: String, required: true }]
 });
 
 // // generating a hash

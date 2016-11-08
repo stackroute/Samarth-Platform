@@ -1,58 +1,64 @@
-var http = require('http');
-var morgan = require('morgan');
-var express = require('express');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var neo4j = require('neo4j');
+let http = require('http');
+let morgan = require('morgan');
+let express = require('express');
+let bodyParser = require('body-parser');
+let mongoose = require('mongoose');
+let neo4j = require('neo4j');
 
-var baseDataRoutes = require('./basedata/basedataroutes');
+let baseDataRoutes = require('./basedata/basedataroutes');
 
-var authRoutes = require('./auth/authrouter');
-var authByToken = require('./auth/authbytoken');
-var authCoordinatorRouter = require('./authcoordinator/authroutes');
-var authCoordinator = require('./authcoordinator/authbytoken');
-var circleRoute = require('./circlesBackEnd/circleRout');
+let authRoutes = require('./auth/authrouter');
+let authByToken = require('./auth/authbytoken');
+let authCoordinatorRouter = require('./authcoordinator/authroutes');
+let authCoordinator = require('./authcoordinator/authbytoken');
+let circleRoute = require('./circlesBackEnd/circleRout');
 
-var projectRoutes = require('./sectionproject/projectrouter');
-var educationRoutes = require('./sectioneducation/educationrouter');
-var skillRoutes = require('./sectionskill/skillrouter');
-var candidateRoutes = require('./candidate/candidaterouter');
-var personalinfoRoutes = require('./sectionpersonalinfo/personalinforouter');
-var profilerouter = require('./profiles/profilerouter');
-var workRouter = require('./sectionworkexperiance/workrouter');
-var skillcardRouter = require('./skillcard/skillcardrouter');
-var qboxRouter = require('./questionbox/qboxrouter');
-var fieldQRouter = require('./questionbox/fieldquestionsrouter');
-var skillcardrouter = require('./sectionskill/skillrouter');
-var fieldQCache = require('./questionbox/fieldQCache');
-var jobProfileRoutes = require('./jobprofile/jobprofileroute');
-var employerRoutes = require('./employer/employerroute.js');
-var professiontoskillroutr = require(
+let projectRoutes = require('./sectionproject/projectrouter');
+let educationRoutes = require('./sectioneducation/educationrouter');
+let skillRoutes = require('./sectionskill/skillrouter');
+let candidateRoutes = require('./candidate/candidaterouter');
+let personalinfoRoutes = require('./sectionpersonalinfo/personalinforouter');
+let profilerouter = require('./profiles/profilerouter');
+let workRouter = require('./sectionworkexperiance/workrouter');
+let skillcardRouter = require('./skillcard/skillcardrouter');
+let qboxRouter = require('./questionbox/qboxrouter');
+let fieldQRouter = require('./questionbox/fieldquestionsrouter');
+let skillcardrouter = require('./sectionskill/skillrouter');
+let fieldQCache = require('./questionbox/fieldQCache');
+let jobProfileRoutes = require('./jobprofile/jobprofileroute');
+let employerRoutes = require('./employer/employerroute.js');
+let professiontoskillroutr = require(
     './professiontoskillsgraphdata/professiontoskillrouter.js');
-var rubricRoute = require('./rubricbackend/rubricroute');
+
+/*var rubricRoute = require('./rubricbackend/rubricroute');
 var verificationRoute = require('./verification/verificationroute');
 var coordinatorRouter = require('./coordinator/coordinatorroute');
 var misDetailRoute = require('./questionbox/missingDetailsRouter');
-var neo4jConnection = require("./connections/neo4jconnection.js");
+var neo4jConnection = require("./connections/neo4jconnection.js");*/
 
-var app = express();
+let rubricRoute = require('./rubricbackend/rubricroute');
+let verificationRoute = require('./verification/verificationroute');
+let coordinatorRouter = require('./coordinator/coordinatorroute');
+
+
+
+let app = express();
 
 app.onAppStart = function(addr) {
-    console.log("Samarth Platform web services is now Running on port:", addr.port);
+   //    console.log('Samarth Platform web services is now Running on port:', addr.port);
 
     mongoose.set('debug', true);
-    /*mongoose.set('debug', function(coll, method, query, doc[, options]) {
+    /* mongoose.set('debug', function(coll, method, query, doc[, options]) {
         //do your thing
     });
     */
-    // var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
+    let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
 
     mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
-    //Call any cache loading here if required
+    // Call any cache loading here if required
     fieldQCache.loadCache();
-
-}
+};
 
 app.use(morgan('dev'));
 app.use(bodyParser.json());
@@ -62,9 +68,9 @@ app.use(bodyParser.urlencoded({
 }));
 
 process.on('SIGINT', function() {
-    console.log("Going to unload all data from field questions cache...!");
+   // console.log('Going to unload all data from field questions cache...!');
     fieldQCache.clearCache(function() {
-        console.log("Done unloading Field Question Cache ");
+     //   console.log('Done unloading Field Question Cache ');
         process.exit(0);
     });
 });
@@ -73,27 +79,27 @@ app.use('*', function(req, res, next) {
     res.set('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods',
         'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-    res.header("Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Authorization, x-user-access-token, x-access-token, Content-Type, Accept"
+    res.header('Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Authorization, x-user-access-token, x-access-token, Content-Type, Accept'
     );
     next();
-})
+});
 
-/*app.use('/candidate', authRoutes,userRoutes,projectRoutes,educationRouter,
+/* app.use('/candidate', authRoutes,userRoutes,projectRoutes,educationRouter,
                    skillRoutes,profilerouter,workRouter,quesRouter,);
 */
 
 function isAuthenticated(req, res, next) {
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    let token = req.body.token || req.query.token || req.headers['x-access-token'];
 
     if (!token) {
-        console.log("Token not found for authentication validation....!");
+      //  console.log('Token not found for authentication validation....!');
         return res.status(403).json({
             error: 'Invalid user request or unauthorised request..!'
         });
     }
 
-    clientToken = "@todo";
+    clientToken = '@todo';
 
     authByToken.isCandidateAuthenticated(token, clientToken, function(
         candidateProfile) {
@@ -122,21 +128,21 @@ app.use('/details', authCoordinatorRouter);
 app.use('/candidates', qboxRouter);
 app.use('/candidate', candidateRoutes);
 app.use('/fieldquestions', fieldQRouter);
-app.use("/project", projectRoutes);
+app.use('/project', projectRoutes);
 app.use('/education', educationRoutes);
-app.use("/skill", skillRoutes);
-app.use("/profile", profilerouter);
-app.use("/work", workRouter);
-app.use("/personalinfo", personalinfoRoutes);
-app.use("/skillcard", skillcardRouter);
-app.use("/jobprofile", jobProfileRoutes);
+app.use('/skill', skillRoutes);
+app.use('/profile', profilerouter);
+app.use('/work', workRouter);
+app.use('/personalinfo', personalinfoRoutes);
+app.use('/skillcard', skillcardRouter);
+app.use('/jobprofile', jobProfileRoutes);
 app.use('/circle', circleRoute);
 
-app.use("/employer", employerRoutes);
+app.use('/employer', employerRoutes);
 app.use('/rubric', rubricRoute);
 app.use('/verification', verificationRoute);
-app.use("/coordinatorregister", coordinatorRouter);
+app.use('/coordinatorregister', coordinatorRouter);
 
-app.use("/profession", professiontoskillroutr);
+app.use('/profession', professiontoskillroutr);
 
 module.exports = app;

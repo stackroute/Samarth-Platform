@@ -1,7 +1,7 @@
-var router = require('express').Router();
-var authByToken = require('./authbytoken');
+let router = require('express').Router();
+let authByToken = require('./authbytoken');
 
-//Effective url /auth/client
+// Effective url /auth/client
 router.post('/client', function(req, res) {
     try {
         authByToken.authenticateClient(req.body.cid, req.body.cs,
@@ -14,23 +14,22 @@ router.post('/client', function(req, res) {
             function(err) {
                 return res.status(403).json(err);
             });
-
     } catch (err) {
-        console.error("Error occurred in authorizing client ", err);
+       // console.error('Error occurred in authorizing client ', err);
         return res.status(500).json({
-            error: "Internal error in processing request, please retry later..!"
+            error: 'Internal error in processing request, please retry later..!'
         });
     }
 });
 
-//Effective url /auth/candidate
+// Effective url /auth/candidate
 router.post('/candidate', function(req, res) {
     try {
         authByToken.authenticateCandidate(req.body.cid, req.body.ct,
             function(err, candidateProfile, token) {
-                //Success callback
+                // Success callback
                 if (err) {
-                    console.log("Err in authenticating ", err);
+                   // console.log('Err in authenticating ', err);
                     return res.status(403).json(err);
                 }
 
@@ -40,13 +39,13 @@ router.post('/candidate', function(req, res) {
                 });
             },
             function(err) {
-                //Unauthorized call back
+                // Unauthorized call back
                 return res.status(403).json(err);
             });
     } catch (err) {
-        console.error("Error occurred in authorizing candidate ", err);
+       // console.error('Error occurred in authorizing candidate ', err);
         return res.status(500).json({
-            error: "Internal error in processing request, please retry later..!"
+            error: 'Internal error in processing request, please retry later..!'
         });
     }
 });

@@ -1,9 +1,10 @@
-var neo4j = require('neo4j');
+
+let neo4j = require('neo4j');
 
 console.log("About to connect to neo4j DB ");
 try {
 
-var db = new neo4j.GraphDatabase('http://localhost:7474');
+let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
 } catch (err) {
     console.log("Error in obtaining db connection to neo4j ", err);
 }
@@ -22,19 +23,14 @@ professionskill = function(skillname, candidateid, successCB, errorCB) {
     }, function(err, results) {
         if (err) {
             errorCB(err);
-            //console.log(err);
         } else {
-            //console.log("inside professionskill ****************");
-            // var value = results[0];
-            var v = results[0].x;
+            let v = results[0].x;
 
-            //console.log("@@@@@@@@@@@@@@@@@@@@@@@@",);
             successCB(v);
-
         }
     });
-}
+};
 
 module.exports = {
     professionskill: professionskill
-}
+};

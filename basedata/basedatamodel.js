@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var sidenav = mongoose.Schema({
+let sidenav = mongoose.Schema({
     role: { type: String, required: true },
     sidenavmenuitems: [{ name: String, state: String, icon: String }]
-}); //sidenav ends
+}); // sidenav ends
 
-var sidenavcontent = mongoose.model('sidenavcontents', sidenav, 'sidenavcontents');
+let sidenavcontent = mongoose.model('sidenavcontents', sidenav, 'sidenavcontents');
 
 module.exports = sidenavcontent;

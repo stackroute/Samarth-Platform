@@ -1,6 +1,6 @@
-var neo4j = require('neo4j');
-var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
-//'MATCH (n:coordinator{username:{username}})-[r]->(c:circle)-[rel]-() RETURN c, count(rel)'
+let neo4j = require('neo4j');
+let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
+// 'MATCH (n:coordinator{username:{username}})-[r]->(c:circle)-[rel]-() RETURN c, count(rel)'
 getCircles = function(entityname, successres, errRes) {
     // console.log(entityname)
     db.cypher({
@@ -15,11 +15,9 @@ getCircles = function(entityname, successres, errRes) {
             if (err) {
                 console.log(err);
             }
-            console.log(results);
             successres(results);
         });
-
-}
+};
 
 creacteNode = function(req, errRes) {
     db.cypher({
@@ -31,23 +29,19 @@ creacteNode = function(req, errRes) {
         },
         function(err, results) {
             if (err) {
-                //  console.log(err);
+
                 errRes(results);
             }
-
         });
-
-}
+};
 
 createRelation = function(req, res) {
-    console.log("neo4jrelation", req);
-    //console.log(relation);
     db.cypher({
             query: 'merge (n:coordinator{username:{username}}) merge (c:circle{domain:{profession},name:{name}}) merge (n)-[r:primaryOwner ]->(c)',
             params: {
                 username: req.email,
                 name: req.profession,
-                profession: "profession"
+                profession: 'profession'
             }
         },
         function(err, results) {
@@ -56,8 +50,7 @@ createRelation = function(req, res) {
             }
             res(results);
         });
-
-}
+};
 module.exports = {
     creacteNode: creacteNode,
     createRelation: createRelation,

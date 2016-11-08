@@ -1,12 +1,12 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var candidateSchema = new Schema({
-	
+let mongoose = require('mongoose');
+let Schema = mongoose.Schema;
+let candidateSchema = new Schema({
+
 	candidateid: { type: String, required: true, unique: true },
-	createdOn: { type: Date,default:Date.now},
-	updatedOn: { type: Date,default:Date.now},
-	createdBy:{type:String,default:"user"},
-	updatedBy:{type:String,default:"user"},
+	createdOn: { type: Date, default: Date.now},
+	updatedOn: { type: Date, default: Date.now},
+	createdBy: {type: String, default: 'user'},
+	updatedBy: {type: String, default: 'user'}
 });
-var candidates=mongoose.model('candidates',candidateSchema,'candidates')
+let candidates = mongoose.model('candidates', candidateSchema, 'candidates');
 module.exports = candidates;

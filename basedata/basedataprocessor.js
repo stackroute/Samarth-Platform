@@ -1,37 +1,35 @@
-var sidenavcontent = require('./basedatamodel');
-var mongoose = require('mongoose');
-var profileRubric = require('../rubricbackend/rubricmodel');
-var coordinator = require('../coordinator/coordinatorschema');
-var circles = require('../circlesBackEnd/circleSchema');
-var coordinatorUserModel = require('../coordinator/coordinatoruserschema');
+let sidenavcontent = require('./basedatamodel');
+let mongoose = require('mongoose');
+let profileRubric = require('../rubricbackend/rubricmodel');
+let coordinator = require('../coordinator/coordinatorschema');
+let circles = require('../circlesBackEnd/circleSchema');
+let coordinatorUserModel = require('../coordinator/coordinatoruserschema');
 
-var circle = mongoose.model('circle', circles);
-var coordinatoruser = mongoose.model('coordinatorusers', coordinatorUserModel);
+let circle = mongoose.model('circle', circles);
+let coordinatoruser = mongoose.model('coordinatorusers', coordinatorUserModel);
 
-var insertSidenavContents = function(items, callback, errfunc) {
-
-        var sidenavObj = new sidenavcontent({
+let insertSidenavContents = function(items, callback, errfunc) {
+        let sidenavObj = new sidenavcontent({
             role: items.role,
             sidenavmenuitems: items.sidenavmenuitems
         });
 
         sidenavObj.save(function(err, contents) {
             if (err) {
-                console.error("Error in fetching the contents ", err);
+              //  console.error('Error in fetching the contents ', err);
                 callback(err, null);
                 return;
             }
 
             callback(err, contents);
         });
-    } //end of insertSidenavContents
+    }; // end of insertSidenavContents
 
-var insertRubricContents = function(items, callback, errfunc) {
+let insertRubricContents = function(items, callback, errfunc) {
+      //  console.log(items.scale);
+       // console.log(items.type);
 
-        console.log(items.scale);
-        console.log(items.type);
-
-        var rubricObj = new profileRubric({
+        let rubricObj = new profileRubric({
             scale: items.scale,
             // name: items.name,
             type: items.type
@@ -42,19 +40,18 @@ var insertRubricContents = function(items, callback, errfunc) {
 
         rubricObj.save(function(err, contents) {
             if (err) {
-                console.error("Error in fetching the contents ", err);
+               // console.error('Error in fetching the contents ', err);
                 callback(err, null);
                 return;
             }
 
-            console.log("from insertRubricContents", contents);
+           // console.log('from insertRubricContents', contents);
             callback(err, contents);
         });
-    } //end of insertSidenavContents
+    }; // end of insertSidenavContents
 
-var insertCoordinatorContents = function(items, callback, errfunc) {
-
-        var coordinatorObj = new coordinator({
+let insertCoordinatorContents = function(items, callback, errfunc) {
+        let coordinatorObj = new coordinator({
             coordinatorName: items.coordinatorName,
             coordinatorId: items.coordinatorId,
             coordinatorRole: items.coordinatorRole,
@@ -66,18 +63,17 @@ var insertCoordinatorContents = function(items, callback, errfunc) {
 
         coordinatorObj.save(function(err, contents) {
             if (err) {
-                console.error("Error in fetching the contents ", err);
+               // console.error('Error in fetching the contents ', err);
                 callback(err, null);
                 return;
             }
 
             callback(err, contents);
         });
-    } //end of insertCoordinatorContents
+    }; // end of insertCoordinatorContents
 
-var insertCoordinatorUserContents = function(items, callback, errfunc) {
-
-        var coordinatorUserObj = new coordinatoruser({
+let insertCoordinatorUserContents = function(items, callback, errfunc) {
+        let coordinatorUserObj = new coordinatoruser({
             email: items.email,
             password: items.password,
             role: items.role
@@ -86,20 +82,19 @@ var insertCoordinatorUserContents = function(items, callback, errfunc) {
 
         coordinatorUserObj.save(function(err, contents) {
             if (err) {
-                console.error("Error in fetching the contents ", err);
+               // console.error('Error in fetching the contents ', err);
                 callback(err, null);
                 return;
             }
 
             callback(err, contents);
         });
-    } //end of insertCoordinatorContents
+    }; // end of insertCoordinatorContents
 
-var insertCircleContents = function(items, callback, errfunc) {
+let insertCircleContents = function(items, callback, errfunc) {
+       // console.log(items);
 
-        console.log(items);
-
-        var circleObj = new circle({
+        let circleObj = new circle({
             name: items.name,
             circleDiscription: items.circleDiscription,
             domain: items.domain,
@@ -110,40 +105,19 @@ var insertCircleContents = function(items, callback, errfunc) {
 
         circleObj.save(function(err, contents) {
             if (err) {
-                console.error("Error in fetching the contents ", err);
+              //  console.error('Error in fetching the contents ', err);
                 callback(err, null);
                 return;
             }
 
             callback(err, contents);
         });
-    } //end of insertSidenavContents
+    }; // end of insertSidenavContents
 
 module.exports = {
-    "insertSidenavContents": insertSidenavContents,
-    "insertRubricContents": insertRubricContents,
-    "insertCoordinatorContents": insertCoordinatorContents,
-    "insertCoordinatorUserContents": insertCoordinatorUserContents,
-    "insertCircleContents": insertCircleContents
+    insertSidenavContents: insertSidenavContents,
+    insertRubricContents: insertRubricContents,
+    insertCoordinatorContents: insertCoordinatorContents,
+    insertCoordinatorUserContents: insertCoordinatorUserContents,
+    insertCircleContents: insertCircleContents
 };
-
-
-// console.log(items);
-// var sidenavmenuitems = [],
-//     menuItems = [];
-
-// sidenavcontent.create(items.sidenavmenuitems, function() {
-//     // args[0] should be the error
-//     // if (sidenavmenuitems[0]) {
-//     //     throw sidenavmenuitems[0]
-//     // } else {
-//     for (var i = 1; i < items.sidenavmenuitems.length; i++)
-//         menuItems.push(items.sidenavmenuitems[i]);
-//     // }
-// });
-
-// items.sidenavmenuitems.forEach(function(a) {
-//     sidenavmenuitems.push(new sidenavcontent(a));
-// })
-
-// console.log(menuItems);

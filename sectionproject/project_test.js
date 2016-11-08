@@ -59,7 +59,7 @@
 //     });
 
 
-// }); //end of scearnio 
+// }); //end of scearnio
 
 // describe("Update project details", function() {
 //     it('Try update on a  project profile section', function(done) {
@@ -75,14 +75,14 @@
 //                 });
 //         });
 //     });
-    
-// }); //end of scearnio 
+
+// }); //end of scearnio
 
 // describe("Delete project details", function() {
 //     it('Try delete on a empty project profile section', function(done) {
 //         done(err);
 //     });
-// }); //end of scearnio 
+// }); //end of scearnio
 
 // describe("Multiple or Bulk add projects", function() {
 

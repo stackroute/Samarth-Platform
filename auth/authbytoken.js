@@ -2,7 +2,7 @@ var jwt = require('jsonwebtoken');
 var PersonalInfoModel = require("../sectionpersonalinfo/personalinfoschema");
 
 var authenticateClient = function(clientId, clientSecret, callback, unauthCB) {
-    if (clientId == "SAMARTH-SKILL-PROFILE") {
+    if (clientId === "SAMARTH-SKILL-PROFILE") {
         candidateProfile = {
             client: "SAMARTH-SKILL-PROFILE",
             role: 'webapp'
@@ -28,7 +28,7 @@ var authenticateCandidate = function(candidateId, clientToken, callback,
         },
         function(err, candidateProfile) {
             if (err) {
-                console.error("Error in lookup for candidate profile ", err);
+              //  console.error("Error in lookup for candidate profile ", err);
                 callback(err, null);
                 return;
             }
@@ -79,7 +79,7 @@ var verifyCandidateJWTToken = function(token, clientToken, callback, unauthCB) {
     jwt.verify(token, secretOrPrivateKey,
         function(err, payload) {
             if (err) {
-                console.error("Error in decoding token: ", err);
+              //  console.error("Error in decoding token: ", err);
                 unauthCB(err);
                 return;
             }

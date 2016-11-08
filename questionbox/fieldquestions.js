@@ -1,15 +1,15 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-var Schema = mongoose.Schema;
+let Schema = mongoose.Schema;
 
-var schema = new Schema({
-    'section': { type: String, required: true },
-    'fieldname': { type: String, required: true },
-    'query': { type: String, required: true },
-    'lang': { type: String, required: true }
+let schema = new Schema({
+    section: { type: String, required: true },
+    fieldname: { type: String, required: true },
+    query: { type: String, required: true },
+    lang: { type: String, required: true }
 });
 
-//composite  unique key
+// composite  unique key
 schema.index({
     section: 1,
     fieldname: 1,

@@ -1,26 +1,23 @@
-var mongoose = require('mongoose');
-var skill = require("./skillschema");
+let mongoose = require('mongoose');
+let skill = require('./skillschema');
 
 
 function getSkill(candidateid, successCB, errorCB) {
-
     skill.find({
-        "candidateid": candidateid
+        candidateid: candidateid
     }, function(err, skill) {
         if (err) {
             errorCB(err);
         }
-        // console.log(skill);
         successCB(skill);
     });
 }
 
 function getallSkill(successCB, errorCB) {
+    // This is a asynch op
+    // Go to DB and fetch record for specified empid
 
-    //This is a asynch op
-    //Go to DB and fetch record for specified empid
-
-    var skillMap = {};
+    let skillMap = {};
     skill.find({}, function(err, skills) {
         if (err) {
             errorCB(err);
@@ -28,57 +25,51 @@ function getallSkill(successCB, errorCB) {
         skills.forEach(function(skill) {
             skillMap[skill._id] = skill;
         });
-        // console.log(skills);
         successCB(skills);
     });
 }
 
-//add skill for the first time when no records are present by creating records
+// add skill for the first time when no records are present by creating records
 function createNewSkill(formobj, sucessCB, errorCB) {
-    var skillObj = new skill({
+    let skillObj = new skill({
         candidateid: formobj.mobile,
         skills: []
     });
-    //skillObj.skills.push(newskillobj.skills[0]);
-    // console.log("About to save New Skill:", skillObj);
 
     skillObj.save(function(err, result) {
-        // console.log("inside save");
         if (err) {
-            // console.log(err);
             errorCB(err);
         }
         sucessCB(result);
 
-        //Asynch method
-        //Save empObj to DB
-
+        // Asynch method
+        // Save empObj to DB
     });
 }
 
-//add skills into the existing records
-function addSkill(skillObj, candidateid, sucessCB, errorCB) {
+// add skills into the existing records
+                                                // , errorCB
+function addSkill(skillObj, candidateid, sucessCB) {
     skill.update({
-            "candidateid": candidateid
+            candidateid: candidateid
         }, {
             $push: {
-                "skills": skillObj.skills[0]
+                skills: skillObj.skills[0]
             }
         },
         function() {
-            //console.log("successfully added skill ",skillObj.skills[0].skillname);
             sucessCB(skillObj.skills[0].skillname, candidateid);
         }
     );
 }
 
-
-function updateSkill(skillname, skillobj, candidateid, sucessCB, errorCB) {
+                                                            // , errorCB
+function updateSkill(skillname, skillobj, candidateid, sucessCB) {
     skill.update({
-            'candidateid': candidateid,
+            candidateid: candidateid,
             'skills.skillname': skillname
         }, {
-            '$set': {
+            $set: {
                 'skills.$.skillname': skillobj.skills[0].skillname,
                 'skills.$.category': skillobj.skills[0].category,
                 'skills.$.expertise': skillobj.skills[0].expertise,
@@ -87,41 +78,39 @@ function updateSkill(skillname, skillobj, candidateid, sucessCB, errorCB) {
             }
         },
         function() {
-            sucessCB("skill updated");
+            sucessCB('skill updated');
         }
 
     );
 }
-
-function deleteASkill(skillname, candidateid, sucessCB, errorCB) {
+                                                    // , errorCB
+function deleteASkill(skillname, candidateid, sucessCB) {
     skill.update({
-        'candidateid': candidateid,
+        candidateid: candidateid,
         'skills.skillname': skillname
     }, {
         $pull: {
-            'skills': {
-                'skillname': skillname
+            skills: {
+                skillname: skillname
             }
         }
     }, function() {
-        // console.log('affected: ', affected);
-        sucessCB("skill object deleted");
+        sucessCB('skill object deleted');
     });
 }
-
-function deleteSkill(candidateid, sucessCB, errorCB) {
+                                        // , errorCB
+function deleteSkill(candidateid, sucessCB) {
     skill.update({
-        'candidateid': candidateid,
+        candidateid: candidateid,
         'skills.skillname': skillname
     }, {
         $pullAll: {
-            'skills': {
-                'skillname': skillname
+            skills: {
+                skillname: skillname
             }
         }
     }, function() {
-        // console.log('affected: ', affected);
-        sucessCB("skill object deleted");
+        sucessCB('skill object deleted');
     });
 }
 

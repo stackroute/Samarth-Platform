@@ -1,5 +1,5 @@
- var fieldQuestionsModel = require('./fieldquestions');
- 
+ let fieldQuestionsModel = require('./fieldquestions');
+
 function getAllFieldQuestions(successCB, errorCB) {
        fieldQuestionsModel.find({}, { _id: 0, __v: 0 }, function(error, colln) {
         if (error) {
@@ -7,19 +7,19 @@ function getAllFieldQuestions(successCB, errorCB) {
         }
         successCB(colln);
     });
-} 
+}
 
 
 function getFieldQuestions(section, fieldNames, lang, successCB, errorCB) {
-    console.log("section-------"+section);
-    var findClause = { "section": section };
+   // console.log('section-------' + section);
+    let findClause = { section: section };
 
     if (fieldNames.length > 0) {
-        findClause['fieldname'] = { $in: fieldNames };
+        findClause.fieldname = { $in: fieldNames };
     }
 
     if (lang.length > 0) {
-        findClause['lang'] = { $in: lang };
+        findClause.lang = { $in: lang };
     }
 
     fieldQuestionsModel.find(findClause, { _id: 0, __v: 0 }, function(error, colln) {
@@ -28,20 +28,20 @@ function getFieldQuestions(section, fieldNames, lang, successCB, errorCB) {
         }
         successCB(colln);
     });
-};
+}
 
 function createFieldQuestion(newquestionobj, sucessCB, errorCB) {
-    console.log("Inside Field questons add processor", newquestionobj);
-    var questionObj = new fieldQuestionsModel({
+   // console.log('Inside Field questons add processor', newquestionobj);
+    let questionObj = new fieldQuestionsModel({
         section: newquestionobj.section,
         fieldname: newquestionobj.fieldname,
         query: newquestionobj.query,
-        lang: newquestionobj.lang,
+        lang: newquestionobj.lang
     });
 
     questionObj.save(function(err, result) {
         if (err) {
-            console.log(err);
+           // console.log(err);
             errorCB(err);
         }
         sucessCB(result);

@@ -1,5 +1,5 @@
-var neo4j = require('neo4j');
-var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
+let neo4j = require('neo4j');
+let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
 
 
 createEmployerNode = function(job, res) {
@@ -16,30 +16,14 @@ createEmployerNode = function(job, res) {
         }
     }, function(err, results) {
         if (err) {
-            console.log("Error in inserting relation in neo4j" + err);
+            console.log('Error in inserting relation in neo4j' + err);
         } else {
-            console.log("Success in inserting neo4j...." + results);
+            console.log('Success in inserting neo4j....' + results);
         }
     });
-}
+};
 
-/*relateLocationNode = function(job, res) {
-    db.cypher({
-        query: 'MERGE (jb: Job{jobID:{jobID},employerID:{employerID}}) MERGE (l:location{name:{location}}) MERGE (jb)-[r:belongsTo]->(l)',
-        params: {
-            employerID: job.employer.employerID,
-            jobID: job.jobID,
-            locationName: job.jobLocation
-        }
-    }, function(err, results) {
-        if (err) {
-            console.log("Error in inserting relation in neo4j" + err);
-        } else {
-            console.log("Success in inserting neo4j...." + results);
-        }
-    });
-}
-*/
+
 module.exports = {
     createEmployerNode: createEmployerNode
-}
+};
