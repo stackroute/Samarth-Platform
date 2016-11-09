@@ -6,8 +6,6 @@ var neo4jconnection = (function() {
     function connectToDB() {
         console.log("**** Creating a new Graph DB Connection ****");
         var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
-        //@TODO 
-    	// var db = new neo4j.GraphDatabase(config.GRAPH_DB_URL);
         return db;
     }
 

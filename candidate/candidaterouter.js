@@ -113,19 +113,22 @@ router.get('/:candidateid', function(req, res) {
 // effective url /candidate/
 router.post('/', function(req, res) {
     try {
-
         candidateneo.createCandidate(req.body, function(err, stat) {
             if (err) {
-                console.log(err);
+                console.log("err--------------------->",err);
             } else {
-                  console.log(stat);
+                console.log("stat-------------------->",stat);
             }
         });
         // create every section,candidate,profile if candidate is created for first time
         candidate.find({
             candidateid: req.body.mobile
         }, function(error, candidate) {
-            if (candidate === '') {
+
+            /*if (candidate === '') {*/
+                if(candidate.length == 0){
+
+               // console.log('inside ifffffffffffffffffffffffffffff--->',candidate.length);
                 async.parallel({
                         candidate: function(callback) {
                             candidateprocessor.createNewcandidate(req.body,
@@ -211,7 +214,7 @@ router.post('/', function(req, res) {
                     },
                     function(err, results) {
                         if (err) {
-                           // console.log('ERR: ', err);
+                           console.log('ERR ----------------->: ', err);
                             return res.status(500).json({
                                 msg: err
                             });
@@ -227,7 +230,7 @@ router.post('/', function(req, res) {
             }
         }); // end find
     } catch (err) {
-
+        console.log("Internal Error Occurred inside catch");
         return res.status(500).send(
             'Internal error occurred, please report or try later...!');
     }
