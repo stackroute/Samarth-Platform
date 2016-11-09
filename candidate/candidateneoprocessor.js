@@ -1,29 +1,39 @@
 let neo4j = require('neo4j');
-let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
+var neo4jConnection = require("../connections/neo4jconnection.js");
+
+let db = neo4jConnection.getConnection();
 
 
 createCandidate = function(req, successCB, errorCB) {
-   // console.log('*********************************************', req);
-    db.cypher({
-        query: 'MERGE (c:Candidate{name:{candidateid}}) MERGE (l:Location{name:{location}}) MERGE (pr:Profession{name:{profession}}) MERGE (c)-[r:belongs_to]->(l) MERGE (c)-[rel:working_as]->(pr)',
-        params: {
-            candidateid: req.mobile,
-            location: req.location,
-            profession: req.profession
-        }
-    }, function(err, results) {
-        if (err) {
-           // console.log(err);
-            errorCB(err);
+   console.log('*********************************************', req);
+    try{
+        db.cypher({
+            query: 'MERGE (c:Candidate{name:{candidateid}}) MERGE (l:Location{name:{location}}) MERGE (pr:Profession{name:{profession}}) MERGE (c)-[r:belongs_to]->(l) MERGE (c)-[rel:working_as]->(pr)',
+            params: {
+                candidateid: req.mobile,
+                location: req.location,
+                profession: req.profession
+            }
+        }, function(err, results) {
 
-           // console.log(err);
-            errorCB && errorCB(err);
+            console.log('Error from CreateneoCandidate --->', err);
+            console.log('Success Results from CreateneoCandidate ---->',results);
 
-        } else {
-            successCB();
-            // console.log("Success....",results);
-        }
-    });
+            if (err) {
+               // console.log(err);
+                errorCB(err);
+
+               // console.log(err);
+                errorCB && errorCB(err);
+
+            } else {
+                successCB();
+                // console.log("Success....",results);
+            }
+        });
+    }catch(err){
+        console.log('inside catch in createneoCandidate -->',err);
+    }
 };
 
 

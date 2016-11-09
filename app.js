@@ -29,9 +29,17 @@ let jobProfileRoutes = require('./jobprofile/jobprofileroute');
 let employerRoutes = require('./employer/employerroute.js');
 let professiontoskillroutr = require(
     './professiontoskillsgraphdata/professiontoskillrouter.js');
+
+/*var rubricRoute = require('./rubricbackend/rubricroute');
+var verificationRoute = require('./verification/verificationroute');
+var coordinatorRouter = require('./coordinator/coordinatorroute');
+var misDetailRoute = require('./questionbox/missingDetailsRouter');
+var neo4jConnection = require("./connections/neo4jconnection.js");*/
+
 let rubricRoute = require('./rubricbackend/rubricroute');
 let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
+var neo4jConnection = require("./connections/neo4jconnection.js");
 
 
 let app = express();
@@ -44,7 +52,9 @@ app.onAppStart = function(addr) {
         //do your thing
     });
     */
-    let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
+    //let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
+
+    let db = neo4jConnection.getConnection();
 
     mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
