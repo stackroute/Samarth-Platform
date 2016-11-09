@@ -45,5 +45,4 @@ router.get('/:candidateid', function(req, res) {
         });
 });
 
-
 module.exports = router;
