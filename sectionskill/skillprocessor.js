@@ -8,8 +8,8 @@ function getSkill(candidateid, successCB, errorCB) {
     }, function(err, skill) {
         if (err) {
             errorCB(err);
-        } 
-        // console.log(skill);
+
+        }
         successCB(skill);
     });
 }
@@ -26,7 +26,6 @@ function getallSkill(successCB, errorCB) {
         skills.forEach(function(skill) {
             skillMap[skill._id] = skill;
         });
-        // console.log(skills);
         successCB(skills);
     });
 }
@@ -37,13 +36,9 @@ function createNewSkill(formobj, sucessCB, errorCB) {
         candidateid: formobj.mobile,
         skills: []
     });
-    // skillObj.skills.push(newskillobj.skills[0]);
-    // console.log("About to save New Skill:", skillObj);
 
     skillObj.save(function(err, result) {
-        // console.log("inside save");
         if (err) {
-            // console.log(err);
             errorCB(err);
         }
         sucessCB(result);
@@ -64,7 +59,6 @@ function addSkill(skillObj, candidateid, sucessCB) {
             }
         },
         function() {
-            // console.log("successfully added skill ",skillObj.skills[0].skillname);
             sucessCB(skillObj.skills[0].skillname, candidateid);
         }
     );
@@ -102,7 +96,6 @@ function deleteASkill(skillname, candidateid, sucessCB) {
             }
         }
     }, function() {
-        // console.log('affected: ', affected);
         sucessCB('skill object deleted');
     });
 }
@@ -118,7 +111,6 @@ function deleteSkill(candidateid, sucessCB) {
             }
         }
     }, function() {
-        // console.log('affected: ', affected);
         sucessCB('skill object deleted');
     });
 }

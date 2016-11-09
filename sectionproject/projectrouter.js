@@ -15,7 +15,6 @@ router.get('/:candidateId', function(req, res) {
                 res.status(500).json(err);
             });
     } catch (err) {
-       // console.log('Error occurred in fetching project: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -26,7 +25,6 @@ router.get('/:candidateId', function(req, res) {
 // HTTP POST project/:candidateId
 // effective url project/:candidateId
 router.post('/:candidateId', function(req, res) {
-  //  console.log('inside adding project', req.body);
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
         if (result === '') {
             res.status(500).send('Register the candidate first before adding a project');
@@ -42,7 +40,6 @@ router.post('/:candidateId', function(req, res) {
                     }
                 );
             } catch (err) {
-               // console.log('Error occurred in adding project: ', err);
                 res.status(500).json({
                     error: 'Internal error occurred, please report'
                 });
@@ -52,7 +49,7 @@ router.post('/:candidateId', function(req, res) {
 });
 
 
-/* Update a project by passing the passing name in the api for the given candidate id 
+/* Update a project by passing the passing name in the api for the given candidate id
             NOTE:(send every field of the project obj while updating in the body) */
 // HTTP POST project/:candidateId/:projectName
 // effective url project/:candidateId/:projectName
@@ -62,7 +59,7 @@ router.patch('/:candidateId/:projectName', function(req, res) {
             res.status(500).send('Add Project with Candidate id before update');
         } else {
             try {
-                projectProcessor.updateProject(req.params.projectName, req.body, 
+                projectProcessor.updateProject(req.params.projectName, req.body,
                     req.params.candidateId, function(projectObj) {
                         res.status(201).json(projectObj);
                     },
@@ -71,7 +68,6 @@ router.patch('/:candidateId/:projectName', function(req, res) {
                     }
                 );
             } catch (err) {
-              //  console.log('Error occurred in updating: ', err);
                 res.status(500).json({
                     error: 'Internal error occurred, please report'
                 });

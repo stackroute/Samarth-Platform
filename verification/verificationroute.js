@@ -17,7 +17,6 @@ router.get('/:candidateid', function(req, res) {
             }
         );
     } catch (err) {
-       // console.log('Error occurred in getting verification object: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -32,11 +31,9 @@ router.patch('/updateverification/:typename', function(req, res) {
                 res.status(200).send('OK');
             },
             function errorCB(error) {
-            //    console.log('errorCB');
                 res.status(500).send(err);
             });
     } catch (err) {
-       // console.log('Some other error', err);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });

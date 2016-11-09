@@ -33,6 +33,7 @@ router.get('/:candidateid/qboxquestions/', function(req, res) {
             skip,
             limit,
             function(colln) {
+                console.log("In success callback about to do async call");
                 async.map(colln,
                     function(question, cb) {
                         fieldQCache.getFieldQuestion(question.section, question.fieldname, lang,

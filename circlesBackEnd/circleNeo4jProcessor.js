@@ -1,5 +1,8 @@
 let neo4j = require('neo4j');
-let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
+var neo4jConnection = require("../connections/neo4jconnection.js");
+
+let db = neo4jConnection.getConnection();
+
 // 'MATCH (n:coordinator{username:{username}})-[r]->(c:circle)-[rel]-() RETURN c, count(rel)'
 getCircles = function(entityname, successres, errRes) {
     // console.log(entityname)
@@ -15,7 +18,6 @@ getCircles = function(entityname, successres, errRes) {
             if (err) {
                 console.log(err);
             }
-           // console.log(results);
             successres(results);
         });
 };
@@ -30,15 +32,13 @@ creacteNode = function(req, errRes) {
         },
         function(err, results) {
             if (err) {
-                //  console.log(err);
+
                 errRes(results);
             }
         });
 };
 
 createRelation = function(req, res) {
-    console.log('neo4jrelation', req);
-    // console.log(relation);
     db.cypher({
             query: 'merge (n:coordinator{username:{username}}) merge (c:circle{domain:{profession},name:{name}}) merge (n)-[r:primaryOwner ]->(c)',
             params: {

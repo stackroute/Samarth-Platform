@@ -1,5 +1,8 @@
 let neo4j = require('neo4j');
-let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
+var neo4jConnection = require("../connections/neo4jconnection.js");
+
+let db = neo4jConnection.getConnection();
+
 
 
 createProfessionNode = function(req, res) {
@@ -13,9 +16,9 @@ createProfessionNode = function(req, res) {
 	},
 	function(err, results) {
 		if(err) {
-		//	console.log(err);
+			console.log(err);
 		}else{
-		// console.log('***************************************** Profession Finished');
+	 console.log('***************************************** Profession Finished');
 		}
 	});
 };

@@ -1,5 +1,8 @@
 let neo4j = require('neo4j');
-let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
+var neo4jConnection = require("../connections/neo4jconnection.js");
+
+let db = neo4jConnection.getConnection();
+
 
 
 createEmployerNode = function(job, res) {
@@ -16,9 +19,9 @@ createEmployerNode = function(job, res) {
         }
     }, function(err, results) {
         if (err) {
-          //  console.log('Error in inserting relation in neo4j' + err);
+            console.log('Error in inserting relation in neo4j' + err);
         } else {
-          //  console.log('Success in inserting neo4j....' + results);
+            console.log('Success in inserting neo4j....' + results);
         }
     });
 };

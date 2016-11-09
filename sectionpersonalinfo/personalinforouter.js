@@ -15,16 +15,12 @@ router.post('/:candidateid', function(req, res) {
                 try {
                     personalInfoProcessor.updatePersonalinfo(req.body, req.params.candidateid,
                         function(personalinfo) {
-                           // console.log('inside pi');
                             res.status(201).json(personalinfo);
                         },
                         function(err) {
-                          //  console.log('Error occurred in updating new perosnal info detail: ', err);
                             res.status(500).json({ error: 'Internal error occurred, please report' });
                         });
-                    // res.status(201).json(addEdu);
                 } catch (err) {
-                  //  console.log('Error occurred in adding new perosnal info detail: ', err);
                     res.status(500).json({ error: 'Internal error occurred, please report' });
                 }
             } // end if inside else
@@ -41,7 +37,6 @@ router.get('/:candidateid', function(req, res) {
     personalInfoProcessor.getPersonalinfo(req.params.candidateid,
 
         function(getperson) {
-          //  console.log(getperson);
             res.status(201).json(getperson);
         },
 

@@ -8,14 +8,11 @@ function getworkexp(candidateid, successCB, errorCB) {
 
     work.find({ candidateid: candidateid }, function(err, workexps) {
         if (err) {
-          //  console.log(err);
             errorCB(err);
         }
-       // console.log(workexps);
         successCB(workexps);
     });
 }
-
 
 // add workexp for the first time when no records are present by creating records
 function createworkexp(formobj, sucessCB, errorCB) {
@@ -24,17 +21,11 @@ function createworkexp(formobj, sucessCB, errorCB) {
         workexperience: []
     });
 
-   // console.log('About to create new work experience:', wrkexpObj);
-
     wrkexpObj.save(function(err, result) {
-       // console.log('inside save');
         if (err) {
-           // console.log(err);
             errorCB(err);
         }
-       // console.log('New work experience created', result);
         sucessCB(result);
-
 
         // Asynch method
         // Save empObj to DB
@@ -47,8 +38,6 @@ function addworkexp(wsObj, candidateid, sucessCB) {
     work.update({ candidateid: candidateid }, { $push: { workexperience:
                                                  wsObj.workexperience[0] } },
         function() {
-            
-            // console.log("successfully added to ",doc);
             sucessCB();
         }
         );

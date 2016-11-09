@@ -7,8 +7,6 @@ let rubricprocessor = require('./rubricprocesser');
 
  */
 router.get('/:typename', function(req, res) {
-   // console.log('Inside get');
-   // console.log(req.params.typename);
     try {
         rubricprocessor.getrubric(req.params.typename,
             function(rubricdata) {
@@ -19,7 +17,6 @@ router.get('/:typename', function(req, res) {
             }
         );
     } catch (err) {
-       // console.log('Error occurred in getting rubric object: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });

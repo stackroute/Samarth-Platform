@@ -4,19 +4,13 @@ let verification = require('./verificationmodel');
 function getverification(candidateid, successCB, errorCB) {
     verification.find({ candidateid: candidateid }, function(error, result) {
         if (error) {
-         //   console.log(error);
             errorCB(error);
         }
-
-
         successCB(result);
     });
 }
 
 function createNewVerification(candidatedata, successCB, errorCB) {
-    // console.log(candidatedata.mobile);
-    // console.log(candidatedata.candidatename);
-
     let newVerfobj = new verification({
 
         candidateid: candidatedata.mobile,
@@ -24,11 +18,8 @@ function createNewVerification(candidatedata, successCB, errorCB) {
 
     });
 
-   // console.log('about to save new verification object', newVerfobj);
-
     newVerfobj.save(function(err, savedobj) {
         if (err) {
-           // console.log('error in saving the verification data');
             errorCB(err);
         }
         successCB(savedobj);
@@ -36,7 +27,6 @@ function createNewVerification(candidatedata, successCB, errorCB) {
 }
 
 function updateverification(candidatedata, typename, sucessCB, errorCB) {
-   // console.log('update method', candidatedata);
     if (typename === 'Personal_Information') {
         verification.update({ candidateid: candidatedata.candidateid }, {
             $set: {
@@ -46,10 +36,8 @@ function updateverification(candidatedata, typename, sucessCB, errorCB) {
             }
         }, function(err, result) {
             if (err) {
-               // console.log('Error occured on save' + err);
                 errorCB(err);
             } else {
-               // console.log('updated successfully');
                 sucessCB('OK');
             }
         });
@@ -63,10 +51,8 @@ function updateverification(candidatedata, typename, sucessCB, errorCB) {
             }
         }, function(err, result) {
             if (err) {
-              //  console.log('Error occured on save' + err);
                 errorCB(err);
             } else {
-                // console.log('updated successfully');
                 sucessCB('OK');
             }
         });
@@ -80,10 +66,8 @@ function updateverification(candidatedata, typename, sucessCB, errorCB) {
             }
         }, function(err, result) {
             if (err) {
-              //  console.log('Error occured on save' + err);
                 errorCB(err);
             } else {
-               // console.log('updated successfully');
                 sucessCB('OK');
             }
         });
@@ -97,10 +81,8 @@ function updateverification(candidatedata, typename, sucessCB, errorCB) {
             }
         }, function(err, result) {
             if (err) {
-              //  console.log('Error occured on save' + err);
                 errorCB(err);
             } else {
-               // console.log('updated successfully');
                 sucessCB('OK');
             }
         });
@@ -114,10 +96,8 @@ function updateverification(candidatedata, typename, sucessCB, errorCB) {
             }
         }, function(err, result) {
             if (err) {
-               // console.log('Error occured on save' + err);
                 errorCB(err);
             } else {
-               // console.log('updated successfully');
                 sucessCB('OK');
             }
         });
