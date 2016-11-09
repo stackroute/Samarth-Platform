@@ -1,7 +1,6 @@
 let router = require('express').Router();
 let educationProcessor = require('./educationprocessor');
 let eduModel = require('./educationschema');
-let pendingDataProcessor = require('.././questionbox/pendingDataProcessor');
 /* Get Qualification details of the given candidate id*/
 // HTTP GET education//:candidateid/
 // effective url /education//:candidateid
@@ -21,7 +20,6 @@ router.get('/:candidateid', function(req, res) {
 // effective url /education//:candidateid
 router.post('/:candidateID', function(req, res) {
    // console.log(req.body);
-    let EducationMissingFields =  pendingDataProcessor.EducationMissingFields();
 
     eduModel.find({ candidateid: req.params.candidateID }, function(err, result) {
         if (result === '') {

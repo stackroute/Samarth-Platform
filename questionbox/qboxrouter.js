@@ -1,10 +1,10 @@
 let router = require('express').Router();
-// let qboxquestions = require('./qboxquestions');
+// let qboxquestions = require('./qboxquestions'); 
 let qboxProcessor = require('./qboxprocessor');
 // var qboxquestionModel = require('./qboxquestions');
 let async = require('async');
-let fieldQCache = require('./fieldQCache');
-
+let fieldQCache = require('./fieldQCache');  
+let skillMissingFinder = require('./skillMissingFinder');
 /**
  * API for returning questions pending to be answered by the 
     candidate for completion or updation of profile
@@ -102,6 +102,21 @@ router.get('/:candidateid/qboxquestions/queries', function(req, res) {
         });
     }
 });
+ 
+router.post('/:candidateId/findmissing', function(req, res){
+    try{
+
+            //call your finder
+            skillMissingFinder.findMissingFields(req.params.candidateId, function(result){
+                // console.log("result ------->",result);
+                res.json(result);
+            }, function(err){
+                res.status(500).json({error: err});
+            })
+    } catch (err) {
+
+    }
+})
 
 // Effective url is /candidates/:candidateid
 router.post('/:candidateId', function(req, res) {

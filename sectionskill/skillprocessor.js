@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 let skill = require('./skillschema');
-
+ 
 
 function getSkill(candidateid, successCB, errorCB) {
     skill.find({
@@ -8,7 +8,7 @@ function getSkill(candidateid, successCB, errorCB) {
     }, function(err, skill) {
         if (err) {
             errorCB(err);
-        }
+        } 
         // console.log(skill);
         successCB(skill);
     });

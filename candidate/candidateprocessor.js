@@ -14,9 +14,10 @@ function getcandidate(candidateId, successCB, errorCB) {
 
 function createNewcandidate(formObj, successCB, errorCB) {
     let candidateObj = new candidate({
-        candidateid: formObj.mobile,
-        profession: formObj.profession
+        "candidateid": formObj.mobile,
+        // "profession": formObj.profession
     });
+    // console.log("--->under candi------>");
     //  var id="candidateid":candidateid;
     // projectObj.profile.push(id);
     //  projectObj.profile.push(newProjectObj.profile[0]);

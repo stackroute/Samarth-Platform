@@ -3,9 +3,8 @@ let skillProcessor = require('./skillprocessor');
 let skillRelationBuilder = require('./skillrelationbuilder');
 let professionstoskillprocessor = require('./professionstoskillprocessor');
 let skill = require('./skillschema');
-let pendingDataProcessor = require('.././questionbox/pendingDataProcessor');
 let qboxProcessor = require('.././questionbox/qboxprocessor');
-
+let skillMissingFinder = require('.././questionbox/skillMissingFinder');
 /* Get the skills for the given candidate id*/
 // HHTP GET skill/:candidateid
 // effective URL skill/:candidateid
@@ -38,8 +37,7 @@ router.get('/:candidateid', function(req, res) {
 
 // effective url  /skill/:candidateid
 router.post('/:candidateid', function(req, res) {
-    pendingDataProcessor.SkillMissingFields(req.body, req.params.candidateid);
-
+    // skillMissingFinder.
     skill.find({
         candidateid: req.params.candidateid
     }, function(err, result) {
