@@ -1,11 +1,12 @@
-var neo4j = require('neo4j');
+let connConfig = require('./connConfig')();
+let neo4j = require('neo4j');
 
-var neo4jconnection = (function() {
-    var dbconn;
+let neo4jconnection = (function() {
+    let dbconn;
 
     function connectToDB() {
         console.log("**** Creating a new Graph DB Connection ****");
-        var db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
+        let db = new neo4j.GraphDatabase(connConfig.neoconn);
         return db;
     }
 
