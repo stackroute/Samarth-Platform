@@ -13,9 +13,9 @@ let PersonalInfoSchema = new Schema({
     contact: { type: Number, required: true },
     address: { type: String },
     location: { type: String },
-    pincode: { type: Number }
-    //profile pic
-
+    pincode: { type: Number },
+    profilepic:{ type:String, 
+        default: 'http://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg'}
 
 });
 let personModl = mongoose.model('personModl', PersonalInfoSchema, 'personalinfo');
