@@ -46,4 +46,47 @@ router.get('/:candidateid', function(req, res) {
 });
 
 
+//Getting already uploaded profile image
+
+router.get('/:candidateid/profilepic', function(req, res) {
+    personalInfoProcessor.getProfilePic(req.params.candidateid,
+
+        function(getperson) {
+            res.status(200).json(getperson);
+        },
+
+        function(err) {
+            console.log(err)
+            res.status(500).json({ error: 'Internal error occurred' });
+        });
+});
+
+//Updating new profile image
+router.post('/:candidateid/profilepic', function(req, res) {
+    persons.find({ candidateid: req.params.candidateid }, function(err, result) {
+        if (result.length == 0) {
+            res.status(500).send('Register candidates before updating personal info');
+        } // end if
+        else if (!req.body.candidateid) {
+                try {
+                    personalInfoProcessor.updateProfilePic(req.body, req.params.candidateid,
+                        function(profilepic) {
+                            res.status(201).json(profilepic);
+                        },
+                        function(err) {
+                            console.log(err)
+                            res.status(500).json({ error: 'Internal error occurred, please report' });
+                        });
+                } catch (err) {
+                    console.log(err);
+                    res.status(500).json({ error: 'Internal error occurred, please report' });
+                }
+            } // end if inside else
+            else {
+                res.status(500).send('Alert !!! Cant update the Candidate id');
+            }
+    });
+}); // end post
+
+
 module.exports = router;
