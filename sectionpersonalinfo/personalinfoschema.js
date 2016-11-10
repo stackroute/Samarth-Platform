@@ -14,6 +14,7 @@ let PersonalInfoSchema = new Schema({
     address: { type: String },
     location: { type: String },
     pincode: { type: Number }
+    //profile pic
 
 
 });

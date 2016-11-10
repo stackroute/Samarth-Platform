@@ -6,9 +6,9 @@ let skillSchema = new Schema({
 	candidateid: {type: String, required: true},
     skills: [{
         skillname: { type: String, required: true},
-        category: { type: String, required: true },
-        expertise: { type: String, required: true },
-        experience: { type: Number, required: true, min: 0 },
+        category: { type: String},
+        expertise: { type: String},
+        experience: { type: Number, min: 0 ,max:99 },
         metadata: {type: Array, default: []}
     }]
 });
