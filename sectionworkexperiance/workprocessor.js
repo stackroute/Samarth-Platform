@@ -43,14 +43,15 @@ function addworkexp(wsObj, candidateid, sucessCB) {
             }
         },
         function() {
-            workneoprocessor.DesignationRelationBuilder(wsObj.workexperience[0].designation, 
-                candidateid, function(err, result) {
+            workneoprocessor.DesignationRelationBuilder(wsObj.workexperience[0].designation,
+            wsObj.workexperience[0].workplace, wsObj.workexperience[0].Location, candidateid,
+            function(err, result) {
 
-                    if(result){
+                    if (result) {
                         sucessCB();
                     }
 
-            });
+                });
             sucessCB();
         }
     );
