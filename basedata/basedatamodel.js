@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 let sidenav = mongoose.Schema({
-    role: { type: String, required: true },
+    role: { type: String, required: true},
     sidenavmenuitems: [{ name: String, state: String, icon: String }]
 }); // sidenav ends
 

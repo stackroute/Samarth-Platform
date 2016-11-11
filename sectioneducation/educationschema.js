@@ -12,15 +12,15 @@ let qualificationSchema = new Schema({
   	'academicType': {type: String},							// whether primary,secondary,college etc
   	institute: {
   		name: {type: String, required:true},//name of the institute from where qualification attained
-  		type: {type: String, required: true, enum: ['school', 'work', 'college']},
-  		location: {type: String, required: true},						// location of institute
-  		affiliation: {type: String, required: true},/* Board name if a school, University name 
+  		type: {type: String, enum: ['school', 'work', 'college']},
+  		location: {type: String},						// location of institute
+  		affiliation: {type: String},/* Board name if a school, University name 
                                                     if a college etc */
   		metadata: []
   	},
   	outcome: {
-		result: {type: String, required: true},							// marks;grades eg A,B;etc
-		unit: {type: String, required: true}							// %, GRADE , NUMBER etc
+		result: {type: String},							// marks;grades eg A,B;etc
+		unit: {type: String}							// %, GRADE , NUMBER etc
 	}
   }]
 });

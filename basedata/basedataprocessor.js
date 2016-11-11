@@ -9,14 +9,15 @@ let circle = mongoose.model('circle', circles);
 let coordinatoruser = mongoose.model('coordinatorusers', coordinatorUserModel);
 
 let insertSidenavContents = function(items, callback, errfunc) {
+
         let sidenavObj = new sidenavcontent({
-            role: items.role,
-            sidenavmenuitems: items.sidenavmenuitems
+            role: items[0].role,
+            sidenavmenuitems: items[0].sidenavmenuitems
         });
 
         sidenavObj.save(function(err, contents) {
             if (err) {
-              //  console.error('Error in fetching the contents ', err);
+             
                 callback(err, null);
                 return;
             }

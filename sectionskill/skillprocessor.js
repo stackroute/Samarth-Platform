@@ -69,8 +69,7 @@ function addMissingSkillFieldResponse(candidateid, skillInstanceName, fieldname,
 }
 
 // add skills into the existing records
-
-function addSkill(skillObj, candidateid, sucessCB) {
+function addSkill(skillObj, candidateid, sucessCB ) {
     skill.update({
             candidateid: candidateid
         }, {

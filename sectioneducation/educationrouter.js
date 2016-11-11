@@ -7,6 +7,7 @@ let eduModel = require('./educationschema');
 router.get('/:candidateid', function(req, res) {
     educationProcessor.getEducation(req.params.candidateid, function(educationObject) {
 
+
          res.status(201).json(educationObject);
     }, function(err) {
         res.status(500).json({ error: 'Internal error occurred' });
@@ -26,7 +27,8 @@ router.post('/:candidateID', function(req, res) {
         else {
             try {
                 educationProcessor.addEducation(req.body, req.params.candidateID,
-                    function(updatedEdu) {
+                    function(updatedEdu,id) {
+                         
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {

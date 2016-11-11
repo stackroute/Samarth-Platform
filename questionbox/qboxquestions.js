@@ -3,11 +3,10 @@ let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
  
 let schema = new Schema({
-   // 'dataToInsert': Array,
     'candidateid': { type: String, required: true },
     'section': { type: String, required: true },
     'fieldname': { type: String, required: true },
-    'instancename': { type: String, required: false },
+    'instancename': { type: String, required: true },
     'response': { type: String },
     'status': { type: String, required:true, default:'pending', enum:['pending','answered','closed']}
 });

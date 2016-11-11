@@ -72,6 +72,7 @@ router.get('/profession', function(req, res) {
     try {
 
         candidateneo.getProfessions(function(professions) {
+            
 
             res.status(200).json(professions);
         }, function(err) {
