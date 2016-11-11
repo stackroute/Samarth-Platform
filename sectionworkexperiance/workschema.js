@@ -13,7 +13,7 @@ let workSchema = new Schema({
         	to: {type: Date},
         	duration: {type: String}
         },
-        skills: {type: Array}
+        skills: {type: Array, required:true}
     }]
 
 
