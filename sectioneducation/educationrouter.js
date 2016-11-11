@@ -2,11 +2,14 @@ let router = require('express').Router();
 let educationProcessor = require('./educationprocessor');
 let eduModel = require('./educationschema');
 let pendingDataProcessor = require('.././questionbox/pendingDataProcessor');
+let educationgraphquery=require('./educationgraphquery');
 /* Get Qualification details of the given candidate id*/
 // HTTP GET education//:candidateid/
 // effective url /education//:candidateid
 router.get('/:candidateid', function(req, res) {
     educationProcessor.getEducation(req.params.candidateid, function(educationObject) {
+
+        console.log("]]]]]]",educationObject);
 
          res.status(201).json(educationObject);
     }, function(err) {
@@ -29,7 +32,19 @@ router.post('/:candidateID', function(req, res) {
         else {
             try {
                 educationProcessor.addEducation(req.body, req.params.candidateID,
-                    function(updatedEdu) {
+                    function(updatedEdu,id) {
+                         educationgraphquery.qualification_institute(
+                            req.body.qualification[0].title,req.params.candidateID,req.body.qualification[0].institute.name,
+                            function(err, success) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("created relationship of education");                            
+                                }
+                            },function(err){
+                                console.log("relationship error",err);
+
+                            });
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {

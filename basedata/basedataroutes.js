@@ -4,9 +4,15 @@ let baseDataProcessor = require('./basedataprocessor');
 // Effective url /basedata/sidenavdata to insert sidenav contents into mongodb
 router.post('/sidenavdata', function(req, res) {
     try {
-        baseDataProcessor.insertSidenavContents(req.body,
+        //console.log("data in side nav", req.body.sidenavcontents[0]);
+
+
+        baseDataProcessor.insertSidenavContents(req.body.sidenavcontents,
             function(err, contents) {
+
                 if (err) {
+
+                    //console.log("error -->",err );
                     return res.status(500).json({
                         error: 'Internal error in processing request, please retry later..!'
                     });
@@ -18,7 +24,7 @@ router.post('/sidenavdata', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-       // console.error('Error in loading contents ', err);
+        // console.error('Error in loading contents ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });
@@ -41,7 +47,7 @@ router.post('/rubricdata', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-       // console.error('Error in loading contents ', err);
+        // console.error('Error in loading contents ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });
@@ -64,7 +70,7 @@ router.post('/coordinatordata', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-       // console.error('Error in loading contents ', err);
+        // console.error('Error in loading contents ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });
@@ -87,7 +93,7 @@ router.post('/coordinatoruserdata', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-       // console.error('Error in loading contents ', err);
+        // console.error('Error in loading contents ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });
@@ -110,7 +116,7 @@ router.post('/circledata', function(req, res) {
                 return res.status(403).json(err);
             });
     } catch (err) {
-       // console.error('Error in loading contents ', err);
+        // console.error('Error in loading contents ', err);
         return res.status(500).json({
             error: 'Internal error in processing request, please retry later..!'
         });
