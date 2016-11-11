@@ -1,8 +1,9 @@
 let mongoose = require('mongoose');
 
 let Schema = mongoose.Schema;
-
+ 
 let schema = new Schema({
+   // 'dataToInsert': Array,
     'candidateid': { type: String, required: true },
     'section': { type: String, required: true },
     'fieldname': { type: String, required: true },

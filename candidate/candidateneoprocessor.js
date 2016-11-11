@@ -20,9 +20,9 @@ createCandidate = function(req, successCB, errorCB) {
             console.log('Success Results from CreateneoCandidate ---->',results);
 
             if (err) {
-               // console.log(err);
-                errorCB(err);
-
+               // errorCB(esrr);
+// console.log(err);
+                
                // console.log(err);
                 errorCB && errorCB(err);
 

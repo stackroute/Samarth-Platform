@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 let skill = require('./skillschema');
- 
+
 
 function getSkill(candidateid, successCB, errorCB) {
     skill.find({
@@ -48,8 +48,28 @@ function createNewSkill(formobj, sucessCB, errorCB) {
     });
 }
 
+//add skills after  entering into the question box into the existing records
+function addMissingSkillFieldResponse(candidateid, skillInstanceName, fieldname, response, successCB, errorCB) {
+    let field = ('skills.$.' + fieldname);
+    let setObj = {};
+    setObj[field] = response;
+
+    skill.update({
+            candidateid: candidateid,
+            'skills.skillname': skillInstanceName
+        }, {
+            $set: setObj
+        },
+        function(err, result) {
+            if (err) {}
+            successCB(result)
+        }
+
+    );
+}
+
 // add skills into the existing records
-                                                // , errorCB
+
 function addSkill(skillObj, candidateid, sucessCB) {
     skill.update({
             candidateid: candidateid
@@ -64,7 +84,7 @@ function addSkill(skillObj, candidateid, sucessCB) {
     );
 }
 
-                                                            // , errorCB
+// , errorCB
 function updateSkill(skillname, skillobj, candidateid, sucessCB) {
     skill.update({
             candidateid: candidateid,
@@ -72,7 +92,7 @@ function updateSkill(skillname, skillobj, candidateid, sucessCB) {
         }, {
             $set: {
                 'skills.$.skillname': skillobj.skills[0].skillname,
-                'skills.$.category': skillobj.skills[0].category,
+                // 'skills.$.category': skillobj.skills[0].category,
                 'skills.$.expertise': skillobj.skills[0].expertise,
                 'skills.$.experience': skillobj.skills[0].experience,
                 'skills.$.metadata': skillobj.skills[0].metadata
@@ -84,7 +104,7 @@ function updateSkill(skillname, skillobj, candidateid, sucessCB) {
 
     );
 }
-                                                    // , errorCB
+// , errorCB
 function deleteASkill(skillname, candidateid, sucessCB) {
     skill.update({
         candidateid: candidateid,
@@ -99,7 +119,7 @@ function deleteASkill(skillname, candidateid, sucessCB) {
         sucessCB('skill object deleted');
     });
 }
-                                        // , errorCB
+// , errorCB
 function deleteSkill(candidateid, sucessCB) {
     skill.update({
         candidateid: candidateid,
@@ -119,6 +139,7 @@ module.exports = {
     getSkill: getSkill,
     createNewSkill: createNewSkill,
     getallSkill: getallSkill,
+    addMissingSkillFieldResponse: addMissingSkillFieldResponse,
     addSkill: addSkill,
     updateSkill: updateSkill,
     deleteSkill: deleteSkill

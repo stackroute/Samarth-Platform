@@ -5,11 +5,11 @@ let qualificationSchema = new Schema({
   candidateid: {type: String, required: true},
   qualification: [
   {
-  	title: {type: String, required: true}, // title of my qualification that i have done
-  	batch: {type: Number, required: true},		   // the year in which i had passed
+  	'title': {type: String, required: true}, // title of my qualification that i have done
+  	'batch': {type: Number, required: true},		   // the year in which i had passed
   	from: {type: String},
   	to: {type: String},
-  	academicType: {type: String},							// whether primary,secondary,college etc
+  	'academicType': {type: String},							// whether primary,secondary,college etc
   	institute: {
   		name: {type: String, required:true},//name of the institute from where qualification attained
   		type: {type: String, required: true, enum: ['school', 'work', 'college']},
