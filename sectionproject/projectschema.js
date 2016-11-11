@@ -6,7 +6,7 @@ let projectSchema = new Schema({
     candidateid: { type: String, required: true },
     projects: [{
         name: { type: String, required: true },
-        workplace: { type: String },
+        workplace: { type: String, required: true }, //@TODO
         location: { type: String },
         income: { type: Number, min: 0 },
         duration: {

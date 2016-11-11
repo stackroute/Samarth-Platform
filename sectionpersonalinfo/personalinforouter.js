@@ -45,7 +45,6 @@ router.get('/:candidateid', function(req, res) {
         });
 });
 
-
 //Getting already uploaded profile image
 
 router.get('/:candidateid/profilepic', function(req, res) {
@@ -87,6 +86,4 @@ router.post('/:candidateid/profilepic', function(req, res) {
             }
     });
 }); // end post
-
-
 module.exports = router;

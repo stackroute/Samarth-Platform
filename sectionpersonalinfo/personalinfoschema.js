@@ -17,7 +17,6 @@ let PersonalInfoSchema = new Schema({
     profilepic:{ type:String, 
         default: 'http://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg'}
 
-
 });
 let personModl = mongoose.model('personModl', PersonalInfoSchema, 'personalinfo');
 module.exports = personModl;

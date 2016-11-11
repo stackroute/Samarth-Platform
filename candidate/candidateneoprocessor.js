@@ -5,7 +5,7 @@ let db = neo4jConnection.getConnection();
 
 
 createCandidate = function(req, successCB, errorCB) {
-   console.log('*********************************************', req);
+   
     try{
         db.cypher({
             query: 'MERGE (c:Candidate{name:{candidateid}}) MERGE (l:Location{name:{location}}) MERGE (pr:Profession{name:{profession}}) MERGE (c)-[r:belongs_to]->(l) MERGE (c)-[rel:working_as]->(pr)',
@@ -16,8 +16,7 @@ createCandidate = function(req, successCB, errorCB) {
             }
         }, function(err, results) {
 
-            console.log('Error from CreateneoCandidate --->', err);
-            console.log('Success Results from CreateneoCandidate ---->',results);
+            
 
             if (err) {
                // console.log(err);
@@ -72,6 +71,7 @@ getProfessions = function(successCB, errCB) {
 
 
 parseskill = function(req, successCB, errorCB) {
+    try{
 
     db.cypher({
         query: 'MATCH (s:Skill) WHERE s.name IN {searchtext} RETURN s.name as skill;',
@@ -87,16 +87,20 @@ parseskill = function(req, successCB, errorCB) {
             successCB(found[0]);
         }
     });
+}catch(err){
+    console.log("inside parse skill",err);
+}
 };
 
 searchquery = function(req, successCB, errorCB) {
+
     if (req.profession === null && req.location === null && req.skill === null) {
         let result = [];
         successCB(result);
     }
 
     // finds all the
-    if (req.profession !== null && req.location !== null && req.skill !== null) {
+     if (req.profession !== null && req.location !== null && req.skill !== null) {
 
         let query1 =
             'MATCH (c:Candidate),(p:Profession),(l:Location),(s:Skill) WHERE ' +
@@ -252,6 +256,7 @@ searchquery = function(req, successCB, errorCB) {
 
 
 parseprofession = function(req, successCB, errorCB) {
+try{
     db.cypher({
         query: 'MATCH (p:Profession) WHERE p.name IN {searchtext} RETURN p.name as profession;',
         params: {
@@ -266,9 +271,13 @@ parseprofession = function(req, successCB, errorCB) {
             successCB(found[0]);
         }
     });
+}catch(err){
+    console.log("inside parse profession error",err);
+}
 };
 
 parselocation = function(req, successCB, errorCB) {
+    try{
     db.cypher({
         query: 'MATCH (l:Location) WHERE l.name IN {searchtext} RETURN l.name as location;',
         params: {
@@ -283,6 +292,10 @@ parselocation = function(req, successCB, errorCB) {
             successCB(found[0]);
         }
     });
+}
+catch(err){
+    console.log("inside parse location",err);
+}
 };
 
 module.exports = {
