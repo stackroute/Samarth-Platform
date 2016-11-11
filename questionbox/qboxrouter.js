@@ -1,11 +1,13 @@
 let router = require('express').Router();
-// let qboxquestions = require('./qboxquestions');
+// let qboxquestions = require('./qboxquestions'); 
 let qboxProcessor = require('./qboxprocessor');
 // var qboxquestionModel = require('./qboxquestions');
 let async = require('async');
 let fieldQCache = require('./fieldQCache');
-
-/**
+let skillMissingFinder = require('./skillMissingFinder');
+// let educationMissingFinder = require('./educationMissingFinder');
+let skillprocessor = require('.././sectionskill/skillprocessor');
+/** 
  * API for returning questions pending to be answered by the 
     candidate for completion or updation of profile
  * Supports filtering for a given section of the profile, paginate the questions
@@ -15,7 +17,7 @@ let fieldQCache = require('./fieldQCache');
 // Effective url is /candidate/:candidateid/qboxquestions
 
 router.get('/:candidateid/qboxquestions/', function(req, res) {
-  // console.log('under get of ques');
+    // console.log('under get of ques');
     if (!req.params.candidateid) {
         throw new Error('Invalid request, requesting questions without candidate..!');
     }
@@ -28,7 +30,7 @@ router.get('/:candidateid/qboxquestions/', function(req, res) {
         let lang = req.query.lang ? req.query.lang : 'English';
 
 
-         qboxProcessor.getQuestions(req.params.candidateid,
+        qboxProcessor.getQuestions(req.params.candidateid,
             sections,
             skip,
             limit,
@@ -60,7 +62,7 @@ router.get('/:candidateid/qboxquestions/', function(req, res) {
                 res.status(500).json(err);
             });
     } catch (err) {
-       // console.log('Unexpected error occurred in fetching qbox questions: ', err);
+        // console.log('Unexpected error occurred in fetching qbox questions: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -97,16 +99,35 @@ router.get('/:candidateid/qboxquestions/queries', function(req, res) {
                 res.status(500).json(err);
             });
     } catch (err) {
-      //  console.log('Error occurred in fetching queryObject: ', err);
+        //  console.log('Error occurred in fetching queryObject: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
     }
 });
 
+router.post('/:candidateId/findmissing', function(req, res) {
+    console.log("-------->res in findmissing----->" + req.body.section);
+    try {
+
+        //call skill finder
+        skillMissingFinder.findMissingFields(req.params.candidateId, function(result) {
+            // console.log("result ------->",result);
+            res.json(result);
+        }, function(err) {
+            res.status(500).json({ error: err });
+        });
+
+        //call education finder
+        // educationMissingFinder.
+    } catch (err) {
+
+    }
+})
+
 // Effective url is /candidates/:candidateid
 router.post('/:candidateId', function(req, res) {
-  //  console.log('inside adding question req', req.body.section);
+    //  console.log('inside adding question req', req.body.section);
 
     try {
         qboxProcessor.createNewQuestions(req.body, req.params.candidateId,
@@ -118,7 +139,7 @@ router.post('/:candidateId', function(req, res) {
             }
         );
     } catch (err) {
-      //  console.log('Error occurred in adding project: ', err);
+        //  console.log('Error occurred in adding project: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
@@ -127,19 +148,51 @@ router.post('/:candidateId', function(req, res) {
 
 // Effective url is /candidates/:candidateid
 router.patch('/:candidateId/:answer', function(req, res) {
-   // console.log('inside updating question answer', req.body);
+
 
     try {
         qboxProcessor.updateQuestion(req.body, req.params.candidateId, req.params.answer,
-            function(updatedQuesn) {
-                res.status(201).json(updatedQuesn);
+            function(updatedQuestion) {
+                // console.log("-------->skill section----->"+);
+                if (req.body.section == 'skills') {
+
+                    //Check which section this response was for 
+                    //Call corresponding section's process's method to update the response in the corresponding instance 
+
+                    skillprocessor.addMissingSkillFieldResponse(req.params.candidateId,
+                        req.body.instancename,
+                        req.body.fieldname,
+                        req.params.answer,
+                        function(result) {
+                            var obj = {
+                                section: req.body.section,
+                                fieldname: req.body.fieldname,
+                                instancename: req.body.instancename,
+                                response: req.params.answer
+                            };
+
+                    //call qbox processor fxn to set status as closed
+                            qboxProcessor.setClosedStatusQuestion(req.params.candidateId, obj,
+                                function(result) {
+                                    res.status(201).json(result);
+                                },
+                                function(err) {
+                                    res.status(201).json(err);
+                                });
+                        },
+                        function(err) {
+                            res.status(500).json(err);
+                        });
+                } else {
+                    res.status(201).json(result);
+                }
             },
             function(err) {
                 res.status(500).json(err);
             }
         );
     } catch (err) {
-      //  console.log('Error occurred in updating question: ', err);
+        //  console.log('Error occurred in updating question: ', err);
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });

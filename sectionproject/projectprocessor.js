@@ -7,8 +7,8 @@ function getProject(candidateId, successCB, errorCB) {
         }
         successCB(result);
     });
-}
-
+} 
+ 
 function findAllProject(successCB, errorCB) {
     let projectsMap = {};
     project.find({}, function(err, projects) {

@@ -1,7 +1,8 @@
 let router = require('express').Router();
 let projectProcessor = require('./projectprocessor');
 let project = require('./projectschema');
-
+let projectRelationBuilder = require('./projectRelationBuilder');
+   
 /* get all project for the given candidate id */
 // HTTP GET project/:candidateId
 // effective url project/:candidateId
@@ -19,20 +20,37 @@ router.get('/:candidateId', function(req, res) {
             error: 'Internal error occurred, please report'
         });
     }
-});
-
+});  
+ 
 /* Add project for the given candidate id only after registration */
 // HTTP POST project/:candidateId
 // effective url project/:candidateId
 router.post('/:candidateId', function(req, res) {
+    // console.log("---------->projectiiiii------->"+req.params.candidateId+"   "+req.body.projects[0].name);
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
-        if (result === '') {
+        if (result === '') { 
             res.status(500).send('Register the candidate first before adding a project');
         } // end if
         else {
-            try {
+            try { 
                 projectProcessor.addProject(req.body, req.params.candidateId,
                     function(projectObj) {
+    // console.log("---------->projectiiiii------->"+req.params.candidateId+"   "+req.body.projects[0].name);
+                         
+                        // console.log("---->project--->"+req.body.projects[0].income+"  "+req.body.projects[0].duration);
+                        projectRelationBuilder.projectRelationBuilder(req.params.candidateId,
+                            req.body.projects[0].name,
+                            req.body.projects[0].location,
+                            req.body.projects[0].skills,
+                            req.body.projects[0].income,
+                            // req.body.projects[0].duration
+                             function(err, success) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    // console.log("created relationship");                            
+                                }
+                            });
                         res.status(201).json(projectObj);
                     },
                     function(err) {

@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-
+ 
 let projectSchema = new Schema({
 
     candidateid: { type: String, required: true },
@@ -14,7 +14,7 @@ let projectSchema = new Schema({
             to: { type: Date },
             durationInMonths: { type: String }
         },
-        skills: { type: Array },
+        skills: { type: Array, required: true },
         meta: { type: Array }
     }]
 });

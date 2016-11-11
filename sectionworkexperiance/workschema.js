@@ -13,10 +13,8 @@ let workSchema = new Schema({
         	to: {type: Date},
         	duration: {type: String}
         },
-        skills: {type: Array}
+        skills: {type: Array, required:true}
     }]
-
-
 });
 let work = mongoose.model('work', workSchema, 'workhistory');
 module.exports = work;

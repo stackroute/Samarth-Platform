@@ -2,7 +2,6 @@
   // let qboxQuestionsModel = require('./qboxquestions');
   let fieldQProcessor = require('./fieldQProcessor');
   // let qboxprocessor = require('./qboxprocessor');
-  let pendingDataProcessor = require('./pendingDataProcessor');
   let async = require('async');
   let redis = require('redis');
   let redisClient = redis.createClient();
@@ -58,15 +57,6 @@
               // Load each of them with a key of <Section>_<Field>_<Lang> as the format
 
               let cache = this;
-
-              // qboxprocessor.getAllBoxQuestions(function(colln)
-              // {
-              //    if (colln.length <= 0) {
-              //         return;
-              //     }//end if
-              //     boxQuestion=colln[0].instancename;
-              //    // console.log(colln[0].instancename);
-              // });
               fieldQProcessor.getAllFieldQuestions(function(colln) {
                   if (colln.length <= 0) {
                       return;
@@ -82,7 +72,6 @@
                         fieldQuestion.fieldname, fieldQuestion.lang);
                     //  console.log('-----keyCache-------' + key);
                       let value = fieldQuestion.query;
-                     pendingDataProcessor.questions(key, value);
                       multi.set(key, value);
                   } // end for
 
@@ -91,8 +80,6 @@
                           // console.log('Error in loading field questions to redis ', err);
                       } // end if
 
-                      // console.log('Loadded ', replies.length, ' number of 
-                      // field questions out of ', colln.length);
                   }); // end multi exec
               }, function(err) {
                   throw new Error('Could not load Field Questions'+
