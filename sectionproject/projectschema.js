@@ -14,8 +14,8 @@ let projectSchema = new Schema({
             to: { type: Date },
             durationInMonths: { type: String }
         },
-        'skills': { type: Array },
-        'meta': { type: Array }
+        skills: { type: Array, required: true },
+        meta: { type: Array }
     }]
 });
 
