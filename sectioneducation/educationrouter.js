@@ -2,11 +2,13 @@ let router = require('express').Router();
 let educationProcessor = require('./educationprocessor');
 let eduModel = require('./educationschema');
 let pendingDataProcessor = require('.././questionbox/pendingDataProcessor');
+
 /* Get Qualification details of the given candidate id*/
 // HTTP GET education//:candidateid/
 // effective url /education//:candidateid
 router.get('/:candidateid', function(req, res) {
     educationProcessor.getEducation(req.params.candidateid, function(educationObject) {
+
 
          res.status(201).json(educationObject);
     }, function(err) {
@@ -29,7 +31,8 @@ router.post('/:candidateID', function(req, res) {
         else {
             try {
                 educationProcessor.addEducation(req.body, req.params.candidateID,
-                    function(updatedEdu) {
+                    function(updatedEdu,id) {
+                         
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {

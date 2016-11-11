@@ -1,4 +1,4 @@
-let connConfig = require('./connConfig')();
+let connConfig = require('./../connConfig')();
 let neo4j = require('neo4j');
 
 let neo4jconnection = (function() {

@@ -15,8 +15,6 @@ let workSchema = new Schema({
         },
         skills: {type: Array, required:true}
     }]
-
-
 });
 let work = mongoose.model('work', workSchema, 'workhistory');
 module.exports = work;
