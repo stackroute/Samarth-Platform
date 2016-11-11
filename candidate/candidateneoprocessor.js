@@ -5,7 +5,7 @@ let db = neo4jConnection.getConnection();
 
 
 createCandidate = function(req, successCB, errorCB) {
-   console.log('*********************************************', req);
+   console.log( req);
     try{
         db.cypher({
             query: 'MERGE (c:Candidate{name:{candidateid}}) MERGE (l:Location{name:{location}}) MERGE (pr:Profession{name:{profession}}) MERGE (c)-[r:belongs_to]->(l) MERGE (c)-[rel:working_as]->(pr)',
