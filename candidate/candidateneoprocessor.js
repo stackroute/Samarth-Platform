@@ -94,13 +94,13 @@ parseskill = function(req, successCB, errorCB) {
 
 searchquery = function(req, successCB, errorCB) {
 
-    if (req.profession === null && req.location === null && req.skill === null) {
+    if (req.profession === undefined && req.location === undefined && req.skill === undefined) {
         let result = [];
         successCB(result);
     }
 
     // finds all the
-     if (req.profession !== null && req.location !== null && req.skill !== null) {
+     if (req.profession !== undefined && req.location !== undefined && req.skill !== undefined) {
 
         let query1 =
             'MATCH (c:Candidate),(p:Profession),(l:Location),(s:Skill) WHERE ' +
@@ -126,8 +126,8 @@ searchquery = function(req, successCB, errorCB) {
             }
         });
 
-    } else if (req.profession !== null && req.location !== null && req.skill ===
-        null) {
+    } else if (req.profession !== undefined && req.location !== undefined && req.skill ===
+        undefined) {
 
         let query2 = 'MATCH (c:Candidate),(p:Profession),(l:Location) WHERE ' +
             '(c)-[:working_as]->(p) AND p.name={profession} AND ' +
@@ -150,8 +150,8 @@ searchquery = function(req, successCB, errorCB) {
             }
         });
 
-    } else if (req.profession !== null && req.location === null && req.skill !==
-        null) {
+    } else if (req.profession !== undefined && req.location === undefined && req.skill !==
+        undefined) {
         let query3 = 'MATCH (c:Candidate),(p:Profession),(s:Skill) WHERE ' +
             '(c)-[:working_as]->(p) AND p.name={profession} AND ' +
             '(c)-[:KNOWS]->(s)  AND' +
@@ -173,8 +173,8 @@ searchquery = function(req, successCB, errorCB) {
             }
         });
 
-    } else if (req.profession === null && req.location !== null && req.skill !==
-        null) {
+    } else if (req.profession === undefined && req.location !== undefined && req.skill !==
+        undefined) {
 
         let query4 = 'MATCH (c:Candidate),(l:Location),(s:Skill) WHERE ' +
             '(c)-[:belongs_to]->(l) AND l.name={location} AND ' +
@@ -199,8 +199,8 @@ searchquery = function(req, successCB, errorCB) {
 
 
     // returns all the candidates with  a profession
-    else if (req.profession !== null && req.location === null && req.skill ===
-        null) {
+    else if (req.profession !== undefined && req.location === undefined && req.skill ===
+        undefined) {
         db.cypher({
             query: 'MATCH (c:Candidate),(p:Profession) WHERE (c)-[:working_as]->(p) AND p.name={profession} RETURN c.name as candidateid;',
             params: {
@@ -217,8 +217,8 @@ searchquery = function(req, successCB, errorCB) {
         });
     }
     // returns all the candidates with a location
-    else if (req.location !== null && req.profession === null && req.skill ===
-        null) {
+    else if (req.location !== undefined && req.profession === undefined && req.skill ===
+        undefined) {
         db.cypher({
             query: 'MATCH (c:Candidate),(l:Location) WHERE (c)-[:belongs_to]->(l) AND l.name={location} RETURN c.name as candidateid;',
             params: {
@@ -235,8 +235,8 @@ searchquery = function(req, successCB, errorCB) {
         });
     }
     // returns all candidates with a skill.
-    else if (req.skill !== null && req.profession === null && req.location ===
-        null) {
+    else if (req.skill !== undefined && req.profession === undefined && req.location ===
+        undefined) {
         db.cypher({
             query: 'MATCH (c:Candidate),(s:Skill) WHERE (c)-[:KNOWS]->(s) AND s.name={skill} RETURN c.name as candidateid;',
             params: {
@@ -263,6 +263,10 @@ try{
             searchtext: req
         }
     }, function(err, found) {
+
+        console.log('professsion -->',found);
+        console.log('profession not found --->',err);
+
         if (err) {
            // console.log(err);
             errorCB(err);

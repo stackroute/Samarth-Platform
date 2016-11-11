@@ -52,7 +52,7 @@ router.post('/parse', function(req, res) {
             if (err) {
                 res.status(500).json({ msg: err });
             } else {
-
+                console.log('query ----->',query);
                 candidateneo.searchquery(query, function(results) {
                     res.status(200).json(results);
                 }, function(err) {
