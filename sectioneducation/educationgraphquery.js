@@ -1,27 +1,27 @@
 let neo4j = require('neo4j');
 var neo4jConnection = require("../connections/neo4jconnection.js");
-
+let relationConfig = require("../relationConfig/relationconfig");
 let db = neo4jConnection.getConnection();
 
 
 
 
-qualification_institute = function(institute, candidateid,institutename, successCB, errorCB) {
+qualification_institute = function(institute, candidateid,institutename, successCB) {
     
 
     db.cypher({
-        query: 'MERGE(c:Candidate{name:{candidateid}}) MERGE(p:Qualification{name:{institutename}}) MERGE(i:Institute) MERGE (c)-[r:qualification_in]->(p) MERGE (c)-[f:qualified_from]->(i)',
+    query: 'MERGE(c:Candidate{name:{candidateid}}) MERGE(p:Qualification{name:{institute},nameofins:{institutename}}) MERGE(i:Institute{name:{institutename}}) MERGE (c)-[r:'+relationConfig.neorelationconfig()['Qualification_in']+']->(p) MERGE (c)-[f:'+relationConfig.neorelationconfig()['Qualified_from']+']->(i)',
         params: {
             candidateid: candidateid,
             institute: institute ,
-            institutename,institutename
+            institutename:institutename
         }
     }, function(err, results) {
         if (err) {
-            errorCB(err);
+            successCB(err,null);
         } else {
 
-            successCB(results);
+            successCB(null,results);
         }
     });
 };

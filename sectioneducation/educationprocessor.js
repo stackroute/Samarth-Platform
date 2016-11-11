@@ -2,6 +2,7 @@ let MongoClient = require('mongodb').MongoClient,
     assert = require('assert');
 let mongoose = require('mongoose');
 let eduModel = require('./educationschema');
+let educationgraphquery=require('./educationgraphquery');
 
 function getAllEducation(successCB, errorCB) {
     // Asynch
@@ -42,6 +43,16 @@ function addEducation(updatedEmpObj, candidateId, successCB, errCB) {
     eduModel.update({ candidateid: candidateId }, { $push:
                                 { qualification: updatedEmpObj.qualification[0] } },
         function() {
+            console.log('updatedEmpObj --->',updatedEmpObj.qualification[0]);
+            educationgraphquery.qualification_institute(
+                            updatedEmpObj.qualification[0].title,candidateId,updatedEmpObj.qualification[0].institute.name,
+                            function(err, success) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("created relationship of education");                            
+                                }
+                            });
             successCB('qualification updateded');
         }
     );
