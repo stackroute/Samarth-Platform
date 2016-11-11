@@ -49,7 +49,7 @@ function createNewSkill(formobj, sucessCB, errorCB) {
 
 // add skills into the existing records
                                                 // , errorCB
-function addSkill(skillObj, candidateid, sucessCB) {
+function addSkill(skillObj, candidateid, sucessCB ) {
     skill.update({
             candidateid: candidateid
         }, {

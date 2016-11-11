@@ -39,7 +39,7 @@ var neo4jConnection = require("./connections/neo4jconnection.js");*/
 let rubricRoute = require('./rubricbackend/rubricroute');
 let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
-var neo4jConnection = require("./connections/neo4jconnection.js");
+let neo4jConnection = require("./connections/neo4jconnection");
 
 
 let app = express();

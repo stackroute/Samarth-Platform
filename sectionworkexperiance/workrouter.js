@@ -23,9 +23,9 @@ router.post('/:candidateid', function(req, res) {
             res.status(500).send('Register the Candidate before adding work experience ');
         } // end if
         else {
-            workProcessor.addworkexp(req.body, req.params.candidateid, function(works) {
+            workProcessor.addworkexp(req.body, req.params.candidateid, function() {
 
-                res.status(201).json(works);
+                res.status(201).json();
             }, function(err) {
                 res.status(500).json({ error: 'can\'t add experiance in the records' });
             });
