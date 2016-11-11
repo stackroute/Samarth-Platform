@@ -36,7 +36,6 @@ router.get("/:candidateid", function(req, res) {
 //effective url  /skill/:candidateid
 router.post("/:candidateid", function(req, res) {
 
-    pendingDataProcessor.SkillMissingFields(req.body, req.params.candidateid);
 
     skill.find({
         candidateid: req.params.candidateid
