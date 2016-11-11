@@ -19,9 +19,9 @@ createCandidate = function(req, successCB, errorCB) {
             
 
             if (err) {
-               // console.log(err);
-                errorCB(err);
-
+               // errorCB(esrr);
+// console.log(err);
+                
                // console.log(err);
                 errorCB && errorCB(err);
 

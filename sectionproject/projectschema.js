@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-
+ 
 let projectSchema = new Schema({
 
     candidateid: { type: String, required: true },

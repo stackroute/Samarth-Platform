@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 let Schema = mongoose.Schema;
-
+ 
 let schema = new Schema({
     'candidateid': { type: String, required: true },
     'section': { type: String, required: true },
