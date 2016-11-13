@@ -1,13 +1,19 @@
 let router = require('express').Router();
 let personalInfoProcessor = require('./personalinfoprocessor');
 let persons = require('./personalinfoschema');
+let personNeo = require('./personalinfoneoprocessor');
+
 
  
 /* update personal info only after registration of candidate*/
 // HTTP POST personalinfo/:candidateid
 // effective url personalinfo/:candidateid/
 router.post('/:candidateid', function(req, res) {
+
     persons.find({ candidateid: req.params.candidateid }, function(err, result) {
+
+        console.log("Personal info");
+
         if (result === '') {
             res.status(500).send('Register candidates before updating personal info');
         } // end if
@@ -15,6 +21,9 @@ router.post('/:candidateid', function(req, res) {
                 try {
                     personalInfoProcessor.updatePersonalinfo(req.body, req.params.candidateid,
                         function(personalinfo) {
+
+                            personNeo.createLanguageNode(req.body.personalInfo, req.params.candidateid);
+                            
                             res.status(201).json(personalinfo);
                         },
                         function(err) {
@@ -34,9 +43,15 @@ router.post('/:candidateid', function(req, res) {
 // HTTP GET personalinfo/:candidateid
 // effective url personalinfo/:candidateid/
 router.get('/:candidateid', function(req, res) {
+
+    //console.log(req);
     personalInfoProcessor.getPersonalinfo(req.params.candidateid,
 
+
         function(getperson) {
+
+           // personNeo.getbyLanguage(req.params.candidateid, req);
+
             res.status(201).json(getperson);
         },
 
@@ -86,4 +101,6 @@ router.post('/:candidateid/profilepic', function(req, res) {
             }
     });
 }); // end post
+
+
 module.exports = router;

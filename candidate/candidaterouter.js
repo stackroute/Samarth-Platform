@@ -11,58 +11,30 @@ let projectprocessor = require('../sectionproject/projectprocessor');
 let skillprocessor = require('../sectionskill/skillprocessor');
 let workexpprocessor = require('../sectionworkexperiance/workprocessor');
 let candidateneo = require('./candidateneoprocessor');
+let candidatesearchprocessor = require('./newcandidateneoprocessor');
 let verificationprocessor = require('../verification/verificationprocesser');
 
-
-router.post('/parse', function(req, res) {
-
+router.post('/search', function(req, res) {
     try {
-        let data = [];
-        async.parallel({
- 
-            profession: function(callback) {
-                candidateneo.parseprofession(req.body,
-                    function(profession) {
-                        callback(null, profession);
-                    },
-                    function(err) {
-                        callback(err, null);
-                    });
-            },
-            location: function(callback) {
-                candidateneo.parselocation(req.body,
-                    function(location) {
-                        callback(null, location);
-                    },
-                    function(err) {
-                        callback(err, null);
-                    });
-            },
-            skill: function(callback) {
-                candidateneo.parseskill(req.body,
-                    function(skill) {
-                        callback(null, skill);
-                    },
-                    function(err) {
-                        callback(err, null);
-                    });
-            }
-
-        }, function success(err, query) {
-            if (err) {
-                res.status(500).json({ msg: err });
-            } else {
-                console.log('query ----->',query);
-                candidateneo.searchquery(query, function(results) {
-                    res.status(200).json(results);
-                }, function(err) {
-                    res.status(500).json({ message: 'No matches found' });
+        candidatesearchprocessor
+        .getSearchArray(req.body.searchquery.trim())
+        .then(function (searchArray) {
+            if(searchArray.length>0){
+                candidatesearchprocessor.getAllCandidates(searchArray).then(function(data){
+                    console.log("data --->",data);
+                    res.status(200).json(data);
+                },function(err){
+                    console.log("error in all candidates --->",err);
                 });
+            }else{
+                //console.log('hello')
+                res.status(500).json({ message: 'No matches found' });
             }
+        },function (err) {
+            console.log("Error happaned --->",err);
         });
-
-
     } catch (err) {
+        console.log(err)
         res.status(500).json(err);
     }
 });
@@ -72,7 +44,7 @@ router.get('/profession', function(req, res) {
     try {
 
         candidateneo.getProfessions(function(professions) {
-            
+
 
             res.status(200).json(professions);
         }, function(err) {
@@ -113,12 +85,13 @@ router.get('/:candidateid', function(req, res) {
 // HTTP POST /candidate/:candidateid /
 // effective url /candidate/
 router.post('/', function(req, res) {
+    console.log(req.body);
     try {
         candidateneo.createCandidate(req.body, function(err, stat) {
             if (err) {
-                console.log("err--------------------->",err);
+                console.log("err--------------------->", err);
             } else {
-                console.log("stat-------------------->",stat);
+                console.log("stat-------------------->", stat);
             }
         });
         // create every section,candidate,profile if candidate is created for first time
@@ -127,9 +100,9 @@ router.post('/', function(req, res) {
         }, function(error, candidate) {
 
             /*if (candidate === '') {*/
-                if(candidate.length == 0){
+            if (candidate.length == 0) {
 
-               // console.log('inside ifffffffffffffffffffffffffffff--->',candidate.length);
+                // console.log('inside ifffffffffffffffffffffffffffff--->',candidate.length);
                 async.parallel({
                         candidate: function(callback) {
                             candidateprocessor.createNewcandidate(req.body,
@@ -215,7 +188,7 @@ router.post('/', function(req, res) {
                     },
                     function(err, results) {
                         if (err) {
-                           console.log('ERR ----------------->: ', err);
+                            console.log('ERR ----------------->: ', err);
                             return res.status(500).json({
                                 msg: err
                             });
@@ -242,36 +215,37 @@ router.post('/', function(req, res) {
 // effective url /candidate/:candidateid
 
 router.patch('/:candidateid', function(req, res) {
+   // console.log("patch Candidate");
     candidate.find({
-            candidateid: req.params.candidateid
-        }, function(error, candidate) {
-            if (candidate = '') {
-                res.status(500).send(
-                    'Candidate doesnt exists, Add Candidate before updating...!');
-            } else {
+        candidateid: req.params.candidateid
+    }, function(error, candidate) {
+        if (candidate = '') {
+            res.status(500).send(
+                'Candidate doesnt exists, Add Candidate before updating...!');
+        } else {
 
-                if (!req.body.candidateid) {
-                    try {
-                        candidateprocessor.updatecandidate(req.body, req.params.candidateid,
-                            function(candidateObj) {
-                                res.status(201).json(candidateObj);
-                            },
-                            function(err) {
-                                res.status(500).json(err);
-                            }
-                        );
-                    } catch (err) {
-                       
-                        res.status(500).json({
-                            error: 'Internal error occurred, please report'
-                        });
-                    } // end catch
-                } // end if
-                else {
-                    res.status(500).send('Alert! Can\'t update Candidate id... ');
-                }
-            } // end else
-        }); // end find
+            if (!req.body.candidateid) {
+                try {
+                    candidateprocessor.updatecandidate(req.body, req.params.candidateid,
+                        function(candidateObj) {
+                            res.status(201).json(candidateObj);
+                        },
+                        function(err) {
+                            res.status(500).json(err);
+                        }
+                    );
+                } catch (err) {
+
+                    res.status(500).json({
+                        error: 'Internal error occurred, please report'
+                    });
+                } // end catch
+            } // end if
+            else {
+                res.status(500).send('Alert! Can\'t update Candidate id... ');
+            }
+        } // end else
+    }); // end find
 });
 
 module.exports = router;

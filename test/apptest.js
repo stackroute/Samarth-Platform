@@ -14,8 +14,8 @@ request = request(app);
 describe("Describe testing whether the instance is  singleton or not",function () {
 	
 	it('Checking whether all the instances of the sigleton is same or not', function(done) {
-		var instance1 = neo4jConnection.getConnection();
-		var instance2 = neo4jConnection.getConnection();
+		var instance1 = neo4jConnection.neo4jconnection.getConnection();
+		var instance2 = neo4jConnection.neo4jconnection.getConnection();
 		console.log('------>',instance2);
 		expect(instance1).to.equal(instance2);
 		done()

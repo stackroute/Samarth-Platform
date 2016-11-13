@@ -4,7 +4,7 @@ let relationConfig = require("../relationConfig/relationconfig");
 
 console.log(relationConfig.neorelationconfig()['IS_A']);
 
-let db = neo4jConnection.getConnection();
+let db = neo4jConnection.neo4jconnection.getConnection();
 
 
 let DesignationRelationBuilder = function(designation , workplace , location , candidateid, errCB) {
