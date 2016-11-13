@@ -23,7 +23,7 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
         }
         successCB(postdetails);
     });
-}
+} 
 
 function getPersonalinfo(candidateid, successCB, errorCB) {
     person.find({ candidateid: candidateid }, function(err, getpersons) {
@@ -77,7 +77,29 @@ function getProfilePic(candidateid, successCB, errorCB) {
         }else{
             errorCB("No records found");
         }
-    });
+    }); 
+}
+ 
+
+//add personal info after entering into the question box into the existing records
+function addMissingPersonalInfoFieldResponse(candidateid, instancename, fieldname, response, successCB, errorCB) {
+   // console.log("------->"+educationInstanceName+"   "+fieldname+"  "+response);
+    let field =  fieldname;
+    let setObj = {};
+    setObj[field] = response;
+
+    person.update({
+            candidateid: candidateid,
+        }, {
+            $set: setObj
+        },
+        function(err, result) {
+            if (err) {}
+            successCB(result)
+        // console.log("------>result for education--->"+result);
+        }
+
+    );
 }
 
 module.exports = {
@@ -85,5 +107,6 @@ module.exports = {
     getPersonalinfo: getPersonalinfo,
     updatePersonalinfo: updatePersonalinfo,
     getProfilePic: getProfilePic,
-    updateProfilePic:updateProfilePic
+    updateProfilePic:updateProfilePic,
+    addMissingPersonalInfoFieldResponse:addMissingPersonalInfoFieldResponse
 };

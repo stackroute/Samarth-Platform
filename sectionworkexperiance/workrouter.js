@@ -1,7 +1,7 @@
 let router = require('express').Router();
 let workProcessor = require('./workprocessor');
 let work = require('./workschema');
-
+ 
 
 /* Get the types of work for the given candidate id*/
 // HTTP GET /work/:candidateid

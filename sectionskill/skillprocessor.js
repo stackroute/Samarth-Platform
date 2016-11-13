@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 let skill = require('./skillschema');
 
-
+ 
 function getSkill(candidateid, successCB, errorCB) {
     skill.find({
         candidateid: candidateid
@@ -9,7 +9,7 @@ function getSkill(candidateid, successCB, errorCB) {
         if (err) {
             errorCB(err);
 
-        }
+        } 
         successCB(skill);
     });
 }
@@ -47,9 +47,10 @@ function createNewSkill(formobj, sucessCB, errorCB) {
         // Save empObj to DB
     });
 }
-
+ 
 //add skills after  entering into the question box into the existing records
 function addMissingSkillFieldResponse(candidateid, skillInstanceName, fieldname, response, successCB, errorCB) {
+   console.log("------->"+skillInstanceName+"   "+fieldname+"  "+response);
     let field = ('skills.$.' + fieldname);
     let setObj = {};
     setObj[field] = response;
@@ -63,6 +64,7 @@ function addMissingSkillFieldResponse(candidateid, skillInstanceName, fieldname,
         function(err, result) {
             if (err) {}
             successCB(result)
+        console.log("------>result for skills--->"+result);
         }
 
     );

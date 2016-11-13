@@ -4,9 +4,12 @@ let qboxProcessor = require('./qboxprocessor');
 // var qboxquestionModel = require('./qboxquestions');
 let async = require('async');
 let fieldQCache = require('./fieldQCache');
-let skillMissingFinder = require('./skillMissingFinder');
-// let educationMissingFinder = require('./educationMissingFinder');
 let skillprocessor = require('.././sectionskill/skillprocessor');
+let educationProcessor  = require('.././sectioneducation/educationprocessor');
+let personalInfoprocessor = require('.././sectionpersonalinfo/personalinfoprocessor');
+let projectprocessor = require('.././sectionproject/projectprocessor');
+let workProcessor = require('.././sectionworkexperiance/workprocessor');
+let profileProcessor = require('.././profiles/profileprocessor');
 /** 
  * API for returning questions pending to be answered by the 
     candidate for completion or updation of profile
@@ -106,22 +109,22 @@ router.get('/:candidateid/qboxquestions/queries', function(req, res) {
     }
 });
 
-router.post('/:candidateId/findmissing', function(req, res) {
-    console.log("-------->res in findmissing----->" + req.body.section);
+/**
+ * Route to tirgger inspecting of missing profile fields and add them to questionbox 
+ */
+router.post('/:candidateId/profile/missingfields', function(req, res) {
     try {
+        profileProcessor.inspectMissingProfileFields(req.params.candidateId,
+            function(result) {
+                console.log("Result of findmissing ", result);
+                res.json(result);
+            },
+            function(err) {
+                return res.status(500).json({ error: err });
+            });
 
-        //call skill finder
-        skillMissingFinder.findMissingFields(req.params.candidateId, function(result) {
-            // console.log("result ------->",result);
-            res.json(result);
-        }, function(err) {
-            res.status(500).json({ error: err });
-        });
-
-        //call education finder
-        // educationMissingFinder.
     } catch (err) {
-
+        console.log("error in missing field", err);
     }
 })
 
@@ -148,44 +151,20 @@ router.post('/:candidateId', function(req, res) {
 
 // Effective url is /candidates/:candidateid
 router.patch('/:candidateId/:answer', function(req, res) {
-
-
     try {
         qboxProcessor.updateQuestion(req.body, req.params.candidateId, req.params.answer,
             function(updatedQuestion) {
-                // console.log("-------->skill section----->"+);
-                if (req.body.section == 'skills') {
-
-                    //Check which section this response was for 
-                    //Call corresponding section's process's method to update the response in the corresponding instance 
-
-                    skillprocessor.addMissingSkillFieldResponse(req.params.candidateId,
-                        req.body.instancename,
-                        req.body.fieldname,
-                        req.params.answer,
-                        function(result) {
-                            var obj = {
-                                section: req.body.section,
-                                fieldname: req.body.fieldname,
-                                instancename: req.body.instancename,
-                                response: req.params.answer
-                            };
-
-                    //call qbox processor fxn to set status as closed
-                            qboxProcessor.setClosedStatusQuestion(req.params.candidateId, obj,
-                                function(result) {
-                                    res.status(201).json(result);
-                                },
-                                function(err) {
-                                    res.status(201).json(err);
-                                });
-                        },
-                        function(err) {
-                            res.status(500).json(err);
-                        });
-                } else {
-                    res.status(201).json(result);
-                }
+                profileProcessor.updateMissingFieldResponse(req.params.candidateId,
+                    req.body.section, 
+                    req.body.instancename,
+                    req.body.fieldname,
+                    req.params.answer,
+                    function(err, result) {
+                        if (err) {
+                            return res.status(500).json(err);
+                        }
+                        return res.json(result);
+                    });
             },
             function(err) {
                 res.status(500).json(err);

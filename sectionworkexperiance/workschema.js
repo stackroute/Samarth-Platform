@@ -2,7 +2,7 @@ let mongoose = require('mongoose');
 
 let Schema = mongoose.Schema;
 
-let workSchema = new Schema({
+let workSchema = new Schema({ 
 	candidateid: {type: String, required: true},
     workexperience: [{
         designation: { type: String, required: true },

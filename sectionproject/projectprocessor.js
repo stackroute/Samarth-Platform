@@ -3,12 +3,12 @@ let project = require('./projectschema');
 function getProject(candidateId, successCB, errorCB) {
     project.find({ candidateid: candidateId }, function(error, result) {
         if (error) {
-            errorCB(error);
+            errorCB(error); 
         }
         successCB(result);
     });
 } 
- 
+  
 function findAllProject(successCB, errorCB) {
     let projectsMap = {};
     project.find({}, function(err, projects) {
@@ -71,11 +71,33 @@ function deleteProject(candidateId, projectName, successCB) {
     });
 }
 
+//add project details after  entering into the question box into the existing records
+function addMissingProjectFieldResponse(candidateid, projectInstanceName, fieldname, response, successCB, errorCB) {
+   // console.log("------->"+skillInstanceName+"   "+fieldname+"  "+response);
+    let field = ('projects.$.' + fieldname);
+    let setObj = {};
+    setObj[field] = response;
+    console.log("------>under projects------------>"+field);
+    project.update({
+            candidateid: candidateid,
+            'projects.name': projectInstanceName
+        }, {
+            $set: setObj
+        },
+        function(err, result) {
+            if (err) {}
+            successCB(result)
+        }
+
+    );
+}
+
 module.exports = {
     getProject: getProject,
     findAllProject: findAllProject,
     addProject: addProject,
     createNewProject: createNewProject,
     updateProject: updateProject,
-    deleteProject: deleteProject
+    deleteProject: deleteProject,
+    addMissingProjectFieldResponse: addMissingProjectFieldResponse
 };

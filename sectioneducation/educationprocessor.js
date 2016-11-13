@@ -3,7 +3,7 @@ let MongoClient = require('mongodb').MongoClient,
 let mongoose = require('mongoose');
 let eduModel = require('./educationschema');
 let educationgraphquery=require('./educationgraphquery');
-
+ 
 function getAllEducation(successCB, errorCB) {
     // Asynch
     eduModel.find({}, function(err, docs) {
@@ -91,11 +91,36 @@ function deleteEducation(candidateID, qualificationID, deletingObj, successCB, e
             errorCB('the education detail failed to be deleted');
         });
 }
+
+//add qualification after  entering into the question box into the existing records
+function addMissingEducationFieldResponse(candidateid, educationInstanceName, fieldname, response, successCB, errorCB) {
+   // console.log("------->"+educationInstanceName+"   "+fieldname+"  "+response);
+    let field = ('qualification.$.' + fieldname);
+    console.log('----->'+field);
+    let setObj = {};
+    setObj[field] = response;
+
+    eduModel.update({
+            candidateid: candidateid,
+            'qualification.title': educationInstanceName
+        }, {
+            $set: setObj
+        },
+        function(err, result) {
+            if (err) {}
+            successCB(result)
+        // console.log("------>result for education--->"+result);
+        }
+
+    );
+}
+
 module.exports = {
     getEducation: getEducation,
     getAllEducation: getAllEducation,
     createNewEducation: createNewEducation,
     addEducation: addEducation,
     updateEducation: updateEducation,
-    deleteEducation: deleteEducation
+    deleteEducation: deleteEducation,
+    addMissingEducationFieldResponse: addMissingEducationFieldResponse
 };

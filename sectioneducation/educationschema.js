@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 let qualificationSchema = new Schema({
   candidateid: {type: String, required: true},
   qualification: [
-  {
+  { 
   	'title': {type: String, required: true}, // title of my qualification that i have done
   	'batch': {type: Number, required: true},		   // the year in which i had passed
   	from: {type: String},

@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 let work = require('./workschema');
-
+ 
 let workneoprocessor = require("./workneoprocessor");
 
 function getworkexp(candidateid, successCB, errorCB) {
@@ -13,7 +13,7 @@ function getworkexp(candidateid, successCB, errorCB) {
             errorCB(err);
         }
         successCB(workexps);
-    });
+    }); 
 }
 
 // add workexp for the first time when no records are present by creating records
@@ -77,9 +77,32 @@ function updateworkexp(wsobj, candidateid, workplace, sucessCB) {
     );
 }
 
+
+//add work exp after  entering into the question box into the existing records
+function addMissingWorkFieldResponse(candidateid, workInstanceName, fieldname, response, successCB, errorCB) {
+   // console.log("------->"+skillInstanceName+"   "+fieldname+"  "+response);
+    let field = ('workexperience.$.' + fieldname);
+    let setObj = {};
+    setObj[field] = response;
+
+    work.update({
+            candidateid: candidateid,
+            'workexperience.designation': workInstanceName
+        }, {
+            $set: setObj
+        },
+        function(err, result) {
+            if (err) {}
+            successCB(result)
+        // console.log("------>result for skills--->"+result);
+        }
+
+    );
+}
 module.exports = {
     getworkexp: getworkexp,
     createworkexp: createworkexp,
     addworkexp: addworkexp,
-    updateworkexp: updateworkexp
+    updateworkexp: updateworkexp,
+    addMissingWorkFieldResponse: addMissingWorkFieldResponse
 };

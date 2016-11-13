@@ -19,7 +19,7 @@ router.post('/parse', function(req, res) {
     try {
         let data = [];
         async.parallel({
-
+ 
             profession: function(callback) {
                 candidateneo.parseprofession(req.body,
                     function(profession) {

@@ -1,61 +1,60 @@
-// let educationprocessor = require('.././sectioneducation.js');
-// let qboxprocessor = require('./qboxprocessor');
-// let qboxquestionModel = require('./qboxquestions');
-  
-// var getFieldsNames = function() {
-//     return ['title', 'batch', 'academicType', 'name','type','location','affiliation','result','unit'];
-// }
- 
-// var findMissingFields = function(candidateid, successCB, errorCB) {
-//     skillProcessor.getSkill(candidateid, function(result) {
-//         let candidateSkills = result[0];
+let educationprocessor = require('.././sectioneducation/educationprocessor');
+let qboxprocessor = require('./qboxprocessor');
+let qboxquestionModel = require('./qboxquestions');
 
-//         let skillFieldArray = getFieldsNames();
+var getFieldsNames = function() {
+    return ['title', 'batch', 'academicType'];
+}
 
-//         let sectionQBoxQuestions = [];
- 
-//         for (let i = 0; i < candidateSkills.skills.length; i++) {
+var findMissingEducationFields = function(candidateid) {
+    educationprocessor.getEducation(candidateid, function(result) {
+        // console.log("------->result in education--------->" + result[0]);
+        let candidateEducationDetails = result[0];
 
-//             let skillData = candidateSkills.skills[i];
+        let educationFieldArray = getFieldsNames();
 
-//             for (let j = 0; j < skillFieldArray.length; j++) {
+        let sectionQBoxQuestions = [];
+        //candidateEducationDetails.qualification.length
+        for (let i = 0; i < candidateEducationDetails.qualification.length; i++) {
 
-//                 if (skillData[skillFieldArray[j]] == undefined) {
-//                     let qboxquestion = new qboxquestionModel({
-//                         candidateid: candidateid,
-//                         section: "skills",
-//                         fieldname: skillFieldArray[j],
-//                         instancename: skillData.skillname
-//                     });
-//                     //let it be the defualt, which is assumed to be pending
-//                     //let it be the defualt, which is assumed to be empty
-//                     sectionQBoxQuestions.push(qboxquestion);
-//                     // console.log("----->"+qboxquestion);      
-//                 }
-//             } //end of looping through each field
-//         } // end of iterating through all the skills of the candiate 
+            let educationData = candidateEducationDetails.qualification[i];
 
 
-//         if (sectionQBoxQuestions.length > 0) {
-//             //insert to DB
-//             // qboxprocessor.insertPendindData(sectionQBoxQuestions,
-//             qboxprocessor.createNewQuestionColln(sectionQBoxQuestions,
-//                 function(result) {
-//                     successCB(sectionQBoxQuestions);
-//                 },
-//                 function(err) {
+            for (let j = 0; j < educationFieldArray.length; j++) {
+                if (educationData[educationFieldArray[j]] == undefined) {
+                    let qboxquestion = new qboxquestionModel({
+                        candidateid: candidateid,
+                        section: "qualification",
+                        fieldname: educationFieldArray[j],
+                        instancename: educationData.title
+                    });
 
-//                 });
+                    sectionQBoxQuestions.push(qboxquestion);
+                    // console.log("----->" + qboxquestion);
+                }
+            } //end of looping through each field
+        } // end of iterating through all the skills of the candiate 
 
-//             //call qboxprocessor to insert these questions
-//         }
-//     }, function(err) {
-//         console.log("Error in finding missing fields for particular candidate ", err);
-//         errorCB(err);
-//     });
-// }
 
-// module.exports = {
-//     getFieldsNames: getFieldsNames,
-//     findMissingFields: findMissingFields
-// };
+        if (sectionQBoxQuestions.length > 0) {
+            qboxprocessor.createNewQuestionColln(sectionQBoxQuestions,
+                function(result) {
+                    // console.log("---->res" + result);
+                    // successCB(sectionQBoxQuestions);
+                },
+                function(err) {
+
+                });
+
+            //call qboxprocessor to insert these questions
+        }
+    }, function(err) {
+        console.log("Error in finding missing fields for particular candidate ", err);
+        errorCB(err);
+    }); //end of get education processor find method
+}
+
+module.exports = {
+    getFieldsNames: getFieldsNames,
+    findMissingEducationFields: findMissingEducationFields
+};

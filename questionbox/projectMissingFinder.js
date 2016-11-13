@@ -1,37 +1,39 @@
+
 // let skill = require('.././sectionskill/skillschema');
-let skillProcessor = require('.././sectionskill/skillprocessor.js');
+let projectProcessor = require('.././sectionproject/projectprocessor');
 let qboxprocessor = require('./qboxprocessor');
 let qboxquestionModel = require('./qboxquestions');
- 
-var getFieldsNames = function() {
-    return ['skillname', 'category', 'expertise', 'experience'];
-} 
- 
-var findMissingFields = function(candidateid, successCB, errorCB) {
-    skillProcessor.getSkill(candidateid, function(result) {
-        let candidateSkills = result[0];
 
-        let skillFieldArray = getFieldsNames();
+var getFieldsNames = function() { 
+    return ['name','workplace', 'location', 'income', 'skills'];
+}  
+   
+var findProjectInfoMissingFields = function(candidateid, successCB, errorCB) {
+   projectProcessor.getProject(candidateid, function(result) {
+   	// console.log("------>project info---->",result[0]);
+        let projectInfo = result[0];
 
+        let projectFieldArray = getFieldsNames();
+        // console.log("----->len"+projectInfo.projects.length);
         let sectionQBoxQuestions = [];
  
-        for (let i = 0; i < candidateSkills.skills.length; i++) {
+        for (let i = 0; i < projectInfo.projects.length; i++) {
+        	// console.log("hiii 1");
+            let projectData = projectInfo.projects[i];
 
-            let skillData = candidateSkills.skills[i];
-
-            for (let j = 0; j < skillFieldArray.length; j++) {
-
-                if (skillData[skillFieldArray[j]] == undefined) {
+            for (let j = 0; j < projectFieldArray.length; j++) {
+            	// console.log("--->hii  2");
+                if (projectData[projectFieldArray[j]] == '') {
                     let qboxquestion = new qboxquestionModel({
                         candidateid: candidateid,
-                        section: "skills",
-                        fieldname: skillFieldArray[j],
-                        instancename: skillData.skillname
+                        section: "project",
+                        fieldname: projectFieldArray[j],
+                        instancename: projectData.name
                     });
                     //let it be the defualt, which is assumed to be pending
                     //let it be the defualt, which is assumed to be empty
                     sectionQBoxQuestions.push(qboxquestion);
-                    console.log("----->"+qboxquestion);      
+                    // console.log("----->"+qboxquestion);      
                 }
             } //end of looping through each field
         } // end of iterating through all the skills of the candiate 
@@ -47,7 +49,7 @@ var findMissingFields = function(candidateid, successCB, errorCB) {
                 function(err) {
 
                 });
- 
+
             //call qboxprocessor to insert these questions
         }
     }, function(err) {
@@ -58,5 +60,5 @@ var findMissingFields = function(candidateid, successCB, errorCB) {
 
 module.exports = {
     getFieldsNames: getFieldsNames,
-    findMissingFields: findMissingFields
+    findProjectInfoMissingFields: findProjectInfoMissingFields
 };

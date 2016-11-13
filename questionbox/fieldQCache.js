@@ -34,7 +34,7 @@
               let key = 
               this.makeFieldQCacheKey(fieldQuestion.section, 
                 fieldQuestion.fieldnamem, fieldQuestion.lang);
-              let value = fieldQuestion.query;
+              let value = fieldQuestion.query; 
 
               redisClient.set(key, value);
           },
@@ -72,6 +72,7 @@
                         fieldQuestion.fieldname, fieldQuestion.lang);
                     //  console.log('-----keyCache-------' + key);
                       let value = fieldQuestion.query;
+                      console.log("--->query--->"+key);
                       multi.set(key, value);
                   } // end for
 

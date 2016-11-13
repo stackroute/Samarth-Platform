@@ -2,7 +2,7 @@ let router = require('express').Router();
 let personalInfoProcessor = require('./personalinfoprocessor');
 let persons = require('./personalinfoschema');
 
-
+ 
 /* update personal info only after registration of candidate*/
 // HTTP POST personalinfo/:candidateid
 // effective url personalinfo/:candidateid/
