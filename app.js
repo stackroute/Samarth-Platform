@@ -54,7 +54,7 @@ app.onAppStart = function(addr) {
     */
     //let db = new neo4j.GraphDatabase('http://neo4j:password@localhost:7474');
 
-    let db = neo4jConnection.getConnection();
+    let db = neo4jConnection.neo4jconnection.getConnection();
 
     mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 

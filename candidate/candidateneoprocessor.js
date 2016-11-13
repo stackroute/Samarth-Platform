@@ -1,11 +1,12 @@
 let neo4j = require('neo4j');
 var neo4jConnection = require("../connections/neo4jconnection.js");
 
-let db = neo4jConnection.getConnection();
+let db = neo4jConnection.neo4jconnection.getConnection();
 
 
 createCandidate = function(req, successCB, errorCB) {
-   
+
+
     try{
         db.cypher({
             query: 'MERGE (c:Candidate{name:{candidateid}}) MERGE (l:Location{name:{location}}) MERGE (pr:Profession{name:{profession}}) MERGE (c)-[r:belongs_to]->(l) MERGE (c)-[rel:working_as]->(pr)',
@@ -283,10 +284,8 @@ try{
 parselocation = function(req, successCB, errorCB) {
     try{
     db.cypher({
-        query: 'MATCH (l:Location) WHERE l.name IN {searchtext} RETURN l.name as location;',
-        params: {
-            searchtext: req
-        }
+        query: 'MATCH (l:Location),(d:Dictionary) WHERE l.name IN d.'+req+' RETURN l.name as location',
+       
     }, function(err, found) {
         if (err) {
            // console.log(err);
