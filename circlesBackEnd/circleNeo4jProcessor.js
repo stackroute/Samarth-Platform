@@ -1,7 +1,7 @@
 let neo4j = require('neo4j');
 var neo4jConnection = require("../connections/neo4jconnection.js");
 
-let db = neo4jConnection.neo4jconnection.getConnection();
+let db = neo4jConnection.getConnection();
 
 // 'MATCH (n:coordinator{username:{username}})-[r]->(c:circle)-[rel]-() RETURN c, count(rel)'
 getCircles = function(entityname, successres, errRes) {

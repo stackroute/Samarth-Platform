@@ -4,7 +4,7 @@ var neo4jConnection = require("../connections/neo4jconnection.js");
 //console.log("About to connect to neo4j DB ");
 try {
 
-    let db = neo4jConnection.neo4jconnection.getConnection();
+    let db = neo4jConnection.getConnection();
 
 } catch (err) {
     console.log("Error in obtaining db connection to neo4j ", err);

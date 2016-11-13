@@ -4,11 +4,20 @@ let neo4jDriver = require('neo4j-driver').v1;
 
 let neo4jconnection = (function() {
     let dbconn;
+    let boltDBconn;
 
     function connectToDB() {
         console.log("**** Creating a new Graph DB Connection ****");
         let db = new neo4j.GraphDatabase(connConfig.neoconn);
         return db;
+    }
+
+    function connectBoltConnection() {
+        console.log("**** Creating a new Graph DB Bolt Stream Connection ****");
+        let driver = neo4jDriver.driver(("bolt://"+connConfig.neo4jhost), neo4jDriver.auth.basic(connConfig.neo4juser, connConfig.neo4jpwd));
+        var session = driver.session();
+
+        return session;
     }
 
     return {
@@ -17,34 +26,15 @@ let neo4jconnection = (function() {
                 dbconn = connectToDB();
             }
             return dbconn;
-        }
-    };
-})();
+        },
 
-
-let neo4jboltconnection = (function() {
-    let dbconn;
-
-    function connectToDB() {
-        console.log("**** Creating a new Graph DB Stream Connection ****");
-        let driver = neo4jDriver.driver("bolt://localhost", neo4jDriver.auth.basic("neo4j", "password"));
-        var session = driver.session();
-        //console.log('Created bolt connection --->',db)
-
-        return session;
-    }
-
-    return {
-        getStreamConnection: function() {
-            if (!dbconn) {
-                dbconn = connectToDB();
+        getBoltStreamConnection: function() {
+            if (!boltDBconn) {
+                boltDBconn = connectBoltConnection();
             }
-            return dbconn;
+            return boltDBconn;
         }
     };
 })();
 
-module.exports = {
-    neo4jconnection : neo4jconnection,
-    neo4jboltconnection :neo4jboltconnection
-}
+module.exports = neo4jconnection;

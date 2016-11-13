@@ -1,7 +1,7 @@
 let neo4j = require('neo4j');   
 var neo4jConnection = require("../connections/neo4jconnection.js");
   
-let db = neo4jConnection.neo4jconnection.getConnection();
+let db = neo4jConnection.getConnection();
    // ,duration:{duration}
 let projectRelationBuilder = function(candidateid, projectName,location,skills,income,duration,errCB) {
   

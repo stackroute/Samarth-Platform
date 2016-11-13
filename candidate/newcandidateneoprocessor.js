@@ -1,6 +1,5 @@
 let Q = require("q");
 let neo4jConnection = require("../connections/neo4jconnection");
-let session = neo4jConnection.neo4jboltconnection.getStreamConnection();
 
 //let session = neo4jConnection.session();
 
@@ -10,6 +9,7 @@ getSearchArray = function(req) {
     let searchArray = {};
     req = req.toLowerCase();
     console.log('req ----->', req);
+    let session = neo4jConnection.getBoltStreamConnection();
     session.run('MATCH(n) return n')
         .subscribe({
             onNext: function(lexicon) {
@@ -44,6 +44,7 @@ getAllCandidates = function(tokenArr) {
     /*session.run("MATCH (n:Candidate)-[]->(p) where p.name IN {names} with distinct n return n as candidateid", {
             names: tokenArr
         })*/
+    let session = neo4jConnection.getBoltStreamConnection();
     session.run("MATCH (n) -[r:SAME_AS] -(s) where n.name in {names} with  collect(s.name) as arr MATCH (c:Candidate)-[]->(p) where p.name IN arr with distinct c return c as candidateid UNION MATCH (c:Candidate)-[]->(p) where p.name in {names} with distinct c return c as candidateid", {
             names: tokenArr
         })
