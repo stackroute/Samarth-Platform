@@ -44,6 +44,7 @@ getCircle = function(req, successRes, errorRes) {
                 errorRes(err);
             });
     } catch (err) {
+        console.log('error in getcircle',err);
         res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
     }
 };
