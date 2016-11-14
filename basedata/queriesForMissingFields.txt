@@ -1,0 +1,36 @@
+1.) For skills section:-
+
+db.fieldquestions.insert({section:'skills',fieldname:'expertise',query:'What is your expertise(Beginner,Skilled,Proficient,Expert) on  ',lang:'English'})
+db.fieldquestions.insert({section:'skills',fieldname:'experience',query:'Specify your experience(in months/yrs) in  ',lang:'English'})
+
+2.) For qualification section:-
+
+db.fieldquestions.insert({section:'qualification',fieldname:'batch',query:'In which year you passed your ',lang:'English'})
+db.fieldquestions.insert({section:'qualification',fieldname:'academicType',query:'Course Level(Primary,Metric,Senior Secondary,Diploma,Graduation,Post-Graduation,Docterate,Others) of  ',lang:'English'})
+db.fieldquestions.insert({section:'qualification',fieldname:'name',query:'From which institute you did your ',lang:'English'})
+db.fieldquestions.insert({section:'qualification',fieldname:'location',query:'Specify location of the Institute for qualification  ',lang:'English'})
+db.fieldquestions.insert({section:'qualification',fieldname:'result',query:'What is your score/marks in ',lang:'English'})
+
+
+3.) for project section:-
+
+db.fieldquestions.insert({section:'project',fieldname:'location',query:'Where did you undertake your project  ',lang:'English'})
+db.fieldquestions.insert({section:'project',fieldname:'income',query:'Specify your remuneration, while working on project ',lang:'English'})
+db.fieldquestions.insert({section:'project',fieldname:'skills',query:'Which of your skills helped on the project ',lang:'English'})
+db.fieldquestions.insert({section:'project',fieldname:'durationInMonths',query:'For how long, did you work on the project ',lang:'English'})
+
+4.) for work exp
+
+db.fieldquestions.insert({section:'workexperience',fieldname:'duration',query:'How long have you been working with ',lang:'English'})
+db.fieldquestions.insert({section:'workexperience',fieldname:'location',query:'At which location you worked with ',lang:'English'})
+
+
+5.) personal info
+
+db.fieldquestions.insert({section:'personalinfo',fieldname:'gender',query:'Please specify your gender ',lang:'English'})
+db.fieldquestions.insert({section:'personalinfo',fieldname:'dob',query:'Specify your date of birth ',lang:'English'})
+db.fieldquestions.insert({section:'personalinfo',fieldname:'maritialstatus',query:'Specify your marital status ',lang:'English'})
+db.fieldquestions.insert({section:'personalinfo',fieldname:'mothertongue',query:'Specify your native language ',lang:'English'})
+db.fieldquestions.insert({section:'personalinfo',fieldname:'address',query:'Specify your address ',lang:'English'})
+db.fieldquestions.insert({section:'personalinfo',fieldname:'location',query:'Specify your current Location ',lang:'English'})
+db.fieldquestions.insert({section:'personalinfo',fieldname:'pincode',query:'Enter the pin-code of your location ',lang:'English'})
