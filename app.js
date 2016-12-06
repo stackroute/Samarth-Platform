@@ -40,12 +40,12 @@ let rubricRoute = require('./rubricbackend/rubricroute');
 let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
 let neo4jConnection = require("./connections/neo4jconnection");
-
+let placement=require("./placement/coordinatorrouter.js");
 
 let app = express();
 
 app.onAppStart = function(addr) {
-   //    console.log('Samarth Platform web services is now Running on port:', addr.port);
+      console.log('Samarth Platform web services is now Running on port:', addr.port);
 
     mongoose.set('debug', true);
     /* mongoose.set('debug', function(coll, method, query, doc[, options]) {
@@ -146,5 +146,7 @@ app.use('/verification', verificationRoute);
 app.use('/coordinatorregister', coordinatorRouter);
 
 app.use('/profession', professiontoskillroutr);
+
+app.use('/coordinatorreg',placement);
 
 module.exports = app;
