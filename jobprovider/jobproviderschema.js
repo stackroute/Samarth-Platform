@@ -7,7 +7,8 @@ let jobproviderschema = new Schema({
     // emailID: { type: String, required: true },
     // contactNumber: { type: String, required: true },
     // employerLogo: { type: String }
-    ID:{ type: String, required: true, unique: true},
+    // ID:{ type: String, required: true, unique: true},
+    jpCode: {type : Number, required:true, unique:true},
     name: { type: String},
     type: { type: String },
     location: { type: String },

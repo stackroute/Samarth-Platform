@@ -10,9 +10,19 @@ function postjobprovider(jobproviderdata, sucessCB, errorCB) {
     });
 }
 
+function getjpCodeStatus(jpCode, sucessCB, errorCB) {
+    jobprovider.find({ jpCode: jpCode }, function(error, result) {
+        if (error) {
+            errorCB(error);
+        } else {
+            sucessCB(result);
+        }
+    });
+}
+
 
 module.exports = {
-
+		getjpCodeStatus : getjpCodeStatus,
     postjobprovider: postjobprovider
 
 }
