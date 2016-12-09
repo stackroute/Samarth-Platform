@@ -6,29 +6,13 @@ let jobproviderprocessor = require('./jobproviderprocessor');
 router.post('/registeremployer', function(req, res) {
     try {
         let jobproviderdata = req.body;
-        //  jobProfileProcessor.getjpCodeStatus(jobproviderdata.jpCode,
-        //      function sucessCB(result) {
-        //         let length = result.length;
-        //         if (length > 0) {
-        //             console.log(length)
-        //         res.status(500).send('The Job Provider ID already exist. Please try with any other ID');
-        // }
-        jobprovider.findOne({jpCode:jobproviderdata.jpCode},
-            function(err, result){
-                if(err){
-                    return res.send({error: "Something went wrong"});
-                }
-                if(result){
-                    res.status(200).send('Please try with some other jobprovider Code');
-                }else{
+    
                     jobproviderprocessor.postjobprovider(jobproviderdata, function sucessCB(message) {
-            res.status(200).send('OK');
+            res.status(201).send('OK');
         }, function errorCB(error) {
             res.status(500).send(error);
         });
 
-                }
-            });
         // else{
 
         //     jobproviderprocessor.postjobprovider(jobproviderdata, function sucessCB(message) {
@@ -47,15 +31,49 @@ router.post('/registeremployer', function(req, res) {
     }
 });
 
+router.get('/codeCheck/:jpCode', function(req, res) {
+    try {
+        var jpCode = req.params.jpCode;
+        // console.log(jpCode);
+
+        // jobproviderprocessor.getjpCodeStatus(jpCode, function sucessCB(result) {
+        //     // if(result>=1){
+        //         console.log(result);
+        //         res.status(200).json({msg:"Success",count:result});
+        //     // }else(result==0){
+        //         // console.log(result);
+        //         // res.status(200).json({msg:"Success",count:0});
+            
+            
+        // }, function errorCB(error) {
+        //     res.status(500).send(error);
+        // });
+        jobprovider.find({jpCode:jpCode}).count(function(err,count){
+            if(err){
+                return res.status(500).send("something went wrong");
+            }if(count>=1){
+                return res.status(200).json({msg:"Fail",count:count});
+            }
+            else return res.status(200).json({msg:"Success",count:0});
+        });
+} catch (err) {
+        return res.status(500).send('Some error occured');
+    }
+});
+
+router.get('/getJobProvider', function(req, res) {
+    try {
+        jobproviderprocessor.getjobproviders(function sucessCB(result) {
+            res.status(200).send(result);
+        }, function errorCB(error) {
+            res.status(500).json(error);
+        });
+    } catch (err) {
+        res.status(500).json({
+            error: 'Internal error occurred, please report'
+        });
+    }
+});
+
 module.exports = router;
- // coordinator.findOne({
- //            coordinatorId: req.body.mobile
- //        }, function(err, crdntrObj) {
- //            if (err) {
- //                return res.send({ error: 'Something went wrong, please report' });
- //            }
-
- //            if (crdntrObj) {
- //                // Already exists
-
- //            } 
+ 

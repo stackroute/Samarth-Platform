@@ -11,7 +11,19 @@ function postjobprovider(jobproviderdata, sucessCB, errorCB) {
 }
 
 function getjpCodeStatus(jpCode, sucessCB, errorCB) {
-    jobprovider.find({ jpCode: jpCode }, function(error, result) {
+    jobprovider.find({jpCode:jpCode}).count(function(err,count){
+            if(err){
+                // return res.status(500).send("something went wrong");
+                 errorCB(error);
+            }
+            if(count){
+            sucessCB(count);
+        }
+    });
+}
+
+function getjobproviders(sucessCB, errorCB) {
+    jobprovider.find(function(error, result) {
         if (error) {
             errorCB(error);
         } else {
@@ -23,6 +35,7 @@ function getjpCodeStatus(jpCode, sucessCB, errorCB) {
 
 module.exports = {
 		getjpCodeStatus : getjpCodeStatus,
-    postjobprovider: postjobprovider
+        postjobprovider: postjobprovider,
+        getjobproviders : getjobproviders
 
 }
