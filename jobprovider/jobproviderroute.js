@@ -7,7 +7,7 @@ router.post('/registeremployer', function(req, res) {
     try {
         let jobproviderdata = req.body;
     
-                    jobproviderprocessor.postjobprovider(jobproviderdata, function sucessCB(message) {
+          jobproviderprocessor.postjobprovider(jobproviderdata, function sucessCB(message) {
             res.status(201).send('OK');
         }, function errorCB(error) {
             res.status(500).send(error);
