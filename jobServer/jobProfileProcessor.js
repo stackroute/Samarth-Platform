@@ -2,7 +2,15 @@ var jobProfile = require('./jobProfileSchema');
 
 function addJob(job, successFn, errorFn) {
     //mapping to schema values
+    let result=0;
+    console.log(job.desc.title);
+    jobProfile.find({jobprovider :job.jpCode}).count(function(err,count){
+        if(count){
+                result=count;
+                console.log("result "+result);
     var jobValues = new jobProfile({
+                jobcode : result+1,
+                jobprovider : job.jpCode,
     			title : job.desc.title,
 			    role : job.desc.role,
 			    duties : job.desc.duties,
@@ -30,14 +38,32 @@ function addJob(job, successFn, errorFn) {
     jobValues.save(function(err) {
         if (err) {
             errorFn(err);
-        } else {
+        } else { 
             successFn('successfully inserted data');
+        }
+    });
+
+}else{
+    errorFn("Some error occurred");
+}
+})
+
+}
+
+function getJobs(successFn, errorFn) {
+    jobProfile.find(function(error, result) {
+        if (error){
+            errorFn(error);
+        }
+         else {
+            successFn(result);
         }
     });
 }
 
-function getJobs(successFn, errorCN) {
-    jobProfile.find(function(error, result) {
+
+function getJobDetails(jpCode,jobtitle, successFn, errorFn) {
+    jobProfile.find({jobprovider : jpCode, title :jobtitle},function(error, result) {
         if (error){
             errorFn(error);
         }
@@ -51,4 +77,5 @@ function getJobs(successFn, errorCN) {
 module.exports = {
     addJob: addJob,  
     getJobs: getJobs,
+    getJobDetails: getJobDetails
 };
