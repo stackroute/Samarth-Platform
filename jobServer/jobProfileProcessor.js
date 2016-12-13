@@ -1,6 +1,6 @@
 var jobProfile = require('./jobProfileSchema');
 
-function addJob(job,jobCode,successFn, errorFn) {
+function addJob(job,successFn, errorFn) {
     //mapping to schema values
     let result=0;
     console.log(job.desc.title);

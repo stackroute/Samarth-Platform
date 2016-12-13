@@ -5,20 +5,37 @@ let db = neo4jConnection.getConnection();
 
 
 
-createJobNode = function(job, jobCode, res) {
-    console.log("in neo "+jobCode);
+createJobNode = function(job, res) {
+    let query = "";
+    query += 'MERGE (jb: Job{name:{jobCode}}) ';
+    query += 'MERGE (jp: JobProvider{name:{jpCode}}) ';
+    query += 'MERGE (lc: Location{name:{location}}) '; 
+    query += 'MERGE (rl: Role{name:{role}}) ';
+    query += 'MERGE (jb)-[r1:Providedby]->(jp)';
+    query += 'MERGE (jb)-[r2:Available_At]->(lc) ';
+    query += 'MERGE (jb)-[r3:Role_As]->(rl) ';
+    query += 'FOREACH (skillname in {skills} | MERGE (sk: Skills{name:skillname.name}) ';
+    query += 'MERGE (jb)-[r4:Required{priority:skillname.priority}]->(sk) ) ';
+    query += 'FOREACH (qualname in {quals} | MERGE (ql: Qualification{name:qualname.name}) ';
+    query += 'MERGE (jb)-[r5:Expected{score:qualname.score,priority:qualname.priority}]->(ql))'; 
+
+    let params = {
+        jobCode: jobCode,
+        jpCode: job.jpCode,
+        location: job.desc.location,
+        role: job.desc.role,
+        language:job.desc.language,
+        quals: job.criteria.qualifications,
+        skills: job.desc.skills
+    };
+
+    console.log("Query for job profile indexing: ", query, " : ", params);
+
     db.cypher({
-        // query: 'MERGE (ee: employer{name:{employerName},employerID:{employerID}}) MERGE (jb:job{jobID:{jobID},employerID:{employerID}}) MERGE (l:location{name:{locationName}}) MERGE (rl:role{name:{roleName}}) MERGE (p:profession{name:{professionName}}) MERGE (ee)-[r1:POSTED]->(jb) MERGE (jb)-[r2:LOCATEDAT]->(l) MERGE (jb)-[r3:NEEDAPROFESSION]->(p) MERGE (jb)-[r4:NEEDROLE]->(rl) MERGE (rl)-[r5:HAVINGJOB]->(jb) MERGE (p)-[r6:HAVEJOB]->(jb) FOREACH (skillreq in {skills} | MERGE (s:skill{name:skillreq.skillName}) MERGE (s)-[r7:USEDIN]->(p) MERGE (p)-[r8:PRIMARY]->(s) MERGE (jb)-[r9:NEEDS]->(s) MERGE (s)-[r10:REQUIREDJOB]->(jb))',
-        query: 'MERGE (jb: Job{name:{jobcode}}) MERGE (jp: Jobprovider{name:{jpCode}}) MERGE (lc: Location{name:{location}}) MERGE(lg: Language{name:{language}}) MERGE(rl: Role{name:{role}}) MERGE (jb)-[r1:Providedby]->(jp) MERGE (jb)-[r2:Available_At]->(lc) MERGE (jb)-[r3:Role_As]->(rl) FOREACH (skillreq in {skills} | MERGE (sk: JobSkills{name:{skillreq.name}}) MERGE (jb)-[r4:Required]->(sk)) FOREACH (qual in {qualifications} | MERGE (ql: JobQualification{name:{qual.name}}) MERGE (jb)-[r5:Expected]->(ql))', 
-        params: {
-            jobcode: jobCode,
-            jpCode: job.desc.jpCode,
-            location: job.desc.location,
-            role: job.desc.role,
-            qual: job.criteria.qualifications,
-            skills: job.desc.skills
-        }
-    }, function(err, results) {
+        query: query,
+        params: params
+    },
+     function(err, results) {
         if (err) {
             console.log('Error in inserting relation in neo4j' + err);
         } else {
@@ -26,6 +43,7 @@ createJobNode = function(job, jobCode, res) {
         }
     });
 };
+
 
 
 module.exports = {
