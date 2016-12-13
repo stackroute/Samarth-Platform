@@ -25,11 +25,11 @@ let qboxRouter = require('./questionbox/qboxrouter');
 let fieldQRouter = require('./questionbox/fieldquestionsrouter');
 let skillcardrouter = require('./sectionskill/skillrouter');
 let fieldQCache = require('./questionbox/fieldQCache');
-let jobProfileRoutes = require('./jobprofile/jobprofileroute');
-let employerRoutes = require('./employer/employerroute.js');
+// let jobProfileRoutes = require('./jobprofile/jobprofileroute');
+let employerRoutes = require('./jobprovider/jobproviderroute.js');
 let professiontoskillroutr = require(
     './professiontoskillsgraphdata/professiontoskillrouter.js');
-
+let jobProfile=require('./jobServer/jobProfileRoute.js');
 /*var rubricRoute = require('./rubricbackend/rubricroute');
 var verificationRoute = require('./verification/verificationroute');
 var coordinatorRouter = require('./coordinator/coordinatorroute');
@@ -137,7 +137,7 @@ app.use('/profile', profilerouter);
 app.use('/work', workRouter);
 app.use('/personalinfo', personalinfoRoutes);
 app.use('/skillcard', skillcardRouter);
-app.use('/jobprofile', jobProfileRoutes);
+// app.use('/jobprofile', jobProfileRoutes);
 app.use('/circle', circleRoute);
 
 app.use('/employer', employerRoutes);
@@ -148,5 +148,6 @@ app.use('/coordinatorregister', coordinatorRouter);
 app.use('/profession', professiontoskillroutr);
 
 app.use('/coordinatorreg',placement);
+app.use('/jobProfile',jobProfile);
 
 module.exports = app;
