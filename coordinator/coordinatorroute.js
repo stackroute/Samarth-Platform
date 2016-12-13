@@ -5,7 +5,7 @@ let circleProcessor = require('../circlesBackEnd/circleProcessor');
 
 
 router.post('/createcoordinator', function(req, res) {
-
+    // console.log(req.body)
     try {
         coordinator.findOne({
             coordinatorId: req.body.mobile

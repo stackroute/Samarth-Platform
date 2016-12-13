@@ -11,10 +11,11 @@ function createCoordinator(formobj, successPC, errorPC) {
         coordinatorId: formobj.mobile,
         coordinatorRole: formobj.role,
         coordinatorProfession: formobj.profession,
-        coordinatorLocation: formobj.location,
+        // coordinatorLocation: formobj.location,
         coordinatorGender: formobj.gender,
         coordinatorEmail: formobj.email,
         coordinatorPwd: formobj.pwd
+        // coordinatorLanguage: formobj.language
     });
 
     coordinatorObj.save(function(err, postdetails) {
@@ -26,7 +27,6 @@ function createCoordinator(formobj, successPC, errorPC) {
         }
     });
 }
-
 
 let insertCoordinator = function(newUser, callback, unauth) {
         let hashed_pwd = UserModel.methods.generateHash(newUser.pwd);
