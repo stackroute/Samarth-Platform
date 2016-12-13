@@ -17,7 +17,7 @@ findCirclesByName = function(circleNameArray, successRes, errorRes) {
 };
 
 circlePostMongo = function(req, errRes) {
-
+console.log("rishu");
     circles.find({ name: req.name }, function(err, res) {
         if (res === '') {
             circles.create({

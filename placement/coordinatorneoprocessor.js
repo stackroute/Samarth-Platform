@@ -11,7 +11,7 @@ getProfessions = function(successCB, errCB) {
            // console.log(err);
             errCB(err);
         } else {
-            successCB(professions.data);
+            successCB(professions);
         }
     });
 };
