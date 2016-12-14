@@ -2,6 +2,7 @@ let router = require('express').Router();
 let coordinatorprocessor = require('./coordinatorprocessor');
 let coordinator = require('./coordinatorschema');
 let circleProcessor = require('../circlesBackEnd/circleProcessor');
+let circleNeo4jProcessor = require('../circlesBackEnd/circleNeo4jProcessor');
 
 
 router.post('/createcoordinator', function(req, res) {
@@ -21,29 +22,44 @@ router.post('/createcoordinator', function(req, res) {
                 // Does not exists
                 coordinatorprocessor.createCoordinator(req.body,
                     function(coordinatorObj) {
+                      // circleNeo4jProcessor.creacteNode( req.body,function(err, res) {
+                      //     if (err) {
+                      //       console.log(err);
+                      //     } else {
+                      //         console.log(res);
+                      //     }
+                      // });
                         return coordinatorObj;
+                        // circleNeo4jProcessor.creacteNode( function(err, res) {
+                        //     if (err) {
+                        //       console.log(err);
+                        //     } else {
+                        //         console.log(stat);
+                        //     }
+                        // });
                     },
                     function(err) {
                         return err;
                     });
+                  }
 
                 // for nepo4j rellation
+                //
+                // let circle = {
+                //     name: req.body.profession,
+                //     domain: 'profession',
+                //     circleType: 'Profiling',
+                //     visuality: 'shared'
+                // };
 
-                let circle = {
-                    name: req.body.profession,
-                    domain: 'profession',
-                    circleType: 'Profiling',
-                    visuality: 'shared'
-                };
-
-
-                circleProcessor.circlePost(circle,
-                    function errorCB(err) {
-                        if (err) {
-
-                            return res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
-                        }
-                    });
+                //
+                // circleProcessor.circlePost(circle,
+                //     function errorCB(err) {
+                //         if (err) {
+                //
+                //             return res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
+                //         }
+                //     });
                 circleProcessor.createRelation(req.body, function(err) {
                     if (err) {
                         console.log(err);
@@ -64,7 +80,7 @@ router.post('/createcoordinator', function(req, res) {
                         return res.status(403).json(err);
                     }); // insertCoordinator ends
             }
-        });
+        );
     } catch (err) {
         console.log('Error occurred in creating new coordinator : ', err);
     } // end c
