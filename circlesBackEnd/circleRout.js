@@ -11,11 +11,18 @@ let circleProcessor = require('./circleProcessor');
 // Effective API URL is HTTP GET /circles/:entityname
 // Finds circles related with specified entity name
 router.get('/:entityname', function(req, res) {
+
     try {
+        console.log(req.params);
         circleProcessor.getCircle(req.params,
+
             function(data) {
 
+              // console.log("inget circle");
+              // console.log("circles : ", data);
                 res.json(data);
+                console.log(data);
+
             },
             function(err) {
                 res.json(err);
@@ -49,7 +56,7 @@ router.post('/', function(req, res) {
         circleProcessor.circlePost(req.body,
             function(err) {
                 if (err) {
-                  
+
                     res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
                 }
             });

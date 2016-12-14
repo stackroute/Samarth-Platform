@@ -17,16 +17,23 @@ getCircles = function(entityname, successres, errRes) {
         function(err, results) {
             if (err) {
                 console.log(err);
-            }
+            }else{
+
+
             successres(results);
+            // console.log("results"+results[0].name);
+            // console.log("results"+results[1].name);
+            // console.log("results"+results[2].rCount);
+          }
         });
 };
 
-creacteNode = function(req, errRes) {
+creacteNode = function(req, errRes,res) {
+  console.log("in create node "+req.name);
     db.cypher({
             query: 'merge (n:circle{name: {name},domain:{domain}})',
             params: {
-                name: req.name,
+                ename: req.name,
                 domain: req.domain
             }
         },
@@ -39,12 +46,18 @@ creacteNode = function(req, errRes) {
 };
 
 createRelation = function(req, res) {
+console.log(req.profession);
     db.cypher({
-            query: 'merge (n:coordinator{username:{username}}) merge (c:circle{domain:{profession},name:{name}}) merge (n)-[r:primaryOwner ]->(c)',
+
+      query:'merge (n:coordinator{username:{username}}) FOREACH (prof in {profs} | merge(c:circle{name:prof}) merge (n)-[r:have_profession]->(c))',
+            // query += 'merge (n:coordinator{username:{username}}) ';
+            // query +='FOREACH (prof in name | merge(c:circle{name:prof}) merge (n)-[r:have_profession]->(c))';
+            //  merge (c:circle{domain:{profession},name:{name}}) merge (n)-[r:primaryOwner ]->(c)
+            //  FOREACH (skillname in {skills} | MERGE (sk: Skills{name:skillname.name})
             params: {
                 username: req.email,
-                name: req.profession,
-                profession: 'profession'
+                profs: req.profession,
+                // profession: reqprofession;
             }
         },
         function(err, results) {

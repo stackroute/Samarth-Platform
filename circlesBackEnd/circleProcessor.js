@@ -1,53 +1,39 @@
-let circleMongoProcessor = require('./circleMongoProcessor');
+// let circleMongoProcessor = require('./circleMongoProcessor');
 let circleNeo4jProcessor = require('./circleNeo4jProcessor');
 
 getCircle = function(req, successRes, errorRes) {
-    try {
+     try {
         circleNeo4jProcessor.getCircles(req.entityname,
             function(neodata) {
+               let mongoarray = [];
+                let newcircle = {};
+                console.log("neo"+neodata[0].name);
+                 console.log("neo"+neodata[1].name);
+                 console.log("neo"+neodata[2].name);
+                 console.log(neodata.length);
+                 for(var i=0;i<neodata.length;i++)
+                 {
 
-                let mongoarray = [];
-                let newcircle = '';
-                for (let circle in neodata) {
-
-                    newcircle = neodata[circle].name;
+                   newcircle = neodata[i];
+                   console.log(i+" "+newcircle);
                     mongoarray.push(newcircle);
-                }
-
-                circleMongoProcessor.findCirclesByName(mongoarray,
-                    function(mongodata) {
-
-                        // Loop through each circle object
-                        // update the object with the DomainName, Count obtained from newo4j
-                        let uicircles = [];
-                        let uicircle = {};
-                        for (let mongocircle in mongodata) {
-                            for (let neocircle in neodata) {
-                                if (neodata[neocircle].name === mongodata[mongocircle].name) {
-                                    uicircle = {
-                                        name: neodata[neocircle].name,
-                                        domain: neodata[neocircle].domain,
-                                        profilePic: mongodata[mongocircle].profilePic,
-                                        rCount: neodata[neocircle].rCount
-                                    };
-                                    uicircles.push(uicircle);
-                                }
-                            }
-                        }
-                        successRes(uicircles);
-                    },
+                    // console.log(mongoarray);
+                 }
+                 console.log("mongoarray"+mongoarray);
+                        successRes(mongoarray);
+                      },
                     function(err) {
                         errorRes(err);
-                    });
-            },
-            function(err) {
-                errorRes(err);
-            });
-    } catch (err) {
-        console.log('error in getcircle',err);
-        res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
-    }
-};
+                      });
+
+//             },
+//             function(err) {
+//                 errorRes(err););
+   } catch (err) {
+   console.log('error in getcircle',err);
+         res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
+   }
+ };
 createRelation = function(req, errorRes) {
 
     circleNeo4jProcessor.createRelation(req, function(err) {
@@ -61,9 +47,9 @@ circlePost = function(req, errRes) {
 
     });
 
-    circleNeo4jProcessor.creacteNode(req, function(err) {
-        errRes(err);
-    });
+    // circleNeo4jProcessor.creacteNode(req, function(err) {
+    //     errRes(err);
+    // });
 };
 module.exports = {
     getCircle: getCircle,
