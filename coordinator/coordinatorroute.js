@@ -15,7 +15,7 @@ router.post('/createcoordinator', function(req, res) {
             }
 
             if (crdntrObj) {
-                // Already exists
+                return res.status(500).json({ error: 'User already exists'});
 
             } else {
                 // Does not exists
