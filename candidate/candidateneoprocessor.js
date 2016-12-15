@@ -27,7 +27,7 @@ createCandidate = function(req, successCB, errorCB) {
                 errorCB && errorCB(err);
 
             } else {
-                successCB();
+                successCB("Success....");//modified by hari(added the result as parameter)
                 // console.log("Success....",results);
             }
         });

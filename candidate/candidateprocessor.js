@@ -15,7 +15,7 @@ function createNewcandidate(formObj, successCB, errorCB) {
     //console.log('formObj ------->',formObj);
     let candidateObj = new candidate({
         "candidateid": formObj.mobile,
-        "profession": formObj.profession
+        /*"profession": formObj.profession*/
     });
 
  candidateObj.save(function(err, savedObj) {

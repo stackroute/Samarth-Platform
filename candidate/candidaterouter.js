@@ -72,7 +72,7 @@ router.get('/:candidateid', function(req, res) {
             function(err) {
                 res.status(500).json(err);
             }
-        );
+            );
     } catch (err) {
 
         res.status(500).json({
@@ -100,114 +100,113 @@ router.post('/', function(req, res) {
         }, function(error, candidate) {
 
             /*if (candidate === '') {*/
-            if (candidate.length == 0) {
+                if (candidate.length == 0) {
 
                 // console.log('inside ifffffffffffffffffffffffffffff--->',candidate.length);
                 async.parallel({
-                        candidate: function(callback) {
-                            candidateprocessor.createNewcandidate(req.body,
-                                function(candidateobj) {
-                                    callback(null, candidateobj);
-                                },
-                                function(err) {
-                                    callback(err, null);
-                                }
+                    candidate: function(callback) {
+                        candidateprocessor.createNewcandidate(req.body,
+                            function(candidateobj) {
+                                callback(null, candidateobj);
+                            },
+                            function(err) {
+                                callback(err, null);
+                            }
                             );
-                        },
-                        profile: function(callback) {
-                            profileprocessor.createNewprofile(req.body,
-                                function(profileobj) {
-
-                                    callback(null, profileobj);
-                                },
-                                function(err) {
-                                    callback(err, null);
-                                }
-                            );
-                        },
-                        education: function(callback) {
-                            educationprocessor.createNewEducation(req.body,
-                                function(educationobj) {
-                                    callback(null, educationobj);
-                                },
-                                function(err) {
-                                    callback(err, null);
-                                }
-                            );
-                        },
-                        personalinfo: function(callback) {
-                            personalInfoprocessor.createNewpersonalinfo(req.body,
-                                function(personalinfoobj) {
-                                    callback(null, personalinfoobj);
-                                },
-                                function(err) {
-                                    callback(err, null);
-                                }
-                            );
-                        },
-                        project: function(callback) {
-                            projectprocessor.createNewProject(req.body,
-                                function(projectobj) {
-                                    callback(null, projectobj);
-                                },
-                                function(err) {
-                                    callback(err, null);
-                                }
-                            );
-                        },
-                        skill: function(callback) {
-                            skillprocessor.createNewSkill(req.body,
-                                function(skillobj) {
-                                    callback(null, skillobj);
-                                },
-                                function(err) {
-                                    callback(err, null);
-                                }
-                            );
-                        },
-                        workexp: function(callback) {
-                            workexpprocessor.createworkexp(req.body,
-                                function(workexpobj) {
-                                    callback(null, workexpobj);
-                                },
-                                function(err) {
-                                    callback(err, null);
-                                }
-                            );
-                        },
-                        verificationdata: function(callback) {
-                            verificationprocessor.createNewVerification(req.body,
-                                function(verifyobj) {
-                                    callback(null, verifyobj);
-                                },
-                                function(err) {
-                                    callback(err, null);
-                                });
-                        }
-
                     },
-                    function(err, results) {
-                        if (err) {
-                            console.log('ERR ----------------->: ', err);
-                            return res.status(500).json({
-                                msg: err
-                            });
-                        }
+                    profile: function(callback) {
+                        profileprocessor.createNewprofile(req.body,
+                            function(profileobj) {
 
-                        return res.status(201).json(results.personalinfo);
+                                callback(null, profileobj);
+                            },
+                            function(err) {
+                                callback(err, null);
+                            }
+                            );
+                    },
+                    education: function(callback) {
+                        educationprocessor.createNewEducation(req.body,
+                            function(educationobj) {
+                                callback(null, educationobj);
+                            },
+                            function(err) {
+                                callback(err, null);
+                            }
+                            );
+                    },
+                    personalinfo: function(callback) {
+                        personalInfoprocessor.createNewpersonalinfo(req.body,
+                            function(personalinfoobj) {
+                                callback(null, personalinfoobj);
+                            },
+                            function(err) {
+                                callback(err, null);
+                            }
+                            );
+                    },
+                    project: function(callback) {
+                        projectprocessor.createNewProject(req.body,
+                            function(projectobj) {
+                                callback(null, projectobj);
+                            },
+                            function(err) {
+                                callback(err, null);
+                            }
+                            );
+                    },
+                    skill: function(callback) {
+                        skillprocessor.createNewSkill(req.body,
+                            function(skillobj) {
+                                callback(null, skillobj);
+                            },
+                            function(err) {
+                                callback(err, null);
+                            }
+                            );
+                    },
+                    workexp: function(callback) {
+                        workexpprocessor.createworkexp(req.body,
+                            function(workexpobj) {
+                                callback(null, workexpobj);
+                            },
+                            function(err) {
+                                callback(err, null);
+                            }
+                            );
+                    },
+                    verificationdata: function(callback) {
+                        verificationprocessor.createNewVerification(req.body,
+                            function(verifyobj) {
+                                callback(null, verifyobj);
+                            },
+                            function(err) {
+                                callback(err, null);
+                            });
                     }
+
+                },
+                function(err, results) {
+                    if (err) {
+                        console.log('ERR ----------------->: ', err);
+                        return res.status(500).json({
+                            msg: err
+                        });
+                    }
+
+                    return res.status(201).json(results.personalinfo);
+                }
                 ); // end of Async
             } // end if
             else {
-                return res.status(500).send(
-                    'Candidate already exists, try editing instead...!');
+                return res.status(500).send('Candidate already exists, try editing instead...!');
             }
         }); // end find
-    } catch (err) {
-        console.log("Internal Error Occurred inside catch");
-        return res.status(500).send(
-            'Internal error occurred, please report or try later...!');
-    }
+} catch (err) {
+    console.log("Internal Error Occurred inside catch");
+    return res.status(500).send(
+        'Internal error occurred, please report or try later...!');
+}
 });
 
 /* Update the candidate collection of the given candidate id NOTE:(Candidate id cant get update)*/
@@ -216,29 +215,29 @@ router.post('/', function(req, res) {
 
 router.patch('/:candidateid', function(req, res) {
    // console.log("patch Candidate");
-    candidate.find({
-        candidateid: req.params.candidateid
-    }, function(error, candidate) {
-        if (candidate = '') {
-            res.status(500).send(
-                'Candidate doesnt exists, Add Candidate before updating...!');
-        } else {
+   candidate.find({
+    candidateid: req.params.candidateid
+}, function(error, candidate) {
+    if (candidate = '') {
+        res.status(500).send(
+            'Candidate doesnt exists, Add Candidate before updating...!');
+    } else {
 
-            if (!req.body.candidateid) {
-                try {
-                    candidateprocessor.updatecandidate(req.body, req.params.candidateid,
-                        function(candidateObj) {
-                            res.status(201).json(candidateObj);
-                        },
-                        function(err) {
-                            res.status(500).json(err);
-                        }
+        if (!req.body.candidateid) {
+            try {
+                candidateprocessor.updatecandidate(req.body, req.params.candidateid,
+                    function(candidateObj) {
+                        res.status(201).json(candidateObj);
+                    },
+                    function(err) {
+                        res.status(500).json(err);
+                    }
                     );
-                } catch (err) {
+            } catch (err) {
 
-                    res.status(500).json({
-                        error: 'Internal error occurred, please report'
-                    });
+                res.status(500).json({
+                    error: 'Internal error occurred, please report'
+                });
                 } // end catch
             } // end if
             else {
