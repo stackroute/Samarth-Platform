@@ -11,16 +11,26 @@ function postjobprovider(jobproviderdata, sucessCB, errorCB) {
 }
 
 function getjpCodeStatus(jpCode, sucessCB, errorCB) {
-    jobprovider.find({jpCode:jpCode}).count(function(err,count){
-            if(err){
-                // return res.status(500).send("something went wrong");
-                 errorCB(error);
-            }
-            if(count){
-            sucessCB(count);
+  jobprovider.find({jpCode : jpCode},function(error, result) {
+        if (error){
+            errorCB(error);
+        }
+         else {
+            sucessCB(result);
         }
     });
 }
+
+// function getJobDetails(jpCode,jobtitle, successFn, errorFn) {
+//     jobProfile.find({jobprovider : jpCode, title :jobtitle},function(error, result) {
+//         if (error){
+//             errorFn(error);
+//         }
+//          else {
+//             successFn(result);
+//         }
+//     });
+// }
 
 function getjobproviders(sucessCB, errorCB) {
     jobprovider.find(function(error, result) {

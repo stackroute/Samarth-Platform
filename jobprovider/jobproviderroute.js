@@ -6,12 +6,22 @@ let jobproviderprocessor = require('./jobproviderprocessor');
 router.post('/registeremployer', function(req, res) {
     try {
         let jobproviderdata = req.body;
-    
+        jobproviderprocessor.getjpCodeStatus(jobproviderdata.jpCode,
+             function sucessCB(result) {
+                console.log("result length "+result.length);
+                if (result.length > 0) {
+                    console.log("in if route");
+                       res.status(200).json({msg:'JobProvider with this code already present! Please try some other code...'});
+                }else{
           jobproviderprocessor.postjobprovider(jobproviderdata, function sucessCB(message) {
-            res.status(201).send('OK');
+            res.status(200).json({msg:'Registered Successfully!'});
         }, function errorCB(error) {
             res.status(500).send(error);
         });
+            }
+        },function errorCB(error) {
+                res.status(500).json({status:'failed',error:'Some error occurred'});
+            });
 
         // else{
 
