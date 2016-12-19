@@ -52,4 +52,18 @@ router.get('/getjobs', function(req, res) {
     }
 });
 
+router.get('/:getjobcodedata', function(req, res) {
+   try {
+       var jobcode=req.params.getjobcodedata;
+       console.log(jobcode);
+       jobProfileProcessor.getJobsbyJobId(jobcode,function successFn(result) {
+           res.status(200).json(result);
+       }, function errorFn(error) {
+           res.status(500).send(error);
+       });
+   } catch (err) {
+       res.status(500).json({ error: 'Internal error occured, please report' });
+   }
+});
+
 module.exports = router ;
