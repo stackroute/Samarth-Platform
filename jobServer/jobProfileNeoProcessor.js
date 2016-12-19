@@ -44,8 +44,28 @@ createJobNode = function(job, res) {
     });
 };
 
+getJobs = function(resArr, successres, errRes) {
+    console.log(resArr);
+    db.cypher({
+            query: 'match(j:Job)-[r]-(n) where n.name in {keys} match (j)-[]-(p:circle) return j.name , count(r) as hits Order by hits desc',
+            params: {
+                keys: resArr
+            }
+        },
+        function(err, results) {
+            if (err) {
+                console.log(err);
+            }else{
+                console.log("in success neo");
+            successres(results);
+          }
+        });
+};
+
+
 
 
 module.exports = {
-    createJobNode: createJobNode
+    createJobNode: createJobNode,
+    getJobs: getJobs
 };
