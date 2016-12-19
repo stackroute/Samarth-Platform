@@ -31,11 +31,11 @@ router.post('/registeremployer', function(req, res) {
         //     res.status(500).send(error);
         // });
 
-        
+
     // },function errorCB(error) {
     //             res.status(500).json(error);
     //         });
-        
+
     } catch (err) {
         return res.status(500).send('Some error occured');
     }
@@ -53,8 +53,8 @@ router.get('/codeCheck/:jpCode', function(req, res) {
         //     // }else(result==0){
         //         // console.log(result);
         //         // res.status(200).json({msg:"Success",count:0});
-            
-            
+
+
         // }, function errorCB(error) {
         //     res.status(500).send(error);
         // });
@@ -85,5 +85,23 @@ router.get('/getJobProvider', function(req, res) {
     }
 });
 
+
+router.get('/getJobProviderbyid/:jpCode', function(req, res) {
+    try {
+      console.log(req.body.jpCode);
+        var jpCode = req.params.jpCode;
+        console.log(jpCode);
+        jobproviderprocessor.jobEdit(jpCode,function sucessCB(result) {
+            res.status(200).send(result);
+        }, function errorCB(error) {
+            res.status(500).json(error);
+        });
+    } catch (err) {
+        res.status(500).json({
+            error: 'Internal error occurred, please report'
+        });
+    }
+});
+
+
 module.exports = router;
- 

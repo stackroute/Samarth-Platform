@@ -14,7 +14,8 @@ let jobproviderschema = new Schema({
     location: { type: String },
     phone: { type: String},
     email: { type: String },
-    about: { type: String }
+    about: { type: String },
+     url: { type: String }
 });
 let jobprovider = mongoose.model('jobprovider', jobproviderschema, 'jobprovider');
 module.exports = jobprovider;
