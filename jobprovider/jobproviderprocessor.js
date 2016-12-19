@@ -21,6 +21,20 @@ function getjpCodeStatus(jpCode, sucessCB, errorCB) {
     });
 }
 
+
+
+function jobEdit(jpCode, sucessCB, errorCB) {
+    jobprovider.find({jpCode:jpCode},function(err,count){
+            if(err){
+                // return res.status(500).send("something went wrong");
+                 errorCB(error);
+            }
+            if(count){
+            sucessCB(count);
+        }
+    });
+}
+
 // function getJobDetails(jpCode,jobtitle, successFn, errorFn) {
 //     jobProfile.find({jobprovider : jpCode, title :jobtitle},function(error, result) {
 //         if (error){
@@ -46,6 +60,7 @@ function getjobproviders(sucessCB, errorCB) {
 module.exports = {
 		getjpCodeStatus : getjpCodeStatus,
         postjobprovider: postjobprovider,
-        getjobproviders : getjobproviders
+        getjobproviders : getjobproviders,
+          jobEdit:jobEdit
 
 }
