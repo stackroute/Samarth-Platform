@@ -14,6 +14,48 @@ let candidateneo = require('./candidateneoprocessor');
 let candidatesearchprocessor = require('./newcandidateneoprocessor');
 let verificationprocessor = require('../verification/verificationprocesser');
 
+router.get('/allCandidate',function(req,res)
+{
+    try
+    {
+        candidateneo.getAllCandidate(req.body,function(result,err){
+            var cid=[];
+            var cpersonal=[];
+            if(err){
+                console.log("error here"+err);
+            }else{
+                console.log("Its fetch all detail");
+                
+                for(i=0;i<result.length;i++)
+                {
+                    cid.push(result[i].name); 
+                
+                personalInfoprocessor.getPersonalinfo(result[i].name,function(cper,err){
+                        if(err)
+                        {
+                            console.log(err)
+                        }
+                        else{
+                            cpersonal.push(cper);
+                              console.log(cper);
+                            // cpersonal.push(cper);
+                        }
+                        
+                    })
+                }
+
+                res.status(200).json(cid);
+
+            }
+        });
+
+    }
+    catch(err)
+    {
+        
+    }
+});
+
 router.post('/search', function(req, res) {
     try {
         candidatesearchprocessor
@@ -80,6 +122,8 @@ router.get('/:candidateid', function(req, res) {
         });
     }
 });
+
+
 
 /* Register the Candidate by creating Candidate and other collections using form data and default values */
 // HTTP POST /candidate/:candidateid /
