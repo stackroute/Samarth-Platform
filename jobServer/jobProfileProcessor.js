@@ -75,8 +75,23 @@ function getJobDetails(jpCode,jobtitle, successFn, errorFn) {
 }
 
 
+
+function getJobsbyJobId(jobcode,successFn, errorFn) {
+    console.log(jobcode+" in processor");
+   jobProfile.find({jobcode:jobcode},function(error, result) {
+       if (error){
+           errorFn(error);
+       }
+        else {
+
+           successFn(result);
+       }
+   });
+}
+
 module.exports = {
     addJob: addJob,  
     getJobs: getJobs,
-    getJobDetails: getJobDetails
+    getJobDetails: getJobDetails,
+    getJobsbyJobId: getJobsbyJobId
 };
