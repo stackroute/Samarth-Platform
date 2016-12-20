@@ -66,7 +66,7 @@ function getJobs(successFn, errorFn) {
 
 
 function getJobDetails(jpCode,jobtitle, successFn, errorFn) {
-    jobProfile.findOne({jobprovider : jpCode, title :jobtitle},function(error, result) {
+    jobProfile.find({jobprovider : jpCode, title :jobtitle},function(error, result) {
         if (error){
             errorFn(error);
         }
