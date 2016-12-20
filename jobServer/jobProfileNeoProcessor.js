@@ -47,12 +47,12 @@ createJobNode = function(job, res) {
     });
 };
 
-getJobs = function(resArr, successres, errRes) {
-    console.log(resArr);
+getJobs = function(resArr,coordprofs, successres, errRes) {
     db.cypher({
-            query: 'match(j:Job)-[r]-(n) where n.name in {keys} match (j)-[]-(p:Profession) return j.name , count(r) as hits Order by hits desc',
+            query: 'match(j:Job)-[r]-(n) where n.name in {keys} match (j)-[]-(p:Profession) where p.name in {profs} return j.name as name , count(r) as hits Order by hits desc',
             params: {
-                keys: resArr
+                keys: resArr,
+                profs: coordprofs
             }
         },
         function(err, results) {
