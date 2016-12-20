@@ -14,10 +14,12 @@ createJobNode = function(job, res) {
     query += 'MERGE (jb)-[r1:Providedby]->(jp)';
     query += 'MERGE (jb)-[r2:Available_At]->(lc) ';
     query += 'MERGE (jb)-[r3:Role_As]->(rl) ';
-    query += 'FOREACH (skillname in {skills} | MERGE (sk: Skills{name:skillname.name}) ';
-    query += 'MERGE (jb)-[r4:Required{priority:skillname.priority}]->(sk) ) ';
+    query += 'FOREACH (skillname in {skills} | MERGE (sk: Skill{name:skillname.name}) ';
+    query += 'MERGE (jb)-[r4:Required{priority:skillname.priority}]->(sk) ) '; 
+    query += 'FOREACH (prof in {profs} | MERGE (pf: Profession{name:prof}) ';  
+    query += 'MERGE (jb)-[r5:belongs_to]->(pf) ) ';
     query += 'FOREACH (qualname in {quals} | MERGE (ql: Qualification{name:qualname.name}) ';
-    query += 'MERGE (jb)-[r5:Expected{score:qualname.score,priority:qualname.priority}]->(ql))'; 
+    query += 'MERGE (jb)-[r6:Expected{score:qualname.score,priority:qualname.priority}]->(ql))'; 
 
     let params = {
         jobCode: jobCode,
@@ -26,7 +28,8 @@ createJobNode = function(job, res) {
         role: job.desc.role,
         language:job.desc.language,
         quals: job.criteria.qualifications,
-        skills: job.desc.skills
+        skills: job.desc.skills,
+        profs: job.desc.profession
     };
 
     console.log("Query for job profile indexing: ", query, " : ", params);
@@ -44,8 +47,28 @@ createJobNode = function(job, res) {
     });
 };
 
+getJobs = function(resArr, successres, errRes) {
+    console.log(resArr);
+    db.cypher({
+            query: 'match(j:Job)-[r]-(n) where n.name in {keys} match (j)-[]-(p:Profession) return j.name , count(r) as hits Order by hits desc',
+            params: {
+                keys: resArr
+            }
+        },
+        function(err, results) {
+            if (err) {
+                console.log(err);
+            }else{
+                console.log("in success neo");
+            successres(results);
+          }
+        });
+};
+
+
 
 
 module.exports = {
-    createJobNode: createJobNode
+    createJobNode: createJobNode,
+    getJobs: getJobs
 };

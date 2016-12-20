@@ -66,4 +66,23 @@ router.get('/:getjobcodedata', function(req, res) {
    }
 });
 
+router.get('/searchJobs/:searchTxt', function(req, res) {
+   try {
+       var searchTxt=req.params.searchTxt;
+       console.log(searchTxt);
+       var resArr=searchTxt.split(' ');
+       jobProfileNeo.getJobs(resArr,
+            function(data) {
+                res.json(data);
+                console.log(data);
+            },
+            function(err) {
+                res.json(err);
+            });
+   } catch (err) {
+       res.status(500).json({ error: 'Internal error occured, please report' });
+   }
+});
+
+
 module.exports = router ;
