@@ -1,11 +1,19 @@
 let router = require('express').Router();
 let jobprovider = require('./jobproviderschema');
 let jobproviderprocessor = require('./jobproviderprocessor');
+const jobproviderneoprocessor = require('./jobproviderNeoProcessor');
 
 
 router.post('/registeremployer', function(req, res) {
     try {
         let jobproviderdata = req.body;
+
+        jobproviderneoprocessor.registerJobProvider(jobproviderdata,function(result){
+            res.status(200).json(result);
+        },function(err){
+            res.status(500).send("server error... try it again!");
+        });
+        
         jobproviderprocessor.getjpCodeStatus(jobproviderdata.jpCode,
             function sucessCB(result) {
                 console.log("result length " + result.length);
