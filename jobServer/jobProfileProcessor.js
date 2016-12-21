@@ -13,6 +13,7 @@ function addJob(job,successFn, errorFn) {
                 jobcode : jobCode,
                 jobprovider : job.jpCode,
     			title : job.desc.title,
+                profession : job.desc.profession,
 			    role : job.desc.role,
 			    duties : job.desc.duties,
 			    location : job.desc.location,
@@ -22,11 +23,12 @@ function addJob(job,successFn, errorFn) {
                                 name:job.desc.name,
                 },
 			    closedate : job.desc.closeDate,
-			    skills : { 
-                            name:job.desc.skills[0].name,
-                            expertise:job.desc.skills[0].expertise,
-                            priority:job.desc.skills[0].expertise,
-                }, 
+			    // skills : { 
+       //                      name:job.desc.skills[0].name,
+       //                      expertise:job.desc.skills[0].expertise,
+       //                      priority:job.desc.skills[0].expertise,
+       //          }, 
+                skills : job.desc.skills,
 			    salary : job.criteria.renumeration,
 			    openings : job.desc.openingsNo,
 			    qualifications: {
@@ -75,8 +77,23 @@ function getJobDetails(jpCode,jobtitle, successFn, errorFn) {
 }
 
 
+
+function getJobsbyJobId(jobcode,successFn, errorFn) {
+    console.log(jobcode+" in processor");
+   jobProfile.find({jobcode:jobcode},function(error, result) {
+       if (error){
+           errorFn(error);
+       }
+        else {
+
+           successFn(result);
+       }
+   });
+}
+
 module.exports = {
     addJob: addJob,  
     getJobs: getJobs,
-    getJobDetails: getJobDetails
+    getJobDetails: getJobDetails,
+    getJobsbyJobId: getJobsbyJobId
 };
