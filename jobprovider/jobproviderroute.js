@@ -9,9 +9,9 @@ router.post('/registeremployer', function(req, res) {
         let jobproviderdata = req.body;
 
         jobproviderneoprocessor.registerJobProvider(jobproviderdata,function(result){
-            res.status(200).json(result);
+            
         },function(err){
-            res.status(500).send("server error... try it again!");
+           
         });
         
         jobproviderprocessor.getjpCodeStatus(jobproviderdata.jpCode,
