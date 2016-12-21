@@ -7,10 +7,10 @@ getCircle = function(req, successRes, errorRes) {
             function(neodata) {
                let mongoarray = [];
                 let newcircle = {};
-                console.log("neo"+neodata[0].name);
-                 console.log("neo"+neodata[1].name);
-                 console.log("neo"+neodata[2].name);
-                 console.log(neodata.length);
+                // console.log("neo"+neodata[0].name);
+                //  console.log("neo"+neodata[1].name);
+                //  console.log("neo"+neodata[2].name);
+                //  console.log(neodata.length);
                  for(var i=0;i<neodata.length;i++)
                  {
 
@@ -35,7 +35,7 @@ getCircle = function(req, successRes, errorRes) {
    }
  };
 createRelation = function(req, errorRes) {
-
+  console.log(req.body);
     circleNeo4jProcessor.createRelation(req, function(err) {
         errorRes(err);
     });
