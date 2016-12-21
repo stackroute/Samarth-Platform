@@ -7,17 +7,11 @@ getCircle = function(req, successRes, errorRes) {
             function(neodata) {
                let mongoarray = [];
                 let newcircle = {};
-<<<<<<< HEAD
-                // console.log("neo"+neodata[0].name);
-                //  console.log("neo"+neodata[1].name);
-                //  console.log("neo"+neodata[2].name);
-                //  console.log(neodata.length);
-=======
+
                 /*console.log("neo"+neodata[0].name);
                  console.log("neo"+neodata[1].name);
                  console.log("neo"+neodata[2].name);*/
                  console.log(neodata.length);
->>>>>>> 80a560fd8e7dcb57cda364106e5bfe48ef5d6c6c
                  for(var i=0;i<neodata.length;i++)
                  {
 
