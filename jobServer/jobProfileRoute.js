@@ -71,6 +71,7 @@ router.get('/:getjobcodedata', function(req, res) {
 router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
   var jobs=[];
   var jobProfile={};
+  var count=0;
   try {
    var searchTxt=req.params.searchTxt;
    var profs=req.params.profs;
@@ -85,13 +86,16 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
                   if(Object.keys(value).includes('name')) {
            jobProfileProcessor.getJobsbyJobId(value.name,function successFn(result) {
            // res.status(200).json(result);
-            console.log(result[0].jobprovider);
+            // console.log(result.jobprovider);
             jobproviderprocessor.jobEdit(result[0].jobprovider, function sucessCB(results) {
             // res.status(200).send(result);
             jobProfile.logo=results[0].url;
             jobProfile.jb=result[0];
+            // count = count + 1;
+            // console.log('count',count);
             jobs.push(jobProfile);
-            // console.log("in jobedit");
+            // console.log(jobProfile);
+            jobProfile = {};
             callback();
            
         }, function errorCB(error) {
@@ -103,6 +107,7 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
          });
         }
   },function(err) {
+    console.log(jobs);
     res.status(200).json(jobs);
   })
               },
