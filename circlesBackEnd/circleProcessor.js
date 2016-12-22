@@ -36,7 +36,7 @@ getCircle = function(req, successRes, errorRes) {
    }
  };
 createRelation = function(req, errorRes) {
-  console.log(req.body);
+  console.log("reached circleBackEnd")
     circleNeo4jProcessor.createRelation(req, function(err) {
         errorRes(err);
     });

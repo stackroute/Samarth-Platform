@@ -6,7 +6,7 @@ let circleNeo4jProcessor = require('../circlesBackEnd/circleNeo4jProcessor');
 
 
 router.post('/createcoordinator', function(req, res) {
-    // console.log(req.body)
+    console.log(req.body)
     try {
         coordinator.findOne({
             coordinatorId: req.body.mobile
@@ -43,7 +43,7 @@ router.post('/createcoordinator', function(req, res) {
                     });
                   }
 
-                // for nepo4j rellation
+                // for nepo4j relation
                 //
                 // let circle = {
                 //     name: req.body.profession,
@@ -64,21 +64,22 @@ router.post('/createcoordinator', function(req, res) {
                     if (err) {
                         console.log(err);
                     }
+                    return res.status(200).json({Success : 'successfully Registered'});
 
                 });
 
-                coordinatorprocessor.insertCoordinator(req.body,
-                    function(err, user) {
-                        if (err) {
-                            // return res.status(500).json({
-                            error: 'Internal error in processing request, please retry later..!';
-                        }
+                // coordinatorprocessor.insertCoordinator(req.body,
+                //     function(err, user) {
+                //         if (err) {
+                //             // return res.status(500).json({
+                //             error: 'Internal error in processing request, please retry later..!';
+                //         }
 
-                        return res.status(200).json(user);
-                    },
-                    function(err) {
-                        return res.status(403).json(err);
-                    }); // insertCoordinator ends
+                //         return res.status(200).json(user);
+                //     },
+                //     function(err) {
+                //         return res.status(403).json(err);
+                //     }); // insertCoordinator ends
             }
         );
     } catch (err) {
