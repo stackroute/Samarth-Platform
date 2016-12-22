@@ -11,7 +11,13 @@ var jobSchema   = new Schema({
     location : { type : String},
     experience : { type : String},
     allowance : { type : String},
-    languages : [{ name : String, read : Boolean, write : Boolean, speak : Boolean}],
+    languages: [
+        {   name: {type : String},
+            speak: {type : Boolean}, 
+            read: {type : Boolean}, 
+            write: {type : Boolean}
+        }
+    ],
     closedate : { type : String},
     skills : [{name : String, expertise : String, priority : String}],
     salary :{ type : String},

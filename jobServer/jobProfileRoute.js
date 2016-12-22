@@ -2,6 +2,7 @@ var router = require('express').Router();
 var async = require('async');
 var jobProfile = require('./jobProfileSchema');
 var jobProfileProcessor = require('./jobProfileProcessor');
+let jobproviderprocessor = require('../jobprovider/jobproviderprocessor');
 let jobProfileNeo = require('./jobProfileNeoProcessor');
 
 //Routes defined
@@ -69,44 +70,39 @@ router.get('/:getjobcodedata', function(req, res) {
 
 router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
   var jobs=[];
-  var count = 0 ;
+  var jobProfile={};
   try {
    var searchTxt=req.params.searchTxt;
    var profs=req.params.profs;
    var prof=profs.split('-');
    var resArr=searchTxt.split(' ');
-       // var jobs=[];
-       // console.log(prof);
-       // var resArr=searchTxt.split(' ');
        jobProfileNeo.getJobs(resArr,prof,
         function(data) {
-                // res.json(data);
-
-                //async
                 async.forEachOf(data, function(value, key, callback) {
-                  console.log('data',data.length);
-                  count = count + 1;
-                  console.log('count',count);
+                  // console.log('data',data.length);
+                  // count = count + 1;
+                  // console.log('count',count);
                   if(Object.keys(value).includes('name')) {
-                   jobProfileProcessor.getJobsbyJobId(value.name,function successFn(result) {
+           jobProfileProcessor.getJobsbyJobId(value.name,function successFn(result) {
            // res.status(200).json(result);
+            console.log(result[0].jobprovider);
+            jobproviderprocessor.jobEdit(result[0].jobprovider, function sucessCB(results) {
+            // res.status(200).send(result);
+            jobProfile.logo=results[0].url;
+            jobProfile.jb=result[0];
+            jobs.push(jobProfile);
+            // console.log("in jobedit");
+            callback();
+           
+        }, function errorCB(error) {
+            // res.status(500).json(error);
+        });
 
-           jobs.push(result);
-       if(data.length === count) {
-          console.log('hello');
-          callback(); // tell async that the iterator has completed          
-          // res.status(200).json({abc: jobs});
-        }
- 
-           // res.status(200).json(jobs);
-           // console.log(jobs);
          }, function errorFn(error) {
            res.status(500).send(error);
          });
         }
   },function(err) {
-    console.log('done');
-    console.log(jobs);
     res.status(200).json(jobs);
   })
               },

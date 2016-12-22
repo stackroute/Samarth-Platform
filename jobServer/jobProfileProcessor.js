@@ -22,7 +22,7 @@ function addJob(job,successFn, errorFn) {
 			    language :  {
                                 name:job.desc.name,
                 },
-			    closedate : job.desc.closeDate,
+			    closedate : job.desc.closedate,
 			    // skills : { 
        //                      name:job.desc.skills[0].name,
        //                      expertise:job.desc.skills[0].expertise,
@@ -30,12 +30,8 @@ function addJob(job,successFn, errorFn) {
        //          }, 
                 skills : job.desc.skills,
 			    salary : job.criteria.salary,
-			    openings : job.desc.openingsNo,
-			    qualifications: {
-                            name : job.criteria.qualifications[0].name, 
-                            score : job.criteria.qualifications[0].score,
-                            priority : job.criteria.qualifications[0].priority,
-                        }
+			    openings : job.desc.openings,
+			    qualifications: job.criteria.qualifications
     });
     
     jobValues.save(function(err) {
