@@ -18,7 +18,7 @@ function addJob(job,successFn, errorFn) {
 			    duties : job.desc.duties,
 			    location : job.desc.location,
 			    experience : job.desc.experience,
-			    allowance : job.criteria.externalPerks,
+			    allowance : job.criteria.allowance,
 			    language :  {
                                 name:job.desc.name,
                 },
@@ -29,7 +29,7 @@ function addJob(job,successFn, errorFn) {
        //                      priority:job.desc.skills[0].expertise,
        //          }, 
                 skills : job.desc.skills,
-			    salary : job.criteria.renumeration,
+			    salary : job.criteria.salary,
 			    openings : job.desc.openingsNo,
 			    qualifications: {
                             name : job.criteria.qualifications[0].name, 

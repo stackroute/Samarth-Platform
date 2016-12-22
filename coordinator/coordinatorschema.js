@@ -17,6 +17,7 @@ let coordinatorSchema = new Schema({
     		write: {type : Boolean}
     	}
     ]
+
 });
 let coordinator = mongoose.model('coordinators', coordinatorSchema, 'coordinators');
 

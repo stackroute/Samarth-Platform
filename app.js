@@ -27,8 +27,7 @@ let skillcardrouter = require('./sectionskill/skillrouter');
 let fieldQCache = require('./questionbox/fieldQCache');
 // let jobProfileRoutes = require('./jobprofile/jobprofileroute');
 let employerRoutes = require('./jobprovider/jobproviderroute.js');
-let professiontoskillroutr = require(
-    './professiontoskillsgraphdata/professiontoskillrouter.js');
+let professiontoskillroutr = require('./professiontoskillsgraphdata/professiontoskillrouter.js');
 let jobProfile=require('./jobServer/jobProfileRoute.js');
 const placementProcessRouter = require('./placementprocess/placementrouter.js');
 /*var rubricRoute = require('./rubricbackend/rubricroute');
