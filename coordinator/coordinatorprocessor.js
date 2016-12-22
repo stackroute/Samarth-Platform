@@ -14,8 +14,8 @@ function createCoordinator(formobj, successPC, errorPC) {
         // coordinatorLocation: formobj.location,
         coordinatorGender: formobj.gender,
         coordinatorEmail: formobj.email,
-        coordinatorPwd: formobj.pwd
-        // coordinatorLanguage: formobj.language
+        coordinatorPwd: formobj.pwd,
+        coordinatorLanguage: formobj.language
     });
 
     coordinatorObj.save(function(err, postdetails) {
