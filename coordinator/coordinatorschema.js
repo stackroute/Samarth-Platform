@@ -9,14 +9,14 @@ let coordinatorSchema = new Schema({
     coordinatorLocation: { type: String },
     coordinatorGender: { type: String },
     coordinatorEmail: { type: String },
-    coordinatorPwd: { type: String }
-    // coordinatorLanguage: [
-    // 	{	name: {type : String},
-    // 		speak: {type : Boolean}, 
-    // 		read: {type : Boolean}, 
-    // 		write: {type : Boolean}
-    // 	}
-    // ]
+    // coordinatorPwd: { type: String }
+    coordinatorLanguage: [
+    	{	name: {type : String},
+    		speak: {type : Boolean}, 
+    		read: {type : Boolean}, 
+    		write: {type : Boolean}
+    	}
+    ]
 });
 let coordinator = mongoose.model('coordinators', coordinatorSchema, 'coordinators');
 

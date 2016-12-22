@@ -67,7 +67,7 @@ appliedJobs = function(req,successCB,errorCB)
 	try
 	{
 		db.cypher({
-			query:'match (n:Candidate)-[r:applied]->(j:Job) return j.name as jobs',
+			query:'match (n:Candidate)-[r:applied]->(j:Job) return distinct j.name as jobs',
 			params:{
 				candidateid:req.params.candidateid
 			}
