@@ -65,10 +65,28 @@ getJobs = function(resArr,coordprofs, successres, errRes) {
         });
 };
 
-
+getJobsByProfession = function(prof, successres, errRes) {
+    // console.log(prof);
+   db.cypher({
+           query: 'match(j:Job)-[r]-(p:Profession {name:{prof}})return j.name as name',
+           params: {
+               prof: prof,
+           }
+       },
+       function(err, results) {
+           if (err) {
+            // console.log('in neo err');
+               console.log(err);
+           }else{
+               // console.log("in success neo");
+           successres(results);
+         }
+       });
+};
 
 
 module.exports = {
     createJobNode: createJobNode,
-    getJobs: getJobs
+    getJobs: getJobs,
+    getJobsByProfession: getJobsByProfession
 };

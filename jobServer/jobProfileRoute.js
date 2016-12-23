@@ -107,7 +107,7 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
          });
         }
   },function(err) {
-    console.log(jobs);
+    // console.log(jobs);
     res.status(200).json(jobs);
   })
               },
@@ -119,5 +119,66 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
 }
 });
 
+
+router.patch('/updatejob', function(req, res) {
+    try {
+        let jobData = req.body;
+        console.log('in patch');
+        jobProfileProcessor.updateJob(jobData, function sucessCB(result) {
+            res.status(200).json({msg:'Job profile data has been updated successfully!'});
+        }, function errorCB(error) {
+            res.status(500).json({msg:'Some error occurred'});
+        });
+    } catch (err) {
+        return res.status(500).send('Some error occured');
+    }
+});
+
+//jobsByProfession
+router.get('/jobsByProfession/:prof', function(req, res) {
+ var jobs=[];
+ var jobProfile={};
+ var count=0;
+ try {
+  var prof=req.params.prof;
+  console.log(prof);
+ //  var resArr=searchTxt.split(' ');
+      jobProfileNeo.getJobsByProfession(prof,
+       function(data) {
+               async.forEachOf(data, function(value, key, callback) {
+                 // console.log('data',data.length);
+                 // count = count + 1;
+                 // console.log('count',count);
+                 if(Object.keys(value).includes('name')) {
+          jobProfileProcessor.getJobsbyJobId(value.name,function successFn(result) {
+          // res.status(200).json(result);
+           // console.log(result.jobprovider);
+           jobproviderprocessor.jobEdit(result[0].jobprovider, function sucessCB(results) {
+           // res.status(200).send(result);
+           jobProfile.logo=results[0].url;
+           jobProfile.jb=result[0];
+           // count = count + 1;
+           // console.log('count',count);
+           jobs.push(jobProfile);
+           // console.log(jobProfile);
+           jobProfile = {};
+           callback();        }, function errorCB(error) {
+           // res.status(500).json(error);
+       });         }, function errorFn(error) {
+          res.status(500).send(error);
+        });
+       }
+ },function(err) {
+   // console.log(jobs);
+   res.status(200).json(jobs);
+ })
+             },
+             function(err) {
+               res.json(err);
+             });
+} catch (err) {
+res.status(500).json({ error: 'Internal error occured, please report' });
+}
+});
 
 module.exports = router ;

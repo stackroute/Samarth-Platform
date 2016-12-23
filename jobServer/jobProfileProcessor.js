@@ -23,11 +23,6 @@ function addJob(job,successFn, errorFn) {
                                 name:job.desc.name,
                 },
 			    closedate : job.desc.closedate,
-			    // skills : { 
-       //                      name:job.desc.skills[0].name,
-       //                      expertise:job.desc.skills[0].expertise,
-       //                      priority:job.desc.skills[0].expertise,
-       //          }, 
                 skills : job.desc.skills,
 			    salary : job.criteria.salary,
 			    openings : job.desc.openings,
@@ -75,7 +70,7 @@ function getJobDetails(jpCode,jobtitle, successFn, errorFn) {
 
 
 function getJobsbyJobId(jobcode,successFn, errorFn) {
-    console.log(jobcode+" in processor");
+    // console.log(jobcode+" in processor");
    jobProfile.find({jobcode:jobcode},function(error, result) {
        if (error){
            errorFn(error);
@@ -86,10 +81,44 @@ function getJobsbyJobId(jobcode,successFn, errorFn) {
        }
    });
 }
+             
+function updateJob(jobData, sucessCB, errorCB) {
+    console.log('in processor');
+    console.log(jobData);
+    jobProfile.update({
+        jobcode: jobData.jobcode
+    }, {
+        $set: {
+                title : jobData.desc.title,
+                profession : jobData.desc.profession,
+                role : jobData.desc.role,
+                duties : jobData.desc.duties,
+                location : jobData.desc.location,
+                experience : jobData.desc.experience,
+                allowance : jobData.desc.allowance,
+                // language :  {
+                //                 name:jobData.desc.name,
+                // },
+                // closedate : jobData.desc.closedate,
+                skills : jobData.desc.skills,
+                salary : jobData.criteria.salary,
+                // openings : jobData.desc.openings,
+                qualifications: jobData.criteria.qualifications
+        }
+    }, function(err, result) {
+        if (err) {
+            errorCB(err);
+        } else {
+            sucessCB('OK');
+        }
+    });
+}
+
 
 module.exports = {
     addJob: addJob,  
     getJobs: getJobs,
     getJobDetails: getJobDetails,
-    getJobsbyJobId: getJobsbyJobId
+    getJobsbyJobId: getJobsbyJobId,
+    updateJob:updateJob
 };
