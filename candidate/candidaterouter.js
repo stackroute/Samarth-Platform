@@ -8,6 +8,7 @@ let educationprocessor = require('../sectioneducation/educationprocessor');
 let personalInfoprocessor = require(
     '../sectionpersonalinfo/personalinfoprocessor');
 let projectprocessor = require('../sectionproject/projectprocessor');
+let jobpreferencesProcessor=require('../sectionjobpreferences/jobpreferencesprocessor');
 let skillprocessor = require('../sectionskill/skillprocessor');
 let workexpprocessor = require('../sectionworkexperiance/workprocessor');
 let candidateneo = require('./candidateneoprocessor');
@@ -199,6 +200,16 @@ router.post('/', function(req, res) {
                             }
                             );
                     },
+                     jobpreferences: function(callback) {
+                            jobpreferencesProcessor.createNewPreferences(req.body,
+                                function(preferenceobj) {
+                                    callback(null, preferenceobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            );
+                        },
                     skill: function(callback) {
                         skillprocessor.createNewSkill(req.body,
                             function(skillobj) {
