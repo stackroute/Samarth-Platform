@@ -22,20 +22,11 @@ function addJob(job,successFn, errorFn) {
 			    language :  {
                                 name:job.desc.name,
                 },
-			    closedate : job.desc.closeDate,
-			    // skills : { 
-       //                      name:job.desc.skills[0].name,
-       //                      expertise:job.desc.skills[0].expertise,
-       //                      priority:job.desc.skills[0].expertise,
-       //          }, 
+			    closedate : job.desc.closedate,
                 skills : job.desc.skills,
 			    salary : job.criteria.salary,
-			    openings : job.desc.openingsNo,
-			    qualifications: {
-                            name : job.criteria.qualifications[0].name, 
-                            score : job.criteria.qualifications[0].score,
-                            priority : job.criteria.qualifications[0].priority,
-                        }
+			    openings : job.desc.openings,
+			    qualifications: job.criteria.qualifications
     });
     
     jobValues.save(function(err) {
@@ -79,7 +70,7 @@ function getJobDetails(jpCode,jobtitle, successFn, errorFn) {
 
 
 function getJobsbyJobId(jobcode,successFn, errorFn) {
-    console.log(jobcode+" in processor");
+    // console.log(jobcode+" in processor");
    jobProfile.find({jobcode:jobcode},function(error, result) {
        if (error){
            errorFn(error);
@@ -90,10 +81,49 @@ function getJobsbyJobId(jobcode,successFn, errorFn) {
        }
    });
 }
+             
+function updateJob(jobData, sucessCB, errorCB) {
+    if(!jobData.desc.jobcode) {
+        return jobData;
+    }
+
+    console.log('in processor');
+    console.log(jobData);
+    jobProfile.update({
+        jobcode: jobData.desc.jobcode
+    }, {
+        $set: {
+                jobprovider: jobData.desc.jobprovider,
+                title : jobData.desc.title,
+                profession : jobData.desc.profession,
+                role : jobData.desc.role,
+                duties : jobData.desc.duties,
+                location : jobData.desc.location,
+                experience : jobData.desc.experience,
+                allowance : jobData.desc.allowance,
+                language :  {
+                                name:jobData.desc.name,
+                },
+                closedate : jobData.desc.closedate,
+                skills : jobData.desc.skills,
+                salary : jobData.desc.salary,
+                openings : jobData.desc.openings,
+                qualifications: jobData.desc.qualifications
+        }
+    }, function(err, result) {
+        if (err) {
+            errorCB(err);
+        } 
+        
+        sucessCB(result);        
+    });
+}
+
 
 module.exports = {
     addJob: addJob,  
     getJobs: getJobs,
     getJobDetails: getJobDetails,
-    getJobsbyJobId: getJobsbyJobId
+    getJobsbyJobId: getJobsbyJobId,
+    updateJob:updateJob
 };

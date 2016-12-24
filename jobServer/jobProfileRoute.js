@@ -2,6 +2,7 @@ var router = require('express').Router();
 var async = require('async');
 var jobProfile = require('./jobProfileSchema');
 var jobProfileProcessor = require('./jobProfileProcessor');
+let jobproviderprocessor = require('../jobprovider/jobproviderprocessor');
 let jobProfileNeo = require('./jobProfileNeoProcessor');
 
 //Routes defined
@@ -69,44 +70,44 @@ router.get('/:getjobcodedata', function(req, res) {
 
 router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
   var jobs=[];
-  var count = 0 ;
+  var jobProfile={};
+  var count=0;
   try {
    var searchTxt=req.params.searchTxt;
    var profs=req.params.profs;
    var prof=profs.split('-');
    var resArr=searchTxt.split(' ');
-       // var jobs=[];
-       // console.log(prof);
-       // var resArr=searchTxt.split(' ');
        jobProfileNeo.getJobs(resArr,prof,
         function(data) {
-                // res.json(data);
-
-                //async
                 async.forEachOf(data, function(value, key, callback) {
-                  console.log('data',data.length);
-                  count = count + 1;
-                  console.log('count',count);
+                  // console.log('data',data.length);
+                  // count = count + 1;
+                  // console.log('count',count);
                   if(Object.keys(value).includes('name')) {
-                   jobProfileProcessor.getJobsbyJobId(value.name,function successFn(result) {
+           jobProfileProcessor.getJobsbyJobId(value.name,function successFn(result) {
            // res.status(200).json(result);
+            // console.log(result.jobprovider);
+            jobproviderprocessor.jobEdit(result[0].jobprovider, function sucessCB(results) {
+            // res.status(200).send(result);
+            jobProfile.logo=results[0].url;
+            jobProfile.jb=result[0];
+            // count = count + 1;
+            // console.log('count',count);
+            jobs.push(jobProfile);
+            // console.log(jobProfile);
+            jobProfile = {};
+            callback();
+           
+        }, function errorCB(error) {
+            // res.status(500).json(error);
+        });
 
-           jobs.push(result);
-       if(data.length === count) {
-          console.log('hello');
-          callback(); // tell async that the iterator has completed          
-          // res.status(200).json({abc: jobs});
-        }
- 
-           // res.status(200).json(jobs);
-           // console.log(jobs);
          }, function errorFn(error) {
            res.status(500).send(error);
          });
         }
   },function(err) {
-    console.log('done');
-    console.log(jobs);
+    // console.log(jobs);
     res.status(200).json(jobs);
   })
               },
@@ -118,5 +119,70 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
 }
 });
 
+
+router.patch('/updateJob', function(req, res) {
+    try {
+        let jobData = req.body;
+
+        if(!jobData.desc.jobcode) {
+          return res.status(200).json({error:'Invalid inputs passed..!'}) ;
+        }
+        console.log('in patch');
+        jobProfileProcessor.updateJob(jobData, function (result) {
+            res.status(200).json({msg:'Job profile data has been updated successfully!'});
+        }, function (error) {
+            res.status(500).json({msg:'Some error occurred'});
+        });
+    } catch (err) {
+        return res.status(500).send('Some error occured');
+    }
+});
+
+//jobsByProfession
+router.get('/jobsByProfession/:prof', function(req, res) {
+ var jobs=[];
+ var jobProfile={};
+ var count=0;
+ try {
+  var prof=req.params.prof;
+  console.log(prof);
+ //  var resArr=searchTxt.split(' ');
+      jobProfileNeo.getJobsByProfession(prof,
+       function(data) {
+               async.forEachOf(data, function(value, key, callback) {
+                 // console.log('data',data.length);
+                 // count = count + 1;
+                 // console.log('count',count);
+                 if(Object.keys(value).includes('name')) {
+          jobProfileProcessor.getJobsbyJobId(value.name,function successFn(result) {
+          // res.status(200).json(result);
+           // console.log(result.jobprovider);
+           jobproviderprocessor.jobEdit(result[0].jobprovider, function sucessCB(results) {
+           // res.status(200).send(result);
+           jobProfile.logo=results[0].url;
+           jobProfile.jb=result[0];
+           // count = count + 1;
+           // console.log('count',count);
+           jobs.push(jobProfile);
+           // console.log(jobProfile);
+           jobProfile = {};
+           callback();        }, function errorCB(error) {
+           // res.status(500).json(error);
+       });         }, function errorFn(error) {
+          res.status(500).send(error);
+        });
+       }
+ },function(err) {
+   // console.log(jobs);
+   res.status(200).json(jobs);
+ })
+             },
+             function(err) {
+               res.json(err);
+             });
+} catch (err) {
+res.status(500).json({ error: 'Internal error occured, please report' });
+}
+});
 
 module.exports = router ;
