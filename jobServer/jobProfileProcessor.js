@@ -113,9 +113,9 @@ function updateJob(jobData, sucessCB, errorCB) {
     }, function(err, result) {
         if (err) {
             errorCB(err);
-        } 
+        }
         
-        sucessCB(result);        
+        sucessCB(result);
     });
 }
 
