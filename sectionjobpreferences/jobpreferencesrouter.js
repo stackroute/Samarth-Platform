@@ -28,12 +28,10 @@ router.get('/:candidateId', function(req, res) {
 router.post('/:candidateId', function(req, res) {
     console.log("post");
     
-    // console.log("---------->projectiiiii------->"+req.params.candidateId+"   "+req.body.projects[0].name);
     preference.find({ candidateid: req.params.candidateId }, function(err, result) {
         if (result == '') { 
             console.log("find");
-/*            jobpreferencesProcessor.createNewPreferences(req.body,req.params.candidateId);
-*/            res.status(500).send('Register the candidate first before adding a preferences');
+            res.status(500).send('Register the candidate first before adding a preferences');
         } // end if
         else {
            
