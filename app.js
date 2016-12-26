@@ -151,6 +151,6 @@ app.use('/profession', professiontoskillroutr);
 
 app.use('/coordinatorreg',placement);
 app.use('/jobProfile',jobProfile);
-app.use('/apply',placementProcessRouter);
+app.use('/placementprocess',placementProcessRouter);
 
 module.exports = app;
