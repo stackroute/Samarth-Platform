@@ -18,11 +18,20 @@ var jobSchema   = new Schema({
             write: {type : Boolean}
         }
     ],
-    closedate : { type : String},
+    closedate : { type : Date},
     skills : [{name : String, expertise : String, priority : String}],
     salary :{ type : String},
     openings :{type : String},
     qualifications :[{name : String, score: String, priority : String}],
+    placements:[{
+       candidateid : { type: String, required : true},
+       appliedBy: {type:String},
+       appliedOn :{type:String},
+       status    :{type:String},
+       offeredOn :{type:String},
+       offeredBy : {type:String},
+       joinedOn  :{type:String}
+     }]
 });
 
 module.exports = mongoose.model('job', jobSchema);

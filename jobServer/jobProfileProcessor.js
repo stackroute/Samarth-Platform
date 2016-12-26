@@ -3,7 +3,7 @@ var jobProfile = require('./jobProfileSchema');
 function addJob(job,successFn, errorFn) {
     //mapping to schema values
     let result=0;
-    console.log(job.desc.title);
+    console.log('languages', job.desc.languages);
     jobProfile.find({jobprovider :job.jpCode}).count(function(err,count){
         if(count==0||count>0){
                 result=count;
@@ -19,9 +19,7 @@ function addJob(job,successFn, errorFn) {
 			    location : job.desc.location,
 			    experience : job.desc.experience,
 			    allowance : job.criteria.allowance,
-			    language :  {
-                                name:job.desc.name,
-                },
+			    languages : job.desc.languages,
 			    closedate : job.desc.closedate,
                 skills : job.desc.skills,
 			    salary : job.criteria.salary,
