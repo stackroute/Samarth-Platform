@@ -8,10 +8,10 @@ applyJob = function(req,successCB,errorCB)
 	try
 	{
 		db.cypher({
-			query:'merge (n:Candidate{name:{candidateid}})-[r:applied]->(j:Job{name:{jobname}}) return type(r) as status',
+			query:'merge (n:Candidate{name:{candidateid}})-[r:applied]->(j:Job{name:{jobcode}}) return type(r) as status',
 			params:{
 				candidateid:req.candidateid,
-				jobname:req.jobname
+				jobcode:req.jobcode
 			}
 		},
 		function(err,result)
@@ -38,9 +38,9 @@ appliedCandidates = function(req,successCB,errorCB)
 	try
 	{
 		db.cypher({
-			query:'match (n:Candidate)-[r:applied]->(j:Job{name:{jobname}}) return n.name as candidates',
+			query:'match (n:Candidate)-[r:applied]->(j:Job{name:{jobcode}}) return n.name as candidates',
 			params:{
-				jobname:req.params.jobname
+				jobcode:req.params.jobcode
 			}
 		},
 		function(err,result)
