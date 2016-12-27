@@ -122,6 +122,36 @@ accept = function(req,successCB,errorCB)
 	}
 }
 
+status = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'match (n:Candidate{name:{candidateid}})-[r]->(j:Job{name:{jobcode}})  return distinct type(r) as status',
+			params:{
+				candidateid:req.candidateid,
+				jobcode:req.jobcode
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
 reject = function(req,successCB,errorCB)
 {
 	try
@@ -157,5 +187,6 @@ module.exports = {
 	appliedCandidates:appliedCandidates,
 	appliedJobs:appliedJobs,
 	accept:accept,
-	reject:reject
+	reject:reject,
+	status:status
 }

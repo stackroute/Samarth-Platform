@@ -29,6 +29,22 @@ router.post('/apply/',function(req,res){
 	}
 })
 
+router.post('/status/',function(req,res){
+	try
+	{
+     var jobdata =req.body;
+		 placementneo.status(req.body,function(applied){
+				res.status(200).json(applied);
+		 },function(err){
+				res.status(500).send("server error... try it again!");
+		 })
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+})
+
 
 
 router.post('/offer/',function(req,res){
