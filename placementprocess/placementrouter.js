@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const placementneo = require('./placementneoprocess.js');
 const placementprocessor = require('./placementprocessor.js');
+var async = require('async');
+var jobProfileProcessor = require('../jobServer/jobProfileProcessor');
+let jobproviderprocessor = require('../jobprovider/jobproviderprocessor');
+
 
 router.post('/apply/',function(req,res){
 	try
@@ -31,11 +35,11 @@ router.post('/offer/',function(req,res){
 	try
 	{
     var jobdata =req.body;
-		// placementneo.applyJob(req.body,function(applied){
-		// 	//res.status(200).json(applied);
-		// },function(err){
-		// 	//res.status(500).send("server error... try it again!");
-		// }),
+		placementneo.accept(req.body,function(applied){
+			//res.status(200).json(applied);
+		},function(err){
+			//res.status(500).send("server error... try it again!");
+		})
 	placementprocessor.offerjob(jobdata, function sucessCB(message) {
 				res.status(200).json({
 						msg: 'Applied Successfully!'
@@ -56,11 +60,11 @@ router.post('/reject/',function(req,res){
 	try
 	{
     var jobdata =req.body;
-		// placementneo.applyJob(req.body,function(applied){
-		// 	//res.status(200).json(applied);
-		// },function(err){
-		// 	//res.status(500).send("server error... try it again!");
-		// }),
+		placementneo.reject(req.body,function(applied){
+			//res.status(200).json(applied);
+		},function(err){
+			//res.status(500).send("server error... try it again!");
+		})
 	placementprocessor.rejectjob(jobdata, function sucessCB(message) {
 				res.status(200).json({
 						msg: 'Applied Successfully!'
@@ -94,8 +98,42 @@ router.get('/appliedCandidates/:jobcode',function(req,res){
 router.get('/appliedJobs/:candidateid',function(req,res){
 	try
 	{
+		var jobs=[];
+  	var jobProfile={};
 		placementneo.appliedJobs(req,function(applied){
-			res.status(200).send(applied);
+			                async.forEachOf(applied, function(value, key, callback) {
+                  // console.log('data',data.length);
+                  // count = count + 1;
+                  // console.log('count',count);
+                  if(Object.keys(value).includes('jobs')) {
+           jobProfileProcessor.getJobsbyJobId(value.jobs,function successFn(result) {
+           // res.status(200).json(result);
+            // console.log(result.jobprovider);
+            jobproviderprocessor.jobEdit(result[0].jobprovider, function sucessCB(results) {
+            // res.status(200).send(result);
+            jobProfile.logo=results[0].url;
+            jobProfile.jb=result[0];
+            // count = count + 1;
+            // console.log('count',count);
+            jobs.push(jobProfile);
+            // console.log(jobProfile);
+            jobProfile = {};
+            callback();
+           
+        }, function errorCB(error) {
+            res.status(500).json(error);
+        });
+
+         }, function errorFn(error) {
+           res.status(500).send(error);
+         });
+        }
+  },function(err) {
+    // console.log(jobs);
+    res.status(200).json(jobs);
+  })
+              // }
+			// res.status(200).send(applied);
 		},function(err){
 			res.status(500).send("server error... try it again!");
 		})
