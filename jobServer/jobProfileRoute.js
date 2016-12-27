@@ -76,8 +76,8 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
    var searchTxt=req.params.searchTxt;
    var profs=req.params.profs;
    var prof=profs.split('-');
-   var resArr=searchTxt.split(' ');
-       jobProfileNeo.getJobs(resArr,prof,
+   // var resArr=searchTxt.split(' ');
+       jobProfileNeo.getJobs(searchTxt,prof,
         function(data) {
                 async.forEachOf(data, function(value, key, callback) {
                   // console.log('data',data.length);

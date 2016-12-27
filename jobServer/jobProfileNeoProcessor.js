@@ -9,8 +9,10 @@ createJobNode = function(job, res) {
     let query = "";
     query += 'MERGE (jb: Job{name:{jobCode}}) ';
     query += 'MERGE (jp: JobProvider{name:{jpCode}}) ';
-    query += 'MERGE (lc: Location{name:{location}}) '; 
+    query += 'MERGE (lc: Location{name:{location}}) ';
+    query += 'MERGE (ex: Experience{name:{experience}}) ';  
     query += 'MERGE (rl: Role{name:{role}}) ';
+    query += 'MERGE (jb)-[re:min_experience]->(ex)';
     query += 'MERGE (jb)-[r1:Providedby]->(jp)';
     query += 'MERGE (jb)-[r2:Available_At]->(lc) ';
     query += 'MERGE (jb)-[r3:Role_As]->(rl) ';
@@ -29,7 +31,8 @@ createJobNode = function(job, res) {
         language:job.desc.language,
         quals: job.criteria.qualifications,
         skills: job.desc.skills,
-        profs: job.desc.profession
+        profs: job.desc.profession,
+        experience:job.desc.experience
     };
 
     console.log("Query for job profile indexing: ", query, " : ", params);
@@ -47,13 +50,17 @@ createJobNode = function(job, res) {
     });
 };
 
-getJobs = function(resArr,coordprofs, successres, errRes) {
-    db.cypher({
-            query: 'match(j:Job)-[r]-(n) where n.name in {keys} match (j)-[]-(p:Profession) where p.name in {profs} return j.name as name , count(r) as hits Order by hits desc',
-            params: {
-                keys: resArr,
+getJobs = function(searchTxt,coordprofs, successres, errRes) {
+    // console.log("in neo get");
+    let query="";
+    let params={
+                searchTxt: searchTxt,
                 profs: coordprofs
-            }
+    }
+    query="match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match(j:Job)-[]-(n) match (j)-[r]-(p:Profession) where p.name in {profs} return distinct j.name as name";
+    db.cypher({
+            query:query,
+            params:params
         },
         function(err, results) {
             if (err) {
@@ -63,15 +70,24 @@ getJobs = function(resArr,coordprofs, successres, errRes) {
             successres(results);
           }
         });
-};
+}
 
 getJobsByProfession = function(prof, successres, errRes) {
     // console.log(prof);
+    let query="";
+    let params={};
+    if(prof.indexOf('-') !== -1){
+        console.log("if ");
+        query='match(j:Job)-[r]-(p:Profession) where p.name in {prof} return distinct j.name as name';
+        params.prof=prof.split('-');
+    }else{
+        console.log("else");
+        query='match(j:Job)-[r]-(p:Profession {name:{prof}})return j.name as name';
+        params.prof=prof;
+    }
    db.cypher({
-           query: 'match(j:Job)-[r]-(p:Profession {name:{prof}})return j.name as name',
-           params: {
-               prof: prof,
-           }
+           query: query,
+           params: params
        },
        function(err, results) {
            if (err) {
