@@ -27,7 +27,7 @@ createCandidate = function(req, successCB, errorCB) {
                 errorCB && errorCB(err);
 
             } else {
-                successCB();
+                successCB("Success....");//modified by hari(added the result as parameter)
                 // console.log("Success....",results);
             }
         });
@@ -301,6 +301,29 @@ catch(err){
 }
 };
 
+getAllCandidate = function(req,successCB,errorCB)
+{
+    try
+    {
+        db.cypher({
+            query:'MATCH (n:Candidate) RETURN n.name as name limit 2'
+        },function(err,found){
+            if(err)
+            {
+                errorCB(err);
+            }
+            else
+            {
+                successCB(found);
+            }
+        })
+    }
+    catch(err){
+
+    }
+};
+
+
 module.exports = {
 
     createCandidate: createCandidate,
@@ -309,5 +332,6 @@ module.exports = {
     parseskill: parseskill,
     getProfessions: getProfessions,
     searchquery: searchquery,
-    getcircle: getcircle
+    getcircle: getcircle,
+    getAllCandidate:getAllCandidate
 };

@@ -13,16 +13,19 @@ getSearchArray = function(req) {
     session.run('MATCH(n) return n')
         .subscribe({
             onNext: function(lexicon) {
-                //console.log("lexicon ------> ", lexicon._fields[0].properties.name);
+                // console.log("lexicon ------> ", lexicon._fields[0].properties.name);
                 if (lexicon._fields[0].properties.name != undefined) {
+                    // console.log(req.indexOf(lexicon._fields[0].properties.name.toLowerCase()));
                     if (req.indexOf(lexicon._fields[0].properties.name.toLowerCase()) > -1) {
                         //searchArray.push(lexicon._fields[0].properties.name);
+                        console.log(lexicon._fields[0].properties.name+"llllllllllllll");
                         searchArray[lexicon._fields[0].properties.name] = lexicon._fields[0].properties.name;
                     }
                 }
             },
             onCompleted: function() {
-                // lexiconStream.end();
+                // lexiconStream.end()
+                // console.log(searchArray);
                 //successCB(Object.keys(searchArray));
                 deffer.resolve(Object.keys(searchArray));
             },

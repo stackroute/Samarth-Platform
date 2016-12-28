@@ -11,6 +11,7 @@ let candidateneo = require('../candidate/candidateneoprocessor');
 
 
 router.get('/allcandidates', function(req, res) {
+    console.log("resffd");
     candidate.find(function(err, candidates) {
         if (err) {
             return res.status(500).json({ message: err });

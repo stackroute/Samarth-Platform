@@ -46,10 +46,9 @@ creacteNode = function(req, errRes,res) {
 };
 
 createRelation = function(req, res) {
-console.log(req.profession);
     db.cypher({
 
-      query:'merge (n:coordinator{username:{username}}) FOREACH (prof in {profs} | merge(c:circle{name:prof}) merge (n)-[r:have_profession]->(c))',
+      query:'merge (n:coordinator{username:{username}}) FOREACH (prof in {profs} | merge (c:circle{name:prof}) merge (n)-[r:have_profession]->(c)) FOREACH (lang in {langs} | merge (lg:Language{name:lang.name}) merge (n) -[rt: knows{speak: lang.speak, read: lang.read, write: lang.write}]-> (lg))',
             // query += 'merge (n:coordinator{username:{username}}) ';
             // query +='FOREACH (prof in name | merge(c:circle{name:prof}) merge (n)-[r:have_profession]->(c))';
             //  merge (c:circle{domain:{profession},name:{name}}) merge (n)-[r:primaryOwner ]->(c)
@@ -57,6 +56,7 @@ console.log(req.profession);
             params: {
                 username: req.email,
                 profs: req.profession,
+                langs: req.language
                 // profession: reqprofession;
             }
         },
