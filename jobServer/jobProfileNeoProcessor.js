@@ -22,13 +22,16 @@ createJobNode = function(job, res) {
     query += 'MERGE (jb)-[r5:belongs_to]->(pf) ) ';
     query += 'FOREACH (qualname in {quals} | MERGE (ql: Qualification{name:qualname.name}) ';
     query += 'MERGE (jb)-[r6:Expected{score:qualname.score,priority:qualname.priority}]->(ql))'; 
+    query += 'FOREACH (lang in {languages} | MERGE (lg: Language{name:lang.name}) ';
+    query += 'MERGE (jb)-[r7:prefers_lang]->(lg))'; 
+
 
     let params = {
         jobCode: jobCode,
         jpCode: job.jpCode,
         location: job.desc.location,
         role: job.desc.role,
-        language:job.desc.language,
+        languages:job.desc.languages,
         quals: job.criteria.qualifications,
         skills: job.desc.skills,
         profs: job.desc.profession,
@@ -51,13 +54,19 @@ createJobNode = function(job, res) {
 };
 
 getJobs = function(searchTxt,coordprofs, successres, errRes) {
-    // console.log("in neo get");
+    console.log("in neo get");
     let query="";
     let params={
                 searchTxt: searchTxt,
                 profs: coordprofs
     }
-    query="match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match(j:Job)-[]-(n) match (j)-[r]-(p:Profession) where p.name in {profs} return distinct j.name as name";
+    // query="match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match(j:Job)-[]-(n) match (j)-[r]-(p:Profession) where p.name in {profs} return distinct j.name as name";
+    query+="match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match(j:Job)-[rn]-(n) match (j)-[r]-(p:Profession) where p.name in {profs}";
+    query+=" with collect(distinct{name:j.name, count:type(rn)}) as rows";
+    query+=" match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match";
+    query+=" (n)-[rf]-(s) where type(rf) in ['goes_with','same-as','sub_role','similar_to','Same_As','SAME_AS','synonym_of'] match (s)-[rn]-(jb:Job) match(jb)-[r]-(pn:Profession)where pn.name in {profs}";
+    query+=" with rows + collect(distinct{name:jb.name, count:type(rn)}) as allrows";
+    query+=" unwind allrows as row with row.name as name , row.count as count return name, count(name) as count order by count desc";
     db.cypher({
             query:query,
             params:params
