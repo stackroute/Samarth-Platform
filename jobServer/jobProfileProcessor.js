@@ -99,7 +99,7 @@ function updateJob(jobData, sucessCB, errorCB) {
                 location : jobData.desc.location,
                 experience : jobData.desc.experience,
                 allowance : jobData.desc.allowance,
-                language :  jobData.desc.languages
+                language :  jobData.desc.languages,
                 closedate : jobData.desc.closedate,
                 skills : jobData.desc.skills,
                 salary : jobData.desc.salary,
