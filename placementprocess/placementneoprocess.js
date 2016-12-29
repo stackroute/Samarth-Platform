@@ -127,7 +127,7 @@ status = function(req,successCB,errorCB)
 	try
 	{
 		db.cypher({
-			query:'match (n:Candidate{name:{candidateid}})-[r]->(j:Job{name:{jobcode}})  return distinct type(r) as status',
+			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) optional match (n)-[r:applied]->(j) return distinct n.name as candidateid,j.name as jobcode,type(r) as status',
 			params:{
 				candidateid:req.candidateid,
 				jobcode:req.jobcode
