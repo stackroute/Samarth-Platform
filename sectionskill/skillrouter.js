@@ -13,8 +13,7 @@ let skillMissingFinder = require('.././questionbox/skillMissingFinder');
 //HHTP GET skill/:candidateid
 //effective URL skill/:candidateid 
 router.get("/:candidateid", function(req, res) {
-    //console.log("Request received for emp id: ", req.params.empid);
-    try {
+      try {
         skillProcessor.getSkill(req.params.candidateid,
             function(skill1) {
                 res.status(200).json(skill1);
@@ -35,8 +34,7 @@ router.get("/:candidateid", function(req, res) {
 
 //effective url  /skill/:candidateid
 router.post("/:candidateid", function(req, res) {
-
-
+    try {
     skill.find({
         candidateid: req.params.candidateid
     }, function(err, result) {
@@ -56,7 +54,7 @@ router.post("/:candidateid", function(req, res) {
                 "Register candidate for the given candidate id");
         } //end if  
         else {
-            try {
+            
                 skillProcessor.addSkill(req.body, req.params.candidateid,
                     function(skills, id) {
                         skillRelationBuilder.skillRelationBuilder(
@@ -75,13 +73,15 @@ router.post("/:candidateid", function(req, res) {
                         console.log("Error occurred in adding skill: ", err);
                         res.status(500).send("invalid data");
                     });
-            } catch (err) {
+            } // end catch
+        
+    }); 
+    }
+    catch (err) {
                 res.status(500).json({
                     error: 'Internal error occurred, please report'
                 });
-            } // end catch
-        }
-    }); // end find
+            } // end find
 }); // end post//end try
 /*        if (result === '') {
             res.status(500).send(

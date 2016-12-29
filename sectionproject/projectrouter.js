@@ -26,25 +26,20 @@ router.get('/:candidateId', function(req, res) {
 // HTTP POST project/:candidateId
 // effective url project/:candidateId
 router.post('/:candidateId', function(req, res) {
-    // console.log("---------->projectiiiii------->"+req.params.candidateId+"   "+req.body.projects[0].name);
+    try { 
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
         if (result === '') { 
             res.status(500).send('Register the candidate first before adding a project');
         } // end if
         else {
-            try { 
-                projectProcessor.addProject(req.body, req.params.candidateId,
+                    projectProcessor.addProject(req.body, req.params.candidateId,
                     function(projectObj) {
-    // console.log("---------->projectiiiii------->"+req.params.candidateId+"   "+req.body.projects[0].name);
-                         
-                        // console.log("---->project--->"+req.body.projects[0].income+"  "+req.body.projects[0].duration);
-                        projectRelationBuilder.projectRelationBuilder(req.params.candidateId,
+                         projectRelationBuilder.projectRelationBuilder(req.params.candidateId,
                             req.body.projects[0].name,
                             req.body.projects[0].location,
                             req.body.projects[0].skills,
                             req.body.projects[0].income,
-                            // req.body.projects[0].duration
-                             function(err, success) {
+                            function(err, success) {
                                 if (err) {
                                     console.log(err);
                                 } else {
@@ -55,15 +50,16 @@ router.post('/:candidateId', function(req, res) {
                     },
                     function(err) {
                         res.status(500).json(err);
-                    }
-                );
-            } catch (err) {
+                    });
+               } 
+         });
+    }
+    catch (err) {
                 res.status(500).json({
                     error: 'Internal error occurred, please report'
                 });
             }
-        } // end else
-    }); // end find
+     // end find
 });
 
 
@@ -72,26 +68,27 @@ router.post('/:candidateId', function(req, res) {
 // HTTP POST project/:candidateId/:projectName
 // effective url project/:candidateId/:projectName
 router.patch('/:candidateId/:projectName', function(req, res) {
+    try{
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
         if (result === '') {
             res.status(500).send('Add Project with Candidate id before update');
         } else {
-            try {
-                projectProcessor.updateProject(req.params.projectName, req.body,
+                    projectProcessor.updateProject(req.params.projectName, req.body,
                     req.params.candidateId, function(projectObj) {
                         res.status(201).json(projectObj);
                     },
                     function(err) {
                         res.status(500).json(err);
-                    }
-                );
-            } catch (err) {
+                    });
+                
+            } 
+    });
+}
+    catch (err) {
                 res.status(500).json({
                     error: 'Internal error occurred, please report'
                 });
-            }
-        }
-    }); // end find
+            } 
 });
 
 module.exports = router;
