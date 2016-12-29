@@ -11,7 +11,7 @@ let jobpreferencesRelationBuilder = function(preferenceObj, candidateid){
   db.cypher({
     /*query: 'MERGE (job_seekers:job_seeker{name:{job_seeker}}) MERGE (p:Person{name:{candidateid}})-[r:candidate_preference]-> (job_seekers)',*/
     /*query: 'MERGE (c:Candidate{name:{candidateid},Interested_in_job:{looking_jobs}})',*/
-    query: 'MATCH (c:Candidate{name:{candidateid}}) set c.Interested_in_job="job_seeker"',
+    query: 'MATCH (c:Candidate{name:{candidateid}}) set c.Interested_in_job="looking_jobs"',
     params: {
       looking_jobs: preferenceObj.looking_jobs,
       candidateid: candidateid
