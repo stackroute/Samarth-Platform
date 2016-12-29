@@ -28,6 +28,7 @@ router.get('/:candidateid', function(req, res) {
 // effective url /profile/:candidateid
 
 router.post('/:candidateid', function(req, res) {
+    try{
     profile.find({ candidateid: req.params.candidateid }, function(error, profiles) {
         if(profiles) {
             res.status(500).send('Alert! Profile with Candidate id already exist ');
@@ -36,37 +37,49 @@ router.post('/:candidateid', function(req, res) {
             res.status(500).send('Register the candidate id  before posting');
         }
     });
-});
+    } catch (err) {
+        res.status(500).json({
+            error: 'Internal error occurred, please report'
+        });
+    }
+
+    });
+
 
 /* Update profile section for the given candidate id NOTE:(Cant change candidate id)*/
 // HTTP PATCH /profile/:candidateid /
 // effective url /profile/:candidateid
 
 router.patch('/:candidateid', function(req, res) {
+ try {
     profile.find({ candidateid: req.params.candidateid }, function(error, profiles) {
         if (profile === '') {
             res.status(500).send('profile doesnt exist for given candidate id');
         } else if (!req.body.candidateid) {
-                try {
+               
                     profileprocessor.modifyprofile(req.body, req.params.candidateid,
                         function(profileObj) {
                             res.status(200).json(profileObj);
                         },
                         function(err) {
                             res.status(400).json(err);
-                        }
-                    );
-                } catch (err) {
+                        });
+                    
+                } 
+            
+            else
+            {
+                 res.status(500).send('Alert! Can\'t update Candidate id... ');
+            } 
+        });
+
+    }
+
+    catch (err) {
                     res.status(500).json({
                         error: 'Internal error occurred, please report'
                     });
                 }
-            } // end if
-            else
-            {
-                 res.status(500).send('Alert! Can\'t update Candidate id... ');
-            } // end else
-    });
 });
 
 module.exports = router;

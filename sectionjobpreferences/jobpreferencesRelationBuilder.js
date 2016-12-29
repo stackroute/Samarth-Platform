@@ -1,8 +1,6 @@
 let neo4j = require('neo4j');   
 var neo4jConnection = require("../connections/neo4jconnection.js");
-  
 let db = neo4jConnection.getConnection();
-   
 
 let jobpreferencesRelationBuilder = function(preferenceObj, candidateid){
   console.log("neo");
@@ -22,12 +20,11 @@ let jobpreferencesRelationBuilder = function(preferenceObj, candidateid){
       console.log(err);
     }
     else{
-      console.log("zsfdf"+results);
       return results;
     }
   });
 };
 
 module.exports = {
-    jobpreferencesRelationBuilder: jobpreferencesRelationBuilder
+  jobpreferencesRelationBuilder: jobpreferencesRelationBuilder
 };
