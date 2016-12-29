@@ -16,7 +16,7 @@ try{
                // console.log("lexicon ------> ", lexicon._fields[0].properties.name);
                if (lexicon._fields[0].properties.name != undefined) {
                    // console.log(req.indexOf(lexicon._fields[0].properties.name.toLowerCase()));
-                   if (req.indexOf(lexicon._fields[0].properties.name/*.toLowerCase()*/) > -1) {
+                   if (req.indexOf(lexicon._fields[0].properties.name.toLowerCase()) > -1) {
                        //searchArray.push(lexicon._fields[0].properties.name);
                        console.log(lexicon._fields[0].properties.name+"llllllllllllll");
                        searchArray[lexicon._fields[0].properties.name] = lexicon._fields[0].properties.name;
