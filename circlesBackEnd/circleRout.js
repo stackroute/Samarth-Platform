@@ -1,15 +1,7 @@
 let router = require('express').Router();
 let circleProcessor = require('./circleProcessor');
+let circleNeo4jProcessor = require('./circleNeo4jProcessor');
 
-// Efective HTTP GET /circles
-// Returns all the circles in the system with pagination as specified in query parameter
-// router.get("/", function(req, res) {
-//     res.json([]);
-// })
-
-
-// Effective API URL is HTTP GET /circles/:entityname
-// Finds circles related with specified entity name
 router.get('/:entityname', function(req, res) {
 
     try {
@@ -18,8 +10,6 @@ router.get('/:entityname', function(req, res) {
 
             function(data) {
 
-              // console.log("inget circle");
-              // console.log("circles : ", data);
                 res.json(data);
                 console.log(data);
 
@@ -32,9 +22,82 @@ router.get('/:entityname', function(req, res) {
     }
 });
 
-// adding relation
-// HTTP POST /circles/:circlename/relation/, with POST body container relationship name, and enity with which this relation has to be established
-// router.post('/:circlename/relation/',
+router.get('/countdata/:profs', function(req, res) {
+
+    try {
+  //      
+  var profs=req.params.profs.split("-");
+        // console.log(profs);
+        circleNeo4jProcessor.getCount(profs,
+            function(data) {
+                res.status(200).json(data);
+            },
+            function(err) {
+                res.json(err);
+            });
+        
+    } catch (err) {
+        res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
+    }
+});
+
+router.get('/getCandidate/:profs', function(req, res) {
+
+    try {
+
+        var profs=req.params.profs.split("-");
+        circleNeo4jProcessor.getCandidate(profs,
+            function(data) {
+               res.status(200).json(data);
+           },
+           function(err) {
+            res.json(err);
+        });
+        
+    } catch (err) {
+        res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
+    }
+});
+
+router.get('/getStatus/:profs', function(req, res) {
+
+    try {
+  //      
+        var profs=req.params.profs.split("-");
+               circleNeo4jProcessor.getStatus(profs,
+        function(data) {
+             res.status(200).json(data);
+              },
+              function(err) {
+                res.json(err);
+              });
+
+    } catch (err) {
+        res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
+    }
+});
+
+
+router.get('/appliedData/:profs', function(req, res) {
+
+    try {
+  //      
+  var profs=req.params.profs.split("-");
+        // console.log(profs);
+        circleNeo4jProcessor.getApplied(profs,
+            function(data) {
+
+                res.status(200).json(data);
+            },
+            function(err) {
+                res.json(err);
+            });
+        
+    } catch (err) {
+        res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
+    }
+});
+
 router.post('/circlerelation',
     function(req, res) {
         try {
@@ -51,19 +114,19 @@ router.post('/circlerelation',
 // creating circles in graph and mongo
 // Effective URL is HTTP POST /circles/
 // router.post('/', function(req, res) {
-router.post('/', function(req, res) {
-    try {
-        circleProcessor.circlePost(req.body,
-            function(err) {
-                if (err) {
+    router.post('/', function(req, res) {
+        try {
+            circleProcessor.circlePost(req.body,
+                function(err) {
+                    if (err) {
 
-                    res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
-                }
-            });
+                        res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
+                    }
+                });
     } // end try
     catch (err) {
         res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
     } // end c
 });
 
-module.exports = router;
+    module.exports = router;
