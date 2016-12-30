@@ -7,7 +7,7 @@ let db = neo4jConnection.getConnection();
 
 createJobNode = function(job, res) {
     let query = "";
-    query += 'MERGE (jb: Job{name:{jobCode}}) ';
+    query += 'MERGE (jb: Job{name:{jobCode},closedate:{closedate}}) ';
     query += 'MERGE (jp: JobProvider{name:{jpCode}}) ';
     query += 'MERGE (lc: Location{name:{location}}) ';
     query += 'MERGE (ex: Experience{name:{experience}}) ';  
@@ -17,11 +17,11 @@ createJobNode = function(job, res) {
     query += 'MERGE (jb)-[r2:Available_At]->(lc) ';
     query += 'MERGE (jb)-[r3:Role_As]->(rl) ';
     query += 'FOREACH (skillname in {skills} | MERGE (sk: Skill{name:skillname.name}) ';
-    query += 'MERGE (jb)-[r4:Required{priority:skillname.priority}]->(sk) ) '; 
+    query += 'MERGE (jb)-[r4:Required]->(sk) ) '; 
     query += 'FOREACH (prof in {profs} | MERGE (pf: Profession{name:prof}) ';  
     query += 'MERGE (jb)-[r5:belongs_to]->(pf) ) ';
     query += 'FOREACH (qualname in {quals} | MERGE (ql: Qualification{name:qualname.name}) ';
-    query += 'MERGE (jb)-[r6:Expected{score:qualname.score,priority:qualname.priority}]->(ql))'; 
+    query += 'MERGE (jb)-[r6:Expected]->(ql))'; 
     query += 'FOREACH (lang in {languages} | MERGE (lg: Language{name:lang.name}) ';
     query += 'MERGE (jb)-[r7:prefers_lang]->(lg))'; 
 
@@ -35,7 +35,8 @@ createJobNode = function(job, res) {
         quals: job.criteria.qualifications,
         skills: job.desc.skills,
         profs: job.desc.profession,
-        experience:job.desc.experience
+        experience:job.desc.experience,
+        closedate:job.desc.closedate
     };
 
     console.log("Query for job profile indexing: ", query, " : ", params);
