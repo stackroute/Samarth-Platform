@@ -59,8 +59,16 @@ router.get('/allCandidate',function(req,res)
 
 router.post('/search', function(req, res) {
     try {
+
+        let searchQuery = req.body.searchquery;
+        if(searchQuery) {
+            searchQuery = searchQuery.trim();
+        } else {
+            searchQuery = '';
+        }
+
         candidatesearchprocessor
-        .getSearchArray(req.body.searchquery.trim())
+        .getSearchArray(searchQuery)
         .then(function (searchArray) {
             if(searchArray.length>0){
                 candidatesearchprocessor.getAllCandidates(searchArray).then(function(data){
