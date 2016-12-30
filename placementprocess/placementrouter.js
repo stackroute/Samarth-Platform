@@ -53,6 +53,7 @@ router.post('/offer/',function(req,res){
     var jobdata =req.body;
 		placementneo.accept(req.body,function(applied){
 			//res.status(200).json(applied);
+			console.log("accept api function is worked"+applied)
 		},function(err){
 			//res.status(500).send("server error... try it again!");
 		})

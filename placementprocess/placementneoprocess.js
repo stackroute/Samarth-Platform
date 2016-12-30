@@ -99,8 +99,8 @@ accept = function(req,successCB,errorCB)
 		db.cypher({
 			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) merge p=(j)-[r:accepted]->(n) return type(r) as status',
 			params:{
-				candidateid:req.params.candidateid,
-				jobcode:req.params.jobcode
+				candidateid:req.candidateid,
+				jobcode:req.jobcode
 			}
 		},
 		function(err,result)
@@ -159,8 +159,8 @@ reject = function(req,successCB,errorCB)
 		db.cypher({
 			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) merge p=(j)-[r:rejected]->(n) return type(r) as status',
 			params:{
-				candidateid:req.params.candidateid,
-				jobcode:req.params.jobcode
+				candidateid:req.candidateid,
+				jobcode:req.jobcode
 			}
 		},
 		function(err,result)
