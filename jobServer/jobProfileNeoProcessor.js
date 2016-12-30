@@ -60,13 +60,13 @@ getJobs = function(searchTxt,coordprofs, successres, errRes) {
                 searchTxt: searchTxt,
                 profs: coordprofs
     }
-    // query="match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match(j:Job)-[]-(n) match (j)-[r]-(p:Profession) where p.name in {profs} return distinct j.name as name";
-    query+="match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match(j:Job)-[rn]-(n) match (j)-[r]-(p:Profession) where p.name in {profs}";
-    query+=" with collect(distinct{name:j.name, count:type(rn)}) as rows";
-    query+=" match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match";
-    query+=" (n)-[rf]-(s) where type(rf) in ['goes_with','same-as','sub_role','similar_to','Same_As','SAME_AS','synonym_of'] match (s)-[rn]-(jb:Job) match(jb)-[r]-(pn:Profession)where pn.name in {profs}";
-    query+=" with rows + collect(distinct{name:jb.name, count:type(rn)}) as allrows";
-    query+=" unwind allrows as row with row.name as name , row.count as count return name, count(name) as count order by count desc";
+    query="match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match(j:Job)-[]-(n) match (j)-[r]-(p:Profession) where p.name in {profs} return distinct j.name as name";
+    // query+="match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match(j:Job)-[rn]-(n) match (j)-[r]-(p:Profession) where p.name in {profs}";
+    // query+=" with collect(distinct{name:j.name, count:type(rn)}) as rows";
+    // query+=" match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match";
+    // query+=" (n)-[rf]-(s) where type(rf) in ['goes_with','same-as','sub_role','similar_to','Same_As','SAME_AS','synonym_of'] match (s)-[rn]-(jb:Job) match(jb)-[r]-(pn:Profession)where pn.name in {profs}";
+    // query+=" with rows + collect(distinct{name:jb.name, count:type(rn)}) as allrows";
+    // query+=" unwind allrows as row with row.name as name , row.count as count return name, count(name) as count order by count desc";
     db.cypher({
             query:query,
             params:params
@@ -109,9 +109,38 @@ getJobsByProfession = function(prof, successres, errRes) {
        });
 };
 
+getIntent = function(searchTxt,coordprofs, successres, errRes) {
+    console.log("in neo intent");
+    let query="";
+    let params={
+                searchTxt: searchTxt,
+                profs: coordprofs
+    }
+    // query="match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match(j:Job)-[]-(n) match (j)-[r]-(p:Profession) where p.name in {profs} return distinct j.name as name";
+    query+="match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match(j:Job)-[rn]-(n) match (j)-[r]-(p:Profession) where p.name in {profs}";
+    query+=" with collect(distinct{name:n.name,label:labels(n),rel:type(rn)}) as rows";
+    query+=" match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match";
+    query+=" (n)-[rf]-(s) where type(rf) in ['goes_with','same-as','sub_role','similar_to','Same_As','SAME_AS','synonym_of'] match (s)-[rn]-(jb:Job) match(jb)-[r]-(pn:Profession)where pn.name in {profs}";
+    query+=" with rows + collect(distinct{name:n.name,label:labels(n),rel:type(rn)}) as allrows";
+    query+=" unwind allrows as row";
+    query+=" with row.name as name , row.label as label,row.rel as rel return distinct name, label, rel";
+    db.cypher({
+            query:query,
+            params:params
+        },
+        function(err, results) {
+            if (err) {
+                console.log("in intent neo error");
+            }else{
+                console.log("in success neo intent");
+            successres(results);
+          }
+        });
+}
 
 module.exports = {
     createJobNode: createJobNode,
     getJobs: getJobs,
-    getJobsByProfession: getJobsByProfession
+    getJobsByProfession: getJobsByProfession,
+    getIntent: getIntent
 };

@@ -119,6 +119,24 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
 }
 });
 
+router.get('/getIntent/:searchTxt/:profs', function(req, res) {
+ try {
+    console.log("in intent");
+    var searchTxt=req.params.searchTxt;
+    var profs=req.params.profs;
+    var prof=profs.split('-');
+    console.log(prof);
+    // console.log(req.params.searchTxt);
+   jobProfileNeo.getIntent(searchTxt,prof,function(result) {
+     res.status(200).json(result);
+   }, function (err){
+     res.status(500).send(err);
+   });
+ } catch (err) {
+   res.status(500).json({ error: 'Internal error occured, please report' });
+ }
+});
+
 
 router.patch('/updateJob', function(req, res) {
     try {
