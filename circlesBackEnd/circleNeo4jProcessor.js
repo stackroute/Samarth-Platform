@@ -1,13 +1,9 @@
 let neo4j = require('neo4j');
-var neo4jConnection = require("../connections/neo4jconnection.js");
-
+let neo4jConnection = require("../connections/neo4jconnection.js");
 let db = neo4jConnection.getConnection();
 
-
 getCircles = function(entityname, successres, errRes) {
-    // console.log(entityname)
     db.cypher({
-
         query: 'MATCH (n:coordinator{username:{entityname}})-[r]-(c:circle) match (p:Profession {name:c.name}) match (p)-[rc]-(cd:Candidate) return c.name as name, labels(cd)[0] as domain, count(rc) as rCount',
         params: {
             entityname: entityname
@@ -16,80 +12,79 @@ getCircles = function(entityname, successres, errRes) {
     function(err, results) {
         if (err) {
             console.log(err);
-        }else{
-
-
+        }
+        else{
             successres(results);
-
         }
     });
 };
+
 getCount = function(profs, successres, errRes) {
-    // console.log(profs);
     db.cypher({
-       query: 'match(n:Candidate)-[r]->(p:Profession)where p.name in {profs} return p.name,count(n) as Candidates,  count(CASE WHEN n.Interested_in_job="No" THEN null ELSE n.Interested_in_job END) as Looking,count(CASE WHEN n.Interested_in_job="Yes" THEN null ELSE n.Interested_in_job END) as NotLooking',
-       params: {
-        profs: profs
-    }
-},
-function(err, results) {
-    if (err) {
-
-        console.log(err);
-    }else{
-
-        successres(results);
-    }
-         // }
-     });
+        query: 'match(n:Candidate)-[r]->(p:Profession)where p.name in {profs} return p.name as profession,count(n) as Candidates,  count(CASE WHEN n.Interested_in_job="No" THEN null ELSE n.Interested_in_job END) as Looking,count(CASE WHEN n.Interested_in_job="Yes" THEN null ELSE n.Interested_in_job END) as NotLooking order by  p.name',
+        params: {
+            profs: profs
+        }
+    },
+    function(err, results) {
+        if (err) {
+            console.log(err);
+        }
+        else{
+            successres(results);
+        }
+    });
 };
 
 getCandidate = function(profs, successres, errRes) {
-    // console.log(profs);
     db.cypher({
-
-       query: 'match ()-[r1:applied]->(j:Job) match(n:Candidate)-[r]->(p:Profession)where p.name in {profs} return p.name as profession, count(distinct(n)) as Candidates ,count(DISTINCT (CASE WHEN (n:Candidate)-[r1:applied]->(j:Job) then n end)) as applied',
-       params: {
-        profs: profs
-    }
-},
-function(err, results) {
-    if (err) {
-
-        console.log(err);
-    }else{
-
-        successres(results);
-    }
-         // }
-     });
+        query: 'match ()-[r1:applied]->(j:Job) match(n:Candidate)-[r]->(p:Profession)where p.name in {profs} return p.name as profession, count(distinct(n)) as Candidates ,count(DISTINCT (CASE WHEN (n:Candidate)-[r1:applied]->(j:Job) then n end)) as applied order by  p.name',
+        params: {
+            profs: profs
+        }
+    },
+    function(err, results) {
+        if (err) {
+            console.log(err);
+        }
+        else{
+           successres(results);
+       }
+   });
 };
-
-
-
-
 
 getStatus = function(profs, successres, errRes) {
-    // console.log(profs);
     db.cypher({
-
-query:'match(j:Job)-[r]->(n:Candidate) match(n:Candidate)-[r1]->(p:Profession)where p.name in {profs} return p.name as profession,count(DISTINCT(CASE WHEN (j:Job)-[r]->(n:Candidate) and  type(r)="accepted" THEN n  END)) as placed', 
-            params: {
-                profs: profs
-            }
-        },
-        function(err, results) {
-            if (err) {
-
-                console.log(err);
-            }else{
-
+        query:'match()<-[r:accepted]-(j:Job) match(n:Candidate)-[r1]->(p:Profession)where p.name in {profs}  return p.name as profession,count(DISTINCT(CASE WHEN (j:Job)-[r:accepted]->(n:Candidate)  THEN n  END)) as placed order by  p.name',
+        params: {
+            profs: profs
+        }
+    },
+    function(err, results) {
+        if (err) {
+            console.log(err);
+        }
+        else{
             successres(results);
-             }
-
-        });
+        }
+    });
 };
 
+getJob= function(profs, successres, errRes) {
+    db.cypher({
+        query:'match(j:Job) match()-[r]->(p:Profession) where p.name in {profs}return p.name as profession,count(DISTINCT(CASE WHEN (j:Job)-[r]->(p:Profession)   THEN j  END)) as job order by  p.name', 
+        params: {
+            profs: profs
+        }
+    },
+    function(err, results) {
+        if (err) {
+            console.log(err);
+        }else{
+            successres(results);
+        }
+    });
+};
 
 creacteNode = function(req, errRes,res) {
   console.log("in create node "+req.name);
@@ -102,7 +97,6 @@ creacteNode = function(req, errRes,res) {
 },
 function(err, results) {
     if (err) {
-
         errRes(results);
     }
 });
@@ -110,13 +104,11 @@ function(err, results) {
 
 createRelation = function(req, res) {
     db.cypher({
-
-      query:'merge (n:coordinator{username:{username}}) FOREACH (prof in {profs} | merge (c:circle{name:prof}) merge (n)-[r:have_profession]->(c)) FOREACH (lang in {langs} | merge (lg:Language{name:lang.name}) merge (n) -[rt: knows{speak: lang.speak, read: lang.read, write: lang.write}]-> (lg))',
-
-      params: {
-        username: req.email,
-        profs: req.profession,
-        langs: req.language
+        query:'merge (n:coordinator{username:{username}}) FOREACH (prof in {profs} | merge (c:circle{name:prof}) merge (n)-[r:have_profession]->(c)) FOREACH (lang in {langs} | merge (lg:Language{name:lang.name}) merge (n) -[rt: knows{speak: lang.speak, read: lang.read, write: lang.write}]-> (lg))',
+        params: {
+            username: req.email,
+            profs: req.profession,
+            langs: req.language
                 // profession: reqprofession;
             }
         },
@@ -133,13 +125,6 @@ module.exports = {
     getCircles: getCircles,
     getCount: getCount,
     getCandidate:getCandidate,
-   getStatus:getStatus
+    getStatus:getStatus,
+    getJob:getJob
 };
-
-
-
-
-
-
-
-

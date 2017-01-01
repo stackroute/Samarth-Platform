@@ -1,100 +1,99 @@
 let router = require('express').Router();
 let circleProcessor = require('./circleProcessor');
 let circleNeo4jProcessor = require('./circleNeo4jProcessor');
+let async = require('async');
 
 router.get('/:entityname', function(req, res) {
-
     try {
         console.log(req.params);
         circleProcessor.getCircle(req.params,
-
             function(data) {
-
                 res.json(data);
                 console.log(data);
-
             },
             function(err) {
                 res.json(err);
             });
-    } catch (err) {
+    } 
+    catch (err) {
         res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
     }
 });
 
-router.get('/countdata/:profs', function(req, res) {
-
+router.get('/getStats/:profs', function(req, res) {
     try {
-  //      
-  var profs=req.params.profs.split("-");
-        // console.log(profs);
-        circleNeo4jProcessor.getCount(profs,
-            function(data) {
-                res.status(200).json(data);
-            },
-            function(err) {
-                res.json(err);
-            });
-        
-    } catch (err) {
-        res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
-    }
-});
-
-router.get('/getCandidate/:profs', function(req, res) {
-
-    try {
-
+        var arr =[];
         var profs=req.params.profs.split("-");
-        circleNeo4jProcessor.getCandidate(profs,
-            function(data) {
-               res.status(200).json(data);
-           },
-           function(err) {
-            res.json(err);
-        });
-        
-    } catch (err) {
-        res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
-    }
-});
 
-router.get('/getStatus/:profs', function(req, res) {
-
-    try {
-  //      
-        var profs=req.params.profs.split("-");
-               circleNeo4jProcessor.getStatus(profs,
-        function(data) {
-             res.status(200).json(data);
-              },
-              function(err) {
-                res.json(err);
-              });
-
-    } catch (err) {
-        res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
-    }
-});
-
-
-router.get('/appliedData/:profs', function(req, res) {
-
-    try {
-  //      
-  var profs=req.params.profs.split("-");
-        // console.log(profs);
-        circleNeo4jProcessor.getApplied(profs,
-            function(data) {
-
-                res.status(200).json(data);
+        async.parallel({
+            lookingCount: function(callback) {
+                circleNeo4jProcessor.getCount(profs,
+                    function(lookingCountobj) {
+                        callback(null,lookingCountobj);
+                    },
+                    function(err) {
+                        callback(err, null);
+                    }
+                    );
             },
-            function(err) {
-                res.json(err);
-            });
-        
-    } catch (err) {
-        res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
+            appliedCount: function(callback) {
+                circleNeo4jProcessor.getCandidate(profs,
+                    function(appliedCountobj) {
+                        callback(null, appliedCountobj);
+                    },
+                    function(err) {
+                        callback(err, null);
+                    }
+                );
+            },
+            placedCount: function(callback) {
+                circleNeo4jProcessor.getStatus(profs,
+                    function(placedCountobj) {
+                        callback(null, placedCountobj);
+                    },
+                    function(err) {
+                        callback(err, null);
+                    }
+                );
+            },
+            jobCount: function(callback) {
+                circleNeo4jProcessor.getJob(profs,
+                    function(jobCountobj) {
+                        callback(null, jobCountobj);
+                    },
+                    function(err) {
+                        callback(err, null);
+                    }
+                );
+            }
+        },
+        function(err, results) {
+        if (err) {
+        console.log('ERR ----------------->: ', err);
+        }
+        else{
+            let arr=[];  
+            for(var i=0; i<results.lookingCount.length;i++) {
+                let obj = {
+                "profession":results.lookingCount[i].profession,
+                "Candidates": results.lookingCount[i].Candidates,
+                "Looking":results.lookingCount[i].Looking,
+                "applied":results.appliedCount[i].applied,
+                "placed":results.placedCount[i].placed,
+                "job":results.jobCount[i].job
+                };
+                arr.push(obj);
+                obj = {}; 
+            }
+            res.status(200).json(arr);
+        }
+    }
+    ); 
+    }
+    catch (err) {
+        console.log("Internal Error Occurred inside catch");
+        return res.status(500).send(
+            'Internal error occurred, please report or try later...!');
     }
 });
 
@@ -128,5 +127,4 @@ router.post('/circlerelation',
         res.status(500).json({ error: 'Something went wrong internally, please try later or report issue' });
     } // end c
 });
-
-    module.exports = router;
+  module.exports = router;
