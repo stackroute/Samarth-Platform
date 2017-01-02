@@ -159,7 +159,7 @@ acceptedDetails = function(req,successCB,errorCB)
 		db.cypher({
 			query:'MATCH p=(c:Candidate{name:{candidateid}})<-[r:accepted]-(j) RETURN distinct j.name as jobcode',
 			params:{
-				candidateid:req.candidateid,
+				candidateid:req.params.candidateid
 			}
 		},
 		function(err,result)
@@ -180,6 +180,67 @@ acceptedDetails = function(req,successCB,errorCB)
 		console.log(err);
 	}
 }
+
+join = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) merge p=(j)<-[r:join]-(n) return type(r) as status',
+			params:{
+				candidateid:req.candidateid,
+				jobcode:req.jobcode
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
+decline = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) merge p=(j)<-[r:decline]-(n) return type(r) as status',
+			params:{
+				candidateid:req.candidateid,
+				jobcode:req.jobcode
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
 
 
 reject = function(req,successCB,errorCB)
@@ -219,5 +280,7 @@ module.exports = {
 	accept:accept,
 	reject:reject,
 	status:status,
-	acceptedDetails:acceptedDetails
+	acceptedDetails:acceptedDetails,
+	join:join,
+	decline:decline
 }
