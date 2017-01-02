@@ -46,6 +46,21 @@ router.post('/status/',function(req,res){
 })
 
 
+router.get('/offeredDetails/:candidateid',function(req,res){
+	try
+	{
+		placementneo.acceptedDetails(req,function(applied){
+			res.status(200).json(applied);
+		},function(err){
+			res.status(500).send("server error... try it candidateidain!");
+			console.log(err);
+		})
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+})
 
 router.post('/offer/',function(req,res){
 	try
@@ -64,6 +79,41 @@ router.post('/offer/',function(req,res){
 		}, function errorCB(error) {
 				res.status(500).send(error);
 		});
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+})
+
+
+router.post('/join/',function(req,res){
+	try
+	{
+    var jobdata =req.body;
+		placementneo.join(req.body,function(applied){
+			res.status(200).json(applied);
+			console.log("accept api function is worked"+applied)
+		},function(err){
+			res.status(500).send("server error... try it again!");
+		})
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+})
+
+router.post('/decline/',function(req,res){
+	try
+	{
+    var jobdata =req.body;
+		placementneo.decline(req.body,function(applied){
+			res.status(200).json(applied);
+			console.log("accept api function is worked"+applied)
+		},function(err){
+			res.status(500).send("server error... try it again!");
+		})
 	}
 	catch(err)
 	{
@@ -101,6 +151,22 @@ router.get('/appliedCandidates/:jobcode',function(req,res){
 	try
 	{
 		placementneo.appliedCandidates(req,function(applied){
+			res.status(200).json(applied);
+		},function(err){
+			res.status(500).send("server error... try it again!");
+		})
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+})
+
+
+router.get('/candidatesOfProfession/:profession',function(req,res){
+	try
+	{
+		placementneo.candidatesOfProfession(req,function(applied){
 			res.status(200).json(applied);
 		},function(err){
 			res.status(500).send("server error... try it again!");
