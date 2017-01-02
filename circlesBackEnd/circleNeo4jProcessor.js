@@ -56,6 +56,7 @@ getCandidate = function(profs, successres, errRes) {
 getStatus = function(profs, successres, errRes) {
     db.cypher({
         query:'optional match()<-[r:accepted]-(j:Job) optional match(n:Candidate)-[r1]->(p:Profession)where p.name in {profs}  return p.name as profession,count(DISTINCT(CASE WHEN (j:Job)-[r:accepted]->(n:Candidate)  THEN n  END)) as placed order by  p.name',
+
         params: {
             profs: profs
         }
@@ -72,7 +73,7 @@ getStatus = function(profs, successres, errRes) {
 
 getJob= function(profs, successres, errRes) {
     db.cypher({
-        query:'match(j:Job) match()-[r]->(p:Profession) where p.name in {profs}return p.name as profession,count(DISTINCT(CASE WHEN (j:Job)-[r]->(p:Profession)   THEN j  END)) as job order by  p.name', 
+        query:'match(j:Job) match()-[r]->(p:Profession) where p.name in {profs}return p.name as profession,count(DISTINCT(CASE WHEN (j:Job)-[r]->(p:Profession)   THEN j  END)) as job order by  p.name',
         params: {
             profs: profs
         }
