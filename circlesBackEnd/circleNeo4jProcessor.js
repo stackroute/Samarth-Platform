@@ -38,7 +38,7 @@ getCount = function(profs, successres, errRes) {
 
 getCandidate = function(profs, successres, errRes) {
     db.cypher({
-        query: 'match ()-[r1:applied]->(j:Job) match(n:Candidate)-[r]->(p:Profession)where p.name in {profs} return p.name as profession, count(distinct(n)) as Candidates ,count(DISTINCT (CASE WHEN (n:Candidate)-[r1:applied]->(j:Job) then n end)) as applied order by  p.name',
+        query: 'optional match()-[r1:applied]->(j:Job) optional match(n:Candidate)-[r]->(p:Profession)where p.name in {profs} return p.name as profession, count(distinct(n)) as Candidates ,count(DISTINCT (CASE WHEN (n:Candidate)-[r1:applied]->(j:Job) then n end)) as applied order by  p.name',
         params: {
             profs: profs
         }
@@ -55,7 +55,7 @@ getCandidate = function(profs, successres, errRes) {
 
 getStatus = function(profs, successres, errRes) {
     db.cypher({
-        query:'match()<-[r:accepted]-(j:Job) match(n:Candidate)-[r1]->(p:Profession)where p.name in {profs}  return p.name as profession,count(DISTINCT(CASE WHEN (j:Job)-[r:accepted]->(n:Candidate)  THEN n  END)) as placed order by  p.name',
+        query:'optional match()<-[r:accepted]-(j:Job) optional match(n:Candidate)-[r1]->(p:Profession)where p.name in {profs}  return p.name as profession,count(DISTINCT(CASE WHEN (j:Job)-[r:accepted]->(n:Candidate)  THEN n  END)) as placed order by  p.name',
         params: {
             profs: profs
         }
