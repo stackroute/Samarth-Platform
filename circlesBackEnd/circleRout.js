@@ -56,6 +56,16 @@ router.get('/getStats/:profs', function(req, res) {
                     }
                 );
             },
+            expiredJobCount: function(callback) {
+                circleNeo4jProcessor.getExpiredJob(profs,
+                    function(expiredJobCountobj) {
+                        callback(null, expiredJobCountobj);
+                    },
+                    function(err) {
+                        callback(err, null);
+                    }
+                );
+            },
             jobCount: function(callback) {
                 circleNeo4jProcessor.getJob(profs,
                     function(jobCountobj) {
@@ -80,7 +90,9 @@ router.get('/getStats/:profs', function(req, res) {
                 "Looking":results.lookingCount[i].Looking,
                 "applied":results.appliedCount[i].applied,
                 "placed":results.placedCount[i].placed,
-                "job":results.jobCount[i].job
+                "job":results.jobCount[i].job,
+                "expiredJobs":results.expiredJobCount[i].expiredjobs,
+                "availableJobs":results.jobCount[i].job - results.expiredJobCount[i].expiredjobs
                 };
                 arr.push(obj);
                 obj = {}; 
