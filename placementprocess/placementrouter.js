@@ -162,6 +162,22 @@ router.get('/appliedCandidates/:jobcode',function(req,res){
 	}
 })
 
+
+router.get('/candidatesOfProfession/:profession',function(req,res){
+	try
+	{
+		placementneo.candidatesOfProfession(req,function(applied){
+			res.status(200).json(applied);
+		},function(err){
+			res.status(500).send("server error... try it again!");
+		})
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+})
+
 router.get('/appliedJobs/:candidateid',function(req,res){
 	try
 	{

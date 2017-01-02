@@ -62,6 +62,36 @@ appliedCandidates = function(req,successCB,errorCB)
 	}
 }
 
+
+candidatesOfProfession = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'MATCH (n:Profession{name:{profession}})-[r:working_as]-(c:Candidate) RETURN distinct c.name as candidateid',
+			params:{
+				profession:req.params.profession
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
 appliedJobs = function(req,successCB,errorCB)
 {
 	try
@@ -282,5 +312,6 @@ module.exports = {
 	status:status,
 	acceptedDetails:acceptedDetails,
 	join:join,
-	decline:decline
+	decline:decline,
+	candidatesOfProfession:candidatesOfProfession
 }
