@@ -84,6 +84,9 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
                   // count = count + 1;
                   // console.log('count',count);
                   if(Object.keys(value).includes('name')) {
+                    if(value.name!==null){
+                      // count = count + 1;
+                      // console.log("in if null "+count);
            jobProfileProcessor.getJobsbyJobId(value.name,function successFn(result) {
            // res.status(200).json(result);
             // console.log(result.jobprovider);
@@ -94,7 +97,7 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
             // count = count + 1;
             // console.log('count',count);
             jobs.push(jobProfile);
-            // console.log(jobProfile);
+            console.log(jobProfile);
             jobProfile = {};
             callback();
            
@@ -105,6 +108,9 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
          }, function errorFn(error) {
            res.status(500).send(error);
          });
+         }else{
+          callback();
+         }
         }
   },function(err) {
     // console.log(jobs);
