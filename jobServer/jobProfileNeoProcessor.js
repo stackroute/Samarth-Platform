@@ -36,7 +36,7 @@ createJobNode = function(job, res) {
         skills: job.desc.skills,
         profs: job.desc.profession,
         experience:job.desc.experience,
-        closedate:job.desc.closedate
+        closedate:new Date(job.desc.closedate).getTime()
     };
 
     console.log("Query for job profile indexing: ", query, " : ", params);
@@ -65,7 +65,7 @@ getJobs = function(searchTxt,coordprofs, successres, errRes) {
     query+="match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') match(j:Job)-[rn]-(n) match (j)-[r]-(p:Profession) where p.name in {profs}";
     query+=" with collect(distinct{name:j.name, count:type(rn)}) as rows";
     query+=" optional match(n) where {searchTxt}=~('(?i).*'+n.name+'.*') optional match";
-    query+=" (n)-[rf]-(s) where type(rf) in ['goes_with','same-as','sub_role','similar_to','Same_As','SAME_AS','synonym_of'] optional match (s)-[rn]-(jb:Job) optional match(jb)-[r]-(pn:Profession)where pn.name in {profs}";
+    query+=" (n)-[rf]-(s) where type(rf) in ['goes_with','same-as','sub_role','similar_to','Same_As','SAME_AS','synonym_of','Is_Nearby','is_Nearby','part_of','goes_with','Role_of','role_of'] optional match (s)-[rn]-(jb:Job) optional match(jb)-[r]-(pn:Profession)where pn.name in {profs}";
     query+=" with rows + collect(distinct{name:jb.name, count:type(rn)}) as allrows";
     query+=" unwind allrows as row with row.name as name , row.count as count return name, count(name) as count order by count desc";
     db.cypher({
