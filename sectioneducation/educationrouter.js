@@ -28,7 +28,7 @@ router.post('/:candidateID', function(req, res) {
             try {
                 educationProcessor.addEducation(req.body, req.params.candidateID,
                     function(updatedEdu,id) {
-                         
+
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {
@@ -65,5 +65,44 @@ router.patch('/:candidateID/:title', function(req, res) {
         }// end else
     });// end find
 });
+
+// router.delete('/:candidateid/:title', function(req, res) {
+//     education.find({
+//         candidateid: req.params.candidateid
+//     }, function(err, result) {
+//         if (result === '') {
+//             res.status(500).send(
+//                 'education section doesnt exist while deleting new education');
+//         } else {
+//             try {
+//                 educationProcessor.deleteAEducation(req.params.qualificationID ,
+//                     req.params.candidateid ,
+//                     function(docs, id) {
+//                         educationRelationBuilder.educationRelationDelete(
+//                             docs, id,
+//                             function(err, success) {
+//                                 if (err) {
+//                                     console.log(err);
+//                                 } else {
+//                                      console.log("deleted relationship");
+//                                 }
+//                             });
+//
+//                         res.status(201).json(docs);
+//                     },
+//                     function(err) {
+//                         console.log("Error occurred in deleting education: ", err);
+//                         res.status(500).send("invalid data");
+//                     });
+//             } // end try
+//             catch (err) {
+//                 res.status(500).json({
+//                     error: 'Internal error occurred, please report'
+//                 });
+//             }
+//         } // end else
+//     }); // end find
+// }); // end delete
+
 
 module.exports = router;
