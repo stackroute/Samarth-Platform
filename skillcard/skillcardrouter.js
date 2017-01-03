@@ -4,6 +4,7 @@ let async = require('async');
 
 let profileprocessor = require('../profiles/profileprocessor');
 let personalInfoprocessor = require('../sectionpersonalinfo/personalinfoprocessor');
+let jobpreferencesprocessor = require('../sectionjobpreferences/jobpreferencesprocessor');
 let projectprocessor = require('../sectionproject/projectprocessor');
 let skillprocessor = require('../sectionskill/skillprocessor');
 let workexpprocessor = require('../sectionworkexperiance/workprocessor');
@@ -11,7 +12,7 @@ let candidateneo = require('../candidate/candidateneoprocessor');
 
 
 router.get('/allcandidates', function(req, res) {
-    console.log("resffd");
+    try{
     candidate.find(function(err, candidates) {
         if (err) {
             return res.status(500).json({ message: err });
@@ -19,18 +20,30 @@ router.get('/allcandidates', function(req, res) {
             let candidateid = {};
             return res.status(201).json({ results: candidates });
         } // end of else
-    }); // end of find
+    });
+    }
+    catch (err) {
+                res.status(500).json({
+                    error: 'Internal error occurred, please report'
+                });
+            } // end of find
 });
 
 
 // This will return all the candidates in the circle
 router.get('/searchcandidate/:circle', function(req, res) {
-
+   try{
     candidateneo.getcircle(req.params.circle, function(candidates) {
         res.status(200).json(candidates);
     }, function(err) {
         res.status(500).json(err);
     });
+}
+catch (err) {
+                res.status(500).json({
+                    error: 'Internal error occurred, please report'
+                });
+            }
 }); // end of get /candidatesearch
 
 
@@ -39,6 +52,7 @@ router.get('/searchcandidate/:circle', function(req, res) {
 // effective url /skillcard/:candidateid
 
 router.get('/:candidateid', function(req, res) {
+    try{
     candidate.find({ candidateid: req.params.candidateid }, function(error, candidate) {
         if (candidate === '') {
             res.status(500).send('Candidate doesnt exist.. Register with candidate id');
@@ -48,6 +62,16 @@ router.get('/:candidateid', function(req, res) {
                         personalInfoprocessor.getPersonalinfo(req.params.candidateid,
                             function(personalinfoobj) {
                                 callback(null, personalinfoobj);
+                            },
+                            function(err) {
+                                callback(err, null);
+                            }
+                        );
+                    },
+                    jobpreferences: function(callback) {
+                        jobpreferencesprocessor.getPreferences(req.params.candidateid,
+                            function(preferenceobj) {
+                                callback(null, preferenceobj);
                             },
                             function(err) {
                                 callback(err, null);
@@ -105,5 +129,11 @@ router.get('/:candidateid', function(req, res) {
             ); // end of Async
         } // end else
     }); // end find
+}
+catch (err) {
+                res.status(500).json({
+                    error: 'Internal error occurred, please report'
+                });
+            }
 }); // end get
 module.exports = router;
