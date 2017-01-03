@@ -13,12 +13,12 @@ let fieldQProcessor = require('./fieldQProcessor');
 // Effective url is /fieldquestions/:section
 router.get('/:section', function(req, res) {
    // console.log('route------' + req.query);
+   try {
     if (!req.params.section) {
       throw new Error('Invalid request, requesting field question query' +
        'without mentioning profile section..!');
     }
 
-    try {
         let fieldNames = req.query.fieldname ? req.query.fieldname.split(',') : [];
         let lang = req.query.lang ? req.query.lang.split(',') : [];
         // let obj = [];

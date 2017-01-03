@@ -11,7 +11,7 @@ let jobpreferencesSchema = new Schema({
        skills: { type: Array},
        expected_salary: { type: String},
        engagement_type: {type: String},
-       joining_date: {type: String}
+       joining_date: {type: Date}
      }
    
 });

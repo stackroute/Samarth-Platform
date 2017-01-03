@@ -62,6 +62,36 @@ appliedCandidates = function(req,successCB,errorCB)
 	}
 }
 
+
+candidatesOfProfession = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'MATCH (n:Profession{name:{profession}})-[r:working_as]-(c:Candidate) RETURN distinct c.name as candidateid',
+			params:{
+				profession:req.params.profession
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
 appliedJobs = function(req,successCB,errorCB)
 {
 	try
@@ -99,8 +129,8 @@ accept = function(req,successCB,errorCB)
 		db.cypher({
 			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) merge p=(j)-[r:accepted]->(n) return type(r) as status',
 			params:{
-				candidateid:req.params.candidateid,
-				jobcode:req.params.jobcode
+				candidateid:req.candidateid,
+				jobcode:req.jobcode
 			}
 		},
 		function(err,result)
@@ -127,7 +157,7 @@ status = function(req,successCB,errorCB)
 	try
 	{
 		db.cypher({
-			query:'match (n:Candidate{name:{candidateid}})-[r]->(j:Job{name:{jobcode}})  return distinct type(r) as status',
+			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) optional match (n)-[r:applied]->(j) return distinct n.name as candidateid,j.name as jobcode,type(r) as status',
 			params:{
 				candidateid:req.candidateid,
 				jobcode:req.jobcode
@@ -152,6 +182,97 @@ status = function(req,successCB,errorCB)
 	}
 }
 
+acceptedDetails = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'MATCH p=(c:Candidate{name:{candidateid}})<-[r:accepted]-(j) RETURN distinct j.name as jobcode',
+			params:{
+				candidateid:req.params.candidateid
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
+join = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) merge p=(j)<-[r:join]-(n) return type(r) as status',
+			params:{
+				candidateid:req.candidateid,
+				jobcode:req.jobcode
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
+decline = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) merge p=(j)<-[r:decline]-(n) return type(r) as status',
+			params:{
+				candidateid:req.candidateid,
+				jobcode:req.jobcode
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
+
+
 reject = function(req,successCB,errorCB)
 {
 	try
@@ -159,8 +280,8 @@ reject = function(req,successCB,errorCB)
 		db.cypher({
 			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) merge p=(j)-[r:rejected]->(n) return type(r) as status',
 			params:{
-				candidateid:req.params.candidateid,
-				jobcode:req.params.jobcode
+				candidateid:req.candidateid,
+				jobcode:req.jobcode
 			}
 		},
 		function(err,result)
@@ -188,5 +309,9 @@ module.exports = {
 	appliedJobs:appliedJobs,
 	accept:accept,
 	reject:reject,
-	status:status
+	status:status,
+	acceptedDetails:acceptedDetails,
+	join:join,
+	decline:decline,
+	candidatesOfProfession:candidatesOfProfession
 }

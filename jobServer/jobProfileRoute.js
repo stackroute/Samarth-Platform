@@ -84,6 +84,9 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
                   // count = count + 1;
                   // console.log('count',count);
                   if(Object.keys(value).includes('name')) {
+                    if(value.name!==null){
+                      // count = count + 1;
+                      // console.log("in if null "+count);
            jobProfileProcessor.getJobsbyJobId(value.name,function successFn(result) {
            // res.status(200).json(result);
             // console.log(result.jobprovider);
@@ -94,7 +97,7 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
             // count = count + 1;
             // console.log('count',count);
             jobs.push(jobProfile);
-            // console.log(jobProfile);
+            console.log(jobProfile);
             jobProfile = {};
             callback();
            
@@ -105,6 +108,9 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
          }, function errorFn(error) {
            res.status(500).send(error);
          });
+         }else{
+          callback();
+         }
         }
   },function(err) {
     // console.log(jobs);
@@ -117,6 +123,24 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
 } catch (err) {
  res.status(500).json({ error: 'Internal error occured, please report' });
 }
+});
+
+router.get('/getIntent/:searchTxt/:profs', function(req, res) {
+ try {
+    console.log("in intent");
+    var searchTxt=req.params.searchTxt;
+    var profs=req.params.profs;
+    var prof=profs.split('-');
+    console.log(prof);
+    // console.log(req.params.searchTxt);
+   jobProfileNeo.getIntent(searchTxt,prof,function(result) {
+     res.status(200).json(result);
+   }, function (err){
+     res.status(500).send(err);
+   });
+ } catch (err) {
+   res.status(500).json({ error: 'Internal error occured, please report' });
+ }
 });
 
 

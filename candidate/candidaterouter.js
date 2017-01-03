@@ -59,8 +59,16 @@ router.get('/allCandidate',function(req,res)
 
 router.post('/search', function(req, res) {
     try {
+
+        let searchQuery = req.body.searchquery;
+        if(searchQuery) {
+            searchQuery = searchQuery.trim();
+        } else {
+            searchQuery = '';
+        }
+
         candidatesearchprocessor
-        .getSearchArray(req.body.searchquery.trim())
+        .getSearchArray(searchQuery)
         .then(function (searchArray) {
             if(searchArray.length>0){
                 candidatesearchprocessor.getAllCandidates(searchArray).then(function(data){
@@ -130,7 +138,7 @@ router.get('/:candidateid', function(req, res) {
 // HTTP POST /candidate/:candidateid /
 // effective url /candidate/
 router.post('/', function(req, res) {
-    console.log(req.body);
+    console.log('during registeration entered into platform', req.body);
     try {
         candidateneo.createCandidate(req.body, function(err, stat) {
             if (err) {
