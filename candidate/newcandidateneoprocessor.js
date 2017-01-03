@@ -73,13 +73,10 @@ getAllCandidates = function(tokenArr) {
                deffer.reject(err);
            }
        });
-
-   return deffer.promise;
-
+  return deffer.promise;
 }
 
-
 module.exports = {
-   getSearchArray: getSearchArray,
-   getAllCandidates: getAllCandidates
+  getSearchArray: getSearchArray,
+  getAllCandidates: getAllCandidates
 }
