@@ -29,7 +29,7 @@ try {
             res.status(500).send('Register Candidate with the given candidate id');
         } // end if
         else {
-            
+
                 educationProcessor.addEducation(req.body, req.params.candidateID,
                     function(updatedEdu,id) {
 
@@ -37,15 +37,15 @@ try {
                     },
                     function(err) {
                         res.status(500).json({ error: 'Internal error occurred, please report' });
-                   
-           
-            }); 
+
+
+            });
         }
     });
     } catch (err) {
                 res.status(500).json({ error: 'Internal error occurred, please report' });
             }
-        
+
     });
 
 
@@ -66,7 +66,7 @@ router.patch('/:candidateID/:title', function(req, res) {
         res.status(500).send('Add Education collection with the given candidate id before Update');
         } else {
 
-            
+
                 educationProcessor.updateEducation(req.params.candidateID, req.params.title,
                                                         req.body,function(updatedEdu) {
                         res.status(201).json(updatedEdu);
@@ -74,13 +74,13 @@ router.patch('/:candidateID/:title', function(req, res) {
                     function(err) {
                         res.status(500).send('updating new educational detail with invalid data ');
                     });
-            } 
+            }
         });
     }
             catch (err) {
                 res.status(500).json({ error: 'Internal error occurred, please report' });
             }
-        
+
    });
 
 // router.delete('/:candidateid/:title', function(req, res) {
