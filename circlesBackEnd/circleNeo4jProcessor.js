@@ -87,7 +87,7 @@ getJob= function(profs, successres, errRes) {
 };
 getExpiredJob= function(profs, successres, errRes) {
     db.cypher({
-        query:'optional match(j:Job) optional match()-[r]->(p:Profession) where p.name in {profs}return p.name as profession,count(DISTINCT(CASE WHEN (j:Job)-[r]->(p:Profession) and toInt(j.closedDate) < toInt(timestamp())   THEN j  END)) as expiredjobs order by  p.name',
+        query:'optional match(j:Job) optional match()-[r]->(p:Profession) where p.name in {profs}return p.name as profession,count(DISTINCT(CASE WHEN (j:Job)-[r]->(p:Profession) and toInt(j.closedate) < toInt(timestamp())   THEN j  END)) as expiredjobs order by  p.name',
         params: {
             profs: profs
         }

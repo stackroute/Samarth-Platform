@@ -114,6 +114,7 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
         }
   },function(err) {
     // console.log(jobs);
+    jobs.reverse();
     res.status(200).json(jobs);
   })
               },

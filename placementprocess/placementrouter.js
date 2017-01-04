@@ -223,7 +223,7 @@ router.get('/appliedJobs/:candidateid',function(req,res){
                   if(Object.keys(value).includes('jobs')) {
            jobProfileProcessor.getJobsbyJobId(value.jobs,function successFn(result) {
            // res.status(200).json(result);
-            // console.log(result.jobprovider);
+            console.log(result.jobprovider);
             jobproviderprocessor.jobEdit(result[0].jobprovider, function sucessCB(results) {
             // res.status(200).send(result);
             jobProfile.logo=results[0].url;
