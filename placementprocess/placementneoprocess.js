@@ -372,5 +372,6 @@ module.exports = {
 	join:join,
 	decline:decline,
 	candidatesOfProfession:candidatesOfProfession,
-	acceptedCandidates:acceptedCandidates
+	acceptedCandidates:acceptedCandidates,
+	rejectedCandidates:rejectedCandidates
 }
