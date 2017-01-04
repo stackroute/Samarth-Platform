@@ -127,7 +127,7 @@ accept = function(req,successCB,errorCB)
 	try
 	{
 		db.cypher({
-			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) merge p=(j)-[r:accepted]->(n) return type(r) as status',
+			query:'MATCH p=(c:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) optional match (c)<-[r:rejected]-(j) DELETE r merge (c)<-[r2:accepted]-(j) return distinct type(r2)',
 			params:{
 				candidateid:req.candidateid,
 				jobcode:req.jobcode
@@ -190,6 +190,64 @@ acceptedDetails = function(req,successCB,errorCB)
 			query:'MATCH p=(c:Candidate{name:{candidateid}})<-[r:accepted]-(j) RETURN distinct j.name as jobcode',
 			params:{
 				candidateid:req.params.candidateid
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
+acceptedCandidates = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'MATCH p=(c:Candidate)<-[r:accepted]-(j:Job{name:{jobcode}}) RETURN distinct c.name as candidateid',
+			params:{
+				jobcode:req.params.jobcode
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
+rejectedCandidates = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'MATCH p=(c:Candidate)<-[r:rejected]-(j:Job{name:{jobcode}}) RETURN distinct c.name as candidateid',
+			params:{
+				jobcode:req.params.jobcode
 			}
 		},
 		function(err,result)
@@ -278,7 +336,7 @@ reject = function(req,successCB,errorCB)
 	try
 	{
 		db.cypher({
-			query:'match (n:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) merge p=(j)-[r:rejected]->(n) return type(r) as status',
+			query:'MATCH p=(c:Candidate{name:{candidateid}}),(j:Job{name:{jobcode}}) optional match (c)<-[r:accepted]-(j) DELETE r merge (c)<-[r2:rejected]-(j) return distinct type(r2)',
 			params:{
 				candidateid:req.candidateid,
 				jobcode:req.jobcode
@@ -313,5 +371,6 @@ module.exports = {
 	acceptedDetails:acceptedDetails,
 	join:join,
 	decline:decline,
-	candidatesOfProfession:candidatesOfProfession
+	candidatesOfProfession:candidatesOfProfession,
+	acceptedCandidates:acceptedCandidates
 }

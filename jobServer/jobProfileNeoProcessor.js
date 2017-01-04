@@ -36,7 +36,7 @@ createJobNode = function(job, res) {
         skills: job.desc.skills,
         profs: job.desc.profession,
         experience:job.desc.experience,
-        closedate:job.desc.closedate
+        closedate:new Date(job.desc.closedate).getTime()
     };
 
     console.log("Query for job profile indexing: ", query, " : ", params);
