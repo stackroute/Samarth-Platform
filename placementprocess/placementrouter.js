@@ -94,6 +94,38 @@ router.get('/rejectedCandidates/:jobcode',function(req,res){
 	}
 })
 
+router.get('/joinedCandidates/:jobcode',function(req,res){
+	try
+	{
+		placementneo.joinedCandidates(req,function(applied){
+			res.status(200).json(applied);
+		},function(err){
+			res.status(500).send("server error... try it candidateidain!");
+			console.log(err);
+		})
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+})
+
+router.get('/declinedCandidates/:jobcode',function(req,res){
+	try
+	{
+		placementneo.declinedCandidates(req,function(applied){
+			res.status(200).json(applied);
+		},function(err){
+			res.status(500).send("server error... try it candidateidain!");
+			console.log(err);
+		})
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+})
+
 router.post('/offer/',function(req,res){
 	try
 	{

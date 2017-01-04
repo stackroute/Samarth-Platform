@@ -240,6 +240,64 @@ acceptedCandidates = function(req,successCB,errorCB)
 	}
 }
 
+joinedCandidates = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'MATCH p=(c:Candidate)-[r:join]-(j:Job{name:{jobcode}}) RETURN distinct c.name as candidateid',
+			params:{
+				jobcode:req.params.jobcode
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
+declinedCandidates = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'MATCH p=(c:Candidate)-[r:decline]-(j:Job{name:{jobcode}}) RETURN distinct c.name as candidateid',
+			params:{
+				jobcode:req.params.jobcode
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
 rejectedCandidates = function(req,successCB,errorCB)
 {
 	try
@@ -373,5 +431,8 @@ module.exports = {
 	decline:decline,
 	candidatesOfProfession:candidatesOfProfession,
 	acceptedCandidates:acceptedCandidates,
-	rejectedCandidates:rejectedCandidates
+	rejectedCandidates:rejectedCandidates,
+	joinedCandidates:joinedCandidates,
+	declinedCandidates:declinedCandidates
+
 }
