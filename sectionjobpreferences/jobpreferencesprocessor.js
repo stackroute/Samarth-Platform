@@ -37,8 +37,28 @@ function updatePreferences(oldPreferenceObj, candidateId, successCB, errCB) {
     );
 }
 
+function addMissingJobpreferencesFieldResponse(candidateid, instancename, fieldname, response, successCB, errorCB) {
+   // console.log("------->"+educationInstanceName+"   "+fieldname+"  "+response);
+    let field =  fieldname;
+    let setObj = {};
+    setObj[field] = response;
+
+    preference.update({
+            candidateid: candidateid,
+        }, {
+            $set: setObj
+        },
+        function(err, result) {
+            if (err) {}
+            successCB(result)
+        }
+
+    );
+}
+
 module.exports = {
     getPreferences: getPreferences,
     createNewPreferences: createNewPreferences,
     updatePreferences: updatePreferences,
+    addMissingJobpreferencesFieldResponse:addMissingJobpreferencesFieldResponse
 };
