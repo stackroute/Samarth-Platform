@@ -13,20 +13,19 @@ let skillMissingFinder = require('.././questionbox/skillMissingFinder');
 //HHTP GET skill/:candidateid
 //effective URL skill/:candidateid 
 router.get("/:candidateid", function(req, res) {
-	//console.log("Request received for emp id: ", req.params.empid);
-	try {
-		skillProcessor.getSkill(req.params.candidateid,
-			function(skill1) {
-				res.status(200).json(skill1);
-			},
-			function(err) {
-				res.status(500).json(err);
-			});
-	} catch (err) {
-		res.status(500).json({
-			error: 'Internal error occurred, please report'
-		});
-	}
+      try {
+        skillProcessor.getSkill(req.params.candidateid,
+            function(skill1) {
+                res.status(200).json(skill1);
+            },
+            function(err) {
+                res.status(500).json(err);
+            });
+    } catch (err) {
+        res.status(500).json({
+            error: 'Internal error occurred, please report'
+        });
+    }
 
 });
 
@@ -35,53 +34,54 @@ router.get("/:candidateid", function(req, res) {
 
 //effective url  /skill/:candidateid
 router.post("/:candidateid", function(req, res) {
+    try {
+    skill.find({
+        candidateid: req.params.candidateid
+    }, function(err, result) {
+        if (err) {
+           console.log('Error in posting new skill for cnadidate ', err);
+        }
+
+        if (!result) {
+            return res.status(200).send('Candidate skill record not found');
+        }
 
 
-	skill.find({
-		candidateid: req.params.candidateid
-	}, function(err, result) {
-		if (err) {
-		   console.log('Error in posting new skill for cnadidate ', err);
-		}
+        console.log("Got the result as : ", result);
 
-		if (!result) {
-			return res.status(200).send('Candidate skill record not found');
-		}
+        if (result == "") {
+            res.status(500).send(
+                "Register candidate for the given candidate id");
+        } //end if  
+        else {
+            
+                skillProcessor.addSkill(req.body, req.params.candidateid,
+                    function(skills, id) {
+                        skillRelationBuilder.skillRelationBuilder(
+                            skills, id,
+                            function(err, success) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                    // console.log("created relationship");                            
+                                }
+                            });
 
-
-		console.log("Got the result as : ", result);
-
-		if (result == "") {
-			res.status(500).send(
-				"Register candidate for the given candidate id");
-		} //end if  
-		else {
-			try {
-				skillProcessor.addSkill(req.body, req.params.candidateid,
-					function(skills, id) {
-						skillRelationBuilder.skillRelationBuilder(
-							skills, id,
-							function(err, success) {
-								if (err) {
-									console.log(err);
-								} else {
-									// console.log("created relationship");                            
-								}
-							});
-
-						res.status(201).json(skills);
-					},
-					function(err) {
-						console.log("Error occurred in adding skill: ", err);
-						res.status(500).send("invalid data");
-					});
-			} catch (err) {
-				res.status(500).json({
-					error: 'Internal error occurred, please report'
-				});
-			} // end catch
-		}
-	}); // end find
+                        res.status(201).json(skills);
+                    },
+                    function(err) {
+                        console.log("Error occurred in adding skill: ", err);
+                        res.status(500).send("invalid data");
+                    });
+            } // end catch
+        
+    }); 
+    }
+    catch (err) {
+                res.status(500).json({
+                    error: 'Internal error occurred, please report'
+                });
+            } // end find
 }); // end post//end try
 /*        if (result === '') {
 			res.status(500).send(

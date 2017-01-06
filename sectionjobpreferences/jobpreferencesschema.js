@@ -5,13 +5,13 @@ let jobpreferencesSchema = new Schema({
 
        candidateid: { type: String, required: true, unique:true },
        preferences: {
-       looking_jobs: { type: String},
+       looking_jobs: { type: String,default: "No"},
        roles: { type: Array},
        locations: { type: Array},
        skills: { type: Array},
        expected_salary: { type: String},
        engagement_type: {type: String},
-       joining_date: {type: String}
+       joining_date: {type: Date}
      }
    
 });
