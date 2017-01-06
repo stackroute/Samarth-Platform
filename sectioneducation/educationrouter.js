@@ -1,6 +1,9 @@
 let router = require('express').Router();
 let educationProcessor = require('./educationprocessor');
 let eduModel = require('./educationschema');
+let educationgraphquery=require('./educationgraphquery');
+
+
 /* Get Qualification details of the given candidate id*/
 // HTTP GET education//:candidateid/
 // effective url /education//:candidateid
@@ -83,43 +86,44 @@ router.patch('/:candidateID/:title', function(req, res) {
 
    });
 
-// router.delete('/:candidateid/:title', function(req, res) {
-//     education.find({
-//         candidateid: req.params.candidateid
-//     }, function(err, result) {
-//         if (result === '') {
-//             res.status(500).send(
-//                 'education section doesnt exist while deleting new education');
-//         } else {
-//             try {
-//                 educationProcessor.deleteAEducation(req.params.qualificationID ,
-//                     req.params.candidateid ,
-//                     function(docs, id) {
-//                         educationRelationBuilder.educationRelationDelete(
-//                             docs, id,
-//                             function(err, success) {
-//                                 if (err) {
-//                                     console.log(err);
-//                                 } else {
-//                                      console.log("deleted relationship");
-//                                 }
-//                             });
-//
-//                         res.status(201).json(docs);
-//                     },
-//                     function(err) {
-//                         console.log("Error occurred in deleting education: ", err);
-//                         res.status(500).send("invalid data");
-//                     });
-//             } // end try
-//             catch (err) {
-//                 res.status(500).json({
-//                     error: 'Internal error occurred, please report'
-//                 });
-//             }
-//         } // end else
-//     }); // end find
-// }); // end delete
+router.delete('/:candidateid/:title', function(req, res) {
+    eduModel.find({
+        candidateid: req.params.candidateid
+    }, function(err, result) {
+        if (result === '') {
+            res.status(500).send(
+                'education section doesnt exist while ting new education');
+        } else {
+            try {
+              console.log(req.params.title);
+                educationProcessor.deleteAEducation(req.params.title ,
+                    req.params.candidateid ,
+                    function(docs, id) {
+                        educationgraphquery.educationRelationDelete(
+                            docs, id,
+                            function(err, success) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                     console.log("deleted relationship");
+                                }
+                            });
+
+                        res.status(201).json(docs);
+                    },
+                    function(err) {
+                        console.log("Error occurred in deleting education: ", err);
+                        res.status(500).send("invalid data");
+                    });
+            } // end try
+            catch (err) {
+                res.status(500).json({
+                    error: 'Internal error occurred, please report'
+                });
+            }
+        } // end else
+    }); // end find
+}); // end delete
 
 
 module.exports = router;

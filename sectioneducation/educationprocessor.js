@@ -82,15 +82,28 @@ function updateEducation(candidateID, title, modifiedExistingObject, successCB, 
     );
 }
 
-// function deleteAEducation(candidateID, title, deletingObj, successCB, errorCB) {
-//     eduModel.remove({ candidateID: candidateID, 'records._id': title },
-//         function(){
-//           successCB('THE EDUCATION DETAIL HAS BEEN DELEATED');
-//         },
-//         function() {
-//             errorCB('the education detail failed to be deleted');
-//         });
-// }
+function deleteAEducation( title,candidateID, successCB) {
+    // eduModel.remove({ candidateID: candidateID, 'records._id': title },
+    //     function(){
+    //       successCB('THE EDUCATION DETAIL HAS BEEN DELEATED');
+    //     },
+    //     function() {
+    //         errorCB('the education detail failed to be deleted');
+    //     });
+    console.log("hihihii"+title);
+    eduModel.update({
+      candidateid :candidateID,
+      'qualification.title' : title
+    },{
+    $pull :{
+      qualification: {
+        title:title
+      }
+    }
+  },function(){
+    successCB(title, candidateID);
+  });
+}
 
 //add qualification after  entering into the question box into the existing records
 function addMissingEducationFieldResponse(candidateid, educationInstanceName, fieldname, response, successCB, errorCB) {
@@ -121,6 +134,6 @@ module.exports = {
     createNewEducation: createNewEducation,
     addEducation: addEducation,
     updateEducation: updateEducation,
-    // deleteEducation: deleteEducation,
+    deleteAEducation: deleteAEducation,
     addMissingEducationFieldResponse: addMissingEducationFieldResponse
 };
