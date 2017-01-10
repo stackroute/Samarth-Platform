@@ -9,15 +9,13 @@ let personNeo = require('./personalinfoneoprocessor');
 // HTTP POST personalinfo/:candidateid
 // effective url personalinfo/:candidateid/
 router.post('/:candidateid', function(req, res) {
-
+try {
     persons.find({ candidateid: req.params.candidateid }, function(err, result) {
-
-        console.log("........Personal info............");
         if (result === '') {
             res.status(500).send('Register candidates before updating personal info');
         } // end if
         else if (!req.body.candidateid) {
-                try {
+                
                     personalInfoProcessor.updatePersonalinfo(req.body, req.params.candidateid,
                         function(personalinfo) {
 
@@ -28,22 +26,24 @@ router.post('/:candidateid', function(req, res) {
                         function(err) {
                             res.status(500).json({ error: 'Internal error occurred, please report' });
                         });
-                } catch (err) {
-                    res.status(500).json({ error: 'Internal error occurred, please report' });
-                }
-            } // end if inside else
+                } 
+             // end if inside else
             else {
                 res.status(500).send('Alert !!! Cant update the Candidate id');
             }
-    });
+            });
+        }
+            catch (err) {
+                    res.status(500).json({ error: 'Internal error occurred, please report' });
+                }
+    
 }); // end post
 
 /* get personal info of the candidate id*/
 // HTTP GET personalinfo/:candidateid
 // effective url personalinfo/:candidateid/
 router.get('/:candidateid', function(req, res) {
-
-    // console.log(req);
+try{
     personalInfoProcessor.getPersonalinfo(req.params.candidateid,
 
 
@@ -57,11 +57,16 @@ router.get('/:candidateid', function(req, res) {
         function(err) {
             res.status(500).json({ error: 'Internal error occurred' });
         });
+}
+ catch (err) {
+                    res.status(500).json({ error: 'Internal error occurred, please report' });
+                }
 });
 
 //Getting already uploaded profile image
 
 router.get('/:candidateid/profilepic', function(req, res) {
+    try{
     personalInfoProcessor.getProfilePic(req.params.candidateid,
 
         function(getperson) {
@@ -72,16 +77,21 @@ router.get('/:candidateid/profilepic', function(req, res) {
             console.log(err)
             res.status(500).json({ error: 'Internal error occurred' });
         });
+}
+ catch (err) {
+                    res.status(500).json({ error: 'Internal error occurred, please report' });
+                }
 });
 
 //Updating new profile image
 router.post('/:candidateid/profilepic', function(req, res) {
+    try {
     persons.find({ candidateid: req.params.candidateid }, function(err, result) {
         if (result.length == 0) {
             res.status(500).send('Register candidates before updating personal info');
         } // end if
         else if (!req.body.candidateid) {
-                try {
+                
                     personalInfoProcessor.updateProfilePic(req.body, req.params.candidateid,
                         function(profilepic) {
                             res.status(201).json(profilepic);
@@ -90,16 +100,20 @@ router.post('/:candidateid/profilepic', function(req, res) {
                             console.log(err)
                             res.status(500).json({ error: 'Internal error occurred, please report' });
                         });
-                } catch (err) {
-                    console.log(err);
-                    res.status(500).json({ error: 'Internal error occurred, please report' });
-                }
-            } // end if inside else
+                } 
+             // end if inside else
             else {
                 res.status(500).send('Alert !!! Cant update the Candidate id');
             }
-    });
+            });
+        }
+
+    catch (err) {
+                    console.log(err);
+                    res.status(500).json({ error: 'Internal error occurred, please report' });
+                }
 }); // end post
 
 
 module.exports = router;
+

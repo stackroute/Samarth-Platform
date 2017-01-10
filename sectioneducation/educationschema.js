@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 let qualificationSchema = new Schema({
   candidateid: {type: String, required: true},
   qualification: [
-  { 
+  {
   	'title': {type: String, required: true}, // title of my qualification that i have done
   	'batch': {type: Number, required: true},		   // the year in which i had passed
   	from: {type: String},
@@ -14,7 +14,7 @@ let qualificationSchema = new Schema({
   		name: {type: String, required:true},//name of the institute from where qualification attained
   		type: {type: String, enum: ['school', 'work', 'college']},
   		location: {type: String},						// location of institute
-  		affiliation: {type: String},/* Board name if a school, University name 
+  		affiliation: {type: String},/* Board name if a school, University name
                                                     if a college etc */
   		metadata: []
   	},

@@ -7,9 +7,10 @@ let db = neo4jConnection.getConnection();
 createCandidate = function(req, successCB, errorCB) {
     try{
         db.cypher({
-            query: 'MERGE (c:Candidate{name:{candidateid}}) MERGE (l:Location{name:{location}}) MERGE (pr:Profession{name:{profession}}) MERGE (c)-[r:belongs_to]->(l) MERGE (c)-[rel:working_as]->(pr)',
+            query: 'MERGE (c:Candidate{name:{candidateid},username:{username}}) MERGE (l:Location{name:{location}}) MERGE (pr:Profession{name:{profession}}) MERGE (c)-[r:belongs_to]->(l) MERGE (c)-[rel:working_as]->(pr)',
             params: {
                 candidateid: req.mobile,
+                username: req.name,
                 location: req.location,
                 profession: req.profession
             }
@@ -18,7 +19,7 @@ createCandidate = function(req, successCB, errorCB) {
                errorCB && errorCB(err);
 
             } else {
-                successCB();
+                successCB("Success....");//modified by hari(added the result as parameter)
                 // console.log("Success....",results);
             }
         });
@@ -292,6 +293,29 @@ catch(err){
 }
 };
 
+getAllCandidate = function(req,successCB,errorCB)
+{
+    try
+    {
+        db.cypher({
+            query:'MATCH (n:Candidate) RETURN n.name as name limit 2'
+        },function(err,found){
+            if(err)
+            {
+                errorCB(err);
+            }
+            else
+            {
+                successCB(found);
+            }
+        })
+    }
+    catch(err){
+
+    }
+};
+
+
 module.exports = {
 
     createCandidate: createCandidate,
@@ -300,5 +324,6 @@ module.exports = {
     parseskill: parseskill,
     getProfessions: getProfessions,
     searchquery: searchquery,
-    getcircle: getcircle
+    getcircle: getcircle,
+    getAllCandidate:getAllCandidate
 };

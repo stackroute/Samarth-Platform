@@ -3,7 +3,7 @@ let MongoClient = require('mongodb').MongoClient,
 let mongoose = require('mongoose');
 let eduModel = require('./educationschema');
 let educationgraphquery=require('./educationgraphquery');
- 
+
 function getAllEducation(successCB, errorCB) {
     // Asynch
     eduModel.find({}, function(err, docs) {
@@ -50,7 +50,7 @@ function addEducation(updatedEmpObj, candidateId, successCB, errCB) {
                                 if (err) {
                                     console.log(err);
                                 } else {
-                                    console.log("created relationship of education");                            
+                                    console.log("created relationship of education");
                                 }
                             });
             successCB('qualification updateded');
@@ -59,7 +59,7 @@ function addEducation(updatedEmpObj, candidateId, successCB, errCB) {
 }
 
 function updateEducation(candidateID, title, modifiedExistingObject, successCB, errorCB) {
-    
+
    eduModel.update({ candidateid: candidateID, 'qualification.title': title }, {
      $set: {
         'qualification.$.title': modifiedExistingObject.qualification[0].title,
@@ -82,14 +82,27 @@ function updateEducation(candidateID, title, modifiedExistingObject, successCB, 
     );
 }
 
-function deleteEducation(candidateID, qualificationID, deletingObj, successCB, errorCB) {
-    eduModel.remove({ candidateID: candidateID, 'records._id': qualificationID },
-        function() {
-            successCB('THE EDUCATION DETAIL HAS BEEN DELETED');
-        },
-        function() {
-            errorCB('the education detail failed to be deleted');
-        });
+function deleteAEducation( title,candidateID, successCB) {
+    // eduModel.remove({ candidateID: candidateID, 'records._id': title },
+    //     function(){
+    //       successCB('THE EDUCATION DETAIL HAS BEEN DELEATED');
+    //     },
+    //     function() {
+    //         errorCB('the education detail failed to be deleted');
+    //     });
+    console.log("hihihii"+title);
+    eduModel.update({
+      candidateid :candidateID,
+      'qualification.title' : title
+    },{
+    $pull :{
+      qualification: {
+        title:title
+      }
+    }
+  },function(){
+    successCB(title, candidateID);
+  });
 }
 
 //add qualification after  entering into the question box into the existing records
@@ -121,6 +134,6 @@ module.exports = {
     createNewEducation: createNewEducation,
     addEducation: addEducation,
     updateEducation: updateEducation,
-    deleteEducation: deleteEducation,
+    deleteAEducation: deleteAEducation,
     addMissingEducationFieldResponse: addMissingEducationFieldResponse
 };

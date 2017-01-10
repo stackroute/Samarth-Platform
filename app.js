@@ -16,6 +16,7 @@ let circleRoute = require('./circlesBackEnd/circleRout');
 let projectRoutes = require('./sectionproject/projectrouter');
 let educationRoutes = require('./sectioneducation/educationrouter');
 let skillRoutes = require('./sectionskill/skillrouter');
+let preferenceRoutes = require('./sectionjobpreferences/jobpreferencesrouter');
 let candidateRoutes = require('./candidate/candidaterouter');
 let personalinfoRoutes = require('./sectionpersonalinfo/personalinforouter');
 let profilerouter = require('./profiles/profilerouter');
@@ -27,9 +28,9 @@ let skillcardrouter = require('./sectionskill/skillrouter');
 let fieldQCache = require('./questionbox/fieldQCache');
 // let jobProfileRoutes = require('./jobprofile/jobprofileroute');
 let employerRoutes = require('./jobprovider/jobproviderroute.js');
-let professiontoskillroutr = require(
-    './professiontoskillsgraphdata/professiontoskillrouter.js');
+let professiontoskillroutr = require('./professiontoskillsgraphdata/professiontoskillrouter.js');
 let jobProfile=require('./jobServer/jobProfileRoute.js');
+const placementProcessRouter = require('./placementprocess/placementrouter.js');
 /*var rubricRoute = require('./rubricbackend/rubricroute');
 var verificationRoute = require('./verification/verificationroute');
 var coordinatorRouter = require('./coordinator/coordinatorroute');
@@ -131,6 +132,7 @@ app.use('/candidates', qboxRouter);
 app.use('/candidate', candidateRoutes);
 app.use('/fieldquestions', fieldQRouter);
 app.use('/project', projectRoutes);
+app.use('/jobpreferences', preferenceRoutes);
 app.use('/education', educationRoutes);
 app.use('/skill', skillRoutes);
 app.use('/profile', profilerouter);
@@ -149,5 +151,6 @@ app.use('/profession', professiontoskillroutr);
 
 app.use('/coordinatorreg',placement);
 app.use('/jobProfile',jobProfile);
+app.use('/placementprocess',placementProcessRouter);
 
 module.exports = app;
