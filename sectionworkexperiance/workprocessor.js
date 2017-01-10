@@ -12,6 +12,7 @@ function getworkexp(candidateid, successCB, errorCB) {
         if (err) {
             errorCB(err);
         }
+        console.log(workexps);
         successCB(workexps);
     }); 
 }

@@ -12,8 +12,7 @@ router.post('/:candidateid', function(req, res) {
 
     persons.find({ candidateid: req.params.candidateid }, function(err, result) {
 
-        console.log("Personal info");
-
+        console.log("........Personal info............");
         if (result === '') {
             res.status(500).send('Register candidates before updating personal info');
         } // end if
@@ -44,7 +43,7 @@ router.post('/:candidateid', function(req, res) {
 // effective url personalinfo/:candidateid/
 router.get('/:candidateid', function(req, res) {
 
-    //console.log(req);
+    // console.log(req);
     personalInfoProcessor.getPersonalinfo(req.params.candidateid,
 
 

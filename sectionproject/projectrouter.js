@@ -33,24 +33,29 @@ router.post('/:candidateId', function(req, res) {
         } // end if
         else {
             try { 
+                console.log('req.body');
+                console.log(req.body);
+                
+
                 projectProcessor.addProject(req.body, req.params.candidateId,
                     function(projectObj) {
     // console.log("---------->projectiiiii------->"+req.params.candidateId+"   "+req.body.projects[0].name);
                          
                         // console.log("---->project--->"+req.body.projects[0].income+"  "+req.body.projects[0].duration);
-                        projectRelationBuilder.projectRelationBuilder(req.params.candidateId,
-                            req.body.projects[0].name,
-                            req.body.projects[0].location,
-                            req.body.projects[0].skills,
-                            req.body.projects[0].income,
-                            // req.body.projects[0].duration
-                             function(err, success) {
-                                if (err) {
-                                    console.log(err);
-                                } else {
-                                    // console.log("created relationship");                            
-                                }
-                            });
+                        // projectRelationBuilder.projectRelationBuilder(req.params.candidateId,
+                        //     req.body.name,
+                        //     req.body.location,
+                        //     req.body.skills,
+                        //     req.body.role,
+                        //     req.body.durationInMonths,
+                        //     // req.body.client
+                        //      function(err, success) {
+                        //         if (err) {
+                        //             console.log(err);
+                        //         } else {
+                        //             // console.log("created relationship");                            
+                        //         }
+                        //     });
                         res.status(201).json(projectObj);
                     },
                     function(err) {

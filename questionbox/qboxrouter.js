@@ -37,6 +37,7 @@ router.get('/:candidateid/qboxquestions/', function(req, res) {
             sections,
             skip,
             limit,
+            lang,
             function(colln) {
                 console.log("In success callback about to do async call");
                 async.map(colln,
@@ -89,7 +90,7 @@ router.get('/:candidateid/qboxquestions/queries', function(req, res) {
         let skip = req.query.skip ? req.query.skip : 0;
         let lang = req.query.lang ? req.query.lang : 'English';
 
-        qboxProcessor.getqueryObject(req.params.candidateid,
+        qboxProcessor.getQuestions(req.params.candidateid,
             sections,
             skip,
             limit,

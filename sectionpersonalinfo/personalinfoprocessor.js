@@ -6,7 +6,7 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
     let personObj = new person({
         candidateid: formobj.mobile,
         name: formobj.name,
-        dob: formobj.dob,
+        dob: null,
         email: formobj.email,
         contact: formobj.mobile,
         gender: '',
@@ -14,7 +14,7 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
         maritialstatus: '',
         address: '',
         location: formobj.location,
-        pincode: ''
+        pincode: null
 
     });
     personObj.save(function(err, postdetails) {

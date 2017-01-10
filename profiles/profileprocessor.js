@@ -52,13 +52,15 @@ function modifyprofile(profileobj, candidateid, successCB) {
 function inspectMissingProfileFields(candidateId, successCB, errorCB) {
     let tasks = {
         skill: function(callback) {
+             console.log("skill");
             skillMissingFinder.findMissingFields(candidateId, function(result) {
                 callback(null, result);
             }, function(err) {
                 callback(err, null);
             });
         }, //end  skill 
-        education: function(callback) {
+        qualification: function(callback) {
+            console.log("qualification");
             educationMissingFinder.findMissingEducationFields(candidateId, function(result) {
                 callback(null, result);
             }, function(err) {
@@ -67,6 +69,7 @@ function inspectMissingProfileFields(candidateId, successCB, errorCB) {
         }, //end education
 
         personalinfo: function(callback) {
+                console.log("personalinfo");
             personalInfoMissingFinder.findPersonalInfoMissingFields(candidateId, function(result) {
                 callback(null, result);
             }, function(err) {
@@ -75,13 +78,15 @@ function inspectMissingProfileFields(candidateId, successCB, errorCB) {
         }, //end personal info
 
         project: function(callback) {
+             console.log("project");
             projectMissingFinder.findProjectInfoMissingFields(candidateId, function(result) {
                 callback(null, result);
             }, function(err) {
                 callback(err, null);
             });
         }, //end project
-        workexp: function(callback) {
+        workexperience: function(callback) {
+            console.log("workexperience");
             workMissingFinder.findWorkMissingFields(candidateId, function(result) {
                 callback(null, result);
             }, function(err) {

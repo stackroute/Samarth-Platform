@@ -85,7 +85,8 @@ router.get('/:candidateid', function(req, res) {
 // HTTP POST /candidate/:candidateid /
 // effective url /candidate/
 router.post('/', function(req, res) {
-    console.log(req.body);
+    // console.log("------------- req.body-------------");
+    // console.log(req.body);
     try {
         candidateneo.createCandidate(req.body, function(err, stat) {
             if (err) {

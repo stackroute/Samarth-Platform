@@ -4,7 +4,7 @@ let qboxprocessor = require('./qboxprocessor');
 let qboxquestionModel = require('./qboxquestions');
  
 var getFieldsNames = function() { 
-    return ['name','dob', 'gender', 'expertise', 'maritialstatus','mothertongue','email','contact','address','location','pincode'];
+    return ['name','dob', 'gender', 'maritialstatus','mothertongue','email','contact','address','location','pincode'];
 }  
    
 var findPersonalInfoMissingFields = function(candidateid, successCB, errorCB) {
@@ -16,11 +16,12 @@ var findPersonalInfoMissingFields = function(candidateid, successCB, errorCB) {
         let sectionQBoxQuestions = [];
  
             let candidateInfoData = candidateInfo;
+            console.log("-----candidateInfoData--------->"+ candidateInfoData)
        
 
             for (let j = 0; j < infoFieldArray.length; j++) {
       
-                if (candidateInfoData[infoFieldArray[j]] == '') {
+                if (candidateInfoData[infoFieldArray[j]] == '' || candidateInfoData[infoFieldArray[j]] == null) {
                     let qboxquestion = new qboxquestionModel({
                         candidateid: candidateid,
                         section: 'personalinfo',

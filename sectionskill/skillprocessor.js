@@ -10,6 +10,8 @@ function getSkill(candidateid, successCB, errorCB) {
             errorCB(err);
 
         } 
+        console.log('skill');
+        // console.log(skill);
         successCB(skill);
     });
 }

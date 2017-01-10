@@ -6,7 +6,7 @@ db.fieldquestions.insert({section:'skills',fieldname:'experience',query:'Specify
 2.) For qualification section:-
 
 db.fieldquestions.insert({section:'qualification',fieldname:'batch',query:'In which year you passed your ',lang:'English'})
-db.fieldquestions.insert({section:'qualification',fieldname:'academicType',query:'Course Level(Primary,Metric,Senior Secondary,Diploma,Graduation,Post-Graduation,Docterate,Others) of  ',lang:'English'})
+db.fieldquestions.insert({section:'qualification',fieldname:'academicType',query:'Course Level(Primary,Metric,Senior-Secondary,Diploma,Graduation,Post-Graduation,Docterate,Others) of  ',lang:'English'})
 db.fieldquestions.insert({section:'qualification',fieldname:'name',query:'From which institute you did your ',lang:'English'})
 db.fieldquestions.insert({section:'qualification',fieldname:'location',query:'Specify location of the Institute for qualification  ',lang:'English'})
 db.fieldquestions.insert({section:'qualification',fieldname:'result',query:'What is your score/marks in ',lang:'English'})
@@ -18,6 +18,8 @@ db.fieldquestions.insert({section:'project',fieldname:'location',query:'Where di
 db.fieldquestions.insert({section:'project',fieldname:'income',query:'Specify your remuneration, while working on project ',lang:'English'})
 db.fieldquestions.insert({section:'project',fieldname:'skills',query:'Which of your skills helped on the project ',lang:'English'})
 db.fieldquestions.insert({section:'project',fieldname:'durationInMonths',query:'For how long, did you work on the project ',lang:'English'})
+db.fieldquestions.insert({section:'project',fieldname:'role',query:'what is your role in project ',lang:'English'})
+db.fieldquestions.insert({section:'project',fieldname:'client',query:'What is your client name ',lang:'English'})
 
 4.) for work exp
 

@@ -12,7 +12,8 @@ function getcandidate(candidateId, successCB, errorCB) {
 }
 
 function createNewcandidate(formObj, successCB, errorCB) {
-    //console.log('formObj ------->',formObj);
+    console.log('formObj ------->');
+    console.log(formObj);
     let candidateObj = new candidate({
         "candidateid": formObj.mobile,
         "profession": formObj.profession
