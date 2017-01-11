@@ -31,8 +31,30 @@ let DesignationRelationBuilder = function(designation , workplace , location , c
 	);
 };
 
+//workexpRelationDelete deletes the relation from NEO for the corresponding candidateid
+let workexpRelationDelete = function(designation , candidateid, errCB) {
+	db.cypher({
+	 query:'MATCH(c:Candidate {name:{candidateid}})-[r:IS_A]->(rl:Role{name:{designation}}) DETACH DELETE r',
+		params: {
+			candidateid: candidateid,
+			designation: designation
+			
+		}
+	}, function(err, results) {
+		if (err){
+			errCB(err, null);
+		}
+		 else {
+			errCB(null, results);
+		}
+	}
+	);
+}; //end workexpRelationDelete
+
 
 
 module.exports = {
-	DesignationRelationBuilder: DesignationRelationBuilder
+	DesignationRelationBuilder: DesignationRelationBuilder,
+	workexpRelationDelete: workexpRelationDelete
+	
 };

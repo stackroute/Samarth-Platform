@@ -77,6 +77,32 @@ function updateworkexp(wsobj, candidateid, workplace, sucessCB) {
 		);
 }
 
+//deleteworkexp deletes from MONGODB and calls delete function for NEO
+function deleteworkexp(candidateid, designation, sucessCB) {
+	work.update({
+		candidateid: candidateid,
+		'workexperience.designation': designation
+	}, {
+		$pull: {
+			workexperience: {
+				designation: designation
+			}
+		}
+	}, function() {
+						workneoprocessor.workexpRelationDelete(designation,candidateid,function(err, result) {
+
+										if (result) {
+												sucessCB();
+										}
+
+								});
+						sucessCB();
+				}
+	);//end update
+
+}//end deleteworkexp
+
+
 
 //add work exp after  entering into the question box into the existing records
 function addMissingWorkFieldResponse(candidateid, workInstanceName, fieldname, response, successCB, errorCB) {
@@ -104,5 +130,6 @@ module.exports = {
 		createworkexp: createworkexp,
 		addworkexp: addworkexp,
 		updateworkexp: updateworkexp,
+		deleteworkexp: deleteworkexp,
 		addMissingWorkFieldResponse: addMissingWorkFieldResponse
 };
