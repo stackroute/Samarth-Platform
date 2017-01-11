@@ -7,17 +7,17 @@ var getFieldsNames = function() {
     return ['from', 'to', 'outcome','institute'];
 }
 
-let generateQues = function(candidateid, fieldname, instancename){
-    console.log(fieldname, instancename);
-    let qboxquestion = new qboxquestionModel({
-                        candidateid: candidateid,
-                        section: "qualification",
-                        fieldname: fieldname,
-                        instancename: instancename
-                    });
-        return qboxquestion;
-                    //sectionQBoxQuestions.push(qboxquestion);
-}
+// let generateQues = function(candidateid, fieldname, instancename){
+//     console.log(fieldname, instancename);
+//     let qboxquestion = new qboxquestionModel({
+//                         candidateid: candidateid,
+//                         section: "qualification",
+//                         fieldname: fieldname,
+//                         instancename: instancename
+//                     });
+//         return qboxquestion;
+//                     //sectionQBoxQuestions.push(qboxquestion);
+// }
 var findMissingEducationFields = function(candidateid) {
     educationprocessor.getEducation(candidateid, function(result) {
         // console.log("------->result in education--------->" + result[0]);
@@ -42,32 +42,33 @@ var findMissingEducationFields = function(candidateid) {
             for (let j = 0; j < educationFieldArray.length; j++) {
                 // console.log("while iterating");
                       // console.log(educationData[educationFieldArray[j]] instanceof Object );
-                if (educationData[educationFieldArray[j]] instanceof Object) {
-                    let eduProps = Object.keys(educationData[educationFieldArray[j]]);
-                    console.log(eduProps);
-                    for (let k = 0; k < eduProps.length; k++) {
-                        console.log(educationData[educationFieldArray[j]].eduProps[k]);
-                        if (educationData[educationFieldArray[j]].eduProps[k] == undefined || educationData[educationFieldArray[j]].eduProps[k] == ''){
-                        sectionQBoxQuestions.push(generateQues(candidateid, eduProps[j], educationData.title));
-                    }
-                    }
-                }
+                // if (educationData[educationFieldArray[j]] instanceof Object) {
+                //     let eduProps = Object.keys(educationData[educationFieldArray[j]]);
+                //     console.log(eduProps);
+                //     for (let k = 0; k < eduProps.length; k++) {
+                //         console.log(educationData[educationFieldArray[j]].eduProps[k]);
+                //         if (educationData[educationFieldArray[j]].eduProps[k] == undefined || educationData[educationFieldArray[j]].eduProps[k] == ''){
+                //         sectionQBoxQuestions.push(generateQues(candidateid, eduProps[j], educationData.title));
+                //     }
+                //     }
+                // }
                 // else if (educationData[educationFieldArray[j]] === 'outcome') {
                 //     for (let k = 0; k < outcomeProps.length; k++) {
                 //         sectionQBoxQuestions.push(generateQues(candidateid, educationFieldArray[j], educationData.title));
                 //     }
                 // }
-                else if (educationData[educationFieldArray[j]] == undefined || educationData[educationFieldArray[j]] == '') {
-                    sectionQBoxQuestions.push(generateQues(candidateid, educationFieldArray[j], educationData.title));
-                    // let qboxquestion = new qboxquestionModel({
-                    //     candidateid: candidateid,
-                    //     section: "qualification",
-                    //     fieldname: educationFieldArray[j],
-                    //     instancename: educationData.title
-                    // });
+                // else if (educationData[educationFieldArray[j]] == undefined || educationData[educationFieldArray[j]] == '') {
+                if (educationData[educationFieldArray[j]] == undefined || educationData[educationFieldArray[j]] == '') {
+                   // sectionQBoxQuestions.push(generateQues(candidateid, educationFieldArray[j], educationData.title));
+                    let qboxquestion = new qboxquestionModel({
+                        candidateid: candidateid,
+                        section: "qualification",
+                        fieldname: educationFieldArray[j],
+                        instancename: educationData.title
+                    });
 
-                    // sectionQBoxQuestions.push(qboxquestion);
-                    // console.log("----->" + qboxquestion);
+                    sectionQBoxQuestions.push(qboxquestion);
+                    console.log("----->" + qboxquestion);
                 }
             } //end of looping through each field
         } // end of iterating through all the qualifications of the candiate 
@@ -77,7 +78,7 @@ var findMissingEducationFields = function(candidateid) {
             qboxprocessor.createNewQuestionColln(sectionQBoxQuestions,
                 function(result) {
                     // console.log("---->res" + result);
-                    // successCB(sectionQBoxQuestions);
+                     // successCB(sectionQBoxQuestions);
                 },
                 function(err) {
 

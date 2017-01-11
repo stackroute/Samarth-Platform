@@ -5,7 +5,7 @@ let qboxprocessor = require('./qboxprocessor');
 let qboxquestionModel = require('./qboxquestions');
 
 var getFieldsNames = function() { 
-    return ['location', 'income','duration'];
+    return ['durationInMonths', 'client','role'];
 }  
 
 var findProjectInfoMissingFields = function(candidateid, successCB, errorCB) {
@@ -14,17 +14,17 @@ var findProjectInfoMissingFields = function(candidateid, successCB, errorCB) {
         let projectInfo = result[0];
 
         let projectFieldArray = getFieldsNames();
-        // console.log("----->len"+projectInfo.projects.length);
-         console.log("----->len"+projectFieldArray.length);
+         // console.log("----->length is"+projectInfo.projects.length);
+         // console.log("----->len"+projectFieldArray.length);
         let sectionQBoxQuestions = [];
  
         for (let i = 0; i < projectInfo.projects.length; i++) {
-        	 console.log("hiii 1");
+        	 // console.log("hiii 1");
             let projectData = projectInfo.projects[i];
 
             for (let j = 0; j < projectFieldArray.length; j++) {
-            	 console.log("--->hii  2");
-                if (projectData[projectFieldArray[j]] == ''){
+            	  // console.log("--->hii  2");
+                if (projectData[projectFieldArray[j]] == '' || projectData[projectFieldArray[j]] == null ){
                     let qboxquestion = new qboxquestionModel({
                         candidateid: candidateid,
                         section: "project",

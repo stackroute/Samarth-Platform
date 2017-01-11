@@ -26,24 +26,30 @@ router.get('/:candidateId', function(req, res) {
 // HTTP POST project/:candidateId
 // effective url project/:candidateId
 router.post('/:candidateId', function(req, res) {
+    console.log("Project router called");
     try { 
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
         if (result === '') { 
             res.status(500).send('Register the candidate first before adding a project');
         } // end if
         else {
+                    console.log('req.body');
+                    console.log(req.body);
                     projectProcessor.addProject(req.body, req.params.candidateId,
-                    function(projectObj) {
-                         projectRelationBuilder.projectRelationBuilder(req.params.candidateId,
-                            req.body.projects[0].name,
-                            req.body.projects[0].location,
-                            req.body.projects[0].skills,
-                            req.body.projects[0].income,
+                    function(projectObj, candidateId) {
+                         projectRelationBuilder.projectRelationBuilder(candidateId,
+                            projectObj.name,
+                            projectObj.durationInMonths,
+                            projectObj.location,
+                            projectObj.skills,
+                            projectObj.client,
+                            projectObj.role,
                             function(err, success) {
                                 if (err) {
+                                    console.log('err ------------------------------');
                                     console.log(err);
                                 } else {
-                                    // console.log("created relationship");                            
+                                    console.log("created relationship");                            
                                 }
                             });
                         res.status(201).json(projectObj);

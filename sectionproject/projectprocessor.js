@@ -36,9 +36,13 @@ function createNewProject(formobj, sucessCB, errorCB) {
 }
                                                         //, errorCB
 function addProject(oldProjectObj, candidateId, successCB) {
+    console.log("add project called")
     project.update({ candidateid: candidateId }, { $push: { projects: oldProjectObj } },
-        function() {
-            successCB('project added');
+        function(err) {
+            if(err){
+                console.log(err);
+            }
+            successCB(oldProjectObj, candidateId);
         }
     );
 }

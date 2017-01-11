@@ -14,9 +14,6 @@ db.fieldquestions.insert({section:'qualification',fieldname:'result',query:'What
 
 3.) for project section:-
 
-db.fieldquestions.insert({section:'project',fieldname:'location',query:'Where did you undertake your project  ',lang:'English'})
-db.fieldquestions.insert({section:'project',fieldname:'income',query:'Specify your remuneration, while working on project ',lang:'English'})
-db.fieldquestions.insert({section:'project',fieldname:'skills',query:'Which of your skills helped on the project ',lang:'English'})
 db.fieldquestions.insert({section:'project',fieldname:'durationInMonths',query:'For how long, did you work on the project ',lang:'English'})
 db.fieldquestions.insert({section:'project',fieldname:'role',query:'what is your role in project ',lang:'English'})
 db.fieldquestions.insert({section:'project',fieldname:'client',query:'What is your client name ',lang:'English'})
@@ -24,7 +21,8 @@ db.fieldquestions.insert({section:'project',fieldname:'client',query:'What is yo
 4.) for work exp
 
 db.fieldquestions.insert({section:'workexperience',fieldname:'duration',query:'How long have you been working with ',lang:'English'})
-db.fieldquestions.insert({section:'workexperience',fieldname:'location',query:'At which location you worked with ',lang:'English'})
+db.fieldquestions.insert({section:'workexperience',fieldname:'from',query:'When you started working ',lang:'English'}
+db.fieldquestions.insert({section:'workexperience',fieldname:'to',query:' Till when you worked ',lang:'English'})
 
 
 5.) personal info
