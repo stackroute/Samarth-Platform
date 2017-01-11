@@ -77,5 +77,29 @@ try{
 			}
 	 // end find
 }); // end patch
+
+//delete route for Work Experience deletion
+router.delete('/:candidateid/:designation', function(req, res) {
+	try{
+	work.find({ candidateid: req.params.candidateid }, function(err, result) {
+		if (result === '') {
+			res.status(500).send('Add the work experience with the candidate id before updating');
+		} else {
+				workProcessor.deleteworkexp(req.params.candidateid, req.params.designation,function() {
+				res.status(201).json();
+			}, function(err) {
+				res.status(500).json({ error: 'can\'t delete experience from the records' });
+			});
+			} // end else
+	}); //end find
+	} //end try
+			catch (err) {
+				console.log("Error in ... ", err);
+				res.status(500).json({
+					error: 'Internal error occurred, please report'
+				});
+			} //end catch
+}); // end delete
+
 module.exports = router;
 
