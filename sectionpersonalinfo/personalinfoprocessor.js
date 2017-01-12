@@ -6,6 +6,7 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
     let personObj = new person({
         candidateid: formobj.mobile,
         name: formobj.name,
+        adharcard: formobj.adharcard,
         dob: formobj.dob,
         email: formobj.email,
         contact: formobj.mobile,
