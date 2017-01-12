@@ -1,6 +1,9 @@
 let router = require('express').Router();
 let educationProcessor = require('./educationprocessor');
 let eduModel = require('./educationschema');
+let educationgraphquery=require('./educationgraphquery');
+
+
 /* Get Qualification details of the given candidate id*/
 // HTTP GET education//:candidateid/
 // effective url /education//:candidateid
@@ -29,23 +32,23 @@ try {
             res.status(500).send('Register Candidate with the given candidate id');
         } // end if
         else {
-            
+
                 educationProcessor.addEducation(req.body, req.params.candidateID,
                     function(updatedEdu,id) {
-                         
+
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {
                         res.status(500).json({ error: 'Internal error occurred, please report' });
-                   
-           
-            }); 
+
+
+            });
         }
     });
     } catch (err) {
                 res.status(500).json({ error: 'Internal error occurred, please report' });
             }
-        
+
     });
 
 
@@ -66,7 +69,7 @@ router.patch('/:candidateID/:title', function(req, res) {
         res.status(500).send('Add Education collection with the given candidate id before Update');
         } else {
 
-            
+
                 educationProcessor.updateEducation(req.params.candidateID, req.params.title,
                                                         req.body,function(updatedEdu) {
                         res.status(201).json(updatedEdu);
@@ -74,13 +77,53 @@ router.patch('/:candidateID/:title', function(req, res) {
                     function(err) {
                         res.status(500).send('updating new educational detail with invalid data ');
                     });
-            } 
+            }
         });
     }
             catch (err) {
                 res.status(500).json({ error: 'Internal error occurred, please report' });
             }
-        
+
    });
+
+router.delete('/:candidateid/:title', function(req, res) {
+    eduModel.find({
+        candidateid: req.params.candidateid
+    }, function(err, result) {
+        if (result === '') {
+            res.status(500).send(
+                'education section doesnt exist while ting new education');
+        } else {
+            try {
+              console.log(req.params.title);
+                educationProcessor.deleteAEducation(req.params.title ,
+                    req.params.candidateid ,
+                    function(docs, id) {
+                        educationgraphquery.educationRelationDelete(
+                            docs, id,
+                            function(err, success) {
+                                if (err) {
+                                    console.log(err);
+                                } else {
+                                     console.log("deleted relationship");
+                                }
+                            });
+
+                        res.status(201).json(docs);
+                    },
+                    function(err) {
+                        console.log("Error occurred in deleting education: ", err);
+                        res.status(500).send("invalid data");
+                    });
+            } // end try
+            catch (err) {
+                res.status(500).json({
+                    error: 'Internal error occurred, please report'
+                });
+            }
+        } // end else
+    }); // end find
+}); // end delete
+
 
 module.exports = router;

@@ -7,44 +7,44 @@ let work = require('./workschema');
 // HTTP GET /work/:candidateid
 // effective url work/:candidateid
 router.get('/:candidateid', function(req, res) {
-    try{
-    workProcessor.getworkexp(req.params.candidateid, function(workexps) {
-        res.status(201).json(workexps);
-    }, function(err) {
-        res.status(500).json({ error: 'Internal error occurred' });
-    });
+	try{
+	workProcessor.getworkexp(req.params.candidateid, function(workexps) {
+		res.status(201).json(workexps);
+	}, function(err) {
+		res.status(500).json({ error: 'Internal error occurred' });
+	});
 }
 catch (err) {
-                res.status(500).json({
-                    error: 'Internal error occurred, please report'
-                });
-            }
+				res.status(500).json({
+					error: 'Internal error occurred, please report'
+				});
+			}
 });
 
 /* Add new types of work for the given candidate id only after registration*/
 // HTTP POST /work/:candidateid
 // effective url work/:candidateid
 router.post('/:candidateid', function(req, res) {
-    try{
-    work.find({ candidateid: req.params.candidateid }, function(err, result) {
-        if (result === '') {
-            res.status(500).send('Register the Candidate before adding work experience ');
-        } // end if
-        else {
-            workProcessor.addworkexp(req.body, req.params.candidateid, function() {
+	try{
+	work.find({ candidateid: req.params.candidateid }, function(err, result) {
+		if (result === '') {
+			res.status(500).send('Register the Candidate before adding work experience ');
+		} // end if
+		else {
+			workProcessor.addworkexp(req.body, req.params.candidateid, function() {
 
-                res.status(201).json();
-            }, function(err) {
-                res.status(500).json({ error: 'can\'t add experiance in the records' });
-            });
-        }
-    }); // end find
+				res.status(201).json();
+			}, function(err) {
+				res.status(500).json({ error: 'can\'t add experiance in the records' });
+			});
+		}
+	}); // end find
 }
 catch (err) {
-                res.status(500).json({
-                    error: 'Internal error occurred, please report'
-                });
-            }
+				res.status(500).json({
+					error: 'Internal error occurred, please report'
+				});
+			}
 }); // end post
 
 /* update the types of work for the organisation with given candidate id
@@ -54,27 +54,52 @@ note:(pass every field from body) */
 // effective url work/:candidateid/::organisation
 router.patch('/:candidateid/:workplace', function(req, res) {
 try{
-    work.find({ candidateid: req.params.candidateid }, function(err, result) {
-        if (result === '') {
-            res.status(500).send('Add the work experience with the candidate id before updating');
-        } else {
-                    workProcessor.updateworkexp(req.body, req.params.candidateid, req.params.workplace,
-                    function(work1) {
-                        res.status(201).json(work1);
-                    },
-                    function(err) {
-                        res.status(500).json({ error: 'Internal error occurred' });
-                    });
-            } // end try
-            
-         // end else
-    });
-    }
-    catch (err) {
-                res.status(500).json({
-                    error: 'Internal error occurred, please report'
-                });
-            }
-     // end find
+	work.find({ candidateid: req.params.candidateid }, function(err, result) {
+		if (result === '') {
+			res.status(500).send('Add the work experience with the candidate id before updating');
+		} else {
+					workProcessor.updateworkexp(req.body, req.params.candidateid, req.params.workplace,
+					function(work1) {
+						res.status(201).json(work1);
+					},
+					function(err) {
+						res.status(500).json({ error: 'Internal error occurred' });
+					});
+			} // end try
+			
+		 // end else
+	});
+	}
+	catch (err) {
+				res.status(500).json({
+					error: 'Internal error occurred, please report'
+				});
+			}
+	 // end find
 }); // end patch
+
+//delete route for Work Experience deletion
+router.delete('/:candidateid/:designation', function(req, res) {
+	try{
+	work.find({ candidateid: req.params.candidateid }, function(err, result) {
+		if (result === '') {
+			res.status(500).send('Add the work experience with the candidate id before updating');
+		} else {
+				workProcessor.deleteworkexp(req.params.candidateid, req.params.designation,function() {
+				res.status(201).json();
+			}, function(err) {
+				res.status(500).json({ error: 'can\'t delete experience from the records' });
+			});
+			} // end else
+	}); //end find
+	} //end try
+			catch (err) {
+				console.log("Error in ... ", err);
+				res.status(500).json({
+					error: 'Internal error occurred, please report'
+				});
+			} //end catch
+}); // end delete
+
 module.exports = router;
+

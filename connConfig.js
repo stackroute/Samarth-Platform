@@ -1,4 +1,3 @@
-
 let connConfig = function () {
     return {
         "neoconn" : "http://neo4j:password@localhost:7474",
@@ -10,3 +9,4 @@ let connConfig = function () {
 }
 
 module.exports = connConfig;
+

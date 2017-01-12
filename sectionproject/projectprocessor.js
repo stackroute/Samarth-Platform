@@ -36,9 +36,13 @@ function createNewProject(formobj, sucessCB, errorCB) {
 }
                                                         //, errorCB
 function addProject(oldProjectObj, candidateId, successCB) {
-    project.update({ candidateid: candidateId }, { $push: { projects: oldProjectObj.projects[0] } },
-        function() {
-            successCB('project added');
+    console.log("add project called")
+    project.update({ candidateid: candidateId }, { $push: { projects: oldProjectObj } },
+        function(err) {
+            if(err){
+                console.log(err);
+            }
+            successCB(oldProjectObj, candidateId);
         }
     );
 }
@@ -46,14 +50,12 @@ function addProject(oldProjectObj, candidateId, successCB) {
 function updateProject(projectName, oldProjectObj, candidateId, successCB) {
     project.update({ candidateid: candidateId, 'projects.name': projectName }, {
             $set: {
-                'projects.$.name': oldProjectObj.projects[0].name,
-                'projects.$.workplace': oldProjectObj.projects[0].workplace,
-                'projects.$.location': oldProjectObj.projects[0].location,
-                'projects.$.income': oldProjectObj.projects[0].income,
-                'projects.$.duration.from': oldProjectObj.projects[0].duration.from,
-                'projects.$.duration.to': oldProjectObj.projects[0].duration.to,
-                'projects.$.duration.durationInMonths': oldProjectObj.projects[0].duration.durationInMonths,
-                'projects.$.skills': oldProjectObj.projects[0].skills
+                'projects.$.name': oldProjectObj.name,
+                'projects.$.durationInMonths': oldProjectObj.durationInMonths,
+                'projects.$.location': oldProjectObj.location,
+                'projects.$.skills': oldProjectObj.skills,
+                'projects.$.client': oldProjectObj.client,
+                'projects.$.role': oldProjectObj.role,
             }
         },
 

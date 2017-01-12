@@ -80,3 +80,4 @@ module.exports = {
   getSearchArray: getSearchArray,
   getAllCandidates: getAllCandidates
 }
+

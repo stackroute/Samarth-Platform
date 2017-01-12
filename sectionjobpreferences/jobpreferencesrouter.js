@@ -1,10 +1,10 @@
 let router = require('express').Router();
 let jobpreferencesProcessor = require('./jobpreferencesprocessor');
-let preference = require('./jobpreferencesschema'); 
+let preference = require('./jobpreferencesschema');
 let jobpreferencesRelationBuilder = require('./jobpreferencesRelationBuilder');
 
 router.get('/:candidateId', function(req, res) {
-    try {  
+    try {
         let preferenceObj = jobpreferencesProcessor.getPreferences(req.params.candidateId,
             function(preferenceObj) {
                 res.status(200).json(preferenceObj);
@@ -17,18 +17,18 @@ router.get('/:candidateId', function(req, res) {
             error: 'Internal error occurred, please report'
         });
     }
-});  
- 
+});
+
 
 
 router.post('/:candidateId', function(req, res) {
-    try { 
+    try {
         preference.find({ candidateid: req.params.candidateId }, function(err, result) {
-            if (result == '') { 
+            if (result == '') {
                 res.status(500).send('Register the candidate first before adding a preferences');
         } // end if
         else {
-            /*jobpreferencesProcessor.createNewPreferences(req.body,req.params.candidateId);*/
+            jobpreferencesProcessor.createNewPreferences(req.body,req.params.candidateId);
             jobpreferencesProcessor.updatePreferences(req.body, req.params.candidateId,
                 function(preferenceObj) {
                     jobpreferencesRelationBuilder.jobpreferencesRelationBuilder(req.body.preferences,req.params.candidateId);
@@ -37,7 +37,7 @@ router.post('/:candidateId', function(req, res) {
                 function(err) {
                     res.status(500).json(err);
                 });
-        } 
+        }
     });
     }
     catch (err) {
@@ -62,7 +62,7 @@ router.patch('/:candidateId/:preferenceRole', function(req, res) {
                     function(err) {
                         res.status(500).json(err);
                     });
-            } 
+            }
         });
     } catch (err) {
         res.status(500).json({

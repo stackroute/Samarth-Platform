@@ -1,26 +1,21 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema; 
- 
+const DURATION_UNIT_CONSTS = ['months', 'years', 'days'] ;
 let projectSchema = new Schema({
 
     candidateid: { type: String, required: true },
     projects: [{
         name: { type: String, required: true },
-        workplace: { type: String, required: true }, //@TODO
-        location: { type: String },
-        income: { type: Number, min: 0 },
-        duration: {
-            from: { type: Date },
-            to: { type: Date },
-            durationInMonths: { type: String }
-        },
+        durationInMonths: { type: Number},
+        // duration: { type: Number },
+        // durationUnit: { type: String, enum: DURATION_UNIT_CONSTS, default: 'months' },
+        location: { type: String, required: true }, //@TODO
         skills: { type: Array, required: true },
-        meta: { type: Array }
+        client: { type: String },
+        role: { type: String }
     }]
 });
 
-
 let project = mongoose.model('project', projectSchema, 'projects');
-
 
 module.exports = project;

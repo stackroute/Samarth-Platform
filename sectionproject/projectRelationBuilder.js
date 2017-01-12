@@ -3,17 +3,17 @@ var neo4jConnection = require("../connections/neo4jconnection.js");
   
 let db = neo4jConnection.getConnection();
    // ,duration:{duration}
-let projectRelationBuilder = function(candidateid, projectName,location,skills,income,duration,errCB) {
+let projectRelationBuilder = function(candidateid, name,durationInMonths,location,skills,client,role,errCB) {
   
     db.cypher({
      query:'MERGE(c:Candidate{name:{candidateid}})MERGE(p:Work{name:{typeOfWork},'+
-     'location:{location},skills:{skills},income:{income}})MERGE(c)-[r:Worked_on]->(p)',
+     'location:{location},skills:{skills},role:{role}})MERGE(c)-[r:Worked_on]->(p)',
         params: {
             candidateid: candidateid,
-            typeOfWork: projectName,
+            typeOfWork: name,
             location: location,
             skills: skills,
-            income: income
+            role: role
             // duration: duration
 
         }
@@ -22,7 +22,7 @@ let projectRelationBuilder = function(candidateid, projectName,location,skills,i
             errCB(err, null);
         }
          else {
-            // errCB(null, results);
+            errCB(null, results);
         }
     } 
     );
