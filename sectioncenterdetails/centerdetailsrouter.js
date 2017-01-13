@@ -1,5 +1,6 @@
 let router = require('express').Router();
 let centerdetailsprocessor = require('./centerdetailsprocessor');
+let centerdetailsneoprocessor = require('./centerdetailsneoprocessor');
 
 router.post('/', function(req,res){
 	
@@ -7,13 +8,21 @@ router.post('/', function(req,res){
 
 
     centerdetailsprocessor.createNewcenterdetails(center,function(postdetails){
+        console.log("Heloo " + postdetails.location);
+            centerdetailsneoprocessor.createNodes(postdetails.location,postdetails.name,
+                postdetails.centertype,function(err,success) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log("Varun");
+                }
+            });
             res.status(200).json(postdetails);
     },
     function(error){
             res.status(500).json(error);
     });
     
-
 })
 router.get('/getall', function(req,res){
 	 
