@@ -8,7 +8,6 @@ function getSkill(candidateid, successCB, errorCB) {
 	}, function(err, skill) {
 		if (err) {
 			errorCB(err);
-
 		} 
 		successCB(skill);
 	});

@@ -18,3 +18,4 @@ let workSchema = new Schema({
 });
 let work = mongoose.model('work', workSchema, 'workhistory');
 module.exports = work;
+

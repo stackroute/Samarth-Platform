@@ -10,15 +10,14 @@ var getFieldsNames = function() {
 var findMissingFields = function(candidateid, successCB, errorCB) {
     skillProcessor.getSkill(candidateid, function(result) {
         let candidateSkills = result[0];
-
         let skillFieldArray = getFieldsNames();
-
+        console.log(skillFieldArray);
         let sectionQBoxQuestions = [];
  
         for (let i = 0; i < candidateSkills.skills.length; i++) {
 
-            let skillData = candidateSkills.skills[i];
-
+            let skillData = candidateSkills.skills[0];
+            console.log(skillData);
             for (let j = 0; j < skillFieldArray.length; j++) {
 
                 if (skillData[skillFieldArray[j]] == undefined) {

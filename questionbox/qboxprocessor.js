@@ -12,7 +12,7 @@ function getAllBoxQuestions(successCB, errorCB) {
     });
 }
 
-function getQuestions(candidateid, sections, skip, limit, successCB, errorCB) {
+function getQuestions(candidateid, sections, skip, limit, lang, successCB, errorCB) {
     // console.log('under ques processor');
     let findClause = { candidateid: candidateid, status: 'pending' };
     let pagination = { skip: parseInt(skip), limit: parseInt(limit) };
@@ -23,6 +23,7 @@ function getQuestions(candidateid, sections, skip, limit, successCB, errorCB) {
 
     qboxquestionModel.find(findClause, { _id: 0, __v: 0 }, pagination, function(error, colln) {
         if (error) {
+            console.log("qboxquestionModel error")
             errorCB(error);
         }
         successCB(colln);
@@ -67,6 +68,7 @@ function createNewQuestions(newquestionobj, candidateId, sucessCB, errorCB) {
 }
 
 function createNewQuestionColln(questionColln, sucessCB, errorCB) {
+    console.log('createNewQuestionColln');
     if (questionColln.length > 0) {
         qboxquestionModel.insertMany(questionColln, function(err, resultColln){
             if(err){

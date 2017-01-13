@@ -11,7 +11,7 @@ function getAllFieldQuestions(successCB, errorCB) {
 
 
 function getFieldQuestions(section, fieldNames, lang, successCB, errorCB) {
-   // console.log('section-------' + section);
+    // console.log('section-------' + section);
     let findClause = { section: section };
 
     if (fieldNames.length > 0) {

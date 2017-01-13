@@ -1,5 +1,4 @@
-// let skill = require('.././sectionskill/skillschema');
-let personalInfoProcessor = require('.././sectionpersonalinfo/personalinfoprocessor');
+let jobpreferenceProcessor = require('.././sectionjobpreferences/jobpreferencesprocessor');
 let qboxprocessor = require('./qboxprocessor');
 let qboxquestionModel = require('./qboxquestions');
  
@@ -8,15 +7,15 @@ var getFieldsNames = function() {
 }  
    
 var findPersonalInfoMissingFields = function(candidateid, successCB, errorCB) {
-    personalInfoProcessor.getPersonalinfo(candidateid, function(result) {
-        let candidateInfo = result[0];
+    jobpreferenceProcessor.getPreferences(candidateid, function(result) {
+        let jobInfo = result[0];
          
         let infoFieldArray = getFieldsNames();
 
         let sectionQBoxQuestions = [];
  
-            let candidateInfoData = candidateInfo;
-            console.log("-----candidateInfoData--------->"+ candidateInfoData)
+            let jobInfoData = jobInfo;
+            console.log("-----jobInfoData--------->"+ jobInfoData)
        
 
             for (let j = 0; j < infoFieldArray.length; j++) {
