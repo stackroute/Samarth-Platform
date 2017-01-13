@@ -14,6 +14,7 @@ function createNewcenterdetails(formobj, successCB, errorCB) {
         
     });
     centerObj.save(function(err, postdetails) {
+        console.log("hi"+postdetails);
         if (err) {
             errorCB(err);
         }
