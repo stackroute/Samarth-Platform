@@ -11,6 +11,8 @@ let authRoutes = require('./auth/authrouter');
 let authByToken = require('./auth/authbytoken');
 let authCoordinatorRouter = require('./authcoordinator/authroutes');
 let authCoordinator = require('./authcoordinator/authbytoken');
+// let authorization = require('./authorization/authorization');
+// let constants = require('./authorization/constants');
 let circleRoute = require('./circlesBackEnd/circleRout');
 
 let projectRoutes = require('./sectionproject/projectrouter');
