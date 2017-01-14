@@ -2,10 +2,12 @@ let preference = require('./jobpreferencesschema');
 
 function getPreferences(candidateId, successCB, errorCB) {
     preference.find({ candidateid: candidateId }, function(error, result) {
-        if (error) {
+
+         if (error) {
             errorCB(error); 
         }
         successCB(result);
+      // console.log("geywgehwjsjw");
     });
 } 
 
@@ -19,10 +21,11 @@ function createNewPreferences(formobj,successCB,errorCB) {
 
     preferenceObj.save(function(err, result) {
         if (err) {
-            errorCB(err);
+            console.log("erororupda");
+            // errorCB(err);
         }
-        successCB(result);
-
+        // successCB();
+        console.log(successCB);
     });
 }
 
@@ -30,11 +33,12 @@ function createNewPreferences(formobj,successCB,errorCB) {
 function updatePreferences(oldPreferenceObj, candidateId, successCB, errCB) {
  preference.update({ candidateid: candidateId }, oldPreferenceObj,
     function(err, result) {
-        if(err){console.log("erororupda");}
+        if(err){
+            console.log("erororupda");
+        }
 
         successCB(result);
-    }
-    );
+    });
 }
 
 function addMissingJobpreferencesFieldResponse(candidateid, instancename, fieldname, response, successCB, errorCB) {

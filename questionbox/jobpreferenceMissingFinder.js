@@ -3,10 +3,11 @@ let qboxprocessor = require('./qboxprocessor');
 let qboxquestionModel = require('./qboxquestions');
  
 var getFieldsNames = function() { 
-    return ['dob', 'gender', 'maritialstatus','mothertongue','email','contact','address','location','pincode','profile'];
+    return ['expected_salary','engagement_type','joining_date'];
 }  
+    console.log("heloooooooooooooo");
    
-var findPersonalInfoMissingFields = function(candidateid, successCB, errorCB) {
+var findJobInfoMissingFields = function(candidateid, successCB, errorCB) {
     jobpreferenceProcessor.getPreferences(candidateid, function(result) {
         let jobInfo = result[0];
          
@@ -14,21 +15,22 @@ var findPersonalInfoMissingFields = function(candidateid, successCB, errorCB) {
 
         let sectionQBoxQuestions = [];
  
-            let jobInfoData = jobInfo;
+        let jobInfoData = jobInfo;
             console.log("-----jobInfoData--------->"+ jobInfoData)
        
 
             for (let j = 0; j < infoFieldArray.length; j++) {
       
-                if (candidateInfoData[infoFieldArray[j]] == '' || candidateInfoData[infoFieldArray[j]] == null) {
+                if (jobInfoData[infoFieldArray[j]] == '' || jobInfoData[infoFieldArray[j]] == null ) {
                     let qboxquestion = new qboxquestionModel({
                         candidateid: candidateid,
-                        section: 'personalinfo',
+                        section: 'jobpreference',
                         fieldname: infoFieldArray[j],
                         instancename: " "
                     });
-                    
+                    console.log('-----------------candidatepreferences------------');
                     sectionQBoxQuestions.push(qboxquestion);
+                    console.log(sectionQBoxQuestions);
                
                 }
             } //end of looping through each field
@@ -54,5 +56,5 @@ var findPersonalInfoMissingFields = function(candidateid, successCB, errorCB) {
 
 module.exports = {
     getFieldsNames: getFieldsNames,
-    findPersonalInfoMissingFields: findPersonalInfoMissingFields
+    findJobInfoMissingFields: findJobInfoMissingFields
 };

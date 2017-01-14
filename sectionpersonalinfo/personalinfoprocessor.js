@@ -30,7 +30,8 @@ function getPersonalinfo(candidateid, successCB, errorCB) {
         if (err) {
             errorCB(err);
         }
-
+        console.log('getpersons data');
+        console.log(getpersons);
         successCB(getpersons);
     });
 }
