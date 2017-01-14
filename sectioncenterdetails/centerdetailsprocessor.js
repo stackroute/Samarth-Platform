@@ -47,8 +47,20 @@ function updateCenterdetails(reg, successCB, errorCB) {
     });
 }
 
+function getcenterdetails(sucessCB, errorCB) {
+    center.find(function(error, result) {
+        if (error) {
+            errorCB(error);
+        } else {
+            sucessCB(result);
+        }
+    });
+}
+
 module.exports = {
     createNewcenterdetails : createNewcenterdetails,
     getAllcenterdetails : getAllcenterdetails,
-    getCenterdetails : getCenterdetails
+    getCenterdetails : getCenterdetails,
+    updateCenterdetails: updateCenterdetails,
+    getcenterdetails : getcenterdetails
 }
