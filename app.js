@@ -42,6 +42,7 @@ let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
 let neo4jConnection = require("./connections/neo4jconnection");
 let placement=require("./placement/coordinatorrouter.js");
+let centerdetailsrouter=require("./sectioncenterdetails/centerdetailsrouter.js");
 
 let app = express();
 
@@ -152,5 +153,6 @@ app.use('/profession', professiontoskillroutr);
 app.use('/coordinatorreg',placement);
 app.use('/jobProfile',jobProfile);
 app.use('/placementprocess',placementProcessRouter);
+app.use('/center',centerdetailsrouter);
 
 module.exports = app;
