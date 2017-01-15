@@ -12,8 +12,8 @@ let coordinatorSchema = new Schema({
     // coordinatorPwd: { type: String }
     coordinatorLanguage: [
     	{	name: {type : String},
-    		speak: {type : Boolean}, 
-    		read: {type : Boolean}, 
+    		speak: {type : Boolean},
+    		read: {type : Boolean},
     		write: {type : Boolean}
     	}
     ]
