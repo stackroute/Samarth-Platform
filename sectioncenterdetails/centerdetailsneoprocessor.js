@@ -9,7 +9,7 @@ let createNodes = function (location,name,centertype,SuccessCB) {
 		params: {
 			location: location,
 			name: name,
-			centertype: "fofof"
+			centertype: centertype
 		},
 		}, function(err,results) {
 		console.log("in hrer")

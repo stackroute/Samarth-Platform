@@ -3,7 +3,7 @@ let Schema = mongoose.Schema;
 
 let CenterDetailsSchema = new Schema({
 
-    reg: { type: String, unique: true, required: true },
+    reg: { type: String, required: true },
     location: { type: String },
     address: { type: String },
     mobile: { type: Number, required: true },
