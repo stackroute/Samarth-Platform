@@ -1,4 +1,5 @@
-let educationprocessor = require('.././sectioneducation/educationprocessor');
+// let educationprocessor = require('.././sectioneducation/educationprocessor');
+let educationprocessor = require('./../sectioneducation/educationprocessor');
 let qboxprocessor = require('./qboxprocessor');
 let qboxquestionModel = require('./qboxquestions');
 
@@ -23,7 +24,7 @@ var findMissingEducationFields = function(candidateid) {
 
 
            for (let j = 0; j < educationFieldArray.length; j++) {
-                if (educationData[educationFieldArray[j]] == '' || educationData[educationFieldArray[j]] == null || educationData[educationFieldArray[j]] == undefined ) {
+                if (educationData[educationFieldArray[j]] == "" || educationData[educationFieldArray[j]] == null || educationData[educationFieldArray[j]] == undefined ) {
                     let qboxquestion = new qboxquestionModel({
                         candidateid: candidateid,
                         section: "qualification",
