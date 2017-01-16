@@ -4,7 +4,7 @@ let qboxprocessor = require('./qboxprocessor');
 let qboxquestionModel = require('./qboxquestions');
  
 var getFieldsNames = function() {
-    return ['skillname', 'expertise', 'experience'];
+    return ['expertise', 'experience'];
 } 
  
 var findMissingFields = function(candidateid, successCB, errorCB) {
@@ -16,11 +16,11 @@ var findMissingFields = function(candidateid, successCB, errorCB) {
  
         for (let i = 0; i < candidateSkills.skills.length; i++) {
 
-            let skillData = candidateSkills.skills[0];
+            let skillData = candidateSkills.skills[i];
             console.log(skillData);
             for (let j = 0; j < skillFieldArray.length; j++) {
 
-                if (skillData[skillFieldArray[j]] == undefined) {
+                if (skillData[skillFieldArray[j]] == '' || skillData[skillFieldArray[j]] == null ) {
                     let qboxquestion = new qboxquestionModel({
                         candidateid: candidateid,
                         section: "skills",

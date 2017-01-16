@@ -26,7 +26,7 @@ var findWorkMissingFields = function(candidateid, successCB, errorCB) {
 
             for (let j = 0; j < workFieldArray.length; j++) {
             	// console.log("--->hii  2");
-                if (workData.duration[workFieldArray[j]] == '' || workData.duration[workFieldArray[j]] == null) {
+                if (workData.duration[workFieldArray[j]] == '' || workData.duration[workFieldArray[j]] == null || workData.duration[workFieldArray[j]]== undefined) {
                     let qboxquestion = new qboxquestionModel({
                         candidateid: candidateid,
                         section: "workexperience",

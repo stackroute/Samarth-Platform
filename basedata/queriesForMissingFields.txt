@@ -23,7 +23,7 @@ db.fieldquestions.insert({section:'project',fieldname:'client',query:'What is yo
 4.) for work exp
 
 db.fieldquestions.insert({section:'workexperience',fieldname:'duration',query:'How long have you been working with ',lang:'English'})
-db.fieldquestions.insert({section:'workexperience',fieldname:'from',query:'When you started working ',lang:'English'}
+db.fieldquestions.insert({section:'workexperience',fieldname:'from',query:'When you started working ',lang:'English'})
 db.fieldquestions.insert({section:'workexperience',fieldname:'to',query:' Till when you worked ',lang:'English'})
 
 

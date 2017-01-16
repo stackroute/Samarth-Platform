@@ -7,15 +7,17 @@ function getPreferences(candidateId, successCB, errorCB) {
             errorCB(error); 
         }
         successCB(result);
+        console.log("the result is like");
+        console.log(result);
       // console.log("geywgehwjsjw");
     });
 } 
 
 
-function createNewPreferences(formobj,successCB,errorCB) {
+function createNewPreferences(formobj,candidateId,successCB,errorCB) {
     console.log("create starting");
     let preferenceObj = new preference({
-        candidateid: formobj.mobile,
+        candidateid: formobj,
         preferences:{}
     });
 

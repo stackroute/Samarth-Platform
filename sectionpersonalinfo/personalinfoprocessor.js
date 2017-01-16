@@ -41,6 +41,7 @@ function updatePersonalinfo(piObj, candidateId, successCB, errCB) {
 
         function(err, result) {
             successCB(result);
+            console.log("updated successfully");
         }
     );
 }

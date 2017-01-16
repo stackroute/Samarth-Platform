@@ -53,6 +53,7 @@ function addworkexp(wsObj, candidateid, sucessCB) {
 
 								});
 						sucessCB();
+						console.log("====added the workexperience=====>???????");
 				}
 		);
 }
@@ -72,6 +73,7 @@ function updateworkexp(wsobj, candidateid, workplace, sucessCB) {
 				},
 				function() {
 						sucessCB('workexperience updated');
+						console.log("updating answers which are answered by the user");
 				}
 
 		);
@@ -107,6 +109,7 @@ function deleteworkexp(candidateid, designation, sucessCB) {
 //add work exp after  entering into the question box into the existing records
 function addMissingWorkFieldResponse(candidateid, workInstanceName, fieldname, response, successCB, errorCB) {
 	 // console.log("------->"+skillInstanceName+"   "+fieldname+"  "+response);
+		console.log("entered in to answers updating mode");
 		let field = ('workexperience.$.' + fieldname);
 		let setObj = {};
 		setObj[field] = response;
@@ -120,7 +123,8 @@ function addMissingWorkFieldResponse(candidateid, workInstanceName, fieldname, r
 				function(err, result) {
 						if (err) {}
 						successCB(result)
-				// console.log("------>result for skills--->"+result);
+				console.log("===========addMissingWorkFieldResponse=====>");	
+				console.log("------>result for workexperience--->"+result);
 				}
 
 		);

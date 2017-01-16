@@ -9,6 +9,8 @@ var getFieldsNames = function() {
    
 var findJobInfoMissingFields = function(candidateid, successCB, errorCB) {
     jobpreferenceProcessor.getPreferences(candidateid, function(result) {
+        console.log("result is");
+        console.log(result[0]);
         let jobInfo = result[0];
          
         let infoFieldArray = getFieldsNames();
