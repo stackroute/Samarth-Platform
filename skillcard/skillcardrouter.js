@@ -1,6 +1,7 @@
 let router = require('express').Router();
 let candidate = require('../candidate/candidateschema');
-let async = require('async');
+
+
 
 let profileprocessor = require('../profiles/profileprocessor');
 let personalInfoprocessor = require('../sectionpersonalinfo/personalinfoprocessor');
@@ -46,6 +47,25 @@ catch (err) {
             }
 }); // end of get /candidatesearch
 
+router.get('/aws',function (req,res) {
+    try {
+        
+        let config = new Object();
+        config.region = "ap-south-1";
+        config.secretAccessKey = "Ndm+yjnD949FcowVNHV7tjVI2PLiERT4XFV2nmzH";
+        config.accessKeyId = "AKIAIEJFMACVX4TI2O5A";
+        config.Bucket = "samarthuploads";
+        res.json(config);
+    } catch(e) {
+        // statements
+        console.log(e);
+        res.status(500).json({
+                    error: 'Error connecting to storage server!'
+                });
+    }
+    /* body... */
+}); //end of get /aws
+
 
 /* Get the all sections of the candidates that is required to show in skill card*/
 // HTTP GET /skillcard/:candidateid
@@ -53,6 +73,8 @@ catch (err) {
 
 router.get('/:candidateid', function(req, res) {
     try{
+        console.log("candidate is is");
+        console.log(req.params.candidateid);
     candidate.find({ candidateid: req.params.candidateid }, function(error, candidate) {
         if (candidate === '') {
             res.status(500).send('Candidate doesnt exist.. Register with candidate id');
@@ -61,6 +83,8 @@ router.get('/:candidateid', function(req, res) {
                     personalinfo: function(callback) {
                         personalInfoprocessor.getPersonalinfo(req.params.candidateid,
                             function(personalinfoobj) {
+                                console.log("personalinfoobj is");
+                                console.log(personalinfoobj);
                                 callback(null, personalinfoobj);
                             },
                             function(err) {
@@ -124,6 +148,8 @@ router.get('/:candidateid', function(req, res) {
                     if (err) {
                         return res.status(500).json({ msg: err });
                     }
+                    console.log("results is");
+                                console.log(results);
                     return res.status(201).json({ result: results });
                 }
             ); // end of Async

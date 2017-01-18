@@ -1,6 +1,6 @@
 
 // let skill = require('.././sectionskill/skillschema');
-let projectProcessor = require('.././sectionproject/projectprocessor');
+let projectProcessor = require('./../sectionproject/projectprocessor');
 let qboxprocessor = require('./qboxprocessor');
 let qboxquestionModel = require('./qboxquestions');
 

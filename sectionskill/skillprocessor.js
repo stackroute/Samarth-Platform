@@ -10,6 +10,7 @@ function getSkill(candidateid, successCB, errorCB) {
 			errorCB(err);
 		} 
 		successCB(skill);
+		console.log("its updating the answers respectively in a getSkill");
 	});
 }
 
@@ -26,6 +27,8 @@ function getallSkill(successCB, errorCB) {
 			skillMap[skill._id] = skill;
 		});
 		successCB(skills);
+		console.log("its updating the answers respectively in a getallSkill");
+
 	});
 }
 
@@ -64,6 +67,8 @@ function addMissingSkillFieldResponse(candidateid, skillInstanceName, fieldname,
 			if (err) {}
 			successCB(result)
 		console.log("------>result for skills--->"+result);
+		console.log("its updating the answers respectively in a addMissingSkillFieldResponse");
+
 		}
 
 	);
@@ -80,6 +85,8 @@ function addSkill(skillObj, candidateid, sucessCB ) {
 		},
 		function() {
 			sucessCB(skillObj.skills[0].skillname, candidateid);
+			console.log("its updating the answers respectively in a addSkill");
+
 		}
 	);
 }
@@ -100,6 +107,8 @@ function updateSkill(skillname, skillobj, candidateid, sucessCB) {
 		},
 		function() {
 			sucessCB('skill updated');
+			console.log("its updating the answers respectively in a updateSkill");
+
 		}
 
 	);
@@ -107,17 +116,17 @@ function updateSkill(skillname, skillobj, candidateid, sucessCB) {
 // , errorCB
 function deleteASkill(skillname, candidateid, sucessCB) {
 	skill.update({
-		candidateid: candidateid,
-		'skills.skillname': skillname
-	}, {
-		$pull: {
-			skills: {
-				skillname: skillname
-			}
-		}
-	}, function() {
-		sucessCB(skillname, candidateid);
-	});
+				candidateid: candidateid,
+				'skills.skillname': skillname
+			}, {
+			$pull: {
+				skills: {
+					skillname: skillname
+					}
+				}
+			}, function() {
+			sucessCB(skillname, candidateid);
+		});
 }
 // , errorCB
 function deleteSkill(candidateid, sucessCB) {

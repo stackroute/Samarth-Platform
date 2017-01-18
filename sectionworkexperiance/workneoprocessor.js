@@ -2,6 +2,9 @@ let neo4j = require('neo4j');
 let neo4jConnection = require("../connections/neo4jconnection.js");
 let relationConfig = require("../relationConfig/relationconfig");
 
+
+console.log(neo4jConnection.getConnection());
+
 console.log(relationConfig.neorelationconfig()['IS_A']);
 
 let db = neo4jConnection.getConnection();
