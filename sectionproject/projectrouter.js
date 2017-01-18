@@ -7,9 +7,7 @@ let constants = require('../authorization/constants');
 /* get all project for the given candidate id */
 // HTTP GET project/:candidateId
 // effective url project/:candidateId
-router.get('/:candidateId', function(req, res , next) {
-      authorization.isAuthorized(req, res, next, constants.CANDIDATE, constants.READ, constants.PROJECTS);
-    }, function(req, res) {
+router.get('/:candidateId',  function(req, res) {
     try {
         let projectObj = projectProcessor.getProject(req.params.candidateId,
             function(projectObj) {

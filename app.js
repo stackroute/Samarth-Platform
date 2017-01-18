@@ -11,8 +11,6 @@ let authRoutes = require('./auth/authrouter');
 let authByToken = require('./auth/authbytoken');
 let authCoordinatorRouter = require('./authcoordinator/authroutes');
 let authCoordinator = require('./authcoordinator/authbytoken');
-// let authorization = require('./authorization/authorization');
-// let constants = require('./authorization/constants');
 let circleRoute = require('./circlesBackEnd/circleRout');
 
 let projectRoutes = require('./sectionproject/projectrouter');
@@ -38,7 +36,7 @@ var verificationRoute = require('./verification/verificationroute');
 var coordinatorRouter = require('./coordinator/coordinatorroute');
 var misDetailRoute = require('./questionbox/missingDetailsRouter');
 var neo4jConnection = require("./connections/neo4jconnection.js");*/
-
+// let getcoordinatorrouter=require('./coordinator/coordinatorroute');
 let rubricRoute = require('./rubricbackend/rubricroute');
 let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
@@ -156,5 +154,6 @@ app.use('/coordinatorreg',placement);
 app.use('/jobProfile',jobProfile);
 app.use('/placementprocess',placementProcessRouter);
 app.use('/center',centerdetailsrouter);
+// app.use('/getcoordi',getcoordinatorrouter)
 
 module.exports = app;

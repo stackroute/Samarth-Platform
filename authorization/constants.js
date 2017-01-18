@@ -1,0 +1,20 @@
+module.exports =function(){
+    let SIDENAVBAR ="sidenavbar",
+        JOBS="jobs",
+        ADMIN ="admin",
+        COORDINATOR = "coordinator",
+        SUPERVISOR ="supervisor"
+        CREATE = "create",
+        EDIT = "edit",
+        DELETE = "delete",
+        READ = "read",
+        CANDIDATE = "candidate",
+        RBAC="rbac",
+        PERSONINFO="personalinfo",
+        JOBPREFERENCES="jobpreferences",
+        EDUCATION="education",
+        SKILLS="skills",
+        WORKEXPERIENCE="workexperience",
+        PROJECTS="projects";
+  }
+// module.exports =router;
