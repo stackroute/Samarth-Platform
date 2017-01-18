@@ -4,12 +4,13 @@ let center = require('./centerdetailsschema');
 function createNewcenterdetails(formobj, successCB, errorCB) {
 
     let centerObj = new center({
-        reg: formobj.reg,
+        centerCode: formobj.centerCode,
         location: formobj.location,
+        email: formobj.email,
         address: formobj.address,
         mobile: formobj.mobile,
-        name: formobj.name,
-        centertype: formobj.centertype,
+        cname: formobj.cname,
+        centerType: formobj.centerType,
         status: formobj.status
         
     });
@@ -30,16 +31,16 @@ function getAllcenterdetails(successCB, errorCB) {
     });
 }
 
-function getCenterdetails(reg, successCB, errorCB) {
-    center.find({ reg: reg }, function(err, getcenter) {
+function getCenterdetails(centerCode, successCB, errorCB) {
+    center.find({ centerCode: centerCode }, function(err, getcenter) {
         if (err) {
             errorCB(err);
         }
         successCB(getcenter);
     });
 }
-function updateCenterdetails(reg, successCB, errorCB) {
-    center.update({ reg: reg }, function(err, getupdatecenter) {
+function updateCenterdetails(centerCode,newData,successCB, errorCB) {
+    center.findOneAndUpdate({ centerCode: centerCode },newData, function(err, getupdatecenter) {
         if (err) {
             errorCB(err);
         }
@@ -47,8 +48,30 @@ function updateCenterdetails(reg, successCB, errorCB) {
     });
 }
 
+function disableCenterdetails(centerCode,newDisable,successCB, errorCB) {
+    center.findOneAndUpdate({ centerCode: centerCode },{status:"Disable"}, function(err, getupdatestatus) {
+        if (err) {
+            errorCB(err);
+        }
+        successCB(getupdatestatus);
+    });
+}
+
+function getcenterdetails(sucessCB, errorCB) {
+    center.find(function(error, result) {
+        if (error) {
+            errorCB(error);
+        } else {
+            sucessCB(result);
+        }
+    });
+}
+
 module.exports = {
     createNewcenterdetails : createNewcenterdetails,
     getAllcenterdetails : getAllcenterdetails,
-    getCenterdetails : getCenterdetails
+    getCenterdetails : getCenterdetails,
+    updateCenterdetails: updateCenterdetails,
+    disableCenterdetails : disableCenterdetails,
+    getcenterdetails : getcenterdetails
 }

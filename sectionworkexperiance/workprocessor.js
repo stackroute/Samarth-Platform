@@ -37,6 +37,7 @@ function createworkexp(formobj, sucessCB, errorCB) {
 // add skills into the existing records
 // , errorCB
 function addworkexp(wsObj, candidateid, sucessCB) {
+		//console.log(mongoose.connection.readyState);
 		work.update({ candidateid: candidateid }, {
 						$push: {
 								workexperience: wsObj.workexperience[0]
@@ -53,6 +54,7 @@ function addworkexp(wsObj, candidateid, sucessCB) {
 
 								});
 						sucessCB();
+						console.log("====added the workexperience=====>???????");
 				}
 		);
 }
@@ -64,22 +66,26 @@ function updateworkexp(wsobj, candidateid, workplace, sucessCB) {
 								'workexperience.$.designation': wsobj.workexperience[0].designation,
 								'workexperience.$.workplace': wsobj.workexperience[0].workplace,
 								'workexperience.$.Location': wsobj.workexperience[0].Location,
-								'workexperience.$.duration.duration': wsobj.workexperience[0].duration.duration,
 								'workexperience.$.duration.from': wsobj.workexperience[0].duration.from,
 								'workexperience.$.duration.to': wsobj.workexperience[0].duration.to,
+								'workexperience.$.duration.duration': wsobj.workexperience[0].duration.duration,
 								'workexperience.$.skills': wsobj.workexperience[0].skills
 						}
 				},
 				function() {
 						sucessCB('workexperience updated');
+						console.log("updating answers which are answered by the user");
 				}
 
 		);
 }
 
 //deleteworkexp deletes from MONGODB and calls delete function for NEO
-function deleteworkexp(candidateid, designation, sucessCB) {
-	work.update({
+function deleteworkexp(candidateid, designation, sucessCB,errorCB) {
+
+	if (mongoose.connection.readyState == 1) {
+		// statement
+		work.update({
 		candidateid: candidateid,
 		'workexperience.designation': designation
 	}, {
@@ -99,6 +105,13 @@ function deleteworkexp(candidateid, designation, sucessCB) {
 						sucessCB();
 				}
 	);//end update
+		
+	} else {
+		// statement
+		errorCB(err);
+	}
+
+	
 
 }//end deleteworkexp
 
@@ -107,6 +120,7 @@ function deleteworkexp(candidateid, designation, sucessCB) {
 //add work exp after  entering into the question box into the existing records
 function addMissingWorkFieldResponse(candidateid, workInstanceName, fieldname, response, successCB, errorCB) {
 	 // console.log("------->"+skillInstanceName+"   "+fieldname+"  "+response);
+		console.log("entered in to answers updating mode");
 		let field = ('workexperience.$.' + fieldname);
 		let setObj = {};
 		setObj[field] = response;
@@ -120,7 +134,8 @@ function addMissingWorkFieldResponse(candidateid, workInstanceName, fieldname, r
 				function(err, result) {
 						if (err) {}
 						successCB(result)
-				// console.log("------>result for skills--->"+result);
+				console.log("===========addMissingWorkFieldResponse=====>");	
+				console.log("------>result for workexperience--->"+result);
 				}
 
 		);

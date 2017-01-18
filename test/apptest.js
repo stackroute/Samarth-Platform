@@ -6,6 +6,9 @@ var expect = require('chai').expect;
 //Supertest wraps "Superagent", HTTP request/response library for server side
 var request = require("supertest");
 
+var server = request.agent("http://localhost:8082")
+
+
 //Initilise supertest to tes the module, which you want to test 
 request = request(app);
 
@@ -19,7 +22,7 @@ describe("Describe testing whether the instance is  singleton or not",function (
 		console.log('------>',instance2);
 		expect(instance1).to.equal(instance2);
 		done()
-    });
+	});
 
 })
 
@@ -27,13 +30,55 @@ describe("Describe testing whether the instance is  singleton or not",function (
 //describe -> testscenario
 describe("Make GET request to URL '/' and get a 200 res within 10ms", function() {
 
-    //it -> testcase
-    it('Simple GET Request to root url', function(done) {
-        request.get('/').expect(404, done);
-    });
+	//it -> testcase
+	it('Simple GET Request to root url', function(done) {
+		request.get('/').expect(404, done);
+	});
 
-    it('Testing for not defined route', function(done) {
-        request.get('/_undefined_route').expect(404, done);
-    });
+	it('Testing for not defined route', function(done) {
+		request.get('/_undefined_route').expect(404, done);
+	});
 
-}); //end of describe
+}) //end of describe
+
+describe('API test for skill Deletion',function () {
+  
+it('get a JSON Success(201) response',function(done){
+	   server
+		   .delete('/skill/:candidateid/:skillname')
+		   .expect('Content-Type', 'application/json; charset=utf-8')
+		   .expect(201,done);
+	 });
+})
+
+
+describe('API test for qualification Deletion',function () {
+  
+it('get a JSON Success(201) response',function(done){
+	   server
+		   .delete('/education/:candidateid/:title')
+		   .expect('Content-Type', 'application/json; charset=utf-8')
+		   .expect(201,done);
+	 });
+
+}) //end of describe
+
+describe('API test for Workexperience Deletion',function () {
+
+    it('get a JSON Success(201) response',function(done){
+        server
+            .delete('/work/:candidateid/:designation')
+            // .query({candidateid: 76547654, designation: 'Architect'})
+            // .set('Accept', 'application/json')
+            // .send({
+            //     candidateid: 7654765432,
+            //     designation: 'Project Engineer'
+            // })
+            .expect('Content-Type', 'application/json')
+            // .expect('Content-Type', "text/html; charset=UTF-8")
+            .expect('Content-Length', '0')
+            // .field('age','24')
+            .expect(201,done);
+      });
+
+});

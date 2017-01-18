@@ -80,6 +80,7 @@ try{
 	 // end find
 }); // end patch
 
+// HTTP DELETE /work/:candidateid/:designation
 //delete route for Work Experience deletion
 router.delete('/:candidateid/:designation', function(req, res) {
 	try{

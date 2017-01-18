@@ -78,7 +78,7 @@ function addMissingProjectFieldResponse(candidateid, projectInstanceName, fieldn
    // console.log("------->"+skillInstanceName+"   "+fieldname+"  "+response);
     let field = ('projects.$.' + fieldname);
     let setObj = {};
-    setObj[field] = response;
+     setObj[field] = response;
     console.log("------>under projects------------>"+field);
     project.update({
             candidateid: candidateid,

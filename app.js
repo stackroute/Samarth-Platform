@@ -150,7 +150,7 @@ app.use('/coordinatorregister', coordinatorRouter);
 
 app.use('/profession', professiontoskillroutr);
 
-app.use('/coordinatorreg',placement);
+app.use('/placement',placement);
 app.use('/jobProfile',jobProfile);
 app.use('/placementprocess',placementProcessRouter);
 app.use('/center',centerdetailsrouter);

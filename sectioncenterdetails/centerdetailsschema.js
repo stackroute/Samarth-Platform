@@ -3,13 +3,15 @@ let Schema = mongoose.Schema;
 
 let CenterDetailsSchema = new Schema({
 
-    reg: { type: String, unique: true, required: true },
+    centerCode: { type: String, required: true, unique: true },
     location: { type: String },
     address: { type: String },
     mobile: { type: Number, required: true },
-    name: { type: String },
-    centertype: { type: String },
+    cname: { type: String },
+    centerType: { type: String, enum: ['Headquarter','Regional','Nodal'] },
     status: { type: String }
+    // createdAt: { type: String },
+    // updatedOn: { type: String }
 });
 let centerModl = mongoose.model('centerdetails', CenterDetailsSchema);
 module.exports = centerModl;
