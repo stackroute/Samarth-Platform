@@ -25,13 +25,13 @@ qualification_institute = function(institute, candidateid,institutename, success
         }
     });
 };
-let educationRelationDelete = function(title, candidateid, errCB) {
+let educationRelationDelete = function(title, candidateid, inst_name, errCB) {
     db.cypher({
-     query:'MATCH(c:Candidate {name:{candidateid}})-[r:Qualification_in]->(p:Qualification{name:{institute}}) DETACH DELETE r',
+     query:'MATCH(c:Candidate{name:{candidateid}})-[r:Qualification_in]->(q:Qualification{name:{institute},nameofins:{institutename}}) MATCH (c:Candidate{name:{candidateid}})-[f:Qualified_from]->(i:Institute{name:{institutename}}) DETACH DELETE r,f',
         params: {
           candidateid: candidateid,
-          institute: title 
-          // institutename:institutename
+          institute: title, 
+          institutename:inst_name
         }
     }, function(err, results) {
         if (err){
