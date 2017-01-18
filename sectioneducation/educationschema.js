@@ -12,7 +12,7 @@ let qualificationSchema = new Schema({
   	'academicType': {type: String},							// whether primary,secondary,college etc
   	 institute: {
   		name: {type: String, required:true},//name of the institute from where qualification attained
-  		type: {type: String, enum: ['school', 'work', 'college']},
+  		type: {type: String, enum: ['School', 'Work', 'College']},
   		location: {type: String},						// location of institute
   		affiliation: {type: String},/* Board name if a school, University name
                                                     if a college etc */

@@ -1,6 +1,6 @@
 
 // let skill = require('.././sectionskill/skillschema');
-let workProcessor = require('.././sectionworkexperiance/workprocessor');
+let workProcessor = require('./../sectionworkexperiance/workprocessor');
 // let workProcessor = require('./../sectionworkexperiance/workprocessor');
 let qboxprocessor = require('./qboxprocessor');
 let qboxquestionModel = require('./qboxquestions');

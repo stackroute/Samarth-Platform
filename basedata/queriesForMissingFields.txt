@@ -5,7 +5,7 @@ db.fieldquestions.insert({section:'skills',fieldname:'experience',query:'Specify
 
 2.) For qualification section:-
 
-db.fieldquestions.insert({section:'qualification',fieldname:'type',query:'In which type of institute you studied(school,college,work)',lang:'English'})
+db.fieldquestions.insert({section:'qualification',fieldname:'type',query:'In which type of institute you studied(School,College,Work)',lang:'English'})
 db.fieldquestions.insert({section:'qualification',fieldname:'academicType',query:'Course Level(Primary,Metric,Senior-Secondary,Diploma,Graduation,Post-Graduation,Docterate,Others) of  ',lang:'English'})
 db.fieldquestions.insert({section:'qualification',fieldname:'name',query:'From which institute you did your ',lang:'English'})
 db.fieldquestions.insert({section:'qualification',fieldname:'location',query:'Specify location of the Institute for qualification  ',lang:'English'})

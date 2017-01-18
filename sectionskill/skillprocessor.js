@@ -116,17 +116,17 @@ function updateSkill(skillname, skillobj, candidateid, sucessCB) {
 // , errorCB
 function deleteASkill(skillname, candidateid, sucessCB) {
 	skill.update({
-		candidateid: candidateid,
-		'skills.skillname': skillname
-	}, {
-		$pull: {
-			skills: {
-				skillname: skillname
-			}
-		}
-	}, function() {
-		sucessCB(skillname, candidateid);
-	});
+				candidateid: candidateid,
+				'skills.skillname': skillname
+			}, {
+			$pull: {
+				skills: {
+					skillname: skillname
+					}
+				}
+			}, function() {
+			sucessCB(skillname, candidateid);
+		});
 }
 // , errorCB
 function deleteSkill(candidateid, sucessCB) {
