@@ -65,9 +65,9 @@ function updateworkexp(wsobj, candidateid, workplace, sucessCB) {
 								'workexperience.$.designation': wsobj.workexperience[0].designation,
 								'workexperience.$.workplace': wsobj.workexperience[0].workplace,
 								'workexperience.$.Location': wsobj.workexperience[0].Location,
-								'workexperience.$.duration.duration': wsobj.workexperience[0].duration.duration,
 								'workexperience.$.duration.from': wsobj.workexperience[0].duration.from,
 								'workexperience.$.duration.to': wsobj.workexperience[0].duration.to,
+								'workexperience.$.duration.duration': wsobj.workexperience[0].duration.duration,
 								'workexperience.$.skills': wsobj.workexperience[0].skills
 						}
 				},

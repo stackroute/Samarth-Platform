@@ -27,7 +27,7 @@ function createNewPreferences(formobj,candidateId,successCB,errorCB) {
             // errorCB(err);
         }
         // successCB();
-        console.log(successCB);
+        // console.log(successCB);
     });
 }
 
