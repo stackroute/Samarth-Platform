@@ -92,6 +92,93 @@ candidatesOfProfession = function(req,successCB,errorCB)
 	}
 }
 
+availableCandidatesOfProfession = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'match(n:Candidate)-[r]->(p:Profession)where p.name ={profession} and n.Interested_in_job="Yes" return n.name as candidateid',
+			params:{
+				profession:req.params.profession
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
+candidatesAppliedProfession = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'MATCH (n:Candidate)-[r1:applied]->(j:Job) MATCH(n:Candidate)-[r]->(p:Profession) where p.name ={profession} return n.name as candidateid',
+			params:{
+				profession:req.params.profession
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
+candidatesPlacedProfession = function(req,successCB,errorCB)
+{
+	try
+	{
+		db.cypher({
+			query:'MATCH (n:Candidate)-[r1:accepted]->(j:Job) MATCH(n:Candidate)-[r]->(p:Profession) where p.name in {profession} return n.name as candidateid',
+			params:{
+				profession:req.params.profession
+			}
+		},
+		function(err,result)
+		{
+			if(err)
+			{
+				errorCB(err);
+			}
+			else
+			{
+				successCB(result);
+			}
+		}
+		)
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+}
+
 appliedJobs = function(req,successCB,errorCB)
 {
 	try
@@ -430,6 +517,9 @@ module.exports = {
 	join:join,
 	decline:decline,
 	candidatesOfProfession:candidatesOfProfession,
+	availableCandidatesOfProfession:availableCandidatesOfProfession,
+	candidatesAppliedProfession:candidatesAppliedProfession,
+	candidatesPlacedProfession:candidatesPlacedProfession,
 	acceptedCandidates:acceptedCandidates,
 	rejectedCandidates:rejectedCandidates,
 	joinedCandidates:joinedCandidates,
