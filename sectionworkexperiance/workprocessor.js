@@ -37,6 +37,7 @@ function createworkexp(formobj, sucessCB, errorCB) {
 // add skills into the existing records
 // , errorCB
 function addworkexp(wsObj, candidateid, sucessCB) {
+		//console.log(mongoose.connection.readyState);
 		work.update({ candidateid: candidateid }, {
 						$push: {
 								workexperience: wsObj.workexperience[0]
@@ -80,8 +81,11 @@ function updateworkexp(wsobj, candidateid, workplace, sucessCB) {
 }
 
 //deleteworkexp deletes from MONGODB and calls delete function for NEO
-function deleteworkexp(candidateid, designation, sucessCB) {
-	work.update({
+function deleteworkexp(candidateid, designation, sucessCB,errorCB) {
+
+	if (mongoose.connection.readyState == 1) {
+		// statement
+		work.update({
 		candidateid: candidateid,
 		'workexperience.designation': designation
 	}, {
@@ -101,6 +105,13 @@ function deleteworkexp(candidateid, designation, sucessCB) {
 						sucessCB();
 				}
 	);//end update
+		
+	} else {
+		// statement
+		errorCB(err);
+	}
+
+	
 
 }//end deleteworkexp
 

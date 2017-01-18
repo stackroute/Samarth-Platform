@@ -1,6 +1,7 @@
 let router = require('express').Router();
 let candidate = require('../candidate/candidateschema');
 let async = require('async');
+let AWS = require('aws-sdk');
 
 let profileprocessor = require('../profiles/profileprocessor');
 let personalInfoprocessor = require('../sectionpersonalinfo/personalinfoprocessor');
@@ -45,6 +46,37 @@ catch (err) {
                 });
             }
 }); // end of get /candidatesearch
+
+router.get('/aws',function (req,res) {
+    try {
+        // AWS.config.region = 'ap-south-1';
+        // AWS.config.update({ accessKeyId: 'AKIAIEJFMACVX4TI2O5A', secretAccessKey: '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' });
+        let config = new Object();
+        config.region = "ap-south-1";
+        config.secretAccessKey = "Ndm+yjnD949FcowVNHV7tjVI2PLiERT4XFV2nmzH";
+        config.accessKeyId = "AKIAIEJFMACVX4TI2O5A";
+        config.Bucket = "samarthuploads";
+        // config = {
+        //     region = "ap-south-1",
+        //     secretAccessKey= "Ndm+yjnD949FcowVNHV7tjVI2PLiERT4XFV2nmzH",
+        //     accessKeyId = "AKIAIEJFMACVX4TI2O5A",
+        //     Bucket = "samarthuploads"
+        // };
+        // let bucket = new AWS.S3({ params: { Bucket: 'samarthuploads', maxRetries: 10 }, httpOptions: { timeout: 360000 } });
+        // console.log('bucket');
+        // console.log(bucket);
+        res.json(config);
+        // res.status(200).json(bucket);
+        // console.log(res);
+    } catch(e) {
+        // statements
+        console.log(e);
+        res.status(500).json({
+                    error: 'Error connecting to storage server!'
+                });
+    }
+    /* body... */
+}); //end of get /aws
 
 
 /* Get the all sections of the candidates that is required to show in skill card*/
