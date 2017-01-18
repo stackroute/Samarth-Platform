@@ -85,6 +85,8 @@ router.get('/aws',function (req,res) {
 
 router.get('/:candidateid', function(req, res) {
     try{
+        console.log("candidate is is");
+        console.log(req.params.candidateid);
     candidate.find({ candidateid: req.params.candidateid }, function(error, candidate) {
         if (candidate === '') {
             res.status(500).send('Candidate doesnt exist.. Register with candidate id');
@@ -93,6 +95,8 @@ router.get('/:candidateid', function(req, res) {
                     personalinfo: function(callback) {
                         personalInfoprocessor.getPersonalinfo(req.params.candidateid,
                             function(personalinfoobj) {
+                                console.log("personalinfoobj is");
+                                console.log(personalinfoobj);
                                 callback(null, personalinfoobj);
                             },
                             function(err) {
@@ -156,6 +160,8 @@ router.get('/:candidateid', function(req, res) {
                     if (err) {
                         return res.status(500).json({ msg: err });
                     }
+                    console.log("results is");
+                                console.log(results);
                     return res.status(201).json({ result: results });
                 }
             ); // end of Async

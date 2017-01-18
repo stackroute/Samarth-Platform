@@ -43,11 +43,27 @@ router.post('/:regId', function(req,res){
     });
 })
 router.post('/update/:regId', function(req,res){
-    centerdetailsprocessor.updateCenterdetails(function(updatecenter){
+    centerdetailsprocessor.updateCenterdetails(req.params.regId, function(updatecenter){
             res.status(200).json(updatecenter);
     },
+
     function(error){
             res.status(500).json(error);
     });
 })
+
+router.get('/getcenterdetails', function(req, res) {
+    try {
+        centerdetailsprocessor.getcenterdetails(function sucessCB(result) {
+            res.status(200).send(result);
+        }, function errorCB(error) {
+            res.status(500).json(error);
+        });
+    } catch (err) {
+        res.status(500).json({
+            error: 'Internal error occurred, please report'
+        });
+    }
+});
+
 module.exports = router;
