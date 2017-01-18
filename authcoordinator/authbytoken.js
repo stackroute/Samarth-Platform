@@ -44,7 +44,7 @@ var verifyCoordinatorJWTToken = function(token, clientToken, callback, unauthCB)
 }
 
 var generateCoordinatorJWTToken = function(details, cb) {
-    var payload = details;
+    var payload = details; 
     var secretOrPrivateKey = getCoordinatorTokenSecret();
     var options = {
         algorithm: "HS256",

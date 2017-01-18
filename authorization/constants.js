@@ -1,4 +1,3 @@
-
   module.exports = {
         SIDENAVBAR :"sidenavbar",
         SEARCH:"search",

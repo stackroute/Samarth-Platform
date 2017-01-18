@@ -1,5 +1,7 @@
 let router = require('express').Router();
 let workProcessor = require('./workprocessor');
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
 let work = require('./workschema');
  
 
@@ -24,7 +26,7 @@ catch (err) {
 /* Add new types of work for the given candidate id only after registration*/
 // HTTP POST /work/:candidateid
 // effective url work/:candidateid
-router.post('/:candidateid', function(req, res) {
+router.post('/:candidateid',function(req, res) {
 	try{
 	work.find({ candidateid: req.params.candidateid }, function(err, result) {
 		if (result === '') {
@@ -78,6 +80,7 @@ try{
 	 // end find
 }); // end patch
 
+// HTTP DELETE /work/:candidateid/:designation
 //delete route for Work Experience deletion
 router.delete('/:candidateid/:designation', function(req, res) {
 	try{

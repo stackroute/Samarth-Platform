@@ -6,6 +6,7 @@ let educationMissingFinder = require('.././questionbox/educationMissingFinder');
 let personalInfoMissingFinder = require('.././questionbox/personalInfoMissingFinder');
 let projectMissingFinder = require('.././questionbox/projectMissingFinder');
 let workMissingFinder = require('.././questionbox/workExpMissingFinder');
+let jobpreferenceMissingFinder = require('.././questionbox/jobpreferenceMissingFinder');
 let skillprocessor = require('.././sectionskill/skillprocessor');
 let educationProcessor = require('.././sectioneducation/educationprocessor');
 let personalInfoprocessor = require('.././sectionpersonalinfo/personalinfoprocessor');
@@ -93,6 +94,15 @@ function inspectMissingProfileFields(candidateId, successCB, errorCB) {
                 callback(err, null);
             });
         }
+        // jobpreference: function(callback) {
+        //     console.log("jobpreference");
+        //     jobpreferenceMissingFinder.findJobInfoMissingFields(candidateId, function(result) {
+        //         callback(null, result);
+        //     }, function(err) {
+        //         callback(err, null);
+        //     })
+        // }
+
     };
 
     try {
@@ -119,6 +129,7 @@ function updateMissingFieldResponse(candidateId, sectionName, instancename, fiel
                     "personalinfo": personalInfoprocessor.addMissingPersonalInfoFieldResponse,
                     "project":  projectprocessor.addMissingProjectFieldResponse,
                     "workexperience": workProcessor.addMissingWorkFieldResponse,
+                    // "jobpreference" : jobpreference.addMissingJobpreferencesFieldResponse,
                 }
 
                 let closureObj = missingFieldResUpdateTasks[sectionName];

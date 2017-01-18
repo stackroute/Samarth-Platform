@@ -1,4 +1,4 @@
-// RBAC
+
 var  RBAC = require('rbac').default;
 
 const rbac = new RBAC({
@@ -53,8 +53,8 @@ const rbac = new RBAC({
 
 function isAuthorized(req, res, next, role, accesslevel, target){
     rbac.can(role, accesslevel, target, (err, can) => {
-
   if (err) {
+
     console.log("Not authorized");
     // throw err; // process error
     // res.send(err);

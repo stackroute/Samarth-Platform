@@ -6,8 +6,7 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
     let personObj = new person({
         candidateid: formobj.mobile,
         name: formobj.name,
-        adharcard: formobj.adharcard,
-        dob: formobj.dob,
+        dob: null,
         email: formobj.email,
         contact: formobj.mobile,
         gender: '',
@@ -15,7 +14,7 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
         maritialstatus: '',
         address: '',
         location: formobj.location,
-        pincode: ''
+        pincode: null
 
     });
     personObj.save(function(err, postdetails) {
@@ -31,7 +30,8 @@ function getPersonalinfo(candidateid, successCB, errorCB) {
         if (err) {
             errorCB(err);
         }
-
+        console.log('getpersons data');
+        console.log(getpersons);
         successCB(getpersons);
     });
 }
@@ -41,6 +41,7 @@ function updatePersonalinfo(piObj, candidateId, successCB, errCB) {
 
         function(err, result) {
             successCB(result);
+            console.log("updated successfully");
         }
     );
 }
@@ -111,3 +112,4 @@ module.exports = {
     updateProfilePic:updateProfilePic,
     addMissingPersonalInfoFieldResponse:addMissingPersonalInfoFieldResponse
 };
+
