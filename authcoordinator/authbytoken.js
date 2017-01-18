@@ -1,5 +1,6 @@
 var coordinator = require('../coordinator/coordinatorschema');
 var jwt = require('jsonwebtoken');
+const config = require('../config/config');
 
 
 var authenticateCoordinator = function(email, clientToken, callback,
@@ -60,7 +61,7 @@ var generateCoordinatorJWTToken = function(details, cb) {
 }
 
 var getCoordinatorTokenSecret = function() {
-    return 'SAMARTH-COORDINATOR-PLATFORM-SECRET';
+    return config.SECRETKEY;
 }
 
 module.exports = {

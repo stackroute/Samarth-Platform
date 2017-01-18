@@ -9,7 +9,7 @@ function createCoordinator(formobj, successPC, errorPC) {
     let coordinatorObj = new coordinator({
         coordinatorName: formobj.name,
         coordinatorId: formobj.mobile,
-        coordinatorRole: formobj.role,
+        userRole: formobj.role,
         coordinatorProfession: formobj.profession,
         // coordinatorLocation: formobj.location,
         coordinatorGender: formobj.gender,

@@ -3,10 +3,14 @@ let coordinatorprocessor = require('./coordinatorprocessor');
 let coordinator = require('./coordinatorschema');
 let circleProcessor = require('../circlesBackEnd/circleProcessor');
 let circleNeo4jProcessor = require('../circlesBackEnd/circleNeo4jProcessor');
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
 
 
-router.post('/createcoordinator', function(req, res) {
-    console.log(req.body)
+router.post('/createcoordinator',function(req, res, next){
+    authorization.isAuthorized(req, res, next, req.user._doc.userRole[0], constants.CREATE, constants.ADMIN);
+    },  function(req, res) {
+    // console.log(req.body)
     try {
         coordinator.findOne({
             coordinatorId: req.body.mobile
