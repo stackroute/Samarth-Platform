@@ -9,6 +9,7 @@ let educationProcessor  = require('.././sectioneducation/educationprocessor');
 let personalInfoprocessor = require('.././sectionpersonalinfo/personalinfoprocessor');
 let projectprocessor = require('.././sectionproject/projectprocessor');
 let workProcessor = require('.././sectionworkexperiance/workprocessor');
+let jobProcessor =  require('.././sectionjobpreferences/jobpreferencesprocessor');
 let profileProcessor = require('.././profiles/profileprocessor');
 /** 
  * API for returning questions pending to be answered by the 

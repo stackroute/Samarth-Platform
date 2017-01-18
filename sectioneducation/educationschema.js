@@ -7,12 +7,12 @@ let qualificationSchema = new Schema({
   {
   	'title': {type: String, required: true}, // title of my qualification that i have done
   	'batch': {type: Number, required: true},		   // the year in which i had passed
-  	from: {type: String},
-  	to: {type: String},
+  	// from: {type: String},
+  	// to: {type: String},
   	'academicType': {type: String},							// whether primary,secondary,college etc
-  	institute: {
+  	 institute: {
   		name: {type: String, required:true},//name of the institute from where qualification attained
-  		type: {type: String, enum: ['school', 'work', 'college']},
+  		type: {type: String, enum: ['School', 'Work', 'College']},
   		location: {type: String},						// location of institute
   		affiliation: {type: String},/* Board name if a school, University name
                                                     if a college etc */
@@ -20,7 +20,7 @@ let qualificationSchema = new Schema({
   	},
   	outcome: {
 		result: {type: String},							// marks;grades eg A,B;etc
-		unit: {type: String}							// %, GRADE , NUMBER etc
+		// unit: {type: String}							// %, GRADE , NUMBER etc
 	}
   }]
 });
