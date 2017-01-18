@@ -5,6 +5,7 @@ var expect = require('chai').expect;
 //Supertest is a library to test apps, which have API endpoints or Request/Response based
 //Supertest wraps "Superagent", HTTP request/response library for server side
 var request = require("supertest");
+var server = request.agent("http://localhost:8082")
 
 //Initilise supertest to tes the module, which you want to test 
 request = request(app);
@@ -36,4 +37,23 @@ describe("Make GET request to URL '/' and get a 200 res within 10ms", function()
         request.get('/_undefined_route').expect(404, done);
     });
 
-}); //end of describe
+}) //end of describe
+
+describe('API test for Workexperience Deletion',function () {
+
+    it('get a JSON Success(201) response',function(done){
+        server
+            .delete('/work/:candidateid/:designation')
+            // .query({candidateid: 76547654, designation: 'Architect'})
+            // .set('Accept', 'application/json')
+            // .send({
+            //     candidateid: 7654765432,
+            //     designation: 'Project Engineer'
+            // })
+            .expect('Content-Type', 'application/json')
+            // .expect('Content-Type', "text/html; charset=UTF-8")
+            .expect('Content-Length', '0')
+            // .field('age','24')
+            .expect(201,done);
+      });
+});
