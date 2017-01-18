@@ -5,7 +5,7 @@ let PersonalInfoSchema = new Schema({
 
     candidateid: { type: String, unique: true, required: true },
     name: { type: String, required: true },
-    adharcard: {type: Number, required: true},
+    adharcard: {type: Number },
     dob: { type: Date },
     gender: { type: String },
     maritialstatus: { type: String },
