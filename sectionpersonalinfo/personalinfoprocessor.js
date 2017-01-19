@@ -98,7 +98,3 @@ module.exports = {
     updateProfilePic:updateProfilePic,
     addMissingPersonalInfoFieldResponse:addMissingPersonalInfoFieldResponse
 };
-<<<<<<< HEAD
-=======
-
->>>>>>> 2f4783490a3d86a60311dc82d8d8a0fa8b2f209c
