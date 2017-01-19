@@ -16,6 +16,8 @@ apiRoutes.use(function(req, res, next) {
         return res.json({ success: false, message: 'Failed to authenticate token.' });
       } else {
         req.user = decoded;
+        console.log('req.user.................');
+        console.log(req.user);
         next();
       }
     });

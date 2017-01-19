@@ -1,11 +1,9 @@
 let mongoose = require('mongoose');
 let center = require('./centerdetailsschema');
-
 function createNewcenterdetails(formobj, successCB, errorCB) {
-
     let centerObj = new center({
         centerCode: formobj.centerCode,
-        location: formobj.location,
+        centerLocation: formobj.centerLocation,
         email: formobj.email,
         address: formobj.address,
         mobile: formobj.mobile,
@@ -30,7 +28,6 @@ function getAllcenterdetails(successCB, errorCB) {
         successCB(getcenters);
     });
 }
-
 function getCenterdetails(centerCode, successCB, errorCB) {
     center.find({ centerCode: centerCode }, function(err, getcenter) {
         if (err) {
@@ -47,7 +44,6 @@ function updateCenterdetails(centerCode,newData,successCB, errorCB) {
         successCB(getupdatecenter);
     });
 }
-
 function disableCenterdetails(centerCode,newDisable,successCB, errorCB) {
     center.findOneAndUpdate({ centerCode: centerCode },{status:"Disable"}, function(err, getupdatestatus) {
         if (err) {
@@ -56,7 +52,6 @@ function disableCenterdetails(centerCode,newDisable,successCB, errorCB) {
         successCB(getupdatestatus);
     });
 }
-
 function getcenterdetails(sucessCB, errorCB) {
     center.find(function(error, result) {
         if (error) {
@@ -66,7 +61,6 @@ function getcenterdetails(sucessCB, errorCB) {
         }
     });
 }
-
 module.exports = {
     createNewcenterdetails : createNewcenterdetails,
     getAllcenterdetails : getAllcenterdetails,

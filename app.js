@@ -8,6 +8,7 @@ const bearerToken = require('express-bearer-token');
 
 
 let baseDataRoutes = require('./basedata/basedataroutes');
+let registerRoutes = require('./candidate/registrationrouter.js')
 let placement=require("./placement/coordinatorrouter.js");
 let authRoutes = require('./auth/authrouter');
 let apiRoutes = require('./authorization/apirouter');
@@ -45,7 +46,7 @@ let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
 let neo4jConnection = require("./connections/neo4jconnection");
 
-let placement=require("./placement/coordinatorrouter.js");
+// let placement=require("./placement/coordinatorrouter.js");
 let centerdetailsrouter = require("./sectioncenterdetails/centerdetailsrouter.js");
 
 
@@ -134,7 +135,7 @@ function isAuthenticated(req, res, next) {
 // app.use(bearerToken());
 app.use('/basedata', baseDataRoutes);
 app.use('/basedata', baseDataRoutes);
-app.use('/placement',placement);
+app.use('/register',registerRoutes);
 app.use('/auth', authRoutes);
 app.use('/placement',placement);
 app.use('/details', authCoordinatorRouter);
