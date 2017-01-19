@@ -52,12 +52,12 @@ let insertCoordinator = function(newUser, callback, unauth) {
     }; // end of insertCoordinator
 
 // let updateCoordinator = function(coordinatorId,newData,suceessCB) {
-//     coordinator.update({'coordinatorId':coordinatorId},{$set: newData}, function(err,updatecoordi) 
-//     { 
+//     coordinator.update({'coordinatorId':coordinatorId},{$set: newData}, function(err,updatecoordi)
+//     {
 //       if (err) {
 //             // errorCB(err);
 //         }
-//         console.log(updatecoordi);   
+//         console.log(updatecoordi);
 //     });
 // }
 

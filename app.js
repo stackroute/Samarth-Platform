@@ -34,6 +34,7 @@ let employerRoutes = require('./jobprovider/jobproviderroute.js');
 let professiontoskillroutr = require('./professiontoskillsgraphdata/professiontoskillrouter.js');
 let jobProfile=require('./jobServer/jobProfileRoute.js');
 const placementProcessRouter = require('./placementprocess/placementrouter.js');
+let centerdetailsrouter = require('./sectioncenterdetails/centerdetailsrouter.js');
 /*var rubricRoute = require('./rubricbackend/rubricroute');
 var verificationRoute = require('./verification/verificationroute');
 var coordinatorRouter = require('./coordinator/coordinatorroute');
