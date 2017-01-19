@@ -4,11 +4,16 @@ var jobProfile = require('./jobProfileSchema');
 var jobProfileProcessor = require('./jobProfileProcessor');
 let jobproviderprocessor = require('../jobprovider/jobproviderprocessor');
 let jobProfileNeo = require('./jobProfileNeoProcessor');
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
+
 
 //Routes defined
 
 //post job
-router.post('/jobpost',function(req,res){
+router.post('/jobpost',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREATE,constants.COORDINATOR);
+},function(req,res){
 	try{
 	 var jobData = req.body;
 	 var jobCode="";
@@ -32,7 +37,7 @@ router.post('/jobpost',function(req,res){
 		 },function errorFn(error){
 			res.status(200).json({status:'failed',error:'Some error occurred in job posting!'});
 		})
-		}  
+		}
 	},function errorFn(error) {
 		res.status(500).json({status:'failed',error:'Some error occurred'});
 	});
@@ -68,7 +73,9 @@ router.get('/:getjobcodedata', function(req, res) {
  }
 });
 
-router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
+router.get('/searchJobs/:searchTxt/:profs', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+},function(req, res) {
 	var jobs=[];
 	var jobProfile={};
 	var count=0;
@@ -100,7 +107,7 @@ router.get('/searchJobs/:searchTxt/:profs', function(req, res) {
 						console.log(jobProfile);
 						jobProfile = {};
 						callback();
-					 
+
 				}, function errorCB(error) {
 						// res.status(500).json(error);
 				});
@@ -153,6 +160,7 @@ router.patch('/updateJob', function(req, res) {
 				}
 				console.log('in patch');
 				jobProfileProcessor.updateJob(jobData, function (result) {
+
 						res.status(200).json({msg:'Job profile data has been updated successfully!'});
 				}, function (error) {
 						res.status(500).json({msg:'Some error occurred'});

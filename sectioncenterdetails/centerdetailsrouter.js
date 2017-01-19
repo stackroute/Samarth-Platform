@@ -2,11 +2,9 @@ let router = require('express').Router();
 let centerdetailsprocessor = require('./centerdetailsprocessor');
 let centerdetailsneoprocessor = require('./centerdetailsneoprocessor');
 let centerdetails = require('./centerdetailsschema');
-
 router.post('/', function(req,res){
-	
-	var center=req.body;
-
+    
+    var center=req.body;
    try {
         centerdetails.findOne({
             centerCode: req.body.centerCode
@@ -14,16 +12,15 @@ router.post('/', function(req,res){
             if (err) {
                 return res.send({ error: 'Something went wrong, please report' });
             }
-
             if (centerObj) {
                 return res.status(500).json({ error: 'Center code already exists'});
-
             } else {
                 // Does not exists
                  centerdetailsprocessor.createNewcenterdetails(center,function(postdetails){
                         console.log("Heloo " + postdetails.centerLocation);
                         var centerDomain = "centerDomain";
-                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,postdetails.cname, centerDomain, 
+                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,postdetails.cname, centerDomain,
+                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,postdetails.cname,
                                 postdetails.centerCode,function(err,success) {
                                 if (err) {
                                     console.log(err);
@@ -45,7 +42,6 @@ router.post('/', function(req,res){
    
     
 })
-
 // router.get('/getNeoPlacementCenter', function(req,res){
      
 //     centerdetailsneoprocessor.getPlacementCenter(function(getNeoCenter){
@@ -58,10 +54,8 @@ router.post('/', function(req,res){
 // })
 
 
-
-
 router.get('/getall', function(req,res){
-	 
+     
     centerdetailsprocessor.getAllcenterdetails(function(getcenters){
             res.status(200).json(getcenters);
     },
@@ -83,12 +77,10 @@ router.post('/update/:regId', function(req,res){
     centerdetailsprocessor.updateCenterdetails(req.params.regId,req.body,function(updatecenter){
             res.status(200).json(updatecenter);
     },
-
     function(error){
             res.status(500).json(error);
     });
 })
-
 router.post('/disable/:regId', function(req,res){
      
     centerdetailsprocessor.disableCenterdetails(req.params.regId,req.body,function(updatecenterstatus){
@@ -97,12 +89,10 @@ router.post('/disable/:regId', function(req,res){
             console.log(req.body);
             res.status(200).json(updatecenterstatus);
     },
-
     function(error){
             res.status(500).json(error);
     });
 })
-
 router.get('/getcenterdetails', function(req, res) {
     try {
         centerdetailsprocessor.getcenterdetails(function sucessCB(result) {
@@ -116,5 +106,4 @@ router.get('/getcenterdetails', function(req, res) {
         });
     }
 });
-
 module.exports = router;

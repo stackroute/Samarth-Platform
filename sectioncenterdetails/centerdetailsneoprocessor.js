@@ -11,7 +11,6 @@ let createNodes = function (centerLocation,cname,centerDomain,centerCode,Success
 
 // 'MERGE (n:circle{name:{centerCode},cname:{cname},centerDomain:{placementCenter}}) MERGE (l:Location{name:{centerLocation}}) MERGE(n)-[:memberOf]->(l) RETURN n'
 
-
 // MERGE(e:Candidate{name:{name}})  MERGE(n)-[r:belongto]-(e) 
 // MERGE(n:circle {centerCode: 1234,name:"centerid"})
 // MERGE(v:Location{name:"mumbai"})

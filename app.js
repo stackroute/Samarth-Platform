@@ -4,10 +4,14 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let neo4j = require('neo4j');
+const bearerToken = require('express-bearer-token');
+
 
 let baseDataRoutes = require('./basedata/basedataroutes');
-
+let registerRoutes = require('./candidate/registrationrouter.js')
+let placement=require("./placement/coordinatorrouter.js");
 let authRoutes = require('./auth/authrouter');
+let apiRoutes = require('./authorization/apirouter');
 let authByToken = require('./auth/authbytoken');
 let authCoordinatorRouter = require('./authcoordinator/authroutes');
 let authCoordinator = require('./authcoordinator/authbytoken');
@@ -36,13 +40,15 @@ var verificationRoute = require('./verification/verificationroute');
 var coordinatorRouter = require('./coordinator/coordinatorroute');
 var misDetailRoute = require('./questionbox/missingDetailsRouter');
 var neo4jConnection = require("./connections/neo4jconnection.js");*/
-
+// let getcoordinatorrouter=require('./coordinator/coordinatorroute');
 let rubricRoute = require('./rubricbackend/rubricroute');
 let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
 let neo4jConnection = require("./connections/neo4jconnection");
-let placement=require("./placement/coordinatorrouter.js");
-let centerdetailsrouter=require("./sectioncenterdetails/centerdetailsrouter.js");
+
+// let placement=require("./placement/coordinatorrouter.js");
+let centerdetailsrouter = require("./sectioncenterdetails/centerdetailsrouter.js");
+
 
 let app = express();
 
@@ -126,9 +132,14 @@ function isAuthenticated(req, res, next) {
     });
 }
 
+// app.use(bearerToken());
 app.use('/basedata', baseDataRoutes);
+app.use('/basedata', baseDataRoutes);
+app.use('/register',registerRoutes);
 app.use('/auth', authRoutes);
+app.use('/placement',placement);
 app.use('/details', authCoordinatorRouter);
+app.use('/', apiRoutes);
 app.use('/candidates', qboxRouter);
 app.use('/candidate', candidateRoutes);
 app.use('/fieldquestions', fieldQRouter);
@@ -150,9 +161,8 @@ app.use('/coordinatorregister', coordinatorRouter);
 
 app.use('/profession', professiontoskillroutr);
 
-app.use('/placement',placement);
 app.use('/jobProfile',jobProfile);
 app.use('/placementprocess',placementProcessRouter);
-app.use('/center',centerdetailsrouter);
+// app.use('/center',centerdetailsrouter);
 
 module.exports = app;

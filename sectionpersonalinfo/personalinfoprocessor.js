@@ -1,7 +1,6 @@
 let mongoose = require('mongoose');
 // var personalSchema=require('./personschema');
 let person = require('./personalinfoschema');
-
 function createNewpersonalinfo(formobj, successCB, errorCB) {
     let personObj = new person({
         candidateid: formobj.mobile,
@@ -15,8 +14,13 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
         address: '',
         location: formobj.location,
         centerCode: formobj.centerCode,
+<<<<<<< HEAD
         pincode: null
 
+=======
+        pincode: null,
+        userRole: 'candidate'
+>>>>>>> 2f4783490a3d86a60311dc82d8d8a0fa8b2f209c
     });
     personObj.save(function(err, postdetails) {
         if (err) {
@@ -25,7 +29,6 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
         successCB(postdetails);
     });
 } 
-
 function getPersonalinfo(candidateid, successCB, errorCB) {
     person.find({ candidateid: candidateid }, function(err, getpersons) {
         if (err) {
@@ -36,27 +39,20 @@ function getPersonalinfo(candidateid, successCB, errorCB) {
         successCB(getpersons);
     });
 }
-
 function updatePersonalinfo(piObj, candidateId, successCB, errCB) {
     person.update({ candidateid: candidateId }, piObj.personalInfo,
-
         function(err, result) {
             successCB(result);
             console.log("updated successfully");
         }
     );
 }
-
 function updateProfilePic(picObj, candidateId, successCB, errCB) {
-
     person.find({ candidateid: candidateId }, function(err, getpersons) {
         if (err) {
             errorCB(err);
         }
-
-
         getpersons[0].profilepic = picObj.profilepicUrl ;
-
         person.update({ candidateid: candidateId }, getpersons[0],
             function(err, result) {
                 if (err) {
@@ -67,13 +63,11 @@ function updateProfilePic(picObj, candidateId, successCB, errCB) {
         );
     });
 }
-
 function getProfilePic(candidateid, successCB, errorCB) {
     person.find({ candidateid: candidateid }, function(err, getpersons) {
         if (err) {
             errorCB(err);
         }
-
         console.log('getpersons -++-->',getpersons)
         if(getpersons.length >0 ){
             successCB(getpersons[0].profilepic);
@@ -83,14 +77,12 @@ function getProfilePic(candidateid, successCB, errorCB) {
     }); 
 }
  
-
 //add personal info after entering into the question box into the existing records
 function addMissingPersonalInfoFieldResponse(candidateid, instancename, fieldname, response, successCB, errorCB) {
    // console.log("------->"+educationInstanceName+"   "+fieldname+"  "+response);
     let field =  fieldname;
     let setObj = {};
     setObj[field] = response;
-
     person.update({
             candidateid: candidateid,
         }, {
@@ -101,10 +93,8 @@ function addMissingPersonalInfoFieldResponse(candidateid, instancename, fieldnam
             successCB(result)
         // console.log("------>result for education--->"+result);
         }
-
     );
 }
-
 module.exports = {
     createNewpersonalinfo: createNewpersonalinfo,
     getPersonalinfo: getPersonalinfo,
@@ -113,3 +103,7 @@ module.exports = {
     updateProfilePic:updateProfilePic,
     addMissingPersonalInfoFieldResponse:addMissingPersonalInfoFieldResponse
 };
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2f4783490a3d86a60311dc82d8d8a0fa8b2f209c

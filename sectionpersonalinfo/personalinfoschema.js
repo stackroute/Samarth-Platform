@@ -1,11 +1,8 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-
 let PersonalInfoSchema = new Schema({
-
     candidateid: { type: String, unique: true, required: true },
     name: { type: String, required: true },
-
     adharcard: {type: Number},
     dob: { type: Date },
     gender: { type: String },
@@ -17,9 +14,9 @@ let PersonalInfoSchema = new Schema({
     location: { type: String },
     centerCode: { type: String },
     pincode: { type: Number },
+    userRole: [ {type: String,default: 'candidate'} ],
     profilepic:{ type:String, 
         default: 'http://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg'}
-
 });
 let personModl = mongoose.model('personModl', PersonalInfoSchema, 'personalinfo');
 module.exports = personModl;
