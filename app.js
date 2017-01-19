@@ -8,7 +8,7 @@ const bearerToken = require('express-bearer-token');
 
 
 let baseDataRoutes = require('./basedata/basedataroutes');
-
+let placement=require("./placement/coordinatorrouter.js");
 let authRoutes = require('./auth/authrouter');
 let apiRoutes = require('./authorization/apirouter');
 let authByToken = require('./auth/authbytoken');
@@ -44,7 +44,7 @@ let rubricRoute = require('./rubricbackend/rubricroute');
 let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
 let neo4jConnection = require("./connections/neo4jconnection");
-let placement=require("./placement/coordinatorrouter.js");
+// let placement=require("./placement/coordinatorrouter.js");
 
 let app = express();
 
@@ -131,6 +131,7 @@ function isAuthenticated(req, res, next) {
 // app.use(bearerToken());
 app.use('/basedata', baseDataRoutes);
 app.use('/basedata', baseDataRoutes);
+app.use('/placement',placement);
 app.use('/auth', authRoutes);
 
 app.use('/details', authCoordinatorRouter);
@@ -156,9 +157,9 @@ app.use('/coordinatorregister', coordinatorRouter);
 
 app.use('/profession', professiontoskillroutr);
 
-app.use('/placement',placement);
+// app.use('/placement',placement);
 app.use('/jobProfile',jobProfile);
 app.use('/placementprocess',placementProcessRouter);
-app.use('/center',centerdetailsrouter);
+// app.use('/center',centerdetailsrouter);
 
 module.exports = app;
