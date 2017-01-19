@@ -1,5 +1,6 @@
 let router = require('express').Router();
 let candidate = require('../candidate/candidateschema');
+
 let async = require('async');
 
 
@@ -49,7 +50,7 @@ catch (err) {
 
 router.get('/aws',function (req,res) {
     try {
-        
+
         let config = new Object();
         config.region = "ap-south-1";
         config.secretAccessKey = "Ndm+yjnD949FcowVNHV7tjVI2PLiERT4XFV2nmzH";
@@ -163,4 +164,3 @@ catch (err) {
             }
 }); // end get
 module.exports = router;
-

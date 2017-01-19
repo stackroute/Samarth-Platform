@@ -4,7 +4,7 @@ let Schema = mongoose.Schema;
 let coordinatorSchema = new Schema({
     coordinatorName: { type: String },
     coordinatorId: { type: String, unique: true, required: true },
-    coordinatorRole: [ {type: String} ],
+    userRole: [ {type: String} ],
     coordinatorProfession: [ {type: String} ],
     coordinatorLocation: { type: String },
     coordinatorGender: { type: String },
@@ -12,8 +12,8 @@ let coordinatorSchema = new Schema({
     // coordinatorPwd: { type: String }
     coordinatorLanguage: [
     	{	name: {type : String},
-    		speak: {type : Boolean}, 
-    		read: {type : Boolean}, 
+    		speak: {type : Boolean},
+    		read: {type : Boolean},
     		write: {type : Boolean}
     	}
     ]

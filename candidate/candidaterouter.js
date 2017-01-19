@@ -14,8 +14,15 @@ let workexpprocessor = require('../sectionworkexperiance/workprocessor');
 let candidateneo = require('./candidateneoprocessor');
 let candidatesearchprocessor = require('./newcandidateneoprocessor');
 let verificationprocessor = require('../verification/verificationprocesser');
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
 
-router.get('/allCandidate',function(req,res)
+
+router.get('/allCandidate',
+// function(req, res, next){
+// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+// },
+function(req,res)
 {
     try
     {
@@ -26,11 +33,11 @@ router.get('/allCandidate',function(req,res)
                 console.log("error here"+err);
             }else{
                 console.log("Its fetch all detail");
-                
+
                 for(i=0;i<result.length;i++)
                 {
-                    cid.push(result[i].name); 
-                
+                    cid.push(result[i].name);
+
                 personalInfoprocessor.getPersonalinfo(result[i].name,function(cper,err){
                         if(err)
                         {
@@ -41,7 +48,7 @@ router.get('/allCandidate',function(req,res)
                               console.log(cper);
                             // cpersonal.push(cper);
                         }
-                        
+
                     })
                 }
 
@@ -53,11 +60,15 @@ router.get('/allCandidate',function(req,res)
     }
     catch(err)
     {
-        
+
     }
 });
 
-router.post('/search', function(req, res) {
+router.post('/search',
+// function(req, res, next){
+// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+// },
+function(req, res) {
     try {
 
         let searchQuery = req.body.searchquery;
@@ -113,7 +124,11 @@ router.get('/profession', function(req, res) {
 /* Get the Candidate Collection with the given Candidate id  */
 // HTTP GET /candidate/:candidateid /
 // effective url /candidate/:candidateid
-router.get('/:candidateid', function(req, res) {
+router.get('/:candidateid',
+// function(req, res, next){
+// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+// },
+ function(req, res) {
 
     try {
         candidateprocessor.getcandidate(req.params.candidateid,
@@ -137,7 +152,11 @@ router.get('/:candidateid', function(req, res) {
 /* Register the Candidate by creating Candidate and other collections using form data and default values */
 // HTTP POST /candidate/:candidateid /
 // effective url /candidate/
-router.post('/', function(req, res) {
+router.post('/',
+// function(req, res, next){
+// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREATE,constants.COORDINATOR);
+// },
+ function(req, res) {
     console.log('during registeration entered into platform', req.body);
     try {
         candidateneo.createCandidate(req.body, function(err, stat) {
@@ -276,7 +295,11 @@ router.post('/', function(req, res) {
 // HTTP PATCH /candidate/:candidateid /
 // effective url /candidate/:candidateid
 
-router.patch('/:candidateid', function(req, res) {
+router.patch('/:candidateid',
+function(req, res, next){
+authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.EDIT,constants.COORDINATOR);
+},
+function(req, res) {
    // console.log("patch Candidate");
    candidate.find({
     candidateid: req.params.candidateid
@@ -311,4 +334,3 @@ router.patch('/:candidateid', function(req, res) {
 });
 
 module.exports = router;
-

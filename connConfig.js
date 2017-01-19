@@ -9,4 +9,3 @@ let connConfig = function () {
 }
 
 module.exports = connConfig;
-
