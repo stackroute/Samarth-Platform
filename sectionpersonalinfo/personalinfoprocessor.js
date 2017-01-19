@@ -14,13 +14,8 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
         address: '',
         location: formobj.location,
         centerCode: formobj.centerCode,
-<<<<<<< HEAD
-        pincode: null
-
-=======
         pincode: null,
         userRole: 'candidate'
->>>>>>> 2f4783490a3d86a60311dc82d8d8a0fa8b2f209c
     });
     personObj.save(function(err, postdetails) {
         if (err) {
