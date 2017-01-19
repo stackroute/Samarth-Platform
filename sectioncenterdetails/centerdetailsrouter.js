@@ -2,8 +2,8 @@ let router = require('express').Router();
 let centerdetailsprocessor = require('./centerdetailsprocessor');
 let centerdetailsneoprocessor = require('./centerdetailsneoprocessor');
 let centerdetails = require('./centerdetailsschema');
-let authorization = require(../authorization/authorization);
-let constants = require(../authorization/constants);
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
 
 
 router.post('/',function(req, res, next){

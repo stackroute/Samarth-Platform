@@ -44,7 +44,10 @@ let rubricRoute = require('./rubricbackend/rubricroute');
 let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
 let neo4jConnection = require("./connections/neo4jconnection");
-// let placement=require("./placement/coordinatorrouter.js");
+
+let placement=require("./placement/coordinatorrouter.js");
+let centerdetailsrouter = require("./sectioncenterdetails/centerdetailsrouter.js");
+
 
 let app = express();
 
@@ -133,7 +136,7 @@ app.use('/basedata', baseDataRoutes);
 app.use('/basedata', baseDataRoutes);
 app.use('/placement',placement);
 app.use('/auth', authRoutes);
-
+app.use('/placement',placement);
 app.use('/details', authCoordinatorRouter);
 app.use('/', apiRoutes);
 app.use('/candidates', qboxRouter);
@@ -157,7 +160,6 @@ app.use('/coordinatorregister', coordinatorRouter);
 
 app.use('/profession', professiontoskillroutr);
 
-// app.use('/placement',placement);
 app.use('/jobProfile',jobProfile);
 app.use('/placementprocess',placementProcessRouter);
 // app.use('/center',centerdetailsrouter);
