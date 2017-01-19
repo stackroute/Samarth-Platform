@@ -1,6 +1,7 @@
 let router = require('express').Router();
 let candidate = require('../candidate/candidateschema');
-let async =require('async');
+
+let async = require('async');
 
 
 let profileprocessor = require('../profiles/profileprocessor');

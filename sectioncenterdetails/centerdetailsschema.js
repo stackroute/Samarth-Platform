@@ -1,10 +1,8 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-
 let CenterDetailsSchema = new Schema({
-
     centerCode: { type: String, required: true, unique: true },
-    location: { type: String },
+    centerLocation: { type: String },
     address: { type: String },
     mobile: { type: Number, required: true },
     cname: { type: String },

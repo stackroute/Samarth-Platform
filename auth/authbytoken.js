@@ -1,4 +1,5 @@
 var jwt = require('jsonwebtoken');
+const config = require('../config/config');
 var PersonalInfoModel = require("../sectionpersonalinfo/personalinfoschema");
 
 var authenticateClient = function(clientId, clientSecret, callback, unauthCB) {
@@ -42,14 +43,14 @@ var authenticateCandidate = function(candidateId, clientToken, callback,
 
 var generateClientJWTToken = function(client, cb) {
     var payload = client.clientid;
-    var secretOrPrivateKey = 'SAMARTH-CLIENT-PLATFORM-SECRET';
+    // var secretOrPrivateKey = 'SAMARTH-CLIENT-PLATFORM-SECRET';
     var options = {
         algorithm: "HS256",
         expiresIn: 36000,
         issuer: client.clientid
     };
 
-    jwt.sign(payload, secretOrPrivateKey, options, function(err, jwtToken) {
+    jwt.sign(payload, config.SECRETKEY, options, function(err, jwtToken) {
         cb(err, client, jwtToken);
     });
 }
@@ -89,7 +90,7 @@ var verifyCandidateJWTToken = function(token, clientToken, callback, unauthCB) {
 }
 
 var getCandidateTokenSecret = function() {
-    return 'SAMARTH-CANDIDATE-PLATFORM-SECRET';
+    return config.SECRETKEY;
 }
 
 module.exports = {
