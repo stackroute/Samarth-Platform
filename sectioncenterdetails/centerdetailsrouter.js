@@ -21,8 +21,9 @@ router.post('/', function(req,res){
             } else {
                 // Does not exists
                  centerdetailsprocessor.createNewcenterdetails(center,function(postdetails){
-                        console.log("Heloo " + postdetails.location);
-                            centerdetailsneoprocessor.createNodes(postdetails.location,postdetails.cname,
+                        console.log("Heloo " + postdetails.centerLocation);
+                        var centerDomain = "centerDomain";
+                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,postdetails.cname, centerDomain, 
                                 postdetails.centerCode,function(err,success) {
                                 if (err) {
                                     console.log(err);
@@ -44,6 +45,21 @@ router.post('/', function(req,res){
    
     
 })
+
+// router.get('/getNeoPlacementCenter', function(req,res){
+     
+//     centerdetailsneoprocessor.getPlacementCenter(function(getNeoCenter){
+//         console.log("o"+getNeoCenter);
+//             res.status(200).json(getNeoCenter);
+//     },
+//     function(error){
+//             res.status(500).json(error);
+//     });
+// })
+
+
+
+
 router.get('/getall', function(req,res){
 	 
     centerdetailsprocessor.getAllcenterdetails(function(getcenters){

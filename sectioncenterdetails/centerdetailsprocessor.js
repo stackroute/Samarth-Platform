@@ -5,7 +5,7 @@ function createNewcenterdetails(formobj, successCB, errorCB) {
 
     let centerObj = new center({
         centerCode: formobj.centerCode,
-        location: formobj.location,
+        centerLocation: formobj.centerLocation,
         email: formobj.email,
         address: formobj.address,
         mobile: formobj.mobile,

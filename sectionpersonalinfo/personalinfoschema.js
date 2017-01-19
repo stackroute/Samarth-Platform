@@ -15,6 +15,7 @@ let PersonalInfoSchema = new Schema({
     contact: { type: Number, required: true },
     address: { type: String },
     location: { type: String },
+    centerCode: { type: String },
     pincode: { type: Number },
     profilepic:{ type:String, 
         default: 'http://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg'}

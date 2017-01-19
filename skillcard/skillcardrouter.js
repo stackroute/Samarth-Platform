@@ -10,6 +10,7 @@ let projectprocessor = require('../sectionproject/projectprocessor');
 let skillprocessor = require('../sectionskill/skillprocessor');
 let workexpprocessor = require('../sectionworkexperiance/workprocessor');
 let candidateneo = require('../candidate/candidateneoprocessor');
+let async = require('async');
 
 
 router.get('/allcandidates', function(req, res) {

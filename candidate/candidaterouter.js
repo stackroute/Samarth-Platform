@@ -141,6 +141,7 @@ router.post('/', function(req, res) {
     console.log('during registeration entered into platform', req.body);
     try {
         candidateneo.createCandidate(req.body, function(err, stat) {
+            console.log('nooooooooooooodes '+ req.body);
             if (err) {
                 console.log("err--------------------->", err);
             } else {
