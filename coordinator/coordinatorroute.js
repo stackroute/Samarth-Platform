@@ -17,9 +17,9 @@ router.get('/getcoordi', function(req,res){
     });
 })
 
-router.post('/createcoordinator',function(req, res, next){
-    authorization.isAuthorized(req, res, next, req.user._doc.userRole[0], constants.CREATE, constants.ADMIN);
-    },  function(req, res) {
+router.post('/createcoordinator', function(req, res, next){
+   authorization.isAuthorized(req, res, next, req.user._doc.userRole[0], constants.CREATE, constants.ADMIN);
+   },function(req, res) {
     // console.log(req.body)
 
     try {
