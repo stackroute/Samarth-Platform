@@ -238,7 +238,7 @@ searchquery = function(req, successCB, errorCB) {
             }
         }, function(err, results) {
             if (err) {
-            
+
                 errorCB(err);
             } else {
                 successCB(results);
@@ -277,7 +277,7 @@ parselocation = function(req, successCB, errorCB) {
     try{
     db.cypher({
         query: 'MATCH (l:Location),(d:Dictionary) WHERE l.name IN d.'+req+' RETURN l.name as location',
-       
+
     }, function(err, found) {
         if (err) {
            // console.log(err);

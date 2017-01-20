@@ -2,8 +2,6 @@ let router = require('express').Router();
 let personalInfoProcessor = require('./personalinfoprocessor');
 let persons = require('./personalinfoschema');
 let personNeo = require('./personalinfoneoprocessor');
-
-
  
 /* update personal info only after registration of candidate*/
 // HTTP POST personalinfo/:candidateid
@@ -18,7 +16,6 @@ try {
                 
                     personalInfoProcessor.updatePersonalinfo(req.body, req.params.candidateid,
                         function(personalinfo) {
-
                             personNeo.createLanguageNode(req.body.personalInfo, req.params.candidateid);
                             
                             res.status(201).json(personalinfo);
@@ -38,22 +35,16 @@ try {
                 }
     
 }); // end post
-
 /* get personal info of the candidate id*/
 // HTTP GET personalinfo/:candidateid
 // effective url personalinfo/:candidateid/
 router.get('/:candidateid', function(req, res) {
 try{
     personalInfoProcessor.getPersonalinfo(req.params.candidateid,
-
-
         function(getperson) {
-
            // personNeo.getbyLanguage(req.params.candidateid, req);
-
             res.status(201).json(getperson);
         },
-
         function(err) {
             res.status(500).json({ error: 'Internal error occurred' });
         });
@@ -62,17 +53,13 @@ try{
                     res.status(500).json({ error: 'Internal error occurred, please report' });
                 }
 });
-
 //Getting already uploaded profile image
-
 router.get('/:candidateid/profilepic', function(req, res) {
     try{
     personalInfoProcessor.getProfilePic(req.params.candidateid,
-
         function(getperson) {
             res.status(200).json(getperson);
         },
-
         function(err) {
             console.log(err)
             res.status(500).json({ error: 'Internal error occurred' });
@@ -82,7 +69,6 @@ router.get('/:candidateid/profilepic', function(req, res) {
                     res.status(500).json({ error: 'Internal error occurred, please report' });
                 }
 });
-
 //Updating new profile image
 router.post('/:candidateid/profilepic', function(req, res) {
     try {
@@ -107,13 +93,9 @@ router.post('/:candidateid/profilepic', function(req, res) {
             }
             });
         }
-
     catch (err) {
                     console.log(err);
                     res.status(500).json({ error: 'Internal error occurred, please report' });
                 }
 }); // end post
-
-
 module.exports = router;
-

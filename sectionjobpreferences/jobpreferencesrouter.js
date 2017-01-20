@@ -28,7 +28,7 @@ router.post('/:candidateId', function(req, res) {
                 res.status(500).send('Register the candidate first before adding a preferences');
         } // end if
         else {
-            jobpreferencesProcessor.createNewPreferences(req.body,req.params.candidateId);
+            jobpreferencesProcessor.createNewPreferences(req.body);
             jobpreferencesProcessor.updatePreferences(req.body, req.params.candidateId,
                 function(preferenceObj) {
                     jobpreferencesRelationBuilder.jobpreferencesRelationBuilder(req.body.preferences,req.params.candidateId);

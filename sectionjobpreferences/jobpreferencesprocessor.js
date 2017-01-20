@@ -14,7 +14,8 @@ function getPreferences(candidateId, successCB, errorCB) {
 } 
 
 
-function createNewPreferences(formobj,candidateId,successCB,errorCB) {
+
+function createNewPreferences(formobj) {
     console.log("create starting");
     let preferenceObj = new preference({
         candidateid: formobj,
@@ -23,11 +24,13 @@ function createNewPreferences(formobj,candidateId,successCB,errorCB) {
 
     preferenceObj.save(function(err, result) {
         if (err) {
+
             console.log("erororupda");
             // errorCB(err);
         }
         // successCB();
         // console.log(successCB);
+
     });
 }
 

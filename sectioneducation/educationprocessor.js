@@ -82,7 +82,7 @@ function updateEducation(candidateID, title, modifiedExistingObject, successCB, 
     );
 }
 
-function deleteAEducation( title,candidateID, successCB) {
+function deleteAEducation( title,candidateID, institute, successCB) {
     // eduModel.remove({ candidateID: candidateID, 'records._id': title },
     //     function(){
     //       successCB('THE EDUCATION DETAIL HAS BEEN DELEATED');
@@ -93,7 +93,8 @@ function deleteAEducation( title,candidateID, successCB) {
     console.log("hihihii"+title);
     eduModel.update({
       candidateid :candidateID,
-      'qualification.title' : title
+      'qualification.title' : title,
+      'qualification.institute.name' : institute
     },{
     $pull :{
       qualification: {
@@ -101,7 +102,7 @@ function deleteAEducation( title,candidateID, successCB) {
       }
     }
   },function(){
-    successCB(title, candidateID);
+    successCB(title, candidateID, institute);
   });
 }
 

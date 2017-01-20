@@ -12,11 +12,11 @@
   "license": "ISC",
   "dependencies": {
     "async": "^2.0.1",
-    "aws-sdk": "^2.7.22",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
+    "express-bearer-token": "^2.1.0",
     "file-system": "^2.2.1",
     "json-server": "^0.8.19",
     "jsonwebtoken": "^7.1.9",
@@ -26,6 +26,7 @@
     "neo4j": "^2.0.0-RC2",
     "neo4j-driver": "^1.0.4",
     "q": "^1.4.1",
+    "rbac": "^4.0.1",
     "redis": "^2.6.2",
     "serve-favicon": "^2.3.0"
   },

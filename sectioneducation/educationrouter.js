@@ -86,7 +86,7 @@ router.patch('/:candidateID/:title', function(req, res) {
 
    });
 
-router.delete('/:candidateid/:title', function(req, res) {
+router.delete('/:candidateid/:title/:nameofins', function(req, res) {
     eduModel.find({
         candidateid: req.params.candidateid
     }, function(err, result) {
@@ -97,10 +97,10 @@ router.delete('/:candidateid/:title', function(req, res) {
             try {
               console.log(req.params.title);
                 educationProcessor.deleteAEducation(req.params.title ,
-                    req.params.candidateid ,
-                    function(docs, id) {
+                    req.params.candidateid , req.params.nameofins,
+                    function(docs, id, inst) {
                         educationgraphquery.educationRelationDelete(
-                            docs, id,
+                            docs, id, inst,
                             function(err, success) {
                                 if (err) {
                                     console.log(err);

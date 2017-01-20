@@ -242,6 +242,51 @@ router.get('/candidatesOfProfession/:profession',function(req,res){
 	}
 })
 
+router.get('/availableCandidatesOfProfession/:profession',function(req,res){
+	try
+	{
+		placementneo.availableCandidatesOfProfession(req,function(applied){
+			res.status(200).json(applied);
+		},function(err){
+			res.status(500).send("server error... try it again!");
+		})
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+})
+
+router.get('/candidatesAppliedProfession/:profession',function(req,res){
+	try
+	{
+		placementneo.candidatesAppliedProfession(req,function(applied){
+			res.status(200).json(applied);
+		},function(err){
+			res.status(500).send("server error... try it again!");
+		})
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+})
+
+router.get('/candidatesPlacedProfession/:profession',function(req,res){
+	try
+	{
+		placementneo.candidatesPlacedProfession(req,function(placed){
+			res.status(200).json(placed);
+		},function(err){
+			res.status(500).send("server error... try it again!");
+		})
+	}
+	catch(err)
+	{
+		console.log(err);
+	}
+})
+
 router.get('/appliedJobs/:candidateid',function(req,res){
 	try
 	{
@@ -293,3 +338,4 @@ router.get('/appliedJobs/:candidateid',function(req,res){
 
 
 module.exports = router;
+
