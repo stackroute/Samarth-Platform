@@ -163,6 +163,6 @@ app.use('/profession', professiontoskillroutr);
 
 app.use('/jobProfile',jobProfile);
 app.use('/placementprocess',placementProcessRouter);
-// app.use('/center',centerdetailsrouter);
+app.use('/center',centerdetailsrouter);
 
 module.exports = app;

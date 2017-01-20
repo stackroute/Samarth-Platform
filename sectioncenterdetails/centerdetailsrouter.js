@@ -19,9 +19,8 @@ router.post('/', function(req,res){
                  centerdetailsprocessor.createNewcenterdetails(center,function(postdetails){
                         console.log("Heloo " + postdetails.centerLocation);
                         var centerDomain = "centerDomain";
-                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,postdetails.cname, centerDomain,
-                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,postdetails.cname,
-                                postdetails.centerCode,function(err,success) {
+                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,postdetails.cname, postdetails.address,
+                                centerDomain, postdetails.centerCode,function(err,success) {
                                 if (err) {
                                     console.log(err);
                                 } else {
@@ -42,16 +41,18 @@ router.post('/', function(req,res){
    
     
 })
-// router.get('/getNeoPlacementCenter', function(req,res){
-     
-//     centerdetailsneoprocessor.getPlacementCenter(function(getNeoCenter){
-//         console.log("o"+getNeoCenter);
-//             res.status(200).json(getNeoCenter);
-//     },
-//     function(error){
-//             res.status(500).json(error);
-//     });
-// })
+router.get('/getPlacementCenter/:city', function(req,res){
+     console.log("Route done");
+     console.log(req.city);
+     console.log(city);
+    // centerdetailsneoprocessor.getPlacementCenter(req.city,function(getNeoCenter){
+    //     console.log("o"+getNeoCenter);
+    //         res.status(200).json(getNeoCenter);
+    // },
+    // function(error){
+    //         res.status(500).json(error);
+    // });
+})
 
 
 router.get('/getall', function(req,res){
