@@ -75,7 +75,6 @@ createLanguageNode = function(personalinfo, candidateid){
 module.exports = {
 	createNode: createNode,
 	getbyLocation: getbyLocation,
-	createLanguageNode: createLanguageNode,
+	createLanguageNode: createLanguageNode
 	//getbyLanguage: getbyLanguage
-
 };

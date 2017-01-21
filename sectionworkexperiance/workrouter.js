@@ -9,7 +9,9 @@ let client = redis.createClient();
 /* Get the types of work for the given candidate id*/
 // HTTP GET /work/:candidateid
 // effective url work/:candidateid
-router.get('/:candidateid', function(req, res) {
+router.get('/:candidateid', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+},function(req, res) {
 	try{
 	workProcessor.getworkexp(req.params.candidateid, function(workexps) {
 		res.status(201).json(workexps);
@@ -27,7 +29,9 @@ catch (err) {
 /* Add new types of work for the given candidate id only after registration*/
 // HTTP POST /work/:candidateid
 // effective url work/:candidateid
-router.post('/:candidateid',function(req, res) {
+router.post('/:candidateid',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
+},function(req, res) {
 	try{
 	work.find({ candidateid: req.params.candidateid }, function(err, result) {
 		if (result === '') {
@@ -55,7 +59,9 @@ note:(pass every field from body) */
 
 // HTTP PATCH /work/:candidateid/::organisation
 // effective url work/:candidateid/::organisation
-router.patch('/:candidateid/:workplace', function(req, res) {
+router.patch('/:candidateid/:workplace',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.EDIT,constants.CANDIDATE);
+}, function(req, res) {
 try{
 	work.find({ candidateid: req.params.candidateid }, function(err, result) {
 		if (result === '') {
@@ -70,7 +76,7 @@ try{
 						res.status(500).json({ error: 'Internal error occurred' });
 					});
 			} // end try
-			
+
 		 // end else
 	});
 	}
@@ -84,7 +90,9 @@ try{
 
 // HTTP DELETE /work/:candidateid/:designation
 //delete route for Work Experience deletion
-router.delete('/:candidateid/:designation', function(req, res) {
+router.delete('/:candidateid/:designation', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.DELETE,constants.CANDIDATE);
+},function(req, res) {
 	try{
 	work.find({ candidateid: req.params.candidateid }, function(err, result) {
 		if (result === '') {
@@ -107,4 +115,3 @@ router.delete('/:candidateid/:designation', function(req, res) {
 }); // end delete
 
 module.exports = router;
-

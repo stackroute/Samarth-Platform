@@ -99,4 +99,3 @@ module.exports = {
     updateProfilePic:updateProfilePic,
     addMissingPersonalInfoFieldResponse:addMissingPersonalInfoFieldResponse
 };
-

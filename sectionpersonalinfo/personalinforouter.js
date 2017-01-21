@@ -4,28 +4,35 @@ let persons = require('./personalinfoschema');
 let personNeo = require('./personalinfoneoprocessor');
 let redis = require("redis");
 let client = redis.createClient();
- 
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
 /* update personal info only after registration of candidate*/
 // HTTP POST personalinfo/:candidateid
 // effective url personalinfo/:candidateid/
-router.post('/:candidateid', function(req, res) {
+router.post('/:candidateid',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.EDIT,constants.CANDIDATE);
+}, function(req, res) {
 try {
     persons.find({ candidateid: req.params.candidateid }, function(err, result) {
         if (result === '') {
             res.status(500).send('Register candidates before updating personal info');
         } // end if
         else if (!req.body.candidateid) {
-                
+
                     personalInfoProcessor.updatePersonalinfo(req.body, req.params.candidateid,
                         function(personalinfo) {
                             personNeo.createLanguageNode(req.body.personalInfo, req.params.candidateid);
+<<<<<<< HEAD
                             client.rpush('profilecrawling',req.params.candidateid);
+=======
+
+>>>>>>> 0db4ecdb3caf3711f6259f07de5042eea7ede8b9
                             res.status(201).json(personalinfo);
                         },
                         function(err) {
                             res.status(500).json({ error: 'Internal error occurred, please report' });
                         });
-                } 
+                }
              // end if inside else
             else {
                 res.status(500).send('Alert !!! Cant update the Candidate id');
@@ -35,12 +42,14 @@ try {
             catch (err) {
                     res.status(500).json({ error: 'Internal error occurred, please report' });
                 }
-    
+
 }); // end post
 /* get personal info of the candidate id*/
 // HTTP GET personalinfo/:candidateid
 // effective url personalinfo/:candidateid/
-router.get('/:candidateid', function(req, res) {
+router.get('/:candidateid',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+},  function(req, res) {
 try{
     personalInfoProcessor.getPersonalinfo(req.params.candidateid,
         function(getperson) {
@@ -79,7 +88,7 @@ router.post('/:candidateid/profilepic', function(req, res) {
             res.status(500).send('Register candidates before updating personal info');
         } // end if
         else if (!req.body.candidateid) {
-                
+
                     personalInfoProcessor.updateProfilePic(req.body, req.params.candidateid,
                         function(profilepic) {
                             client.rpush('profilecrawling', req.params.candidateid);
@@ -89,7 +98,7 @@ router.post('/:candidateid/profilepic', function(req, res) {
                             console.log(err)
                             res.status(500).json({ error: 'Internal error occurred, please report' });
                         });
-                } 
+                }
              // end if inside else
             else {
                 res.status(500).send('Alert !!! Cant update the Candidate id');

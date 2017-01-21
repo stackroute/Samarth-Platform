@@ -12,7 +12,7 @@ const rbac = new RBAC({
     candidate: ['create', 'read', 'edit', 'delete'],
     coordinator: ['create', 'read', 'edit', 'delete'],
     jobprovider:['create', 'read', 'edit', 'delete'],
-    // rbac:['update'],
+    imports:['create'],
     personalinfo :['create', 'read', 'edit', 'delete'],
     jobpreferences:['create', 'read', 'edit', 'delete'],
     education:['create', 'read', 'edit', 'delete'],
@@ -40,7 +40,8 @@ const rbac = new RBAC({
     admin: ['read_sidenavbar','create_coordinators', 'read_coordinators', 'edit_coordinators', 'delete_coordinators',
             'create_admin', 'read_admin', 'edit_admin', 'delete_admin',
             'create_supervisor', 'read_supervisor', 'edit_supervisor', 'delete_supervisor',
-            'create_centerdetails','read_centerdetails','edit_centerdetails','delete_centerdetails']
+            'create_centerdetails','read_centerdetails','edit_centerdetails','delete_centerdetails',
+            'create_imports']
 
 
 
