@@ -47,10 +47,6 @@ let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
 let neo4jConnection = require("./connections/neo4jconnection");
 
-// let placement=require("./placement/coordinatorrouter.js");
-let centerdetailsrouter = require("./sectioncenterdetails/centerdetailsrouter.js");
-
-
 let app = express();
 
 app.onAppStart = function(addr) {
@@ -164,6 +160,6 @@ app.use('/profession', professiontoskillroutr);
 
 app.use('/jobProfile',jobProfile);
 app.use('/placementprocess',placementProcessRouter);
-// app.use('/center',centerdetailsrouter);
+app.use('/center',centerdetailsrouter);
 
 module.exports = app;
