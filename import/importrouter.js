@@ -1,4 +1,6 @@
 let router = require('express').Router();
+let constants = require('../authorization/constants');
+let authorization = require('../authorization/authorization');
 // let importschema = require('./importschema');
 // let importprocessor = require('./importprocessor');
 
@@ -20,7 +22,10 @@ let router = require('express').Router();
 //     }
 // });
 
-router.post('/', function(req, res) {
+router.post('/', function(req, res, next){
+	authorization.isAuthorized(req, res, next, constants.ADMIN, constants.CREATE, constants.ADMIN);
+},
+ function(req, res) {
     var sampleFile;
     console.log(req);
     if (!req.files) {
