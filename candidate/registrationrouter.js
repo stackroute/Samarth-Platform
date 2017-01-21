@@ -181,7 +181,7 @@ router.post('/',
             }
         }); // end find
         }, function(){
-            console.log("err--------------------->", err);
+            console.log("err--------------------->");
             // should we not return from here cos error occurred?
         });
 

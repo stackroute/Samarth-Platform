@@ -22,11 +22,7 @@ try {
                     personalInfoProcessor.updatePersonalinfo(req.body, req.params.candidateid,
                         function(personalinfo) {
                             personNeo.createLanguageNode(req.body.personalInfo, req.params.candidateid);
-<<<<<<< HEAD
                             client.rpush('profilecrawling',req.params.candidateid);
-=======
-
->>>>>>> 0db4ecdb3caf3711f6259f07de5042eea7ede8b9
                             res.status(201).json(personalinfo);
                         },
                         function(err) {
