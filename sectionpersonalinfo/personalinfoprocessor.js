@@ -13,6 +13,7 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
         maritialstatus: '',
         address: '',
         location: formobj.location,
+        adharcard: formobj.adharcard,
         centerCode: formobj.centerCode,
         pincode: null,
         userRole: 'candidate'
@@ -98,4 +99,3 @@ module.exports = {
     updateProfilePic:updateProfilePic,
     addMissingPersonalInfoFieldResponse:addMissingPersonalInfoFieldResponse
 };
-
