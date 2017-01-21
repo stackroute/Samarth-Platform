@@ -2,12 +2,17 @@ let router = require('express').Router();
 let educationProcessor = require('./educationprocessor');
 let eduModel = require('./educationschema');
 let educationgraphquery=require('./educationgraphquery');
-
+let redis = require("redis");
+let client = redis.createClient();
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
 
 /* Get Qualification details of the given candidate id*/
 // HTTP GET education//:candidateid/
 // effective url /education//:candidateid
-router.get('/:candidateid', function(req, res) {
+router.get('/:candidateid', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+},function(req, res) {
     try{
     educationProcessor.getEducation(req.params.candidateid, function(educationObject) {
 
@@ -25,7 +30,9 @@ router.get('/:candidateid', function(req, res) {
 /* Add Qualification details of the given candidate id after registration*/
 // HTTP Post education//:candidateid/
 // effective url /education//:candidateid
-router.post('/:candidateID', function(req, res) {
+router.post('/:candidateID',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
+}, function(req, res) {
 try {
     eduModel.find({ candidateid: req.params.candidateID }, function(err, result) {
         if (result === '') {
@@ -35,7 +42,7 @@ try {
 
                 educationProcessor.addEducation(req.body, req.params.candidateID,
                     function(updatedEdu,id) {
-
+                        client.rpush('profilecrawling',req.params.candidateID);
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {
@@ -62,7 +69,10 @@ try {
         (add evry field in the object while update)*/
 // HTTP Patch education//:candidateid/:title
 // effective url /education//:candidateid/:title
-router.patch('/:candidateID/:title', function(req, res) {
+router.patch('/:candidateID/:title',
+function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.EDIT,constants.CANDIDATE);
+}, function(req, res) {
     try {
     eduModel.find({ candidateid: req.params.candidateID }, function(err, result) {
       if (err || result === '') {
@@ -72,6 +82,7 @@ router.patch('/:candidateID/:title', function(req, res) {
 
                 educationProcessor.updateEducation(req.params.candidateID, req.params.title,
                                                         req.body,function(updatedEdu) {
+                        // client.rpush('profilecrawling',req.params.candidateID);
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {
@@ -86,7 +97,9 @@ router.patch('/:candidateID/:title', function(req, res) {
 
    });
 
-router.delete('/:candidateid/:title/:nameofins', function(req, res) {
+router.delete('/:candidateid/:title/:nameofins',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.DELETE,constants.CANDIDATE);
+}, function(req, res) {
     eduModel.find({
         candidateid: req.params.candidateid
     }, function(err, result) {

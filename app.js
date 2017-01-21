@@ -1,6 +1,7 @@
 let http = require('http');
 let morgan = require('morgan');
 let express = require('express');
+var fileUpload = require('express-fileupload');
 let bodyParser = require('body-parser');
 let mongoose = require('mongoose');
 let neo4j = require('neo4j');
@@ -16,6 +17,8 @@ let authByToken = require('./auth/authbytoken');
 let authCoordinatorRouter = require('./authcoordinator/authroutes');
 let authCoordinator = require('./authcoordinator/authbytoken');
 let circleRoute = require('./circlesBackEnd/circleRout');
+
+let importRoute = require('./import/importrouter');
 
 let projectRoutes = require('./sectionproject/projectrouter');
 let educationRoutes = require('./sectioneducation/educationrouter');
@@ -35,6 +38,7 @@ let employerRoutes = require('./jobprovider/jobproviderroute.js');
 let professiontoskillroutr = require('./professiontoskillsgraphdata/professiontoskillrouter.js');
 let jobProfile=require('./jobServer/jobProfileRoute.js');
 const placementProcessRouter = require('./placementprocess/placementrouter.js');
+let centerdetailsrouter = require('./sectioncenterdetails/centerdetailsrouter.js');
 /*var rubricRoute = require('./rubricbackend/rubricroute');
 var verificationRoute = require('./verification/verificationroute');
 var coordinatorRouter = require('./coordinator/coordinatorroute');
@@ -45,10 +49,6 @@ let rubricRoute = require('./rubricbackend/rubricroute');
 let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
 let neo4jConnection = require("./connections/neo4jconnection");
-
-// let placement=require("./placement/coordinatorrouter.js");
-let centerdetailsrouter = require("./sectioncenterdetails/centerdetailsrouter.js");
-
 
 let app = express();
 
@@ -133,6 +133,7 @@ function isAuthenticated(req, res, next) {
 }
 
 // app.use(bearerToken());
+app.use(fileUpload());
 app.use('/basedata', baseDataRoutes);
 app.use('/basedata', baseDataRoutes);
 app.use('/register',registerRoutes);
@@ -153,6 +154,9 @@ app.use('/personalinfo', personalinfoRoutes);
 app.use('/skillcard', skillcardRouter);
 // app.use('/jobprofile', jobProfileRoutes);
 app.use('/circle', circleRoute);
+
+//app.use('/import', importRoute);
+app.use('/upload', importRoute);
 
 app.use('/employer', employerRoutes);
 app.use('/rubric', rubricRoute);

@@ -1,13 +1,17 @@
 let router = require('express').Router();
 let projectProcessor = require('./projectprocessor');
-let project = require('./projectschema'); 
+let project = require('./projectschema');
 let projectRelationBuilder = require('./projectRelationBuilder');
 let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
+let redis = require("redis");
+let client = redis.createClient();
 /* get all project for the given candidate id */
 // HTTP GET project/:candidateId
 // effective url project/:candidateId
-router.get('/:candidateId',  function(req, res) {
+router.get('/:candidateId', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+}, function(req, res) {
     try {
         let projectObj = projectProcessor.getProject(req.params.candidateId,
             function(projectObj) {
@@ -21,17 +25,17 @@ router.get('/:candidateId',  function(req, res) {
             error: 'Internal error occurred, please report'
         });
     }
-});  
- 
+});
+
 /* Add project for the given candidate id only after registration */
 // HTTP POST project/:candidateId
 // effective url project/:candidateId
 // router.post('/:candidateId', function(req, res , next) {
 //       authorization.isAuthorized(req, res, next, constants.CANDIDATE, constants.CREATE, constants.PROJECTS);
 //     }, function(req, res) {
-//     try { 
+//     try {
 //     project.find({ candidateid: req.params.candidateId }, function(err, result) {
-//         if (result === '') { 
+//         if (result === '') {
 //             res.status(500).send('Register the candidate first before adding a project');
 //         } // end if
 //         else {
@@ -46,7 +50,7 @@ router.get('/:candidateId',  function(req, res) {
 //                                 if (err) {
 //                                     console.log(err);
 //                                 } else {
-//                                     // console.log("created relationship");                            
+//                                     // console.log("created relationship");
 //                                 }
 //                             });
 //                         res.status(201).json(projectObj);
@@ -54,7 +58,7 @@ router.get('/:candidateId',  function(req, res) {
 //                     function(err) {
 //                         res.status(500).json(err);
 //                     });
-//                } 
+//                }
 //          });
 //     }
 //     catch (err) {
@@ -85,20 +89,22 @@ router.get('/:candidateId',  function(req, res) {
 //                     function(err) {
 //                         res.status(500).json(err);
 //                     });
-                
-//             } 
+
+//             }
 //     });
 // }
 //     catch (err) {
 //                 res.status(500).json({
 //                     error: 'Internal error occurred, please report'
 //                 });
-//             } 
+//             }
 // });
 /* Add project for the given candidate id only after registration */
 // HTTP POST project/:candidateId
 // effective url project/:candidateId
-router.post('/:candidateId', function(req, res) {
+router.post('/:candidateId', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
+},function(req, res) {
     console.log("Project router called");
     try {
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
@@ -122,9 +128,10 @@ router.post('/:candidateId', function(req, res) {
                                     console.log('err ------------------------------');
                                     console.log(err);
                                 } else {
-                                    console.log("created relationship");                            
+                                    console.log("created relationship");
                                 }
                             });
+                        client.rpush('profilecrawling', req.params.candidateId);
                         res.status(201).json(projectObj);
                     },
                     function(err) {
@@ -146,7 +153,9 @@ router.post('/:candidateId', function(req, res) {
             NOTE:(send every field of the project obj while updating in the body) */
 // HTTP POST project/:candidateId/:projectName
 // effective url project/:candidateId/:projectName
-router.patch('/:candidateId/:projectName', function(req, res) {
+router.patch('/:candidateId/:projectName',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.EDIT,constants.CANDIDATE);
+}, function(req, res) {
     try{
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
         if (result === '') {
@@ -154,12 +163,13 @@ router.patch('/:candidateId/:projectName', function(req, res) {
         } else {
                     projectProcessor.updateProject(req.params.projectName, req.body,
                     req.params.candidateId, function(projectObj) {
+                        // client.rpush('profilecrawling', req.params.candidateId);
                         res.status(201).json(projectObj);
                     },
                     function(err) {
                         res.status(500).json(err);
                     });
-                
+
             }
     });
 }
@@ -167,6 +177,6 @@ router.patch('/:candidateId/:projectName', function(req, res) {
                 res.status(500).json({
                     error: 'Internal error occurred, please report'
                 });
-            } 
+            }
 });
  module.exports = router;

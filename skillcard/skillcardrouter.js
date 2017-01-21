@@ -1,9 +1,6 @@
 let router = require('express').Router();
 let candidate = require('../candidate/candidateschema');
-
 let async = require('async');
-
-
 let profileprocessor = require('../profiles/profileprocessor');
 let personalInfoprocessor = require('../sectionpersonalinfo/personalinfoprocessor');
 let jobpreferencesprocessor = require('../sectionjobpreferences/jobpreferencesprocessor');
@@ -11,9 +8,10 @@ let projectprocessor = require('../sectionproject/projectprocessor');
 let skillprocessor = require('../sectionskill/skillprocessor');
 let workexpprocessor = require('../sectionworkexperiance/workprocessor');
 let candidateneo = require('../candidate/candidateneoprocessor');
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
 
-
-router.get('/allcandidates', function(req, res) {
+router.get('/allcandidates',function(req, res) {
     try{
     candidate.find(function(err, candidates) {
         if (err) {
@@ -33,7 +31,9 @@ router.get('/allcandidates', function(req, res) {
 
 
 // This will return all the candidates in the circle
-router.get('/searchcandidate/:circle', function(req, res) {
+router.get('/searchcandidate/:circle',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+}, function(req, res) {
    try{
     candidateneo.getcircle(req.params.circle, function(candidates) {
         res.status(200).json(candidates);
