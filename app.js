@@ -38,6 +38,7 @@ let employerRoutes = require('./jobprovider/jobproviderroute.js');
 let professiontoskillroutr = require('./professiontoskillsgraphdata/professiontoskillrouter.js');
 let jobProfile=require('./jobServer/jobProfileRoute.js');
 const placementProcessRouter = require('./placementprocess/placementrouter.js');
+let centerdetailsrouter = require('./sectioncenterdetails/centerdetailsrouter.js');
 /*var rubricRoute = require('./rubricbackend/rubricroute');
 var verificationRoute = require('./verification/verificationroute');
 var coordinatorRouter = require('./coordinator/coordinatorroute');
@@ -48,10 +49,6 @@ let rubricRoute = require('./rubricbackend/rubricroute');
 let verificationRoute = require('./verification/verificationroute');
 let coordinatorRouter = require('./coordinator/coordinatorroute');
 let neo4jConnection = require("./connections/neo4jconnection");
-
-// let placement=require("./placement/coordinatorrouter.js");
-let centerdetailsrouter = require("./sectioncenterdetails/centerdetailsrouter.js");
-
 
 let app = express();
 
