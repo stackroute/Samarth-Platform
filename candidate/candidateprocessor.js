@@ -36,6 +36,9 @@ function updatecandidate(newcandidateObj, candidateid, successCB, errorCB) {
     );
 }
 
+function candidateProfileProcessor(){
+    
+};
 module.exports = {
 
     createNewcandidate: createNewcandidate,

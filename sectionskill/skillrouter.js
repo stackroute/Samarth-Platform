@@ -7,7 +7,8 @@ let qboxProcessor = require('.././questionbox/qboxprocessor');
 let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
 let skillMissingFinder = require('.././questionbox/skillMissingFinder');
-
+let redis = require("redis");
+let client = redis.createClient();
 
 
 /*Get the skills for the given candidate id*/
@@ -17,6 +18,7 @@ router.get("/:candidateid", function(req, res) {
       try {
         skillProcessor.getSkill(req.params.candidateid,
             function(skill1) {
+            // client.rpush('profilecrawling', req.params.candidateid);
                 res.status(200).json(skill1);
             },
             function(err) {
@@ -67,7 +69,8 @@ router.post("/:candidateid", function(req, res) {
                                     // console.log("created relationship");                            
                                 }
                             });
-
+                        console.log("Skill added")
+												client.rpush('profilecrawling', req.params.candidateid);
                         res.status(201).json(skills);
                     },
                     function(err) {
@@ -155,6 +158,8 @@ router.patch('/:candidateid/:skillname', function(req, res) {
 				skillProcessor.updateSkill(req.params.skillname, req.body,
 					req.params.candidateid,
 					function(skill2) {
+						console.log("Skill patched")
+						// client.rpush('profilecrawling', req.params.candidateid);
 						res.status(201).json(skill2);
 					},
 					function(err2) {

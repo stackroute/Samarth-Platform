@@ -2,6 +2,8 @@ let router = require('express').Router();
 let educationProcessor = require('./educationprocessor');
 let eduModel = require('./educationschema');
 let educationgraphquery=require('./educationgraphquery');
+let redis = require("redis");
+let client = redis.createClient();
 
 
 /* Get Qualification details of the given candidate id*/
@@ -35,7 +37,7 @@ try {
 
                 educationProcessor.addEducation(req.body, req.params.candidateID,
                     function(updatedEdu,id) {
-
+                        client.rpush('profilecrawling',req.params.candidateID);
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {
@@ -72,6 +74,7 @@ router.patch('/:candidateID/:title', function(req, res) {
 
                 educationProcessor.updateEducation(req.params.candidateID, req.params.title,
                                                         req.body,function(updatedEdu) {
+                        // client.rpush('profilecrawling',req.params.candidateID);
                         res.status(201).json(updatedEdu);
                     },
                     function(err) {

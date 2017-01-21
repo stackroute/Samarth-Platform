@@ -4,8 +4,7 @@ let candidateprocessor = require('./candidateprocessor');
 let candidate = require('./candidateschema');
 let profileprocessor = require('../profiles/profileprocessor');
 let educationprocessor = require('../sectioneducation/educationprocessor');
-let personalInfoprocessor = require(
-    '../sectionpersonalinfo/personalinfoprocessor');
+let personalInfoprocessor = require('../sectionpersonalinfo/personalinfoprocessor');
 let projectprocessor = require('../sectionproject/projectprocessor');
 let jobpreferencesProcessor=require('../sectionjobpreferences/jobpreferencesprocessor');
 let skillprocessor = require('../sectionskill/skillprocessor');

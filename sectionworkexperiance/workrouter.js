@@ -3,7 +3,8 @@ let workProcessor = require('./workprocessor');
 let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
 let work = require('./workschema');
- 
+let redis = require("redis");
+let client = redis.createClient();
 
 /* Get the types of work for the given candidate id*/
 // HTTP GET /work/:candidateid
@@ -34,7 +35,7 @@ router.post('/:candidateid',function(req, res) {
 		} // end if
 		else {
 			workProcessor.addworkexp(req.body, req.params.candidateid, function() {
-
+			  client.rpush('profilecrawling', req.params.candidateid);
 				res.status(201).json();
 			}, function(err) {
 				res.status(500).json({ error: 'can\'t add experiance in the records' });
@@ -62,6 +63,7 @@ try{
 		} else {
 					workProcessor.updateworkexp(req.body, req.params.candidateid, req.params.workplace,
 					function(work1) {
+						// client.rpush('profilecrawling', req.params.candidateid);
 						res.status(201).json(work1);
 					},
 					function(err) {

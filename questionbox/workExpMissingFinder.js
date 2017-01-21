@@ -11,7 +11,7 @@ var getFieldsNames = function() {
     
 var findWorkMissingFields = function(candidateid, successCB, errorCB) {
    workProcessor.getworkexp(candidateid, function(result) {
-   	// console.log("------>workexperience---->");
+   	console.log("------>workexperience----> candidateid :"+ candidateid);
     console.log(result[0]);
         let workInfo = result[0];
 

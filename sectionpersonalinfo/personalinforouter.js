@@ -2,6 +2,8 @@ let router = require('express').Router();
 let personalInfoProcessor = require('./personalinfoprocessor');
 let persons = require('./personalinfoschema');
 let personNeo = require('./personalinfoneoprocessor');
+let redis = require("redis");
+let client = redis.createClient();
  
 /* update personal info only after registration of candidate*/
 // HTTP POST personalinfo/:candidateid
@@ -17,7 +19,7 @@ try {
                     personalInfoProcessor.updatePersonalinfo(req.body, req.params.candidateid,
                         function(personalinfo) {
                             personNeo.createLanguageNode(req.body.personalInfo, req.params.candidateid);
-                            
+                            client.rpush('profilecrawling',req.params.candidateid);
                             res.status(201).json(personalinfo);
                         },
                         function(err) {
@@ -80,6 +82,7 @@ router.post('/:candidateid/profilepic', function(req, res) {
                 
                     personalInfoProcessor.updateProfilePic(req.body, req.params.candidateid,
                         function(profilepic) {
+                            client.rpush('profilecrawling', req.params.candidateid);
                             res.status(201).json(profilepic);
                         },
                         function(err) {
