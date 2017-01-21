@@ -9,11 +9,12 @@ let constants = require('../authorization/constants');
 let skillMissingFinder = require('.././questionbox/skillMissingFinder');
 
 
-
 /*Get the skills for the given candidate id*/
 //HHTP GET skill/:candidateid
-//effective URL skill/:candidateid 
-router.get("/:candidateid", function(req, res) {
+//effective URL skill/:candidateid
+router.get("/:candidateid", function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+},function(req, res) {
       try {
         skillProcessor.getSkill(req.params.candidateid,
             function(skill1) {
@@ -34,7 +35,9 @@ router.get("/:candidateid", function(req, res) {
 // HTTP POST /skill/:candidateid
 
 //effective url  /skill/:candidateid
-router.post("/:candidateid", function(req, res) {
+router.post("/:candidateid", function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
+},function(req, res) {
     try {
     skill.find({
         candidateid: req.params.candidateid
@@ -53,9 +56,9 @@ router.post("/:candidateid", function(req, res) {
         if (result == "") {
             res.status(500).send(
                 "Register candidate for the given candidate id");
-        } //end if  
+        } //end if
         else {
-            
+
                 skillProcessor.addSkill(req.body, req.params.candidateid,
                     function(skills, id) {
                         skillRelationBuilder.skillRelationBuilder(
@@ -64,7 +67,7 @@ router.post("/:candidateid", function(req, res) {
                                 if (err) {
                                     console.log(err);
                                 } else {
-                                    // console.log("created relationship");                            
+                                    // console.log("created relationship");
                                 }
                             });
 
@@ -75,8 +78,8 @@ router.post("/:candidateid", function(req, res) {
                         res.status(500).send("invalid data");
                     });
             } // end catch
-        
-    }); 
+
+    });
     }
     catch (err) {
                 res.status(500).json({
@@ -140,7 +143,9 @@ router.post("/:candidateid", function(req, res) {
 					NOTE:(provide the skill object with evry field)*/
 // HTTP PATCH /skill/:candidateid/:skillname
 // effective url /skill/:candidateid/:skillname
-router.patch('/:candidateid/:skillname', function(req, res) {
+router.patch('/:candidateid/:skillname', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.EDIT,constants.CANDIDATE);
+},function(req, res) {
 	// console.log(
 	//     'under patch fxn of skill --------------------------------------------------------->' +
 	//     req.body);
@@ -171,7 +176,9 @@ router.patch('/:candidateid/:skillname', function(req, res) {
 }); // end patch
 
 // ---------------delete skill ------------
-router.delete('/:candidateid/:skillname', function(req, res) {
+router.delete('/:candidateid/:skillname',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.DELETE,constants.CANDIDATE);
+}, function(req, res) {
 	skill.find({
 		candidateid: req.params.candidateid
 	}, function(err, result) {
@@ -189,7 +196,7 @@ router.delete('/:candidateid/:skillname', function(req, res) {
 								if (err) {
 									console.log(err);
 								} else {
-									 console.log("deleted relationship");                            
+									 console.log("deleted relationship");
 								}
 							});
 

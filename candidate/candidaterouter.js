@@ -19,9 +19,9 @@ let constants = require('../authorization/constants');
 
 
 router.get('/allCandidate',
-// function(req, res, next){
-// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
-// },
+function(req, res, next){
+authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+},
 function(req,res)
 {
     try
@@ -65,9 +65,9 @@ function(req,res)
 });
 
 router.post('/search',
-// function(req, res, next){
-// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
-// },
+function(req, res, next){
+authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+},
 function(req, res) {
     try {
 
@@ -125,9 +125,9 @@ router.get('/profession', function(req, res) {
 // HTTP GET /candidate/:candidateid /
 // effective url /candidate/:candidateid
 router.get('/:candidateid',
-// function(req, res, next){
-// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
-// },
+function(req, res, next){
+authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+},
  function(req, res) {
 
     try {

@@ -46,7 +46,9 @@ function(req,res){
 
 
 })
-router.get('/getPlacementCenter/:city', function(req,res){
+router.get('/getPlacementCenter/:city',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.CREATE,constants.ADMIN);
+}, function(req,res){
     centerdetailsneoprocessor.getPlacementCenter(req.city,function(getNeoCenter){
         console.log("o"+getNeoCenter);
             res.status(200).json(getNeoCenter);
@@ -57,7 +59,9 @@ router.get('/getPlacementCenter/:city', function(req,res){
 })
 
 
-router.get('/getall', function(req,res){
+router.get('/getall',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.CREATE,constants.ADMIN);
+}, function(req,res){
 
     centerdetailsprocessor.getAllcenterdetails(function(getcenters){
             res.status(200).json(getcenters);
@@ -96,7 +100,9 @@ router.post('/disable/:regId', function(req,res){
             res.status(500).json(error);
     });
 })
-router.get('/getcenterdetails', function(req, res) {
+router.get('/getcenterdetails',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.CREATE,constants.ADMIN);
+}, function(req, res) {
     try {
         centerdetailsprocessor.getcenterdetails(function sucessCB(result) {
             res.status(200).send(result);
