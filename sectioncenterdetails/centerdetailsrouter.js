@@ -45,13 +45,13 @@ router.get('/getPlacementCenter/:city', function(req,res){
      console.log("Route done");
      console.log(req.city);
      console.log(city);
-    // centerdetailsneoprocessor.getPlacementCenter(req.city,function(getNeoCenter){
-    //     console.log("o"+getNeoCenter);
-    //         res.status(200).json(getNeoCenter);
-    // },
-    // function(error){
-    //         res.status(500).json(error);
-    // });
+    centerdetailsneoprocessor.getPlacementCenter(req.city,function(getNeoCenter){
+        console.log("o"+getNeoCenter);
+            res.status(200).json(getNeoCenter);
+    },
+    function(error){
+            res.status(500).json(error);
+    });
 })
 
 

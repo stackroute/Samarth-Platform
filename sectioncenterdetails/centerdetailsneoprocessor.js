@@ -22,7 +22,8 @@ let createNodes = function (centerLocation,cname,address,centerDomain,centerCode
 			centerCode: centerCode,
 			centerLocation: centerLocation,
 			cname: cname,
-			centerDomain: centerDomain
+			centerDomain: centerDomain,
+			address: address
 		},
 		}, function(err,results) {
 		console.log("in hrer")
@@ -36,22 +37,22 @@ let createNodes = function (centerLocation,cname,address,centerDomain,centerCode
 	});
 	};
 
-	let getPlacementCenter = function (centerLocation, SuccessCB, errorCB) {
-		db.cypher({
-			query: 'MATCH (l:circle{name:centerLocation}) MATCH(c:circle{name:city})',
-			params: {
-				centerCode: centerCode
-			},
-		}, function(err,results) {
-			console.log("done");
-			if(err)
-			{
-				SuccessCB(err,null)
-			}
-			else{
-				SuccessCB(null,results)
-			}
-		});
+	// let getPlacementCenter = function (centerLocation, SuccessCB, errorCB) {
+	// 	db.cypher({
+	// 		query: 'MATCH (l:circle{name:centerLocation}) MATCH(c:circle{name:city})',
+	// 		params: {
+	// 			centerCode: centerCode
+	// 		},
+	// 	}, function(err,results) {
+	// 		console.log("done");
+	// 		if(err)
+	// 		{
+	// 			SuccessCB(err,null)
+	// 		}
+	// 		else{
+	// 			SuccessCB(null,results)
+	// 		}
+	// 	});
 
 	// };
 
