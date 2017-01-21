@@ -150,7 +150,6 @@ router.get('/:candidateid',
 
 
 
-
 /* Update the candidate collection of the given candidate id NOTE:(Candidate id cant get update)*/
 // HTTP PATCH /candidate/:candidateid /
 // effective url /candidate/:candidateid

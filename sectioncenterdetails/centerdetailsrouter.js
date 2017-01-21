@@ -23,9 +23,9 @@ function(req,res){
             } else {
                 // Does not exists
                  centerdetailsprocessor.createNewcenterdetails(center,function(postdetails){
-                        console.log("Heloo " + postdetails.centerLocation);
-                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,postdetails.cname,
-                                postdetails.centerCode,function(err,success) {
+                        console.log(postdetails);
+                        // var centerDomain = "centerDomain";
+                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation, postdetails.cname, postdetails.address, postdetails.centerCode,function(err,success) {
                                 if (err) {
                                     console.log(err);
                                 } else {
@@ -46,9 +46,8 @@ function(req,res){
 
 
 })
-router.get('/getNeoPlacementCenter', function(req,res){
-
-    centerdetailsneoprocessor.getPlacementCenter(function(getNeoCenter){
+router.get('/getPlacementCenter/:city', function(req,res){
+    centerdetailsneoprocessor.getPlacementCenter(req.city,function(getNeoCenter){
         console.log("o"+getNeoCenter);
             res.status(200).json(getNeoCenter);
     },
@@ -56,6 +55,8 @@ router.get('/getNeoPlacementCenter', function(req,res){
             res.status(500).json(error);
     });
 })
+
+
 router.get('/getall', function(req,res){
 
     centerdetailsprocessor.getAllcenterdetails(function(getcenters){
