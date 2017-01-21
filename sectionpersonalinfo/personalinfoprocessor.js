@@ -14,7 +14,7 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
         address: '',
         location: formobj.location,
         adharcard: formobj.adharcard,
-        centerCode: formobj.centerCode,
+        placementCenter: formobj.placementCenter,
         pincode: null,
         userRole: 'candidate'
     });
