@@ -2,10 +2,10 @@ let neo4j = require('neo4j');
 var neo4jConnection = require("../connections/neo4jconnection.js");
 let db = neo4jConnection.getConnection();
 
-let createNodes = function (centerLocation,cname,address,centerDomain,centerCode,SuccessCB) {
+let createNodes = function (centerLocation,cname,address,centerCode,SuccessCB) {
 	console.log("HHHHHHHHHHHHhhh " + cname);
 	db.cypher({
-		query: 'MERGE (n:circle{name:{centerCode},cname:{cname},address:{address},centerDomain:{placementCenter}}) MERGE (l:Location{name:{centerLocation}}) MERGE(n)-[:memberOf]->(l)',
+		query: 'MERGE (n:circle{name:{centerCode},cname:{cname},address:{address}}) MERGE (l:Location{name:{centerLocation}}) MERGE(n)-[:memberOf]->(l)',
 
 
 
@@ -22,7 +22,7 @@ let createNodes = function (centerLocation,cname,address,centerDomain,centerCode
 			centerCode: centerCode,
 			centerLocation: centerLocation,
 			cname: cname,
-			centerDomain: centerDomain,
+			// centerDomain: centerDomain,
 			address: address
 		},
 		}, function(err,results) {
@@ -37,9 +37,9 @@ let createNodes = function (centerLocation,cname,address,centerDomain,centerCode
 	});
 	};
 
-	// let getPlacementCenter = function (centerLocation, SuccessCB, errorCB) {
+	// let getPlacementCenter = function (location, SuccessCB, errorCB) {
 	// 	db.cypher({
-	// 		query: 'MATCH (l:circle{name:centerLocation}) MATCH(c:circle{name:city})',
+	// 		query: 'MATCH (l:circle{name:centerCode, address:location})',
 	// 		params: {
 	// 			centerCode: centerCode
 	// 		},
