@@ -18,6 +18,7 @@ client.brpop("profileImport", 0, function(err, uploadedId) {
           		function(resData) {
           			console.log(resData[0].data);
           			let obj = resData[0].data;
+                console.log(obj[0]);
           			for (var i = obj.length - 1; i >= 0; i--) {
 		          		candidateProcessor.candidateProfileProcessor(obj[i],
 									    function(result) {
@@ -27,7 +28,7 @@ client.brpop("profileImport", 0, function(err, uploadedId) {
 							    function(err) {
 							        // return res.status(500).json({ error: err });
 							    });
-          	};
+          	   };
           		},
           		function(err) {
 							    console.log(err);

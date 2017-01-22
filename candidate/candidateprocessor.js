@@ -40,18 +40,14 @@
 
     function candidateProfileProcessor(data, successCB, errorCB) {
         try {
+            console.log(data);
         candidateneo.createCandidate(data, function(stat) {
-            console.log("stat-------------------->", stat);
-            
+
         // create every section,candidate,profile if candidate is created for first time
         candidate.find({
             candidateid: data.mobile
         }, function(error, candidate) {
-
-            /*if (candidate === '') {*/
                 if (candidate.length == 0) {
-
-                // console.log('inside ifffffffffffffffffffffffffffff--->',candidate.length);
                 async.parallel({
                     candidate: function(callback) {
                         createNewcandidate(data,
@@ -84,7 +80,7 @@
                             }
                             );
                     },
-                    personalinfo: function(callback) {
+                     personalinfo: function(callback) {
                         personalInfoprocessor.createNewpersonalinfo(data,
                             function(personalinfoobj) {
                                 callback(null, personalinfoobj);
@@ -114,7 +110,7 @@
                                 }
                             );
                         },
-                    skill: function(callback) {
+                         skill: function(callback) {
                         skillprocessor.createNewSkill(data,
                             function(skillobj) {
                                 callback(null, skillobj);
@@ -134,43 +130,46 @@
                             }
                             );
                     },
-                    verificationdata: function(callback) {
+                     verificationdata: function(callback) {
                         verificationprocessor.createNewVerification(data,
                             function(verifyobj) {
                                 callback(null, verifyobj);
                             },
                             function(err) {
                                 callback(err, null);
-                            });
+                            }
+                            );
                     }
+                    // ,
+                    // function(err, results) {
+                    //     if (err) {
+                    //         console.log('ERR ----------------->: ', err);
+                    //         // return res.status(500).json({
+                    //         //     msg: err
+                    //         // });
+                    //     }
 
-                },
-                function(err, results) {
-                    if (err) {
-                        console.log('ERR ----------------->: ', err);
-                        // // return res.status(500).json({
-                        //     msg: err
-                        // });
-                    }
+                    //     // return res.status(201).json(results.personalinfo);
+                    //     console.log('done ----------------->: '+ results);
+                    // }
 
-                    // return res.status(201).json(results.personalinfo);
-                }
-                ); // end of Async
+
+                }); // end of Async
             } // end if
             else {
                 // return res.status(500).send('Candidate already exists, try editing instead...!');
+                console.log('Candidate already exists, try editing instead...!');
             }
         }); // end find
-        }, function(err){
-            console.log("err--------------------->", err);
-            // should we not return from here cos error occurred?
-        });
 
-} catch (err) {
-    console.log("Internal Error Occurred inside catch");
-    
-}
-        }
+        },function(err) {
+                                console.log(err);
+            });
+
+        } catch (err) {
+            console.log("Internal Error Occurred inside catch");
+            }
+    }
     
     function updatecandidate(newcandidateObj, candidateid, successCB, errorCB) {
         candidate.update({ candidateid: candidateid }, newcandidateObj,
