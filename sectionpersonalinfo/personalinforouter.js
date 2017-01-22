@@ -2,9 +2,10 @@ let router = require('express').Router();
 let personalInfoProcessor = require('./personalinfoprocessor');
 let persons = require('./personalinfoschema');
 let personNeo = require('./personalinfoneoprocessor');
+let redis = require("redis");
+let client = redis.createClient();
 let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
-
 /* update personal info only after registration of candidate*/
 // HTTP POST personalinfo/:candidateid
 // effective url personalinfo/:candidateid/
@@ -21,7 +22,7 @@ try {
                     personalInfoProcessor.updatePersonalinfo(req.body, req.params.candidateid,
                         function(personalinfo) {
                             personNeo.createLanguageNode(req.body.personalInfo, req.params.candidateid);
-
+                            client.rpush('profilecrawling',req.params.candidateid);
                             res.status(201).json(personalinfo);
                         },
                         function(err) {
@@ -60,7 +61,9 @@ try{
                 }
 });
 //Getting already uploaded profile image
-router.get('/:candidateid/profilepic', function(req, res) {
+router.get('/:candidateid/profilepic', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+},function(req, res) {
     try{
     personalInfoProcessor.getProfilePic(req.params.candidateid,
         function(getperson) {
@@ -76,7 +79,9 @@ router.get('/:candidateid/profilepic', function(req, res) {
                 }
 });
 //Updating new profile image
-router.post('/:candidateid/profilepic', function(req, res) {
+router.post('/:candidateid/profilepic', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
+},function(req, res) {
     try {
     persons.find({ candidateid: req.params.candidateid }, function(err, result) {
         if (result.length == 0) {
@@ -86,6 +91,7 @@ router.post('/:candidateid/profilepic', function(req, res) {
 
                     personalInfoProcessor.updateProfilePic(req.body, req.params.candidateid,
                         function(profilepic) {
+                            client.rpush('profilecrawling', req.params.candidateid);
                             res.status(201).json(profilepic);
                         },
                         function(err) {

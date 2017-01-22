@@ -7,8 +7,7 @@ let constants = require('../authorization/constants');
 
 router.post('/',function(req, res, next){
 	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.CREATE,constants.ADMIN);
-},
-function(req,res){
+},function(req,res){
 	var center=req.body;
 
    try {
@@ -23,13 +22,15 @@ function(req,res){
             } else {
                 // Does not exists
                  centerdetailsprocessor.createNewcenterdetails(center,function(postdetails){
+
+                        console.log("in mongo");
                         console.log(postdetails);
-                        // var centerDomain = "centerDomain";
-                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation, postdetails.cname, postdetails.address, postdetails.centerCode,function(err,success) {
-                                if (err) {
+                        var centerDomain = "centerDomain";
+                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,centerDomain, postdetails.cname, postdetails.address, postdetails.centerCode,function(err,success) {
+                            if (err) {
                                     console.log(err);
                                 } else {
-                                    console.log("Varun");
+                                    console.log("NO ERR");
                                 }
                             });
                             res.status(200).json(postdetails);
@@ -46,16 +47,25 @@ function(req,res){
 
 
 })
+
+
+// router.get('/getPlacementCenter/:city', function(req,res){
+//      console.log("Route done");
+//      console.log('req');
+//      console.log(req);
+//      console.log(req.params.city);
+//      centerdetailsneoprocessor.getPlacementc(req.params.city,
+//       function(getNeoCenter){
+
 router.get('/getPlacementCenter/:city',function(req, res, next){
 	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.CREATE,constants.ADMIN);
 }, function(req,res){
     centerdetailsneoprocessor.getPlacementCenter(req.city,function(getNeoCenter){
-        console.log("o"+getNeoCenter);
             res.status(200).json(getNeoCenter);
     },
     function(error){
             res.status(500).json(error);
-    });
+    })
 })
 
 
@@ -70,7 +80,9 @@ router.get('/getall',function(req, res, next){
             res.status(500).json(error);
     });
 })
-router.post('/:regId', function(req,res){
+router.post('/:regId',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.CREATE,constants.ADMIN);
+}, function(req,res){
     var a = req.params.centerCode;
     centerdetailsprocessor.getCenterdetails(a,function(getcenter){
         res.status(200).json(getcenter);
@@ -79,7 +91,9 @@ router.post('/:regId', function(req,res){
         res.status(500).json(error);
     });
 })
-router.post('/update/:regId', function(req,res){
+router.post('/update/:regId',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.EDIT,constants.ADMIN);
+}, function(req,res){
 
     centerdetailsprocessor.updateCenterdetails(req.params.regId,req.body,function(updatecenter){
             res.status(200).json(updatecenter);
@@ -88,12 +102,11 @@ router.post('/update/:regId', function(req,res){
             res.status(500).json(error);
     });
 })
-router.post('/disable/:regId', function(req,res){
+router.post('/disable/:regId',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.DELETE,constants.ADMIN);
+}, function(req,res){
 
     centerdetailsprocessor.disableCenterdetails(req.params.regId,req.body,function(updatecenterstatus){
-            console.log(updatecenterstatus);
-            console.log(req.params.regId);
-            console.log(req.body);
             res.status(200).json(updatecenterstatus);
     },
     function(error){
@@ -101,7 +114,7 @@ router.post('/disable/:regId', function(req,res){
     });
 })
 router.get('/getcenterdetails',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.CREATE,constants.ADMIN);
+	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.READ,constants.ADMIN);
 }, function(req, res) {
     try {
         centerdetailsprocessor.getcenterdetails(function sucessCB(result) {

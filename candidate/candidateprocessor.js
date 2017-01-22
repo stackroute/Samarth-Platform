@@ -172,8 +172,6 @@
 }
         }
     
-    
-
     function updatecandidate(newcandidateObj, candidateid, successCB, errorCB) {
         candidate.update({ candidateid: candidateid }, newcandidateObj,
             function() {

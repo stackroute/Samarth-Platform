@@ -15,20 +15,20 @@ function getPreferences(candidateId, successCB, errorCB) {
 
 
 
-function createNewPreferences(formobj) {
+function createNewPreferences(formobj, successCB, errorCB ) {
     console.log("create starting");
     let preferenceObj = new preference({
-        candidateid: formobj,
-        preferences:{}
+        candidateid: formobj.mobile,
+        preferences:[]
     });
 
     preferenceObj.save(function(err, result) {
         if (err) {
 
-            console.log("erororupda");
-            // errorCB(err);
+            // console.log("erororupda");
+            errorCB(err);
         }
-        // successCB();
+        successCB(result);
         // console.log(successCB);
 
     });
