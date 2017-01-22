@@ -61,7 +61,9 @@ try{
                 }
 });
 //Getting already uploaded profile image
-router.get('/:candidateid/profilepic', function(req, res) {
+router.get('/:candidateid/profilepic', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+},function(req, res) {
     try{
     personalInfoProcessor.getProfilePic(req.params.candidateid,
         function(getperson) {
@@ -77,7 +79,9 @@ router.get('/:candidateid/profilepic', function(req, res) {
                 }
 });
 //Updating new profile image
-router.post('/:candidateid/profilepic', function(req, res) {
+router.post('/:candidateid/profilepic', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
+},function(req, res) {
     try {
     persons.find({ candidateid: req.params.candidateid }, function(err, result) {
         if (result.length == 0) {

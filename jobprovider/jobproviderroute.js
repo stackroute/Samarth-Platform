@@ -2,23 +2,25 @@ let router = require('express').Router();
 let jobprovider = require('./jobproviderschema');
 let jobproviderprocessor = require('./jobproviderprocessor');
 const jobproviderneoprocessor = require('./jobproviderNeoProcessor');
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
 
 
-router.post('/registeremployer', function(req, res) {
+router.post('/registeremployer',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREATE,constants.COORDINATOR);
+}, function(req, res) {
     try {
         let jobproviderdata = req.body;
 
         jobproviderneoprocessor.registerJobProvider(jobproviderdata,function(result){
-            
+
         },function(err){
-           
+
         });
-        
+
         jobproviderprocessor.getjpCodeStatus(jobproviderdata.jpCode,
             function sucessCB(result) {
-                console.log("result length " + result.length);
                 if (result.length > 0) {
-                    console.log("in if route");
                     res.status(200).json({
                         msg: 'JobProvider with this code already present! Please try some other code...'
                     });
@@ -39,19 +41,6 @@ router.post('/registeremployer', function(req, res) {
                 });
             });
 
-        // else{
-
-        //     jobproviderprocessor.postjobprovider(jobproviderdata, function sucessCB(message) {
-        //     res.status(200).send('OK');
-        // }, function errorCB(error) {
-        //     res.status(500).send(error);
-        // });
-
-
-        // },function errorCB(error) {
-        //             res.status(500).json(error);
-        //         });
-
     } catch (err) {
         return res.status(500).send('Some error occured');
     }
@@ -60,20 +49,6 @@ router.post('/registeremployer', function(req, res) {
 router.get('/codeCheck/:jpCode', function(req, res) {
     try {
         var jpCode = req.params.jpCode;
-        // console.log(jpCode);
-
-        // jobproviderprocessor.getjpCodeStatus(jpCode, function sucessCB(result) {
-        //     // if(result>=1){
-        //         console.log(result);
-        //         res.status(200).json({msg:"Success",count:result});
-        //     // }else(result==0){
-        //         // console.log(result);
-        //         // res.status(200).json({msg:"Success",count:0});
-
-
-        // }, function errorCB(error) {
-        //     res.status(500).send(error);
-        // });
         jobprovider.find({
             jpCode: jpCode
         }).count(function(err, count) {
@@ -112,7 +87,9 @@ router.get('/getJobProvider', function(req, res) {
 
 
 
-router.patch('/jobupdate', function(req, res) {
+router.patch('/jobupdate',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.EDIT,constants.COORDINATOR);
+}, function(req, res) {
     try {
         let jobData = req.body;
         jobproviderprocessor.updateJob(jobData, function sucessCB(result) {
@@ -127,9 +104,7 @@ router.patch('/jobupdate', function(req, res) {
 
 router.get('/getJobProviderbyid/:jpCode', function(req, res) {
     try {
-        console.log(req.body.jpCode);
         var jpCode = req.params.jpCode;
-        console.log(jpCode);
         jobproviderprocessor.jobEdit(jpCode, function sucessCB(result) {
             res.status(200).send(result);
         }, function errorCB(error) {
