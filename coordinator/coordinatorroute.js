@@ -7,7 +7,7 @@ let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
 
 router.get('/getcoordi', function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.READ,constants.ADMIN);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.ADMIN);
 },function(req,res){
 
     coordinatorprocessor.getcoordinator(function(getcoordinator){
