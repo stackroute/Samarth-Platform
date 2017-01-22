@@ -161,7 +161,7 @@
                 // return res.status(500).send('Candidate already exists, try editing instead...!');
             }
         }); // end find
-        }, function(){
+        }, function(err){
             console.log("err--------------------->", err);
             // should we not return from here cos error occurred?
         });

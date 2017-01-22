@@ -1,11 +1,11 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-let importSchema = new Schema({
+let importsSchema = new Schema({
 	'profileType': [ {type: String} ],
 	'submittedOn': { type: Date, default: Date.now},
 	'status': [ {type: String} ],
-	'data': {type: Object},
+	'data': {type: Array},
 	'fileName': {type: String}
 });
-let import = mongoose.model('import', importSchema, 'import');
-module.exports = import;
+let imports = mongoose.model('imports', importsSchema, 'imports');
+module.exports = imports;
