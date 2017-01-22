@@ -54,10 +54,7 @@ router.get('/location', function(req, res) {
 /* Register the Candidate by creating Candidate and other collections using form data and default values */
 // HTTP POST /candidate/:candidateid /
 // effective url /candidate/
-router.post('/',function(req, res, next){
-authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.COORDINATOR);
-},
- function(req, res) {
+router.post('/', function(req, res) {
     try {
         candidateneo.createCandidate(req.body, function(stat) {
 
