@@ -11,7 +11,7 @@ let constants = require('../authorization/constants');
 // HTTP GET education//:candidateid/
 // effective url /education//:candidateid
 router.get('/:candidateid', function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] ,constants.READ,constants.EDUCATION);
 },function(req, res) {
     try{
     educationProcessor.getEducation(req.params.candidateid, function(educationObject) {
@@ -31,7 +31,7 @@ router.get('/:candidateid', function(req, res, next){
 // HTTP Post education//:candidateid/
 // effective url /education//:candidateid
 router.post('/:candidateID',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.EDUCATION);
 }, function(req, res) {
 try {
     eduModel.find({ candidateid: req.params.candidateID }, function(err, result) {
@@ -71,7 +71,7 @@ try {
 // effective url /education//:candidateid/:title
 router.patch('/:candidateID/:title',
 function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.EDIT,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.EDIT,constants.EDUCATION);
 }, function(req, res) {
     try {
     eduModel.find({ candidateid: req.params.candidateID }, function(err, result) {
@@ -98,7 +98,7 @@ function(req, res, next){
    });
 
 router.delete('/:candidateid/:title/:nameofins',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.DELETE,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.DELETE,constants.EDUCATION);
 }, function(req, res) {
     eduModel.find({
         candidateid: req.params.candidateid

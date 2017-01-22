@@ -5,9 +5,8 @@ let importprocessor = require('./importprocessor');
 let redis = require("redis");
 let client = redis.createClient();
 
-
 router.post('/', function(req, res, next){
-	authorization.isAuthorized(req, res, next, constants.ADMIN, constants.CREATE, constants.ADMIN);
+	authorization.isAuthorized(req, res, next, req.user._doc.userRole[0], constants.CREATE, constants.ADMIN);
 },
  function(req, res) {
     var sampleFile;
@@ -16,12 +15,11 @@ router.post('/', function(req, res, next){
         res.send('No files were uploaded.');
         return;
     }
- 
+
     sampleFile = req.files.file;
     console.log("sampleFile JSON....................................");
     console.log(JSON.parse(sampleFile.data.toString('utf8')));
-    // console.log(sampleFile.data.JSON.stringify());
-    
+
 
     importprocessor.createImportData(JSON.parse(sampleFile.data.toString('utf8')),sampleFile.name,function(uploadedId){
 
@@ -34,8 +32,7 @@ router.post('/', function(req, res, next){
 					res.status(500).send("server error...!");
 					console.log(err);
 				})
-    
+
 });
 
 module.exports = router;
-

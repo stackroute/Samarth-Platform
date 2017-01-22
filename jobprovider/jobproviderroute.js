@@ -7,7 +7,7 @@ let constants = require('../authorization/constants');
 
 
 router.post('/registeremployer',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREATE,constants.COORDINATOR);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.COORDINATOR);
 }, function(req, res) {
     try {
         let jobproviderdata = req.body;
@@ -88,7 +88,7 @@ router.get('/getJobProvider', function(req, res) {
 
 
 router.patch('/jobupdate',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.EDIT,constants.COORDINATOR);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.EDIT,constants.COORDINATOR);
 }, function(req, res) {
     try {
         let jobData = req.body;

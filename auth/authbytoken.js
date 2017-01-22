@@ -37,6 +37,8 @@ var authenticateCandidate = function(candidateId, clientToken, callback,
             if (!candidateProfile) {
                 unauthCB("Candidate profile not found..!", null);
             }
+
+            console.log('')
             generateCandidateJWTToken(candidateProfile, callback); //generate JWTToken
         });
 };

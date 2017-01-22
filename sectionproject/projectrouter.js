@@ -10,7 +10,7 @@ let client = redis.createClient();
 // HTTP GET project/:candidateId
 // effective url project/:candidateId
 router.get('/:candidateId', function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.PROJECTS);
 }, function(req, res) {
     try {
         let projectObj = projectProcessor.getProject(req.params.candidateId,
@@ -30,7 +30,7 @@ router.get('/:candidateId', function(req, res, next){
 // HTTP POST project/:candidateId
 // effective url project/:candidateId
 router.post('/:candidateId', function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.PROJECTS);
 },function(req, res) {
     try {
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
@@ -77,7 +77,7 @@ router.post('/:candidateId', function(req, res, next){
 // HTTP POST project/:candidateId/:projectName
 // effective url project/:candidateId/:projectName
 router.patch('/:candidateId/:projectName',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.EDIT,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.EDIT,constants.PROJECTS);
 }, function(req, res) {
     try{
     project.find({ candidateid: req.params.candidateId }, function(err, result) {

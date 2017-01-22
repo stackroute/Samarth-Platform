@@ -10,7 +10,7 @@ let constants = require('../authorization/constants');
 // HTTP POST personalinfo/:candidateid
 // effective url personalinfo/:candidateid/
 router.post('/:candidateid',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.EDIT,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.PERSONINFO);
 }, function(req, res) {
 try {
     persons.find({ candidateid: req.params.candidateid }, function(err, result) {
@@ -44,7 +44,7 @@ try {
 // HTTP GET personalinfo/:candidateid
 // effective url personalinfo/:candidateid/
 router.get('/:candidateid',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.READ,constants.PERSONALINFO);
 },  function(req, res) {
 try{
     personalInfoProcessor.getPersonalinfo(req.params.candidateid,
@@ -62,7 +62,7 @@ try{
 });
 //Getting already uploaded profile image
 router.get('/:candidateid/profilepic', function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.READ,constants.PERSONALINFO);
 },function(req, res) {
     try{
     personalInfoProcessor.getProfilePic(req.params.candidateid,
@@ -79,9 +79,7 @@ router.get('/:candidateid/profilepic', function(req, res, next){
                 }
 });
 //Updating new profile image
-router.post('/:candidateid/profilepic', function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
-},function(req, res) {
+router.post('/:candidateid/profilepic',function(req, res) {
     try {
     persons.find({ candidateid: req.params.candidateid }, function(err, result) {
         if (result.length == 0) {
