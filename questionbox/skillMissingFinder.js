@@ -9,7 +9,10 @@ var getFieldsNames = function() {
 } 
  
 var findMissingFields = function(candidateid, successCB, errorCB) {
+    console.log('skillProcessor.getSkill :' + candidateid);
     skillProcessor.getSkill(candidateid, function(result) {
+        console.log('skill results');
+        console.log(result);
         let candidateSkills = result[0];
         let skillFieldArray = getFieldsNames();
         console.log(skillFieldArray);

@@ -1,12 +1,10 @@
 let router = require('express').Router();
 let async = require('async');
-
 let candidateprocessor = require('./candidateprocessor');
 let candidate = require('./candidateschema');
 let profileprocessor = require('../profiles/profileprocessor');
 let educationprocessor = require('../sectioneducation/educationprocessor');
-let personalInfoprocessor = require(
-    '../sectionpersonalinfo/personalinfoprocessor');
+let personalInfoprocessor = require('../sectionpersonalinfo/personalinfoprocessor');
 let projectprocessor = require('../sectionproject/projectprocessor');
 let jobpreferencesProcessor=require('../sectionjobpreferences/jobpreferencesprocessor');
 let skillprocessor = require('../sectionskill/skillprocessor');
@@ -18,10 +16,9 @@ let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
 
 
-router.get('/allCandidate',
-// function(req, res, next){
-// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
-// },
+router.get('/allCandidate',function(req, res, next){
+authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+},
 function(req,res)
 {
     try
@@ -46,7 +43,6 @@ function(req,res)
                         else{
                             cpersonal.push(cper);
                               console.log(cper);
-                            // cpersonal.push(cper);
                         }
 
                     })
@@ -64,10 +60,9 @@ function(req,res)
     }
 });
 
-router.post('/search',
-// function(req, res, next){
-// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
-// },
+router.post('/search',function(req, res, next){
+authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+},
 function(req, res) {
     try {
 
@@ -83,20 +78,17 @@ function(req, res) {
         .then(function (searchArray) {
             if(searchArray.length>0){
                 candidatesearchprocessor.getAllCandidates(searchArray).then(function(data){
-                    console.log("data --->",data);
                     res.status(200).json(data);
                 },function(err){
                     console.log("error in all candidates --->",err);
                 });
             }else{
-                //console.log('hello')
                 res.status(500).json({ message: 'No matches found' });
             }
         },function (err) {
             console.log("Error happaned --->",err);
         });
     } catch (err) {
-        console.log(err)
         res.status(500).json(err);
     }
 });
@@ -124,10 +116,9 @@ router.get('/profession', function(req, res) {
 /* Get the Candidate Collection with the given Candidate id  */
 // HTTP GET /candidate/:candidateid /
 // effective url /candidate/:candidateid
-router.get('/:candidateid',
-// function(req, res, next){
-// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
-// },
+router.get('/:candidateid',function(req, res, next){
+authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+},
  function(req, res) {
 
     try {
@@ -150,17 +141,14 @@ router.get('/:candidateid',
 
 
 
-
 /* Update the candidate collection of the given candidate id NOTE:(Candidate id cant get update)*/
 // HTTP PATCH /candidate/:candidateid /
 // effective url /candidate/:candidateid
 
-router.patch('/:candidateid',
-function(req, res, next){
+router.patch('/:candidateid',function(req, res, next){
 authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.EDIT,constants.COORDINATOR);
 },
 function(req, res) {
-   // console.log("patch Candidate");
    candidate.find({
     candidateid: req.params.candidateid
 }, function(error, candidate) {

@@ -3,12 +3,15 @@ let workProcessor = require('./workprocessor');
 let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
 let work = require('./workschema');
- 
+let redis = require("redis");
+let client = redis.createClient();
 
 /* Get the types of work for the given candidate id*/
 // HTTP GET /work/:candidateid
 // effective url work/:candidateid
-router.get('/:candidateid', function(req, res) {
+router.get('/:candidateid', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+},function(req, res) {
 	try{
 	workProcessor.getworkexp(req.params.candidateid, function(workexps) {
 		res.status(201).json(workexps);
@@ -26,7 +29,9 @@ catch (err) {
 /* Add new types of work for the given candidate id only after registration*/
 // HTTP POST /work/:candidateid
 // effective url work/:candidateid
-router.post('/:candidateid',function(req, res) {
+router.post('/:candidateid',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
+},function(req, res) {
 	try{
 	work.find({ candidateid: req.params.candidateid }, function(err, result) {
 		if (result === '') {
@@ -34,7 +39,7 @@ router.post('/:candidateid',function(req, res) {
 		} // end if
 		else {
 			workProcessor.addworkexp(req.body, req.params.candidateid, function() {
-
+			  client.rpush('profilecrawling', req.params.candidateid);
 				res.status(201).json();
 			}, function(err) {
 				res.status(500).json({ error: 'can\'t add experiance in the records' });
@@ -54,7 +59,9 @@ note:(pass every field from body) */
 
 // HTTP PATCH /work/:candidateid/::organisation
 // effective url work/:candidateid/::organisation
-router.patch('/:candidateid/:workplace', function(req, res) {
+router.patch('/:candidateid/:workplace',function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.EDIT,constants.CANDIDATE);
+}, function(req, res) {
 try{
 	work.find({ candidateid: req.params.candidateid }, function(err, result) {
 		if (result === '') {
@@ -62,13 +69,14 @@ try{
 		} else {
 					workProcessor.updateworkexp(req.body, req.params.candidateid, req.params.workplace,
 					function(work1) {
+						// client.rpush('profilecrawling', req.params.candidateid);
 						res.status(201).json(work1);
 					},
 					function(err) {
 						res.status(500).json({ error: 'Internal error occurred' });
 					});
 			} // end try
-			
+
 		 // end else
 	});
 	}
@@ -82,7 +90,9 @@ try{
 
 // HTTP DELETE /work/:candidateid/:designation
 //delete route for Work Experience deletion
-router.delete('/:candidateid/:designation', function(req, res) {
+router.delete('/:candidateid/:designation', function(req, res, next){
+	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.DELETE,constants.CANDIDATE);
+},function(req, res) {
 	try{
 	work.find({ candidateid: req.params.candidateid }, function(err, result) {
 		if (result === '') {
@@ -97,7 +107,6 @@ router.delete('/:candidateid/:designation', function(req, res) {
 	}); //end find
 	} //end try
 			catch (err) {
-				console.log("Error in ... ", err);
 				res.status(500).json({
 					error: 'Internal error occurred, please report'
 				});
@@ -105,4 +114,3 @@ router.delete('/:candidateid/:designation', function(req, res) {
 }); // end delete
 
 module.exports = router;
-

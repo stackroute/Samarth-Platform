@@ -3,6 +3,7 @@ let Schema = mongoose.Schema;
 let CenterDetailsSchema = new Schema({
     centerCode: { type: String, required: true, unique: true },
     centerLocation: { type: String },
+    email: { type: String },
     address: { type: String },
     mobile: { type: Number, required: true },
     cname: { type: String },

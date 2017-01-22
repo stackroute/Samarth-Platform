@@ -4,14 +4,15 @@ let candidateprocessor = require('./candidateprocessor');
 let candidate = require('./candidateschema');
 let profileprocessor = require('../profiles/profileprocessor');
 let educationprocessor = require('../sectioneducation/educationprocessor');
-let personalInfoprocessor = require(
-    '../sectionpersonalinfo/personalinfoprocessor');
+let personalInfoprocessor = require('../sectionpersonalinfo/personalinfoprocessor');
 let projectprocessor = require('../sectionproject/projectprocessor');
 let jobpreferencesProcessor=require('../sectionjobpreferences/jobpreferencesprocessor');
 let skillprocessor = require('../sectionskill/skillprocessor');
 let workexpprocessor = require('../sectionworkexperiance/workprocessor');
 let candidateneo = require('./candidateneoprocessor');
 let verificationprocessor = require('../verification/verificationprocesser');
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
 
 router.get('/profession', function(req, res) {
     try {
@@ -53,25 +54,18 @@ router.get('/location', function(req, res) {
 /* Register the Candidate by creating Candidate and other collections using form data and default values */
 // HTTP POST /candidate/:candidateid /
 // effective url /candidate/
-router.post('/',
-// function(req, res, next){
-// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREATE,constants.COORDINATOR);
-// },
+router.post('/',function(req, res, next){
+authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREATE,constants.COORDINATOR);
+},
  function(req, res) {
-    console.log('during registeration entered into platform', req.body);
     try {
         candidateneo.createCandidate(req.body, function(stat) {
-            console.log("stat-------------------->", stat);
-            
+
         // create every section,candidate,profile if candidate is created for first time
         candidate.find({
             candidateid: req.body.mobile
         }, function(error, candidate) {
-
-            /*if (candidate === '') {*/
                 if (candidate.length == 0) {
-
-                // console.log('inside ifffffffffffffffffffffffffffff--->',candidate.length);
                 async.parallel({
                     candidate: function(callback) {
                         candidateprocessor.createNewcandidate(req.body,
@@ -104,7 +98,7 @@ router.post('/',
                             }
                             );
                     },
-                    personalinfo: function(callback) {
+                     personalinfo: function(callback) {
                         personalInfoprocessor.createNewpersonalinfo(req.body,
                             function(personalinfoobj) {
                                 callback(null, personalinfoobj);
@@ -134,7 +128,7 @@ router.post('/',
                                 }
                             );
                         },
-                    skill: function(callback) {
+                         skill: function(callback) {
                         skillprocessor.createNewSkill(req.body,
                             function(skillobj) {
                                 callback(null, skillobj);
@@ -154,40 +148,39 @@ router.post('/',
                             }
                             );
                     },
-                    verificationdata: function(callback) {
+                     verificationdata: function(callback) {
                         verificationprocessor.createNewVerification(req.body,
                             function(verifyobj) {
                                 callback(null, verifyobj);
                             },
                             function(err) {
                                 callback(err, null);
+                            }
+                            );
+                    },
+                    function(err, results) {
+                        if (err) {
+                            console.log('ERR ----------------->: ', err);
+                            return res.status(500).json({
+                                msg: err
                             });
+                        }
+
+                        return res.status(201).json(results.personalinfo);
+
                     }
 
-                },
-                function(err, results) {
-                    if (err) {
-                        console.log('ERR ----------------->: ', err);
-                        return res.status(500).json({
-                            msg: err
-                        });
-                    }
 
-                    return res.status(201).json(results.personalinfo);
-                }
-                ); // end of Async
+                }); // end of Async
             } // end if
             else {
                 return res.status(500).send('Candidate already exists, try editing instead...!');
             }
         }); // end find
-        }, function(){
-            console.log("err--------------------->", err);
-            // should we not return from here cos error occurred?
+
         });
 
 } catch (err) {
-    console.log("Internal Error Occurred inside catch");
     return res.status(500).send(
         'Internal error occurred, please report or try later...!');
 }
