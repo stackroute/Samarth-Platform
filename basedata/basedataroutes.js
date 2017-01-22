@@ -3,7 +3,7 @@ let baseDataProcessor = require('./basedataprocessor');
 
 // Effective url /basedata/sidenavdata to insert sidenav contents into mongodb
 router.post('/sidenavdata',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.EDIT,constants.COORDINATOR);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.CREATE,constants.COORDINATOR);
 }, function(req, res) {
     try {
         //console.log("data in side nav", req.body.sidenavcontents[0]);

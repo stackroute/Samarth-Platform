@@ -79,9 +79,7 @@ router.get('/:candidateid/profilepic', function(req, res, next){
                 }
 });
 //Updating new profile image
-router.post('/:candidateid/profilepic', function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
-},function(req, res) {
+router.post('/:candidateid/profilepic',function(req, res) {
     try {
     persons.find({ candidateid: req.params.candidateid }, function(err, result) {
         if (result.length == 0) {
