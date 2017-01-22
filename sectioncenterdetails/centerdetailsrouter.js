@@ -22,8 +22,12 @@ router.post('/',function(req, res, next){
             } else {
                 // Does not exists
                  centerdetailsprocessor.createNewcenterdetails(center,function(postdetails){
-                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation, postdetails.cname, postdetails.address, postdetails.centerCode,function(err,success) {
-                                if (err) {
+
+                        console.log("in mongo");
+                        console.log(postdetails);
+                        var centerDomain = "centerDomain";
+                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,centerDomain, postdetails.cname, postdetails.address, postdetails.centerCode,function(err,success) {
+                            if (err) {
                                     console.log(err);
                                 } else {
                                     console.log("NO ERR");
@@ -43,6 +47,16 @@ router.post('/',function(req, res, next){
 
 
 })
+
+
+// router.get('/getPlacementCenter/:city', function(req,res){
+//      console.log("Route done");
+//      console.log('req');
+//      console.log(req);
+//      console.log(req.params.city);
+//      centerdetailsneoprocessor.getPlacementc(req.params.city,
+//       function(getNeoCenter){
+
 router.get('/getPlacementCenter/:city',function(req, res, next){
 	authorization.isAuthorized(req, res, next,constants.ADMIN , constants.CREATE,constants.ADMIN);
 }, function(req,res){
@@ -51,7 +65,7 @@ router.get('/getPlacementCenter/:city',function(req, res, next){
     },
     function(error){
             res.status(500).json(error);
-    });
+    })
 })
 
 

@@ -4,6 +4,8 @@ let project = require('./projectschema');
 let projectRelationBuilder = require('./projectRelationBuilder');
 let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
+let redis = require("redis");
+let client = redis.createClient();
 /* get all project for the given candidate id */
 // HTTP GET project/:candidateId
 // effective url project/:candidateId
@@ -52,6 +54,7 @@ router.post('/:candidateId', function(req, res, next){
                                     console.log("created relationship");
                                 }
                             });
+                        client.rpush('profilecrawling', req.params.candidateId);
                         res.status(201).json(projectObj);
                     },
                     function(err) {
@@ -83,6 +86,7 @@ router.patch('/:candidateId/:projectName',function(req, res, next){
         } else {
                     projectProcessor.updateProject(req.params.projectName, req.body,
                     req.params.candidateId, function(projectObj) {
+                        // client.rpush('profilecrawling', req.params.candidateId);
                         res.status(201).json(projectObj);
                     },
                     function(err) {

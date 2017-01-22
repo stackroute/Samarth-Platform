@@ -4,8 +4,7 @@ let candidateprocessor = require('./candidateprocessor');
 let candidate = require('./candidateschema');
 let profileprocessor = require('../profiles/profileprocessor');
 let educationprocessor = require('../sectioneducation/educationprocessor');
-let personalInfoprocessor = require(
-    '../sectionpersonalinfo/personalinfoprocessor');
+let personalInfoprocessor = require('../sectionpersonalinfo/personalinfoprocessor');
 let projectprocessor = require('../sectionproject/projectprocessor');
 let jobpreferencesProcessor=require('../sectionjobpreferences/jobpreferencesprocessor');
 let skillprocessor = require('../sectionskill/skillprocessor');
@@ -99,7 +98,7 @@ authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREA
                             }
                             );
                     },
-                    personalinfo: function(callback) {
+                     personalinfo: function(callback) {
                         personalInfoprocessor.createNewpersonalinfo(req.body,
                             function(personalinfoobj) {
                                 callback(null, personalinfoobj);
@@ -129,7 +128,7 @@ authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREA
                                 }
                             );
                         },
-                    skill: function(callback) {
+                         skill: function(callback) {
                         skillprocessor.createNewSkill(req.body,
                             function(skillobj) {
                                 callback(null, skillobj);
@@ -149,34 +148,36 @@ authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREA
                             }
                             );
                     },
-                    verificationdata: function(callback) {
+                     verificationdata: function(callback) {
                         verificationprocessor.createNewVerification(req.body,
                             function(verifyobj) {
                                 callback(null, verifyobj);
                             },
                             function(err) {
                                 callback(err, null);
+                            }
+                            );
+                    },
+                    function(err, results) {
+                        if (err) {
+                            console.log('ERR ----------------->: ', err);
+                            return res.status(500).json({
+                                msg: err
                             });
+                        }
+
+                        return res.status(201).json(results.personalinfo);
+
                     }
 
-                },
-                function(err, results) {
-                    if (err) {
-                        return res.status(500).json({
-                            msg: err
-                        });
-                    }
 
-                    return res.status(201).json(results.personalinfo);
-                }
-                ); // end of Async
+                }); // end of Async
             } // end if
             else {
                 return res.status(500).send('Candidate already exists, try editing instead...!');
             }
         }); // end find
-        }, function(){
-            console.log("err--------------------->", err);
+
         });
 
 } catch (err) {

@@ -10,7 +10,7 @@
         EDIT : "edit",
         DELETE : "delete",
         READ : "read",
-        // RBAC:"rbac",
+        IMPORTS:"imports",
         JOBPROVIDER :"jobprovider",
         PERSONINFO:"personalinfo",
         JOBPREFERENCES:"jobpreferences",

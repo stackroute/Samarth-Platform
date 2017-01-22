@@ -51,6 +51,7 @@ function modifyprofile(profileobj, candidateid, successCB) {
 }
 
 function inspectMissingProfileFields(candidateId, successCB, errorCB) {
+    console.log(" Service called with candidateid : "+ candidateId);
     let tasks = {
         skill: function(callback) {
              console.log("skill");
