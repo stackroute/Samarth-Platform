@@ -7,17 +7,17 @@ let db = neo4jConnection.getConnection();
 createCandidate = function(req, successCB, errorCB) {
     try{
         db.cypher({
-            query: 'MERGE (c:Candidate{name:{candidateid},username:{username}}) MERGE (l:Location{name:{location}}) MERGE (pr:Profession{name:{profession}}) MERGE (cc:circle{name:{centerCode}}) MERGE (c)-[rela:belongs_to]->(cc) MERGE (c)-[r:belongs_to]->(l) MERGE (c)-[rel:working_as]->(pr)',
+            query: 'MERGE (c:Candidate{name:{candidateid},username:{username}}) MERGE (l:Location{name:{location}}) MERGE (pr:Profession{name:{profession}}) MERGE (cc:circle{name:{placementCenter}}) MERGE (c)-[rela:belongs_to]->(cc) MERGE (c)-[r:belongs_to]->(l) MERGE (c)-[rel:working_as]->(pr)',
             params: {
                 candidateid: req.mobile,
                 username: req.name,
                 location: req.location,
                 profession: req.profession,
-                centerCode: req.centerCode
+                placementCenter: req.placementCenter
             }
         }, function(err, results) {
            if (err) {
-               errorCB && errorCB(err);
+               errorCB(err);
 
             } else {
                 successCB("Success....");//modified by hari(added the result as parameter)
