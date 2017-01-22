@@ -20,7 +20,8 @@ function getworkexp(candidateid, successCB, errorCB) {
 function createworkexp(formobj, sucessCB, errorCB) {
 		let wrkexpObj = new work({
 				candidateid: formobj.mobile,
-				workexperience: formobj.workexperience.length!=0 ? formobj.workexperience : []
+				workexperience: []
+				// workexperience: formobj.workexperience.length!=0 ? formobj.workexperience : []
 		});
 
 		wrkexpObj.save(function(err, result) {

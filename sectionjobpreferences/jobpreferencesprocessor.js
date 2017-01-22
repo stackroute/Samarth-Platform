@@ -19,7 +19,8 @@ function createNewPreferences(formobj, successCB, errorCB ) {
     console.log("create starting");
     let preferenceObj = new preference({
         candidateid: formobj.mobile,
-        preferences:formobj.preferences.length!=0 ? formobj.preferences : []
+        preferences:[]
+        // preferences:formobj.preferences.length!=0 ? formobj.preferences : []
     });
 
     preferenceObj.save(function(err, result) {

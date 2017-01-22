@@ -25,15 +25,12 @@ function getEducation(candidateid, successCB, errorCB) {
 }
 
 function createNewEducation(formobj, successCB, errorCB) {
-    console.log(">>>>>>>>>");
-    console.log(formobj.qualification.length);
-
     let addEduObj = new eduModel({
         candidateid: formobj.mobile,
-        qualification: formobj.qualification.length!=0 ? formobj.qualification : []
+        qualification: []
+        // qualification: formobj.qualification.length!=0 ? formobj.qualification : []
     });
-console.log('addEduObj.qualification');
-console.log(addEduObj.qualification);
+
     addEduObj.save(function(err, res) {
         if (err) {
 
