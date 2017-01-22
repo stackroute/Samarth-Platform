@@ -25,6 +25,7 @@ let candidateRoutes = require('./candidate/candidaterouter');
 let personalinfoRoutes = require('./sectionpersonalinfo/personalinforouter');
 let profilerouter = require('./profiles/profilerouter');
 let workRouter = require('./sectionworkexperiance/workrouter');
+// let galleryRouter = require('./sectionprofilegallery/galleryrouter'); //gallery
 let skillcardRouter = require('./skillcard/skillcardrouter');
 let qboxRouter = require('./questionbox/qboxrouter');
 let fieldQRouter = require('./questionbox/fieldquestionsrouter');
@@ -149,6 +150,7 @@ app.use('/education', educationRoutes);
 app.use('/skill', skillRoutes);
 app.use('/profile', profilerouter);
 app.use('/work', workRouter);
+// app.use('/gallery', galleryRouter);   //gallery
 app.use('/personalinfo', personalinfoRoutes);
 app.use('/skillcard', skillcardRouter);
 // app.use('/jobprofile', jobProfileRoutes);

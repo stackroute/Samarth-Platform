@@ -18,6 +18,7 @@ const rbac = new RBAC({
     education:['create', 'read', 'edit', 'delete'],
     skills:['create', 'read', 'edit', 'delete'],
     workexperience:['create', 'read', 'edit', 'delete'],
+    // gallery:['create', 'read', 'edit', 'delete'],
     projects:['create', 'read', 'edit', 'delete'],
     coordinators:['create', 'read', 'edit', 'delete'],
     coordinatorusers:['create', 'read', 'edit', 'delete'],
