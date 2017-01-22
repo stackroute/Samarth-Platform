@@ -103,7 +103,7 @@ router.post('/',
                             }
                             );
                     },
-                    personalinfo: function(callback) {
+                     personalinfo: function(callback) {
                         personalInfoprocessor.createNewpersonalinfo(req.body,
                             function(personalinfoobj) {
                                 callback(null, personalinfoobj);
@@ -133,7 +133,7 @@ router.post('/',
                                 }
                             );
                         },
-                    skill: function(callback) {
+                         skill: function(callback) {
                         skillprocessor.createNewSkill(req.body,
                             function(skillobj) {
                                 callback(null, skillobj);
@@ -153,36 +153,34 @@ router.post('/',
                             }
                             );
                     },
-                    verificationdata: function(callback) {
+                     verificationdata: function(callback) {
                         verificationprocessor.createNewVerification(req.body,
                             function(verifyobj) {
                                 callback(null, verifyobj);
                             },
                             function(err) {
                                 callback(err, null);
+                            }
+                            );  
+                    },
+                    function(err, results) {
+                        if (err) {
+                            console.log('ERR ----------------->: ', err);
+                            return res.status(500).json({
+                                msg: err
                             });
-                    }
+                        }
 
-                },
-                function(err, results) {
-                    if (err) {
-                        console.log('ERR ----------------->: ', err);
-                        return res.status(500).json({
-                            msg: err
-                        });
+                        return res.status(201).json(results.personalinfo);
                     }
-
-                    return res.status(201).json(results.personalinfo);
-                }
-                ); // end of Async
+               
+                    
+                }); // end of Async
             } // end if
             else {
                 return res.status(500).send('Candidate already exists, try editing instead...!');
             }
         }); // end find
-        }, function(){
-            console.log("err--------------------->", err);
-            // should we not return from here cos error occurred?
         });
 
 } catch (err) {

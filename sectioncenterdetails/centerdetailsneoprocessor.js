@@ -2,10 +2,10 @@ let neo4j = require('neo4j');
 var neo4jConnection = require("../connections/neo4jconnection.js");
 let db = neo4jConnection.getConnection();
 
-let createNodes = function (centerLocation,cname,address,centerCode,SuccessCB) {
+let createNodes = function (centerLocation,centerDomain,cname,address,centerCode,SuccessCB) {
 	console.log("HHHHHHHHHHHHhhh " + cname);
 	db.cypher({
-		query: 'MERGE (n:circle{name:{centerCode},cname:{cname},address:{address}}) MERGE (l:Location{name:{centerLocation}}) MERGE(n)-[:memberOf]->(l)',
+		query: 'MERGE (n:circle{name:{centerCode},cname:{cname},address:{address},centerDomain:{centerDomain}}) MERGE (l:Location{name:{centerLocation}}) MERGE(n)-[:memberOf]->(l)',
 
 
 
@@ -22,7 +22,7 @@ let createNodes = function (centerLocation,cname,address,centerCode,SuccessCB) {
 			centerCode: centerCode,
 			centerLocation: centerLocation,
 			cname: cname,
-			// centerDomain: centerDomain,
+			centerDomain: centerDomain,
 			address: address
 		},
 		}, function(err,results) {
@@ -37,26 +37,28 @@ let createNodes = function (centerLocation,cname,address,centerCode,SuccessCB) {
 	});
 	};
 
-	// let getPlacementCenter = function (location, SuccessCB, errorCB) {
-	// 	db.cypher({
-	// 		query: 'MATCH (l:circle{name:centerCode, address:location})',
-	// 		params: {
-	// 			centerCode: centerCode
-	// 		},
-	// 	}, function(err,results) {
-	// 		console.log("done");
-	// 		if(err)
-	// 		{
-	// 			SuccessCB(err,null)
-	// 		}
-	// 		else{
-	// 			SuccessCB(null,results)
-	// 		}
-	// 	});
+	let getPlacementc = function (Location, SuccessCB, errorCB) {
+		console.log("In processor");
+		db.cypher({
+			query: 'MATCH (n:Location{name:{Location}})<-[rel:memberOf]-(c:circle) RETURN c',
+			params: {
+				Location: Location
+			},
+		}, function(err, results) {
+			console.log("done: ", results);
+			if(err)
+			{
+				console.log('error', err);
+				errorCB(err,null)
+			}
+			else{
+				SuccessCB(null,results)
+			}
+		});
 
-	// };
+	};
 
 module.exports = {
 	createNodes : createNodes,
-	// getPlacementCenter : getPlacementCenter
+	getPlacementc : getPlacementc
 };

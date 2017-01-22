@@ -12,7 +12,7 @@ let PersonalInfoSchema = new Schema({
     contact: { type: Number, required: true },
     address: { type: String },
     location: { type: String },
-    centerCode: { type: String },
+    placementCenter: { type: String },
     pincode: { type: Number },
     userRole: [ {type: String,default: 'candidate'} ],
     profilepic:{ type:String, 
