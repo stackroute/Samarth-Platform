@@ -17,7 +17,7 @@ let constants = require('../authorization/constants');
 
 
 router.get('/allCandidate',function(req, res, next){
-authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.READ,constants.COORDINATOR);
 },
 function(req,res)
 {
@@ -61,7 +61,7 @@ function(req,res)
 });
 
 router.post('/search',function(req, res, next){
-authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATOR);
 },
 function(req, res) {
     try {
@@ -117,7 +117,7 @@ router.get('/profession', function(req, res) {
 // HTTP GET /candidate/:candidateid /
 // effective url /candidate/:candidateid
 router.get('/:candidateid',function(req, res, next){
-authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATOR);
 },
  function(req, res) {
 
@@ -146,7 +146,7 @@ authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ
 // effective url /candidate/:candidateid
 
 router.patch('/:candidateid',function(req, res, next){
-authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.EDIT,constants.COORDINATOR);
+authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.EDIT,constants.COORDINATOR);
 },
 function(req, res) {
    candidate.find({

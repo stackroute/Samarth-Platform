@@ -12,7 +12,7 @@
         READ : "read",
         IMPORTS:"imports",
         JOBPROVIDER :"jobprovider",
-        PERSONINFO:"personalinfo",
+        PERSONALINFO:"personalinfo",
         JOBPREFERENCES:"jobpreferences",
         EDUCATION:"education",
         SKILLS:"skills",

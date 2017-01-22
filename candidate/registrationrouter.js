@@ -55,7 +55,7 @@ router.get('/location', function(req, res) {
 // HTTP POST /candidate/:candidateid /
 // effective url /candidate/
 router.post('/',function(req, res, next){
-authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREATE,constants.COORDINATOR);
+authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.COORDINATOR);
 },
  function(req, res) {
     try {

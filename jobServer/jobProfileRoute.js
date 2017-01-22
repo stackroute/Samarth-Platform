@@ -12,7 +12,7 @@ let constants = require('../authorization/constants');
 
 //post job
 router.post('/jobpost',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREATE,constants.COORDINATOR);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.COORDINATOR);
 },function(req,res){
 	try{
 		var jobData = req.body;
@@ -45,7 +45,7 @@ router.post('/jobpost',function(req, res, next){
 
 	//get jobs
 	router.get('/getjobs', function(req, res, next){
-		authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+		authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATOR);
 	},function(req, res) {
 		try {
 			jobProfileProcessor.getJobs(function successFn(result) {
@@ -59,7 +59,7 @@ router.post('/jobpost',function(req, res, next){
 	});
 
 	router.get('/:getjobcodedata',function(req, res, next){
-		authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+		authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.COORDINATOR);
 	}, function(req, res) {
 		try {
 			var jobcode=req.params.getjobcodedata;
@@ -74,7 +74,7 @@ router.post('/jobpost',function(req, res, next){
 	});
 
 	router.get('/searchJobs/:searchTxt/:profs', function(req, res, next){
-		authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+		authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.COORDINATOR);
 	},function(req, res) {
 		var jobs=[];
 		var jobProfile={};
@@ -121,7 +121,7 @@ router.post('/jobpost',function(req, res, next){
 		});
 
 		router.get('/getIntent/:searchTxt/:profs',function(req, res, next){
-			authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+			authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.COORDINATOR);
 		}, function(req, res) {
 			try {
 				var searchTxt=req.params.searchTxt;
@@ -139,7 +139,7 @@ router.post('/jobpost',function(req, res, next){
 
 
 		router.patch('/updateJob', function(req, res, next){
-			authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.EDIT,constants.COORDINATOR);
+			authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.EDIT,constants.COORDINATOR);
 		},function(req, res) {
 			try {
 				let jobData = req.body;
@@ -160,7 +160,7 @@ router.post('/jobpost',function(req, res, next){
 
 		//jobsByProfession
 		router.get('/jobsByProfession/:prof', function(req, res, next){
-			authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+			authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.COORDINATOR);
 		},function(req, res) {
 			var jobs=[];
 			var jobProfile={};
@@ -198,7 +198,7 @@ router.post('/jobpost',function(req, res, next){
 
 				//reportjobsByProfession
 				router.get('/getAllJobsByProfession/:prof/:jobContent', function(req, res, next){
-					authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.READ,constants.COORDINATOR);
+					authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATOR);
 				},function(req, res) {
 					var jobs=[];
 					var jobProfile={};

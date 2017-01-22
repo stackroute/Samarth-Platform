@@ -10,7 +10,7 @@ let client = redis.createClient();
 // HTTP GET /work/:candidateid
 // effective url work/:candidateid
 router.get('/:candidateid', function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.READ,constants.WORKEXPERIENCE);
 },function(req, res) {
 	try{
 	workProcessor.getworkexp(req.params.candidateid, function(workexps) {
@@ -30,7 +30,7 @@ catch (err) {
 // HTTP POST /work/:candidateid
 // effective url work/:candidateid
 router.post('/:candidateid',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.WORKEXPERIENCE);
 },function(req, res) {
 	try{
 	work.find({ candidateid: req.params.candidateid }, function(err, result) {
@@ -60,7 +60,7 @@ note:(pass every field from body) */
 // HTTP PATCH /work/:candidateid/::organisation
 // effective url work/:candidateid/::organisation
 router.patch('/:candidateid/:workplace',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.EDIT,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.EDIT,constants.WORKEXPERIENCE);
 }, function(req, res) {
 try{
 	work.find({ candidateid: req.params.candidateid }, function(err, result) {
@@ -91,7 +91,7 @@ try{
 // HTTP DELETE /work/:candidateid/:designation
 //delete route for Work Experience deletion
 router.delete('/:candidateid/:designation', function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.DELETE,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.DELETE,constants.WORKEXPERIENCE);
 },function(req, res) {
 	try{
 	work.find({ candidateid: req.params.candidateid }, function(err, result) {

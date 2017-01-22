@@ -14,7 +14,7 @@ let client = redis.createClient();
 //HHTP GET skill/:candidateid
 //effective URL skill/:candidateid
 router.get("/:candidateid", function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.READ,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.SKILLS);
 },function(req, res) {
       try {
         skillProcessor.getSkill(req.params.candidateid,
@@ -38,7 +38,7 @@ router.get("/:candidateid", function(req, res, next){
 
 //effective url  /skill/:candidateid
 router.post("/:candidateid", function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.CREATE,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.CREATE,constants.SKILLS);
 },function(req, res) {
     try {
     skill.find({
@@ -94,7 +94,7 @@ router.post("/:candidateid", function(req, res, next){
 // HTTP PATCH /skill/:candidateid/:skillname
 // effective url /skill/:candidateid/:skillname
 router.patch('/:candidateid/:skillname', function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.EDIT,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.EDIT,constants.SKILLS);
 },function(req, res) {
 	skill.find({
 		candidateid: req.params.candidateid
@@ -126,7 +126,7 @@ router.patch('/:candidateid/:skillname', function(req, res, next){
 
 // ---------------delete skill ------------
 router.delete('/:candidateid/:skillname',function(req, res, next){
-	authorization.isAuthorized(req, res, next,constants.CANDIDATE , constants.DELETE,constants.CANDIDATE);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.DELETE,constants.SKILLS);
 }, function(req, res) {
 	skill.find({
 		candidateid: req.params.candidateid

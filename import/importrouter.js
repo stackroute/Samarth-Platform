@@ -9,7 +9,7 @@ let authorization = require('../authorization/authorization');
 //         let fileData = req.body;
 
 //         importprocessor.getFil(,
-            
+
 //             },
 //             function errorCB(error) {
 //                 res.status(500).json({
@@ -23,7 +23,7 @@ let authorization = require('../authorization/authorization');
 // });
 
 router.post('/', function(req, res, next){
-	authorization.isAuthorized(req, res, next, constants.ADMIN, constants.CREATE, constants.ADMIN);
+	authorization.isAuthorized(req, res, next, req.user._doc.userRole[0], constants.CREATE, constants.ADMIN);
 },
  function(req, res) {
     var sampleFile;
@@ -32,7 +32,7 @@ router.post('/', function(req, res, next){
         res.send('No files were uploaded.');
         return;
     }
- 
+
     sampleFile = req.files.file;
     console.log(sampleFile);
     sampleFile.mv('uploads/'+sampleFile.name, function(err) {
