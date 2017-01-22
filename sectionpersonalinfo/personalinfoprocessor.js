@@ -5,17 +5,17 @@ function createNewpersonalinfo(formobj, successCB, errorCB) {
     let personObj = new person({
         candidateid: formobj.mobile,
         name: formobj.name,
-        dob: null,
+        dob: formobj.dob!=null ? formobj.dob : null,
         email: formobj.email,
         contact: formobj.mobile,
-        gender: '',
-        mothertongue: '',
-        maritialstatus: '',
-        address: '',
+        gender: formobj.gender!='' ? formobj.gender : '',
+        mothertongue: formobj.mothertongue!='' ? formobj.mothertongue : '',
+        maritialstatus: formobj.maritialstatus!='' ? formobj.maritialstatus : '',
+        address: formobj.address!='' ? formobj.address : '',
         location: formobj.location,
         adharcard: formobj.adharcard,
         placementCenter: formobj.placementCenter,
-        pincode: null,
+        pincode: formobj.pincode!=null ? formobj.pincode : null,
         userRole: 'candidate'
     });
     personObj.save(function(err, postdetails) {

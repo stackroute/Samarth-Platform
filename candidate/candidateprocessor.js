@@ -139,19 +139,18 @@
                                 callback(err, null);
                             }
                             );
-                    }
-                    // ,
-                    // function(err, results) {
-                    //     if (err) {
-                    //         console.log('ERR ----------------->: ', err);
-                    //         // return res.status(500).json({
-                    //         //     msg: err
-                    //         // });
-                    //     }
+                    },
+                    function(err, results) {
+                        if (err) {
+                            console.log('ERR ----------------->: ', err);
+                            // return res.status(500).json({
+                            //     msg: err
+                            // });
+                        }
 
-                    //     // return res.status(201).json(results.personalinfo);
-                    //     console.log('done ----------------->: '+ results);
-                    // }
+                        // return res.status(201).json(results.personalinfo);
+                        console.log('done ----------------->: ');
+                    }
 
 
                 }); // end of Async
@@ -162,9 +161,7 @@
             }
         }); // end find
 
-        },function(err) {
-                                console.log(err);
-            });
+        });
 
         } catch (err) {
             console.log("Internal Error Occurred inside catch");
