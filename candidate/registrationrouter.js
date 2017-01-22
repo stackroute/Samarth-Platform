@@ -12,6 +12,8 @@ let skillprocessor = require('../sectionskill/skillprocessor');
 let workexpprocessor = require('../sectionworkexperiance/workprocessor');
 let candidateneo = require('./candidateneoprocessor');
 let verificationprocessor = require('../verification/verificationprocesser');
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
 
 router.get('/profession', function(req, res) {
     try {
@@ -53,25 +55,18 @@ router.get('/location', function(req, res) {
 /* Register the Candidate by creating Candidate and other collections using form data and default values */
 // HTTP POST /candidate/:candidateid /
 // effective url /candidate/
-router.post('/',
-// function(req, res, next){
-// authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREATE,constants.COORDINATOR);
-// },
+router.post('/',function(req, res, next){
+authorization.isAuthorized(req, res, next,constants.COORDINATOR , constants.CREATE,constants.COORDINATOR);
+},
  function(req, res) {
-    console.log('during registeration entered into platform', req.body);
     try {
         candidateneo.createCandidate(req.body, function(stat) {
-            console.log("stat-------------------->", stat);
-            
+
         // create every section,candidate,profile if candidate is created for first time
         candidate.find({
             candidateid: req.body.mobile
         }, function(error, candidate) {
-
-            /*if (candidate === '') {*/
                 if (candidate.length == 0) {
-
-                // console.log('inside ifffffffffffffffffffffffffffff--->',candidate.length);
                 async.parallel({
                     candidate: function(callback) {
                         candidateprocessor.createNewcandidate(req.body,
@@ -167,7 +162,6 @@ router.post('/',
                 },
                 function(err, results) {
                     if (err) {
-                        console.log('ERR ----------------->: ', err);
                         return res.status(500).json({
                             msg: err
                         });
@@ -183,11 +177,9 @@ router.post('/',
         }); // end find
         }, function(){
             console.log("err--------------------->", err);
-            // should we not return from here cos error occurred?
         });
 
 } catch (err) {
-    console.log("Internal Error Occurred inside catch");
     return res.status(500).send(
         'Internal error occurred, please report or try later...!');
 }

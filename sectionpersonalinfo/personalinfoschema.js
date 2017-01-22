@@ -15,7 +15,7 @@ let PersonalInfoSchema = new Schema({
     centerCode: { type: String },
     pincode: { type: Number },
     userRole: [ {type: String,default: 'candidate'} ],
-    profilepic:{ type:String, 
+    profilepic:{ type:String,
         default: 'http://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg'}
 });
 let personModl = mongoose.model('personModl', PersonalInfoSchema, 'personalinfo');

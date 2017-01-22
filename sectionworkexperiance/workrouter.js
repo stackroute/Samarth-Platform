@@ -104,7 +104,6 @@ router.delete('/:candidateid/:designation', function(req, res, next){
 	}); //end find
 	} //end try
 			catch (err) {
-				console.log("Error in ... ", err);
 				res.status(500).json({
 					error: 'Internal error occurred, please report'
 				});
