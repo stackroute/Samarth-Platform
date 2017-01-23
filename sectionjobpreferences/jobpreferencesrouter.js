@@ -38,7 +38,12 @@ function(req, res, next){
                 res.status(500).send('Register the candidate first before adding a preferences');
         } // end if
         else {
-            jobpreferencesProcessor.createNewPreferences(req.body);
+            jobpreferencesProcessor.createNewPreferences(req.body, function(result){
+                // res.status(201).json(result);
+            },
+            function(err){
+               // res.status(500).json(err); 
+            });
             jobpreferencesProcessor.updatePreferences(req.body, req.params.candidateId,
                 function(preferenceObj) {
                     jobpreferencesRelationBuilder.jobpreferencesRelationBuilder(req.body.preferences,req.params.candidateId);
