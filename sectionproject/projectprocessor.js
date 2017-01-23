@@ -26,6 +26,7 @@ function createNewProject(formobj, sucessCB, errorCB) {
     let projectObj = new project({
         candidateid: formobj.mobile,
         projects: []
+         // projects: formobj.projects.length!=0 ? formobj.projects : []
     });
     projectObj.save(function(err, result) {
         if (err) {
