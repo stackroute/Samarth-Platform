@@ -94,15 +94,15 @@ function inspectMissingProfileFields(candidateId, successCB, errorCB) {
             }, function(err) {
                 callback(err, null);
             });
+        },
+        jobpreference: function(callback) {
+            console.log("jobpreference");
+            jobpreferenceMissingFinder.findJobInfoMissingFields(candidateId, function(result) {
+                callback(null, result);
+            }, function(err) {
+                callback(err, null);
+            })
         }
-        // jobpreference: function(callback) {
-        //     console.log("jobpreference");
-        //     jobpreferenceMissingFinder.findJobInfoMissingFields(candidateId, function(result) {
-        //         callback(null, result);
-        //     }, function(err) {
-        //         callback(err, null);
-        //     })
-        // }
 
     };
 
@@ -130,7 +130,7 @@ function updateMissingFieldResponse(candidateId, sectionName, instancename, fiel
                     "personalinfo": personalInfoprocessor.addMissingPersonalInfoFieldResponse,
                     "project":  projectprocessor.addMissingProjectFieldResponse,
                     "workexperience": workProcessor.addMissingWorkFieldResponse,
-                    // "jobpreference" : jobpreference.addMissingJobpreferencesFieldResponse,
+                    "jobpreference" : jobpreference.addMissingJobpreferencesFieldResponse,
                 }
 
                 let closureObj = missingFieldResUpdateTasks[sectionName];
