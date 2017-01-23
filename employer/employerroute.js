@@ -2,7 +2,10 @@ let router = require('express').Router();
 let employer = require('./employerschema');
 let employerProcessor = require('./employerproccessor');
 
-router.post('/registeremployer', function(req, res) {
+router.post('/registeremployer', function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] ,constants.CREATE,constants.JOBPROVIDER);
+},
+ function(req, res) {
     try {
         let employerData = req.body;
         employerProcessor.getEmployerByID(employerData.employerID, function sucessCB(result) {
@@ -24,7 +27,13 @@ router.post('/registeremployer', function(req, res) {
     }
 });
 
-router.get('/getbyemployerid/:employerId', function(req, res) {
+router.get('/getbyemployerid/:employerId', function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] ,constants.READ,constants.JOBPROVIDER);
+},
+// function(req, res, next){
+//  authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] ,constants.READ,constants.COORDINATOR);
+// },
+ function(req, res) {
     try {
         employerProcessor.getEmployerByID(req.params.employerId, function sucessCB(result) {
             res.status(200).send(result);
@@ -38,7 +47,12 @@ router.get('/getbyemployerid/:employerId', function(req, res) {
     }
 });
 
-router.get('/getemployers', function(req, res) {
+router.get('/getemployers', function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] ,constants.READ,constants.JOBPROVIDER);
+},
+// function(req, res, next){
+//  authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] ,constants.READ,constants.COORDINATOR);
+// }, function(req, res) {
     try {
         employerProcessor.getEmployers(function sucessCB(result) {
             res.status(200).send(result);

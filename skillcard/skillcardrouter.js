@@ -31,9 +31,7 @@ router.get('/allcandidates',function(req, res) {
 
 
 // This will return all the candidates in the circle
-router.get('/searchcandidate/:circle',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.COORDINATOR);
-}, function(req, res) {
+router.get('/searchcandidate/:circle', function(req, res) {
    try{
     candidateneo.getcircle(req.params.circle, function(candidates) {
         res.status(200).json(candidates);
@@ -72,7 +70,9 @@ router.get('/aws',function (req,res) {
 // HTTP GET /skillcard/:candidateid
 // effective url /skillcard/:candidateid
 
-router.get('/:candidateid', function(req, res) {
+router.get('/:candidateid',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.SKILLS);
+}, function(req, res) {
     try{
         console.log("candidate is is");
         console.log(req.params.candidateid);

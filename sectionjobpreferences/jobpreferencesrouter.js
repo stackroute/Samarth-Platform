@@ -5,9 +5,11 @@ let jobpreferencesRelationBuilder = require('./jobpreferencesRelationBuilder');
 let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
 
-router.get('/:candidateId',function(req, res, next){
+router.get('/:candidateId',
+function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.READ,constants.JOBPREFERENCES);
-}, function(req, res) {
+},
+ function(req, res) {
     try {
         let preferenceObj = jobpreferencesProcessor.getPreferences(req.params.candidateId,
             function(preferenceObj) {
@@ -25,9 +27,11 @@ router.get('/:candidateId',function(req, res, next){
 
 
 
-router.post('/:candidateId',function(req, res, next){
+router.post('/:candidateId',
+function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.JOBPREFERENCES);
-}, function(req, res) {
+},
+ function(req, res) {
     try {
         preference.find({ candidateid: req.params.candidateId }, function(err, result) {
             if (result == '') {
@@ -55,9 +59,11 @@ router.post('/:candidateId',function(req, res, next){
 
 
 
-router.patch('/:candidateId/:preferenceRole',function(req, res, next){
+router.patch('/:candidateId/:preferenceRole',
+function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.EDIT,constants.JOBPREFERENCES);
-}, function(req, res) {
+},
+ function(req, res) {
     try {
         preference.find({ candidateid: req.params.candidateId }, function(err, result) {
             if (result === '') {

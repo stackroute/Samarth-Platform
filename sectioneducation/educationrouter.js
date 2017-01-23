@@ -12,7 +12,11 @@ let constants = require('../authorization/constants');
 // effective url /education//:candidateid
 router.get('/:candidateid', function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] ,constants.READ,constants.EDUCATION);
-},function(req, res) {
+},
+// function(req, res, next){
+// 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COOR);
+// },
+function(req, res) {
     try{
     educationProcessor.getEducation(req.params.candidateid, function(educationObject) {
 
@@ -32,7 +36,11 @@ router.get('/:candidateid', function(req, res, next){
 // effective url /education//:candidateid
 router.post('/:candidateID',function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.EDUCATION);
-}, function(req, res) {
+},
+// function(req, res, next){
+// 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.COORDINATOR);
+// },
+function(req, res) {
 try {
     eduModel.find({ candidateid: req.params.candidateID }, function(err, result) {
         if (result === '') {
@@ -72,7 +80,11 @@ try {
 router.patch('/:candidateID/:title',
 function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.EDIT,constants.EDUCATION);
-}, function(req, res) {
+},
+// function(req, res, next){
+// 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.EDIT,constants.COORDINATOR);
+// },
+function(req, res) {
     try {
     eduModel.find({ candidateid: req.params.candidateID }, function(err, result) {
       if (err || result === '') {
@@ -99,7 +111,11 @@ function(req, res, next){
 
 router.delete('/:candidateid/:title/:nameofins',function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.DELETE,constants.EDUCATION);
-}, function(req, res) {
+},
+// function(req, res, next){
+// 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.DELETE,constants.COORDINATOR);
+// },
+ function(req, res) {
     eduModel.find({
         candidateid: req.params.candidateid
     }, function(err, result) {

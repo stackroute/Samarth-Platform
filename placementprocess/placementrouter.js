@@ -6,7 +6,11 @@ var jobProfileProcessor = require('../jobServer/jobProfileProcessor');
 let jobproviderprocessor = require('../jobprovider/jobproviderprocessor');
 
 
-router.post('/apply/',function(req,res){
+router.post('/apply/',
+function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
      var jobdata =req.body;
@@ -29,7 +33,10 @@ router.post('/apply/',function(req,res){
 	}
 })
 
-router.post('/status/',function(req,res){
+router.post('/status/',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
      var jobdata =req.body;
@@ -46,7 +53,10 @@ router.post('/status/',function(req,res){
 })
 
 
-router.get('/offeredDetails/:candidateid',function(req,res){
+router.get('/offeredDetails/:candidateid',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
 		placementneo.acceptedDetails(req,function(applied){
@@ -62,7 +72,10 @@ router.get('/offeredDetails/:candidateid',function(req,res){
 	}
 })
 
-router.get('/acceptedCandidates/:jobcode',function(req,res){
+router.get('/acceptedCandidates/:jobcode',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
 		placementneo.acceptedCandidates(req,function(applied){
@@ -94,7 +107,10 @@ router.get('/rejectedCandidates/:jobcode',function(req,res){
 	}
 })
 
-router.get('/joinedCandidates/:jobcode',function(req,res){
+router.get('/joinedCandidates/:jobcode',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
 		placementneo.joinedCandidates(req,function(applied){
@@ -110,7 +126,10 @@ router.get('/joinedCandidates/:jobcode',function(req,res){
 	}
 })
 
-router.get('/declinedCandidates/:jobcode',function(req,res){
+router.get('/declinedCandidates/:jobcode',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
 		placementneo.declinedCandidates(req,function(applied){
@@ -126,7 +145,10 @@ router.get('/declinedCandidates/:jobcode',function(req,res){
 	}
 })
 
-router.post('/offer/',function(req,res){
+router.post('/offer/',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
     var jobdata =req.body;
@@ -151,7 +173,10 @@ router.post('/offer/',function(req,res){
 })
 
 
-router.post('/join/',function(req,res){
+router.post('/join/',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
     var jobdata =req.body;
@@ -168,7 +193,10 @@ router.post('/join/',function(req,res){
 	}
 })
 
-router.post('/decline/',function(req,res){
+router.post('/decline/',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
     var jobdata =req.body;
@@ -187,7 +215,10 @@ router.post('/decline/',function(req,res){
 
 
 
-router.post('/reject/',function(req,res){
+router.post('/reject/',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
     var jobdata =req.body;
@@ -211,7 +242,10 @@ router.post('/reject/',function(req,res){
 })
 
 
-router.get('/appliedCandidates/:jobcode',function(req,res){
+router.get('/appliedCandidates/:jobcode',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
 		placementneo.appliedCandidates(req,function(applied){
@@ -227,7 +261,10 @@ router.get('/appliedCandidates/:jobcode',function(req,res){
 })
 
 
-router.get('/candidatesOfProfession/:profession',function(req,res){
+router.get('/candidatesOfProfession/:profession',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
 		placementneo.candidatesOfProfession(req,function(applied){
@@ -242,7 +279,10 @@ router.get('/candidatesOfProfession/:profession',function(req,res){
 	}
 })
 
-router.get('/availableCandidatesOfProfession/:profession',function(req,res){
+router.get('/availableCandidatesOfProfession/:profession',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
 		placementneo.availableCandidatesOfProfession(req,function(applied){
@@ -257,7 +297,10 @@ router.get('/availableCandidatesOfProfession/:profession',function(req,res){
 	}
 })
 
-router.get('/candidatesAppliedProfession/:profession',function(req,res){
+router.get('/candidatesAppliedProfession/:profession',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
 		placementneo.candidatesAppliedProfession(req,function(applied){
@@ -272,7 +315,10 @@ router.get('/candidatesAppliedProfession/:profession',function(req,res){
 	}
 })
 
-router.get('/candidatesPlacedProfession/:profession',function(req,res){
+router.get('/candidatesPlacedProfession/:profession',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
 		placementneo.candidatesPlacedProfession(req,function(placed){
@@ -287,7 +333,10 @@ router.get('/candidatesPlacedProfession/:profession',function(req,res){
 	}
 })
 
-router.get('/appliedJobs/:candidateid',function(req,res){
+router.get('/appliedJobs/:candidateid',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+},
+function(req,res){
 	try
 	{
 		var jobs=[];
@@ -311,7 +360,7 @@ router.get('/appliedJobs/:candidateid',function(req,res){
             // console.log(jobProfile);
             jobProfile = {};
             callback();
-           
+
         }, function errorCB(error) {
             res.status(500).json(error);
         });
@@ -338,4 +387,3 @@ router.get('/appliedJobs/:candidateid',function(req,res){
 
 
 module.exports = router;
-

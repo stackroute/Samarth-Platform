@@ -6,7 +6,7 @@ let redis = require("redis");
 let client = redis.createClient();
 
 router.post('/', function(req, res, next){
-	authorization.isAuthorized(req, res, next, req.user._doc.userRole[0], constants.CREATE, constants.ADMIN);
+	authorization.isAuthorized(req, res, next, req.user._doc.userRole[0], constants.CREATE, constants.IMPORTS);
 },
  function(req, res) {
     var sampleFile;

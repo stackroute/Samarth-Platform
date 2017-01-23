@@ -7,11 +7,11 @@ const rbac = new RBAC({
     sidenavbar:['read'],
     search: ['create', 'read', 'edit', 'delete'],
     jobs: ['create', 'read', 'edit', 'delete'],
-    admin: ['create', 'read', 'edit', 'delete'],
-    supervisor: ['create', 'read', 'edit', 'delete'],
-    candidate: ['create', 'read', 'edit', 'delete'],
-    coordinator: ['create', 'read', 'edit', 'delete'],
+    admins: ['create', 'read', 'edit', 'delete'],
+    supervisors: ['create', 'read', 'edit', 'delete'],
+    candidates: ['create', 'read', 'edit', 'delete'],
     jobprovider:['create', 'read', 'edit', 'delete'],
+    // jobpost:['create', 'read', 'edit', 'delete'],
 
     imports:['create'],
     personalinfo :['create', 'read', 'edit', 'delete'],
@@ -31,17 +31,24 @@ const rbac = new RBAC({
                 'create_education','edit_education','read_education','delete_education',
                 'create_skills','edit_skills','read_skills','delete_skills',
                 'create_workexperience','edit_workexperience','read_workexperience','delete_workexperience',
-                'create_projects','edit_projects','read_projects','read_jobs'],
+                'create_projects','edit_projects','read_projects','delete_projects','read_jobs'],
 
     // supervisor: ['read_sidenavbar','create_jobs', 'read_jobs','create_jobs','edit_jobs', 'delete_jobs'],
 
     coordinator: ['read_sidenavbar', 'create_jobs', 'read_jobs', 'edit_jobs', 'delete_jobs',
-                  'create_candidate','edit_candidate','read_candidate',
-                  'create_jobprovider','edit_jobprovider','read_search'],
+                  // 'create_jobpost', 'read_jobpost', 'edit_jobpost', 'delete_jobpost',
+                  'create_candidates','edit_candidates','read_candidates',
+                  'create_jobprovider','edit_jobprovider','read_search',
+                  'create_personalinfo','edit_personalinfo','read_personalinfo',
+                  'create_jobpreferences','edit_jobpreferences','read_jobpreferences',
+                  'create_education','edit_education','read_education','delete_education',
+                  'create_skills','edit_skills','read_skills','delete_skills',
+                  'create_workexperience','edit_workexperience','read_workexperience','delete_workexperience',
+                  'create_projects','edit_projects','read_projects','read_jobs'],
 
     admin: ['read_sidenavbar','create_coordinators', 'read_coordinators', 'edit_coordinators', 'delete_coordinators',
-            'create_admin', 'read_admin', 'edit_admin', 'delete_admin',
-            'create_supervisor', 'read_supervisor', 'edit_supervisor', 'delete_supervisor',
+            'create_admins', 'read_admins', 'edit_admins', 'delete_admins',
+            'create_supervisors', 'read_supervisors', 'edit_supervisors', 'delete_supervisors',
             'create_centerdetails','read_centerdetails','edit_centerdetails','delete_centerdetails',
             'create_imports']
 
@@ -56,6 +63,7 @@ const rbac = new RBAC({
 
 function isAuthorized(req, res, next, role, accesslevel, target){
     rbac.can(role, accesslevel, target, (err, can) => {
+      // console.log(role);
   if (err) {
 
     console.log("Not authorized");
@@ -69,7 +77,6 @@ function isAuthorized(req, res, next, role, accesslevel, target){
   } else {
     console.log("Not authorized");
     res.status(403).send("Not authorized");
-    // res.status(403).redirect('/');
   }
 });
 }

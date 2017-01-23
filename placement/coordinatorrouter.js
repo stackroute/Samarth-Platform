@@ -3,18 +3,21 @@ let async = require('async');
 
 let coordinatorprocessor = require('./coordinatorneoprocessor.js');
 
-router.get('/profession', function(req, res) 
+router.get('/profession',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATORS);
+},
+ function(req, res)
 {
-	try 
+	try
 	{
-		coordinatorprocessor.getProfessions(function(professions) 
+		coordinatorprocessor.getProfessions(function(professions)
 		{
 			res.status(200).json(professions);
-		}, function(err) 
+		}, function(err)
 		{
 			res.status(500).json(err);
 		});
-	} catch (err) 
+	} catch (err)
 	{
 
 		res.status(500).json(
@@ -24,18 +27,20 @@ router.get('/profession', function(req, res)
 	}
 });
 
-router.get('/role', function(req, res) 
+router.get('/role',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATORS);
+}, function(req, res)
 {
-	try 
+	try
 	{
-		coordinatorprocessor.getRole(function(role) 
+		coordinatorprocessor.getRole(function(role)
 		{
 			res.status(200).json(role);
-		}, function(err) 
+		}, function(err)
 		{
 			res.status(500).json(err);
 		});
-	} catch (err) 
+	} catch (err)
 	{
 
 		res.status(500).json(
@@ -45,18 +50,20 @@ router.get('/role', function(req, res)
 	}
 });
 
-router.get('/language', function(req, res) 
+router.get('/language', function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATORS);
+},function(req, res)
 {
-	try 
+	try
 	{
-		coordinatorprocessor.getLanguage(function(language) 
+		coordinatorprocessor.getLanguage(function(language)
 		{
 			res.status(200).json(language);
-		}, function(err) 
+		}, function(err)
 		{
 			res.status(500).json(err);
 		});
-	} catch (err) 
+	} catch (err)
 	{
 
 		res.status(500).json(
@@ -66,18 +73,20 @@ router.get('/language', function(req, res)
 	}
 });
 
-router.get('/location', function(req, res) 
+router.get('/location',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATORS);
+}, function(req, res)
 {
-	try 
+	try
 	{
-		coordinatorprocessor.getLocation(function(location) 
+		coordinatorprocessor.getLocation(function(location)
 		{
 			res.status(200).json(location);
-		}, function(err) 
+		}, function(err)
 		{
 			res.status(500).json(err);
 		});
-	} catch (err) 
+	} catch (err)
 	{
 
 		res.status(500).json(
