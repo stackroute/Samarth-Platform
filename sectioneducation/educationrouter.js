@@ -96,6 +96,7 @@ function(req, res) {
                                                         req.body,function(updatedEdu) {
                         // client.rpush('profilecrawling',req.params.candidateID);
                         res.status(201).json(updatedEdu);
+                        console.log("updating the educational details");
                     },
                     function(err) {
                         res.status(500).send('updating new educational detail with invalid data ');

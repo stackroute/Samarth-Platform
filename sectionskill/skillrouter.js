@@ -111,6 +111,7 @@ function(req, res) {
 					req.params.candidateid,
 					function(skill2) {
 						console.log("Skill patched")
+						console.log("updating skills given by candidateid");
 						// client.rpush('profilecrawling', req.params.candidateid);
 						res.status(201).json(skill2);
 					},
