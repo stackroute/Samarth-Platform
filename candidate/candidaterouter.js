@@ -61,7 +61,7 @@ function(req,res)
 });
 
 router.post('/search',function(req, res, next){
-authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.COORDINATORS);
+authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.SEARCHCANDIDATE);
 },
 function(req, res) {
     try {

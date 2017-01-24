@@ -198,7 +198,7 @@ router.post('/jobpost',function(req, res, next){
 
 				//reportjobsByProfession
 				router.get('/getAllJobsByProfession/:prof/:jobContent', function(req, res, next){
-					authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBS);
+					authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.REPORTS);
 				},function(req, res) {
 					var jobs=[];
 					var jobProfile={};

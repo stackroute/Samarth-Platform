@@ -16,6 +16,8 @@
         READ : "read",
         IMPORTS:"imports",
         JOBPROVIDER :"jobprovider",
+        REPORTS :'reports',
+        SEARCHCANDIDATE : 'searchcandidate',
         // JOBPOST :"jobpost",
         PERSONALINFO:"personalinfo",
         JOBPREFERENCES:"jobpreferences",
@@ -26,5 +28,6 @@
         PROJECTS:"projects",
         COORDINATORUSERS : "coordinatorusers",
         COORDINATORS : "coordinators",
-        CENTERDETAILS:"centerdetails"
+        CENTERDETAILS:"centerdetails",
+        SKILLCARD :"skillcard"
   }

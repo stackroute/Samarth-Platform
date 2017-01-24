@@ -23,7 +23,10 @@ const rbac = new RBAC({
     projects:['create', 'read', 'edit', 'delete'],
     coordinators:['create', 'read', 'edit', 'delete'],
     coordinatorusers:['create', 'read', 'edit', 'delete'],
-    centerdetails:['create', 'read', 'edit', 'delete']
+    centerdetails:['create', 'read', 'edit', 'delete'],
+    skillcard : ['create', 'read', 'edit', 'delete'],
+    reports : ['create', 'read', 'edit', 'delete'],
+    searchcandidate : ['create', 'read', 'edit', 'delete']
    },
   grants: {
     candidate : ['create_personalinfo','edit_personalinfo','read_personalinfo',
@@ -31,11 +34,14 @@ const rbac = new RBAC({
                 'create_education','edit_education','read_education','delete_education',
                 'create_skills','edit_skills','read_skills','delete_skills',
                 'create_workexperience','edit_workexperience','read_workexperience','delete_workexperience',
-                'create_projects','edit_projects','read_projects','delete_projects','read_jobs'],
+                'create_projects','edit_projects','read_projects','delete_projects','read_jobs',
+                'create_centerdetails','read_centerdetails','edit_centerdetails','delete_centerdetails',
+                'create_skillcard','read_skillcard','edit_skillcard','delete_skillcard'],
 
     // supervisor: ['read_sidenavbar','create_jobs', 'read_jobs','create_jobs','edit_jobs', 'delete_jobs'],
 
     coordinator: ['read_sidenavbar', 'create_jobs', 'read_jobs', 'edit_jobs', 'delete_jobs',
+                  'create_reports', 'read_reports', 'edit_reports', 'delete_reports',
                   // 'create_jobpost', 'read_jobpost', 'edit_jobpost', 'delete_jobpost',
                   'create_candidates','edit_candidates','read_candidates',
                   'create_jobprovider','edit_jobprovider','read_search',
@@ -44,7 +50,8 @@ const rbac = new RBAC({
                   'create_education','edit_education','read_education','delete_education',
                   'create_skills','edit_skills','read_skills','delete_skills',
                   'create_workexperience','edit_workexperience','read_workexperience','delete_workexperience',
-                  'create_projects','edit_projects','read_projects','read_jobs'],
+                  'create_projects','edit_projects','read_projects','read_jobs',
+                    'read_searchcandidate'],
 
     admin: ['read_sidenavbar','create_coordinators', 'read_coordinators', 'edit_coordinators', 'delete_coordinators',
             'create_admins', 'read_admins', 'edit_admins', 'delete_admins',

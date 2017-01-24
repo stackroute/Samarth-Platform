@@ -1,11 +1,7 @@
 let router = require('express').Router();
 let async = require('async');
-
 let coordinatorprocessor = require('./coordinatorneoprocessor.js');
-
-router.get('/profession',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATORS);
-},
+router.get('/profession',
  function(req, res)
 {
 	try
@@ -27,9 +23,7 @@ router.get('/profession',function(req, res, next){
 	}
 });
 
-router.get('/role',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATORS);
-}, function(req, res)
+router.get('/role', function(req, res)
 {
 	try
 	{
@@ -50,9 +44,7 @@ router.get('/role',function(req, res, next){
 	}
 });
 
-router.get('/language', function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATORS);
-},function(req, res)
+router.get('/language',function(req, res)
 {
 	try
 	{
@@ -73,9 +65,7 @@ router.get('/language', function(req, res, next){
 	}
 });
 
-router.get('/location',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATORS);
-}, function(req, res)
+router.get('/location', function(req, res)
 {
 	try
 	{

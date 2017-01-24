@@ -47,6 +47,7 @@ router.post('/',function(req, res, next){
 
 
 })
+    // Centers in candidate registration form
 router.get('/getPlacementCenter/:city',function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.CENTERDETAILS);
 }, function(req,res){
@@ -59,6 +60,31 @@ router.get('/getPlacementCenter/:city',function(req, res, next){
 })
 
 
+    // Center details card in candidate dashboard
+router.get('/particularCenter/:candidateid', function(req, res, next) {
+    authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ, constants.CENTERDETAILS);
+},
+ function(req,res){
+    centerdetailsprocessor.getPersonalCenter(req.params.candidateid,function(getpersonalcenter){
+        console.log("in router");
+        // console.log(getpersonalcenter);
+        // console.log(getpersonalcenter[0].placementCenter);
+        // console.log(req.params.candidateid);
+        var id = getpersonalcenter[0].placementCenter;
+        console.log(id);
+        // res.status(200).json(getpersonalcenter);
+        centerdetailsprocessor.getPersonalCenterDetails(id,function(GetCenterDeatil){
+            console.log("Get center details");
+            console.log(GetCenterDeatil);
+            res.status(200).json(GetCenterDeatil);
+            })
+    },
+     function(error){
+            res.status(500).json(error);
+    }) 
+})
+
+    // Fetching all candidate details
 router.get('/getall',function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.CENTERDETAILS);
 }, function(req,res){
@@ -70,6 +96,7 @@ router.get('/getall',function(req, res, next){
             res.status(500).json(error);
     });
 })
+    // Editing center details by admin
 router.post('/:regId',function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.CREATE,constants.CENTERDETAILS);
 }, function(req,res){
@@ -81,6 +108,8 @@ router.post('/:regId',function(req, res, next){
         res.status(500).json(error);
     });
 })
+
+    // Updating center details by admin
 router.post('/update/:regId',function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.CREATE,constants.CENTERDETAILS);
 }, function(req,res){
@@ -92,6 +121,7 @@ router.post('/update/:regId',function(req, res, next){
             res.status(500).json(error);
     });
 })
+    // Disable center details by admin
 router.post('/disable/:regId',function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.CENTERDETAILS);
 }, function(req,res){

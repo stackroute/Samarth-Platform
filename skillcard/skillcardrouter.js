@@ -31,7 +31,9 @@ router.get('/allcandidates',function(req, res) {
 
 
 // This will return all the candidates in the circle
-router.get('/searchcandidate/:circle', function(req, res) {
+router.get('/searchcandidate/:circle', function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.SKILLS);
+},function(req, res) {
    try{
     candidateneo.getcircle(req.params.circle, function(candidates) {
         res.status(200).json(candidates);
@@ -46,7 +48,9 @@ catch (err) {
             }
 }); // end of get /candidatesearch
 
-router.get('/aws',function (req,res) {
+router.get('/aws',function(req, res, next){
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.SKILLCARD);
+},function (req,res) {
     try {
 
         let config = new Object();

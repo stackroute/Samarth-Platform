@@ -4,6 +4,8 @@ const placementprocessor = require('./placementprocessor.js');
 var async = require('async');
 var jobProfileProcessor = require('../jobServer/jobProfileProcessor');
 let jobproviderprocessor = require('../jobprovider/jobproviderprocessor');
+let authorization = require('../authorization/authorization');
+let constants = require('../authorization/constants');
 
 
 router.post('/apply/',
@@ -280,7 +282,7 @@ function(req,res){
 })
 
 router.get('/availableCandidatesOfProfession/:profession',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.REPORTS);
 },
 function(req,res){
 	try
@@ -298,7 +300,7 @@ function(req,res){
 })
 
 router.get('/candidatesAppliedProfession/:profession',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.REPORTS);
 },
 function(req,res){
 	try
@@ -316,7 +318,7 @@ function(req,res){
 })
 
 router.get('/candidatesPlacedProfession/:profession',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.JOBPROVIDER);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.REPORTS);
 },
 function(req,res){
 	try
