@@ -5,8 +5,8 @@ mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
 describe('Unit Test for candidate profile import', function() {
     
-    it('Import a single candidate data', function(done) {
-    	 this.timeout(5000);
+    /*it('Import a single candidate data', function(done) {
+    	 // this.timeout(5000);
 
 			  let candidateImportObj = require('./singleCandidateImportData.json')[0];
 
@@ -18,5 +18,19 @@ describe('Unit Test for candidate profile import', function() {
     		}, function(err){
     			done(err);
     		});
-    });
+    });*/
+
+    it('Import multiple candidate profiles', function(data){
+    	this.timeout(100000);
+
+    	let candidateColln = require('./singleCandidateImportData.json');
+
+    		importer.importCandidateProfileColln(candidateColln)    		
+    		.then(function(result){
+    			console.log("Multiple profile import final result ", result);
+    			done();
+    		}, function(err){
+    			done(err);
+    		});
+    })
 })

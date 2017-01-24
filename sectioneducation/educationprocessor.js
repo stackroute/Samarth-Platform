@@ -1,5 +1,5 @@
 let MongoClient = require('mongodb').MongoClient,
-    assert = require('assert');
+assert = require('assert');
 let mongoose = require('mongoose');
 let eduModel = require('./educationschema');
 let educationgraphquery=require('./educationgraphquery');
@@ -12,6 +12,7 @@ function getAllEducation(successCB, errorCB) {
             errorCB({ error: 'Internal error occurred, please report...' });
         }
         successCB(docs);
+        console.log("processor of education is getting calld while updatin answers frm qbox");
     });
 }
 // --------ends--callbackway-----------------//
@@ -21,6 +22,8 @@ function getEducation(candidateid, successCB, errorCB) {
             errorCB(err);
         }
         successCB(educationObject);
+        console.log("processor of education is getting calld while updatin answers frm qbox  in getEducation");
+
     });
 }
 
@@ -109,11 +112,22 @@ function deleteAEducation( title,candidateID, institute, successCB) {
 //add qualification after  entering into the question box into the existing records
 function addMissingEducationFieldResponse(candidateid, educationInstanceName, fieldname, response, successCB, errorCB) {
    // console.log("------->"+educationInstanceName+"   "+fieldname+"  "+response);
-    let field = ('qualification.$.' + fieldname);
-    console.log('----->'+field);
+    let field ;
+    // console.log('----->'+field);
+    let instituteFields = ['type','location','affiliation']; 
+    
     let setObj = {};
+    if(instituteFields.includes(fieldname)){
+       field = ('qualification.$.institute.' + fieldname);
+       // setObj['institute'].fieldname= response; 
+    } 
+   else {
+     field = ('qualification.$.' + fieldname);
+    }
+      console.log('----->'+field);
     setObj[field] = response;
-
+    console.log("-----------------------setObj-----------");
+    console.log(setObj);
     eduModel.update({
             candidateid: candidateid,
             'qualification.title': educationInstanceName
@@ -123,7 +137,8 @@ function addMissingEducationFieldResponse(candidateid, educationInstanceName, fi
         function(err, result) {
             if (err) {}
             successCB(result)
-        // console.log("------>result for education--->"+result);
+        console.log("------>result for education--->",result);
+        console.log("=====>updating addMissingEducationFieldResponse====>");
         }
 
     );

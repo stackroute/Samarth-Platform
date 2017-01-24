@@ -1,20 +1,19 @@
 let router = require('express').Router();
 let async = require('async');
-
 let coordinatorprocessor = require('./coordinatorneoprocessor.js');
-
-router.get('/profession', function(req, res) 
+router.get('/profession',
+ function(req, res)
 {
-	try 
+	try
 	{
-		coordinatorprocessor.getProfessions(function(professions) 
+		coordinatorprocessor.getProfessions(function(professions)
 		{
 			res.status(200).json(professions);
-		}, function(err) 
+		}, function(err)
 		{
 			res.status(500).json(err);
 		});
-	} catch (err) 
+	} catch (err)
 	{
 
 		res.status(500).json(
@@ -24,18 +23,18 @@ router.get('/profession', function(req, res)
 	}
 });
 
-router.get('/role', function(req, res) 
+router.get('/role', function(req, res)
 {
-	try 
+	try
 	{
-		coordinatorprocessor.getRole(function(role) 
+		coordinatorprocessor.getRole(function(role)
 		{
 			res.status(200).json(role);
-		}, function(err) 
+		}, function(err)
 		{
 			res.status(500).json(err);
 		});
-	} catch (err) 
+	} catch (err)
 	{
 
 		res.status(500).json(
@@ -45,18 +44,18 @@ router.get('/role', function(req, res)
 	}
 });
 
-router.get('/language', function(req, res) 
+router.get('/language',function(req, res)
 {
-	try 
+	try
 	{
-		coordinatorprocessor.getLanguage(function(language) 
+		coordinatorprocessor.getLanguage(function(language)
 		{
 			res.status(200).json(language);
-		}, function(err) 
+		}, function(err)
 		{
 			res.status(500).json(err);
 		});
-	} catch (err) 
+	} catch (err)
 	{
 
 		res.status(500).json(
@@ -66,18 +65,18 @@ router.get('/language', function(req, res)
 	}
 });
 
-router.get('/location', function(req, res) 
+router.get('/location', function(req, res)
 {
-	try 
+	try
 	{
-		coordinatorprocessor.getLocation(function(location) 
+		coordinatorprocessor.getLocation(function(location)
 		{
 			res.status(200).json(location);
-		}, function(err) 
+		}, function(err)
 		{
 			res.status(500).json(err);
 		});
-	} catch (err) 
+	} catch (err)
 	{
 
 		res.status(500).json(
@@ -86,4 +85,18 @@ router.get('/location', function(req, res)
 		});
 	}
 });
+
+router.get('/getPlacementCenter/:city', function(req,res){
+     console.log("Route done");
+     console.log(req.params.city);
+     // console.log(city);
+    coordinatorprocessor.getPlacementCenter(req.params.city,function(getNeoCenter){
+        console.log(getNeoCenter);
+            res.status(200).json(getNeoCenter);
+    },
+    function(error){
+            res.status(500).json(error);
+    });
+})
 module.exports = router;
+// module.exports = router;

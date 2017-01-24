@@ -9,8 +9,7 @@ let CenterDetailsSchema = new Schema({
     cname: { type: String },
     centerType: { type: String, enum: ['Headquarter','Regional','Nodal'] },
     status: { type: String }
-    // createdAt: { type: String },
-    // updatedOn: { type: String }
+    
 });
 let centerModl = mongoose.model('centerdetails', CenterDetailsSchema);
 module.exports = centerModl;

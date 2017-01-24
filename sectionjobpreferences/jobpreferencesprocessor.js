@@ -19,7 +19,8 @@ function createNewPreferences(formobj, successCB, errorCB ) {
     console.log("create starting");
     let preferenceObj = new preference({
         candidateid: formobj.mobile,
-        preferences:[]
+        preferences:{}
+        // preferences:formobj.preferences.length!=0 ? formobj.preferences : []
     });
 
     preferenceObj.save(function(err, result) {
@@ -37,12 +38,15 @@ function createNewPreferences(formobj, successCB, errorCB ) {
 
 
 function updatePreferences(oldPreferenceObj, candidateId, successCB, errCB) {
- preference.update({ candidateid: candidateId }, oldPreferenceObj,
+    console.log("oldPreferenceObj..");
+    console.log(oldPreferenceObj);
+ preference.update({ candidateid: candidateId }, { $set: {
+  preferences: oldPreferenceObj.preferences } },
     function(err, result) {
         if(err){
-            console.log("erororupda");
+            console.log("Unable to update job preferences");
         }
-
+        console.log('result.....', result);
         successCB(result);
     });
 }

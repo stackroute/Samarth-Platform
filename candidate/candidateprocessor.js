@@ -152,7 +152,9 @@ function initializeNewCandidateProfile(data, initCallback) {
 
 function registerNewCandidate(data) {
     let promise = new Promise(function(resolve, reject) {
-        try {            
+        try {     
+        console.log('...............registerNewCandidate');       
+        console.log(data);       
             //create every section,candidate,profile if candidate is created for first time
             candidate.find({"candidateid": data.mobile},
                 function(err, candidate) {

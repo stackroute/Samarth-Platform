@@ -9,9 +9,11 @@ let client = redis.createClient();
 /* get all project for the given candidate id */
 // HTTP GET project/:candidateId
 // effective url project/:candidateId
-router.get('/:candidateId', function(req, res, next){
+router.get('/:candidateId',
+function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.PROJECTS);
-}, function(req, res) {
+},
+function(req, res) {
     try {
         let projectObj = projectProcessor.getProject(req.params.candidateId,
             function(projectObj) {
@@ -29,9 +31,11 @@ router.get('/:candidateId', function(req, res, next){
 /* Add project for the given candidate id only after registration */
 // HTTP POST project/:candidateId
 // effective url project/:candidateId
-router.post('/:candidateId', function(req, res, next){
+router.post('/:candidateId',
+ function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.PROJECTS);
-},function(req, res) {
+},
+function(req, res) {
     try {
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
         if (result === '') {
@@ -76,9 +80,11 @@ router.post('/:candidateId', function(req, res, next){
             NOTE:(send every field of the project obj while updating in the body) */
 // HTTP POST project/:candidateId/:projectName
 // effective url project/:candidateId/:projectName
-router.patch('/:candidateId/:projectName',function(req, res, next){
+router.patch('/:candidateId/:projectName',
+function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.EDIT,constants.PROJECTS);
-}, function(req, res) {
+},
+ function(req, res) {
     try{
     project.find({ candidateid: req.params.candidateId }, function(err, result) {
         if (result === '') {

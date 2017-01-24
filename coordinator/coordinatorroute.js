@@ -7,7 +7,7 @@ let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
 
 router.get('/getcoordi', function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.ADMIN);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.ADMINS);
 },function(req,res){
 
     coordinatorprocessor.getcoordinator(function(getcoordinator){
@@ -19,7 +19,7 @@ router.get('/getcoordi', function(req, res, next){
 })
 
 router.post('/createcoordinator', function(req, res, next){
-   authorization.isAuthorized(req, res, next, req.user._doc.userRole[0], constants.CREATE, constants.ADMIN);
+   authorization.isAuthorized(req, res, next, req.user._doc.userRole[0], constants.CREATE, constants.ADMINS);
    },function(req, res) {
     try {
         coordinator.findOne({

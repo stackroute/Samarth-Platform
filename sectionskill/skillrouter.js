@@ -15,7 +15,8 @@ let client = redis.createClient();
 //effective URL skill/:candidateid
 router.get("/:candidateid", function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.SKILLS);
-},function(req, res) {
+},
+function(req, res) {
       try {
         skillProcessor.getSkill(req.params.candidateid,
             function(skill1) {
@@ -39,7 +40,8 @@ router.get("/:candidateid", function(req, res, next){
 //effective url  /skill/:candidateid
 router.post("/:candidateid", function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0], constants.CREATE,constants.SKILLS);
-},function(req, res) {
+},
+function(req, res) {
     try {
     skill.find({
         candidateid: req.params.candidateid
@@ -95,7 +97,8 @@ router.post("/:candidateid", function(req, res, next){
 // effective url /skill/:candidateid/:skillname
 router.patch('/:candidateid/:skillname', function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.EDIT,constants.SKILLS);
-},function(req, res) {
+},
+function(req, res) {
 	skill.find({
 		candidateid: req.params.candidateid
 	}, function(err, result) {
@@ -108,6 +111,7 @@ router.patch('/:candidateid/:skillname', function(req, res, next){
 					req.params.candidateid,
 					function(skill2) {
 						console.log("Skill patched")
+						console.log("updating skills given by candidateid");
 						// client.rpush('profilecrawling', req.params.candidateid);
 						res.status(201).json(skill2);
 					},
@@ -127,7 +131,8 @@ router.patch('/:candidateid/:skillname', function(req, res, next){
 // ---------------delete skill ------------
 router.delete('/:candidateid/:skillname',function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.DELETE,constants.SKILLS);
-}, function(req, res) {
+},
+ function(req, res) {
 	skill.find({
 		candidateid: req.params.candidateid
 	}, function(err, result) {

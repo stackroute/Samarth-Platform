@@ -12,7 +12,7 @@ let constants = require('../authorization/constants');
 
 //post job
 router.post('/jobpost',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.COORDINATOR);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.JOBS);
 },function(req,res){
 	try{
 		var jobData = req.body;
@@ -198,7 +198,7 @@ router.post('/jobpost',function(req, res, next){
 
 				//reportjobsByProfession
 				router.get('/getAllJobsByProfession/:prof/:jobContent', function(req, res, next){
-					authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATOR);
+					authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.REPORTS);
 				},function(req, res) {
 					var jobs=[];
 					var jobProfile={};

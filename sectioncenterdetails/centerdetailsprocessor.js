@@ -1,4 +1,5 @@
 let mongoose = require('mongoose');
+let person = require('../sectionpersonalinfo/personalinfoschema');
 let center = require('./centerdetailsschema');
 function createNewcenterdetails(formobj, successCB, errorCB) {
     let centerObj = new center({
@@ -25,6 +26,7 @@ function getAllcenterdetails(successCB, errorCB) {
         if (err) {
             errorCB(err);
         }
+        console.log(getcenters);
         successCB(getcenters);
     });
 }
@@ -36,6 +38,7 @@ function getCenterdetails(centerCode, successCB, errorCB) {
         successCB(getcenter);
     });
 }
+    // Updating center details
 function updateCenterdetails(centerCode,newData,successCB, errorCB) {
     center.findOneAndUpdate({ centerCode: centerCode },newData, function(err, getupdatecenter) {
         if (err) {
@@ -44,6 +47,7 @@ function updateCenterdetails(centerCode,newData,successCB, errorCB) {
         successCB(getupdatecenter);
     });
 }
+    // Disable center details by admin
 function disableCenterdetails(centerCode,newDisable,successCB, errorCB) {
     center.findOneAndUpdate({ centerCode: centerCode },{status:"Disable"}, function(err, getupdatestatus) {
         if (err) {
@@ -61,11 +65,36 @@ function getcenterdetails(sucessCB, errorCB) {
         }
     });
 }
+
+    // Fetching center code from personal info schema
+function getPersonalCenter(candidateid, successCB, errorCB) {
+    person.find({ candidateid: candidateid }, function(err, getpersonalcenter) {
+        if (err) {
+            errorCB(err);
+        }
+        // console.log("Processor success");
+        // console.log(getpersonalcenter);
+        successCB(getpersonalcenter);
+    });
+}
+    // Fetching center of particular candidate
+function getPersonalCenterDetails(id, successCB, errorCB) {
+    center.find({centerCode: id}, function(err, getParticularDetails) {
+        if (err) {
+            errorCB(err);
+        }
+        successCB(getParticularDetails);
+    })
+}
+
+
 module.exports = {
     createNewcenterdetails : createNewcenterdetails,
     getAllcenterdetails : getAllcenterdetails,
     getCenterdetails : getCenterdetails,
     updateCenterdetails: updateCenterdetails,
     disableCenterdetails : disableCenterdetails,
-    getcenterdetails : getcenterdetails
+    getcenterdetails : getcenterdetails,
+    getPersonalCenter : getPersonalCenter,
+    getPersonalCenterDetails : getPersonalCenterDetails
 }

@@ -19,7 +19,7 @@ let qualificationSchema = new Schema({
   		metadata: []
   	},
   	outcome: {
-		result: {type: String},							// marks;grades eg A,B;etc
+		result: {type: String, required:true}							// marks;grades eg A,B;etc
 		// unit: {type: String}							// %, GRADE , NUMBER etc
 	}
   }]
