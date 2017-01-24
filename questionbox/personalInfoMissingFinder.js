@@ -7,6 +7,7 @@ var getFieldsNames = function() {
     return ['dob', 'gender', 'maritialstatus','mothertongue','email','contact','address','location','pincode'];
 }
 
+
 var findPersonalInfoMissingFields = function(candidateid, successCB, errorCB) {
     personalInfoProcessor.getPersonalinfo(candidateid, function(result) {
         let candidateInfo = result[0];

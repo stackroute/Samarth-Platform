@@ -85,4 +85,18 @@ router.get('/location', function(req, res)
 		});
 	}
 });
+
+router.get('/getPlacementCenter/:city', function(req,res){
+     console.log("Route done");
+     console.log(req.params.city);
+     // console.log(city);
+    coordinatorprocessor.getPlacementCenter(req.params.city,function(getNeoCenter){
+        console.log(getNeoCenter);
+            res.status(200).json(getNeoCenter);
+    },
+    function(error){
+            res.status(500).json(error);
+    });
+})
 module.exports = router;
+// module.exports = router;
