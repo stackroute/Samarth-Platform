@@ -1,7 +1,7 @@
 let mongoose = require('mongoose');
 
 let work = require('./workschema');
- 
+
 let workneoprocessor = require("./workneoprocessor");
 
 function getworkexp(candidateid, successCB, errorCB) {
@@ -14,7 +14,7 @@ function getworkexp(candidateid, successCB, errorCB) {
 						return;
 				}
 				successCB(workexps);
-		}); 
+		});
 }
 
 // add workexp for the first time when no records are present by creating records
@@ -110,13 +110,13 @@ function deleteworkexp(candidateid, designation, sucessCB,errorCB) {
 						sucessCB();
 				}
 	);//end update
-		
+
 	} else {
 		// statement
 		errorCB(err);
 	}
 
-	
+
 
 }//end deleteworkexp
 
@@ -128,12 +128,13 @@ function addMissingWorkFieldResponse(candidateid, workInstanceName, fieldname, r
 		// console.log("entered in to answers updating mode");
 		let field;
 		let durationField = ['from','to','duration'];
+
 		 field = ('workexperience.$.' + fieldname);
 		let setObj = {};
 		if(durationField.includes(fieldname)){
        field = ('workexperience.$.duration.' + fieldname);
-       // setObj['institute'].fieldname= response; 
-    } 
+       // setObj['institute'].fieldname= response;
+    }
    else {
      field = ('workexperience.$.' + fieldname);
     }
@@ -151,7 +152,7 @@ function addMissingWorkFieldResponse(candidateid, workInstanceName, fieldname, r
 				function(err, result) {
 						if (err) {}
 						successCB(result)
-				console.log("===========addMissingWorkFieldResponse=====>");	
+				console.log("===========addMissingWorkFieldResponse=====>");
 				console.log("------>result for workexperience--->"+result);
 				}
 
@@ -165,4 +166,3 @@ module.exports = {
 		deleteworkexp: deleteworkexp,
 		addMissingWorkFieldResponse: addMissingWorkFieldResponse
 };
-

@@ -264,7 +264,7 @@ function(req,res){
 
 
 router.get('/candidatesOfProfession/:profession',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.COORDINATORS);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.SEARCHCANDIDATE);
 },
 function(req,res){
 	try
