@@ -36,6 +36,23 @@ getCount = function(profs, successres, errRes) {
 	});
 };
 
+getCoordinator = function(cname, successres, errRes) {
+	db.cypher({
+		query: 'match (c:circle {domain:"PlacementCenter"}) match (cn:Candidate) match (cr:coordinator) match (c)-[cc:memberOf]-(cn) match (c)-[crc:memberOf]-(cr)  return count(cc) as Candidates, count(crc) as Coordinator',
+		params: {
+			cname: cname
+		}
+	},
+	function(err, results) {
+		if (err) {
+			console.log(err);
+		}
+		else{
+			successres(results);
+		}
+	});
+};
+
 getCandidate = function(profs, successres, errRes) {
 	db.cypher({
 		query: 'optional match()-[r1:applied]->(j:Job) optional match(n:Candidate)-[r]->(p:Profession)where p.name in {profs} return p.name as profession, count(distinct(n)) as Candidates ,count(DISTINCT (CASE WHEN (n:Candidate)-[r1:applied]->(j:Job) then n end)) as applied order by  p.name',

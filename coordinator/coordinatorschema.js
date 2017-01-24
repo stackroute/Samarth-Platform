@@ -7,15 +7,16 @@ let coordinatorSchema = new Schema({
     userRole: [ {type: String} ],
     coordinatorProfession: [ {type: String} ],
     coordinatorLocation: { type: String },
+    placementCenter:{type: String},
     coordinatorGender: { type: String },
     coordinatorEmail: { type: String },
     // coordinatorPwd: { type: String }
     coordinatorLanguage: [
-    	{	name: {type : String},
-    		speak: {type : Boolean},
-    		read: {type : Boolean},
-    		write: {type : Boolean}
-    	}
+        {    name: {type : String},
+            speak: {type : Boolean},
+            read: {type : Boolean},
+            write: {type : Boolean}
+        }
     ]
 });
 let coordinator = mongoose.model('coordinators', coordinatorSchema, 'coordinators');
