@@ -62,6 +62,8 @@ function addworkexp(wsObj, candidateid, sucessCB) {
 
 // , errorCB
 function updateworkexp(wsobj, candidateid, workplace, sucessCB) {
+				console.log("the obj which we are passing is ");
+				console.log(wsobj);
 		work.update({ candidateid: candidateid, 'workexperience.workplace': workplace }, {
 						$set: {
 								'workexperience.$.designation': wsobj.workexperience[0].designation,
@@ -124,14 +126,15 @@ function addMissingWorkFieldResponse(candidateid, workInstanceName, fieldname, r
 		// console.log("entered in to answers updating mode");
 		let field;
 		let durationField = ['from','to','duration'];
-		field = ('workexperience.$.' + fieldname);
+
+		 field = ('workexperience.$.' + fieldname);
 		let setObj = {};
 		if(durationField.includes(fieldname)){
-       field = ('qualification.$.duration.' + fieldname);
+       field = ('workexperience.$.duration.' + fieldname);
        // setObj['institute'].fieldname= response;
-    }
+    } 
    else {
-     field = ('qualification.$.' + fieldname);
+     field = ('workexperience.$.' + fieldname);
     }
       console.log('----->'+field);
 		setObj[field] = response;
