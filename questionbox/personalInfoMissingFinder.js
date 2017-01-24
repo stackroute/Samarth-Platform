@@ -4,7 +4,7 @@ let qboxprocessor = require('./qboxprocessor');
 let qboxquestionModel = require('./qboxquestions');
  
 var getFieldsNames = function() { 
-    return ['dob', 'gender', 'maritialstatus','mothertongue','email','contact','address','location','pincode','profile'];
+    return ['dob', 'gender', 'maritialstatus','mothertongue','email','contact','address','location','pincode'];
 }  
    
 var findPersonalInfoMissingFields = function(candidateid, successCB, errorCB) {

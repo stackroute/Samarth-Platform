@@ -24,7 +24,7 @@ var findMissingFields = function(candidateid, successCB, errorCB) {
             console.log(skillData);
             for (let j = 0; j < skillFieldArray.length; j++) {
 
-                if (skillData[skillFieldArray[j]] == "" || skillData[skillFieldArray[j]] == null ) {
+                if (skillData[skillFieldArray[j]] == " " || skillData[skillFieldArray[j]] == null ) {
                     let qboxquestion = new qboxquestionModel({
                         candidateid: candidateid,
                         section: "skills",

@@ -130,7 +130,7 @@ function updateMissingFieldResponse(candidateId, sectionName, instancename, fiel
                     "personalinfo": personalInfoprocessor.addMissingPersonalInfoFieldResponse,
                     "project":  projectprocessor.addMissingProjectFieldResponse,
                     "workexperience": workProcessor.addMissingWorkFieldResponse,
-                    "jobpreference" : jobpreference.addMissingJobpreferencesFieldResponse,
+                    "jobpreference" : jobpreferenceMissingFinder.addMissingJobpreferencesFieldResponse,
                 }
 
                 let closureObj = missingFieldResUpdateTasks[sectionName];

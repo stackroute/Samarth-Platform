@@ -121,10 +121,22 @@ function deleteworkexp(candidateid, designation, sucessCB,errorCB) {
 //add work exp after  entering into the question box into the existing records
 function addMissingWorkFieldResponse(candidateid, workInstanceName, fieldname, response, successCB, errorCB) {
 	 // console.log("------->"+skillInstanceName+"   "+fieldname+"  "+response);
-		console.log("entered in to answers updating mode");
+		// console.log("entered in to answers updating mode");
+		let field;
+		let durationField = ['from','to','duration'];
 		let field = ('workexperience.$.' + fieldname);
 		let setObj = {};
+		if(durationField.includes(fieldname)){
+       field = ('qualification.$.duration.' + fieldname);
+       // setObj['institute'].fieldname= response; 
+    } 
+   else {
+     field = ('qualification.$.' + fieldname);
+    }
+      console.log('----->'+field);
 		setObj[field] = response;
+		console.log("-----------------------setObj-----------");
+    console.log(setObj);
 
 		work.update({
 						candidateid: candidateid,
