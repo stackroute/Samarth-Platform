@@ -28,13 +28,12 @@ function createNewEducation(formobj, successCB, errorCB) {
     let addEduObj = new eduModel({
         candidateid: formobj.mobile,
         qualification: []
-        // qualification: formobj.qualification.length!=0 ? formobj.qualification : []
     });
 
     addEduObj.save(function(err, res) {
         if (err) {
-
             errorCB(err);
+            return;
         }
         successCB(res);
     });

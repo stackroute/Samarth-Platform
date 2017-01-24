@@ -11,6 +11,7 @@ function getworkexp(candidateid, successCB, errorCB) {
 		work.find({ candidateid: candidateid }, function(err, workexps) {
 				if (err) {
 						errorCB(err);
+						return;
 				}
 				successCB(workexps);
 		}); 
@@ -21,12 +22,12 @@ function createworkexp(formobj, sucessCB, errorCB) {
 		let wrkexpObj = new work({
 				candidateid: formobj.mobile,
 				workexperience: []
-				// workexperience: formobj.workexperience.length!=0 ? formobj.workexperience : []
 		});
 
 		wrkexpObj.save(function(err, result) {
 				if (err) {
 						errorCB(err);
+						return;
 				}
 				sucessCB(result);
 
@@ -54,8 +55,9 @@ function addworkexp(wsObj, candidateid, sucessCB) {
 										}
 
 								});
-						sucessCB();
+						// sucessCB();
 						console.log("====added the workexperience=====>???????");
+						
 				}
 		);
 }

@@ -1,0 +1,6502 @@
+[
+  {
+    "name": "Guerrero Beck",
+    "email": "guerrerobeck@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9524012350,
+    "location": " Sharon",
+    "placementCenter": " Belvoir",
+    "aadharcard": 837793386509,
+    "profession": "Logistics Coordinator",
+    "dob": "1980-12-21 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 85360,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Morin Morrow",
+    "email": "morinmorrow@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9834333245,
+    "location": " Taft",
+    "placementCenter": " Sylvanite",
+    "aadharcard": 199558781093,
+    "profession": "Civil Avitation",
+    "dob": "1997-04-28 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 78641,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Julie Taylor",
+    "email": "julietaylor@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9714813520,
+    "location": " Wheatfields",
+    "placementCenter": " Cashtown",
+    "aadharcard": 941247809324,
+    "profession": "Full Stack Developer",
+    "dob": "2009-08-09 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 55606,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Patton Carr",
+    "email": "pattoncarr@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9435862377,
+    "location": " Worton",
+    "placementCenter": " Grayhawk",
+    "aadharcard": 357515348462,
+    "profession": "Civil Avitation",
+    "dob": "1996-11-20 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 39950,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Trina Page",
+    "email": "trinapage@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9535663220,
+    "location": " Matheny",
+    "placementCenter": " Warren",
+    "aadharcard": 391816260883,
+    "profession": "Logistics Coordinator",
+    "dob": "2003-10-15 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 87521,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Christian Peck",
+    "email": "christianpeck@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8774063171,
+    "location": " Helen",
+    "placementCenter": " Brecon",
+    "aadharcard": 556722793772,
+    "profession": "Full Stack Developer",
+    "dob": "1989-10-23 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 51578,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Shepherd Powers",
+    "email": "shepherdpowers@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8515072678,
+    "location": " Homestead",
+    "placementCenter": " Cowiche",
+    "aadharcard": 571809491531,
+    "profession": "Retail",
+    "dob": "1993-05-27 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 37347,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Jill Wallace",
+    "email": "jillwallace@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9965152417,
+    "location": " Elliston",
+    "placementCenter": " National",
+    "aadharcard": 305578443142,
+    "profession": "Retail",
+    "dob": "1993-08-12 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 43284,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Torres Dorsey",
+    "email": "torresdorsey@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9065403258,
+    "location": " Dundee",
+    "placementCenter": " Gordon",
+    "aadharcard": 967008617820,
+    "profession": "Civil Avitation",
+    "dob": "1980-01-27 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 51447,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Long Trujillo",
+    "email": "longtrujillo@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9514113591,
+    "location": " Marenisco",
+    "placementCenter": " Temperanceville",
+    "aadharcard": 589668454930,
+    "profession": "Full Stack Developer",
+    "dob": "2013-04-06 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 77511,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Rasmussen Griffith",
+    "email": "rasmussengriffith@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9624363966,
+    "location": " Grill",
+    "placementCenter": " Clinton",
+    "aadharcard": 796299103408,
+    "profession": "Logistics Coordinator",
+    "dob": "1981-06-04 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 48123,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Calhoun Mathews",
+    "email": "calhounmathews@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9115083484,
+    "location": " Allison",
+    "placementCenter": " Troy",
+    "aadharcard": 924163943625,
+    "profession": "Civil Avitation",
+    "dob": "1989-11-10 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 57371,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Doreen Daniel",
+    "email": "doreendaniel@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9194023709,
+    "location": " Trail",
+    "placementCenter": " Brethren",
+    "aadharcard": 502340092173,
+    "profession": "Retail",
+    "dob": "1980-09-14 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 68276,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Farrell Graham",
+    "email": "farrellgraham@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9104433080,
+    "location": " Florence",
+    "placementCenter": " Takilma",
+    "aadharcard": 499064191246,
+    "profession": "Full Stack Developer",
+    "dob": "1988-03-29 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 16503,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Natalie Oliver",
+    "email": "natalieoliver@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9625222493,
+    "location": " Smeltertown",
+    "placementCenter": " Lorraine",
+    "aadharcard": 297588406753,
+    "profession": "Full Stack Developer",
+    "dob": "1988-05-23 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 62461,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Ola Preston",
+    "email": "olapreston@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8484492398,
+    "location": " Dorneyville",
+    "placementCenter": " Dunbar",
+    "aadharcard": 567188576216,
+    "profession": "Civil Avitation",
+    "dob": "1990-02-24 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 80840,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Marjorie Perkins",
+    "email": "marjorieperkins@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9174183530,
+    "location": " Heil",
+    "placementCenter": " Edmund",
+    "aadharcard": 518470607794,
+    "profession": "Civil Avitation",
+    "dob": "1993-07-27 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 92421,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Mckenzie Delgado",
+    "email": "mckenziedelgado@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9155443339,
+    "location": " Snelling",
+    "placementCenter": " Summertown",
+    "aadharcard": 296254260206,
+    "profession": "Full Stack Developer",
+    "dob": "1999-10-01 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 62593,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Deana Watts",
+    "email": "deanawatts@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9454322538,
+    "location": " Adelino",
+    "placementCenter": " Devon",
+    "aadharcard": 752369490939,
+    "profession": "Civil Avitation",
+    "dob": "2015-11-27 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 82578,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Dotson Norris",
+    "email": "dotsonnorris@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9765603092,
+    "location": " Charco",
+    "placementCenter": " Watchtower",
+    "aadharcard": 334960597219,
+    "profession": "Logistics Coordinator",
+    "dob": "1985-07-09 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 26012,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Ruiz Bond",
+    "email": "ruizbond@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9025043773,
+    "location": " Wawona",
+    "placementCenter": " Cetronia",
+    "aadharcard": 862483734409,
+    "profession": "Logistics Coordinator",
+    "dob": "1984-02-21 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 38626,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Mathis Gill",
+    "email": "mathisgill@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9475602474,
+    "location": " Richmond",
+    "placementCenter": " Gasquet",
+    "aadharcard": 667127381560,
+    "profession": "Retail",
+    "dob": "1999-09-15 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 61490,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Josie Hickman",
+    "email": "josiehickman@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9055682506,
+    "location": " Oasis",
+    "placementCenter": " Churchill",
+    "aadharcard": 596690588590,
+    "profession": "Logistics Coordinator",
+    "dob": "1992-03-12 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 42227,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Moses Glover",
+    "email": "mosesglover@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9425073409,
+    "location": " Wanamie",
+    "placementCenter": " Rockhill",
+    "aadharcard": 122618732279,
+    "profession": "Full Stack Developer",
+    "dob": "1984-02-16 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 17881,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Baldwin Wolf",
+    "email": "baldwinwolf@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9674323575,
+    "location": " Caron",
+    "placementCenter": " Noblestown",
+    "aadharcard": 248953978441,
+    "profession": "Retail",
+    "dob": "2008-04-21 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 55098,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Wanda Osborn",
+    "email": "wandaosborn@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9994512666,
+    "location": " Konterra",
+    "placementCenter": " Dale",
+    "aadharcard": 108353450696,
+    "profession": "Full Stack Developer",
+    "dob": "1989-04-26 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 38155,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Hubbard Marsh",
+    "email": "hubbardmarsh@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9304223499,
+    "location": " Celeryville",
+    "placementCenter": " Ronco",
+    "aadharcard": 806596404251,
+    "profession": "Retail",
+    "dob": "1995-11-22 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 50604,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Krystal Jones",
+    "email": "krystaljones@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9065892759,
+    "location": " Hall",
+    "placementCenter": " Malott",
+    "aadharcard": 923506030547,
+    "profession": "Civil Avitation",
+    "dob": "1997-07-08 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 36077,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Malinda George",
+    "email": "malindageorge@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9535063432,
+    "location": " Dixie",
+    "placementCenter": " Wintersburg",
+    "aadharcard": 620167194625,
+    "profession": "Retail",
+    "dob": "2010-10-28 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 54487,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Petra Mueller",
+    "email": "petramueller@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9705802577,
+    "location": " Accoville",
+    "placementCenter": " Waukeenah",
+    "aadharcard": 646497117206,
+    "profession": "Full Stack Developer",
+    "dob": "1999-11-04 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 42542,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Ellen Wilkerson",
+    "email": "ellenwilkerson@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9524132471,
+    "location": " Clarksburg",
+    "placementCenter": " Chemung",
+    "aadharcard": 699881783563,
+    "profession": "Logistics Coordinator",
+    "dob": "2001-10-29 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 33577,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Humphrey Wilson",
+    "email": "humphreywilson@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9814562993,
+    "location": " Harold",
+    "placementCenter": " Drytown",
+    "aadharcard": 558405601782,
+    "profession": "Retail",
+    "dob": "2007-01-26 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 65385,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Fisher Frazier",
+    "email": "fisherfrazier@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8714503606,
+    "location": " Graball",
+    "placementCenter": " Winchester",
+    "aadharcard": 760423609399,
+    "profession": "Retail",
+    "dob": "1988-08-04 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 75208,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "King Leon",
+    "email": "kingleon@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8894352304,
+    "location": " Laurelton",
+    "placementCenter": " Murillo",
+    "aadharcard": 489691654484,
+    "profession": "Civil Avitation",
+    "dob": "1990-09-17 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 31619,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Lucia Logan",
+    "email": "lucialogan@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9365672994,
+    "location": " Wikieup",
+    "placementCenter": " Libertytown",
+    "aadharcard": 700344789199,
+    "profession": "Full Stack Developer",
+    "dob": "2005-07-27 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 50899,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Viola Berger",
+    "email": "violaberger@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9315952394,
+    "location": " Convent",
+    "placementCenter": " Nicut",
+    "aadharcard": 230755873892,
+    "profession": "Civil Avitation",
+    "dob": "2001-02-21 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 20632,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Chelsea Bryan",
+    "email": "chelseabryan@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8795363002,
+    "location": " Siglerville",
+    "placementCenter": " Ventress",
+    "aadharcard": 913927168722,
+    "profession": "Retail",
+    "dob": "2002-02-05 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 58198,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Celina Stuart",
+    "email": "celinastuart@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8935123964,
+    "location": " Kapowsin",
+    "placementCenter": " Beason",
+    "aadharcard": 856756695681,
+    "profession": "Civil Avitation",
+    "dob": "1986-06-27 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 18601,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Olsen Robles",
+    "email": "olsenrobles@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8475542217,
+    "location": " Machias",
+    "placementCenter": " Tooleville",
+    "aadharcard": 130809416679,
+    "profession": "Civil Avitation",
+    "dob": "1988-04-17 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 72489,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Ferguson Conrad",
+    "email": "fergusonconrad@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9774052670,
+    "location": " Brookfield",
+    "placementCenter": " Catherine",
+    "aadharcard": 160442053513,
+    "profession": "Retail",
+    "dob": "2014-03-14 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 87412,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Shannon Black",
+    "email": "shannonblack@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8384803597,
+    "location": " Twilight",
+    "placementCenter": " Wollochet",
+    "aadharcard": 269837028668,
+    "profession": "Retail",
+    "dob": "2007-06-08 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 96185,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Mattie Olsen",
+    "email": "mattieolsen@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9614953824,
+    "location": " Durham",
+    "placementCenter": " Greenock",
+    "aadharcard": 639170376111,
+    "profession": "Civil Avitation",
+    "dob": "1998-09-25 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 46787,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Sue Huber",
+    "email": "suehuber@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8385112048,
+    "location": " Logan",
+    "placementCenter": " Walton",
+    "aadharcard": 313101960805,
+    "profession": "Full Stack Developer",
+    "dob": "2001-11-13 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 60455,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Britney Hicks",
+    "email": "britneyhicks@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9754422204,
+    "location": " Valle",
+    "placementCenter": " Soham",
+    "aadharcard": 918520607547,
+    "profession": "Logistics Coordinator",
+    "dob": "2000-09-20 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 15883,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Miriam Moody",
+    "email": "miriammoody@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8535263790,
+    "location": " Bagtown",
+    "placementCenter": " Cucumber",
+    "aadharcard": 876477103369,
+    "profession": "Full Stack Developer",
+    "dob": "1985-03-25 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 49751,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Elise Mcdaniel",
+    "email": "elisemcdaniel@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8694222225,
+    "location": " Rowe",
+    "placementCenter": " Brandywine",
+    "aadharcard": 129517713826,
+    "profession": "Retail",
+    "dob": "1997-10-10 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 52050,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Elsie Foley",
+    "email": "elsiefoley@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9695093869,
+    "location": " Islandia",
+    "placementCenter": " Echo",
+    "aadharcard": 832174229796,
+    "profession": "Logistics Coordinator",
+    "dob": "1988-03-02 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 25886,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Osborn Oneal",
+    "email": "osbornoneal@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9514792296,
+    "location": " Emison",
+    "placementCenter": " Marshall",
+    "aadharcard": 927645487342,
+    "profession": "Full Stack Developer",
+    "dob": "2010-11-23 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 80431,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Castro Mcknight",
+    "email": "castromcknight@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9875383389,
+    "location": " Enetai",
+    "placementCenter": " Brazos",
+    "aadharcard": 285088858363,
+    "profession": "Logistics Coordinator",
+    "dob": "1991-04-24 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 72504,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Sonya Gamble",
+    "email": "sonyagamble@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9304322550,
+    "location": " Crisman",
+    "placementCenter": " Connerton",
+    "aadharcard": 872066436364,
+    "profession": "Logistics Coordinator",
+    "dob": "1982-11-06 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 81614,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Charmaine Wise",
+    "email": "charmainewise@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9125252244,
+    "location": " Orviston",
+    "placementCenter": " Boonville",
+    "aadharcard": 223080840528,
+    "profession": "Retail",
+    "dob": "2002-05-03 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 97295,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Rosanne Martin",
+    "email": "rosannemartin@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9205973684,
+    "location": " Watrous",
+    "placementCenter": " Chelsea",
+    "aadharcard": 961427807280,
+    "profession": "Retail",
+    "dob": "2016-09-23 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 95202,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Albert Hammond",
+    "email": "alberthammond@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9744863764,
+    "location": " Movico",
+    "placementCenter": " Linwood",
+    "aadharcard": 996386363897,
+    "profession": "Logistics Coordinator",
+    "dob": "2002-12-19 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 23075,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Tillman Hines",
+    "email": "tillmanhines@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9404462224,
+    "location": " Homeworth",
+    "placementCenter": " Wakarusa",
+    "aadharcard": 917666166202,
+    "profession": "Civil Avitation",
+    "dob": "2007-05-19 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 15924,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Alicia Bates",
+    "email": "aliciabates@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9474442891,
+    "location": " Macdona",
+    "placementCenter": " Belfair",
+    "aadharcard": 885553545424,
+    "profession": "Full Stack Developer",
+    "dob": "1999-10-24 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 26060,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Tucker Rush",
+    "email": "tuckerrush@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8935973743,
+    "location": " Cawood",
+    "placementCenter": " Kansas",
+    "aadharcard": 822382432483,
+    "profession": "Civil Avitation",
+    "dob": "2010-04-07 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 18124,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Tommie Silva",
+    "email": "tommiesilva@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9414332946,
+    "location": " Efland",
+    "placementCenter": " Gilmore",
+    "aadharcard": 672807155052,
+    "profession": "Full Stack Developer",
+    "dob": "2005-03-01 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 68592,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Eula Webb",
+    "email": "eulawebb@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9755423818,
+    "location": " Trexlertown",
+    "placementCenter": " Riceville",
+    "aadharcard": 879391757318,
+    "profession": "Logistics Coordinator",
+    "dob": "1998-01-11 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 73919,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Harding Mendoza",
+    "email": "hardingmendoza@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8055212201,
+    "location": " Orick",
+    "placementCenter": " Westboro",
+    "aadharcard": 877182702759,
+    "profession": "Civil Avitation",
+    "dob": "1990-12-03 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 86692,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Gloria Campos",
+    "email": "gloriacampos@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9164163301,
+    "location": " Canby",
+    "placementCenter": " Crawfordsville",
+    "aadharcard": 537651330973,
+    "profession": "Full Stack Developer",
+    "dob": "1997-12-04 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 91947,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Copeland Justice",
+    "email": "copelandjustice@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8435612848,
+    "location": " Seymour",
+    "placementCenter": " Sardis",
+    "aadharcard": 427052395251,
+    "profession": "Retail",
+    "dob": "2003-08-08 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 27536,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Jenny Mcbride",
+    "email": "jennymcbride@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8255733151,
+    "location": " Forbestown",
+    "placementCenter": " Wauhillau",
+    "aadharcard": 198857467619,
+    "profession": "Retail",
+    "dob": "2011-01-05 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 19330,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Irene Pacheco",
+    "email": "irenepacheco@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9734953152,
+    "location": " Corriganville",
+    "placementCenter": " Salvo",
+    "aadharcard": 994636561425,
+    "profession": "Retail",
+    "dob": "2001-04-20 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 10358,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Gross Olson",
+    "email": "grossolson@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8514362178,
+    "location": " Cotopaxi",
+    "placementCenter": " Vivian",
+    "aadharcard": 324611357858,
+    "profession": "Full Stack Developer",
+    "dob": "1994-02-18 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 28791,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Glenn Estrada",
+    "email": "glennestrada@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9844662807,
+    "location": " Herald",
+    "placementCenter": " Driftwood",
+    "aadharcard": 132306669622,
+    "profession": "Logistics Coordinator",
+    "dob": "2008-08-14 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 45211,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Phoebe Frye",
+    "email": "phoebefrye@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9614422908,
+    "location": " Statenville",
+    "placementCenter": " Kenmar",
+    "aadharcard": 413123423387,
+    "profession": "Retail",
+    "dob": "1995-08-01 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 68761,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Beverly Dickerson",
+    "email": "beverlydickerson@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8005363283,
+    "location": " Freeburn",
+    "placementCenter": " Orin",
+    "aadharcard": 176507609323,
+    "profession": "Civil Avitation",
+    "dob": "1986-10-29 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 80822,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Juana Rutledge",
+    "email": "juanarutledge@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8144713669,
+    "location": " Vaughn",
+    "placementCenter": " Sunwest",
+    "aadharcard": 415382168255,
+    "profession": "Retail",
+    "dob": "2011-10-31 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 44567,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Avila Morgan",
+    "email": "avilamorgan@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9355793351,
+    "location": " Dunnavant",
+    "placementCenter": " Rote",
+    "aadharcard": 399383294676,
+    "profession": "Logistics Coordinator",
+    "dob": "1999-08-05 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 16941,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Aline Noel",
+    "email": "alinenoel@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8684743528,
+    "location": " Kimmell",
+    "placementCenter": " Soudan",
+    "aadharcard": 189720832324,
+    "profession": "Logistics Coordinator",
+    "dob": "1992-05-31 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 58866,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Avis Dean",
+    "email": "avisdean@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9295682682,
+    "location": " Hatteras",
+    "placementCenter": " Kerby",
+    "aadharcard": 397647932730,
+    "profession": "Full Stack Developer",
+    "dob": "2001-09-10 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 83118,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Pearson Walls",
+    "email": "pearsonwalls@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9644132249,
+    "location": " Omar",
+    "placementCenter": " Hayes",
+    "aadharcard": 270709848277,
+    "profession": "Full Stack Developer",
+    "dob": "1986-07-22 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 69900,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Courtney Castaneda",
+    "email": "courtneycastaneda@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9544982045,
+    "location": " Epworth",
+    "placementCenter": " Trona",
+    "aadharcard": 360435226411,
+    "profession": "Retail",
+    "dob": "2015-05-22 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 99533,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Rosario Allison",
+    "email": "rosarioallison@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9464532186,
+    "location": " Weeksville",
+    "placementCenter": " Knowlton",
+    "aadharcard": 312072361886,
+    "profession": "Civil Avitation",
+    "dob": "1991-04-27 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 89749,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Gena Richards",
+    "email": "genarichards@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9505053374,
+    "location": " Newry",
+    "placementCenter": " Staples",
+    "aadharcard": 395620441966,
+    "profession": "Logistics Coordinator",
+    "dob": "2001-03-27 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 12956,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Rose Collier",
+    "email": "rosecollier@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8055642427,
+    "location": " Darlington",
+    "placementCenter": " Fillmore",
+    "aadharcard": 119671922216,
+    "profession": "Full Stack Developer",
+    "dob": "2014-04-25 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 71164,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Ladonna Sloan",
+    "email": "ladonnasloan@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8505642385,
+    "location": " Chamberino",
+    "placementCenter": " Chloride",
+    "aadharcard": 119373960796,
+    "profession": "Full Stack Developer",
+    "dob": "2015-06-05 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 42536,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Connie Walton",
+    "email": "conniewalton@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8005303579,
+    "location": " Zortman",
+    "placementCenter": " Esmont",
+    "aadharcard": 629426587603,
+    "profession": "Full Stack Developer",
+    "dob": "2010-08-02 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 31169,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Janell Reese",
+    "email": "janellreese@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8645053164,
+    "location": " Highland",
+    "placementCenter": " Navarre",
+    "aadharcard": 450424126399,
+    "profession": "Civil Avitation",
+    "dob": "1988-05-18 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 41199,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Shannon Ashley",
+    "email": "shannonashley@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8364993522,
+    "location": " Keller",
+    "placementCenter": " Rodman",
+    "aadharcard": 824227917234,
+    "profession": "Full Stack Developer",
+    "dob": "1990-02-12 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 45667,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Gayle Cortez",
+    "email": "gaylecortez@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9584323630,
+    "location": " Marne",
+    "placementCenter": " Croom",
+    "aadharcard": 608026785163,
+    "profession": "Logistics Coordinator",
+    "dob": "1991-05-30 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 18897,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Mejia Pierce",
+    "email": "mejiapierce@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9754503455,
+    "location": " Ahwahnee",
+    "placementCenter": " Nescatunga",
+    "aadharcard": 395294332047,
+    "profession": "Full Stack Developer",
+    "dob": "2013-08-10 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 56131,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Young Bartlett",
+    "email": "youngbartlett@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8235063802,
+    "location": " Savannah",
+    "placementCenter": " Albany",
+    "aadharcard": 280917056949,
+    "profession": "Civil Avitation",
+    "dob": "1985-06-05 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 46388,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Trujillo Pennington",
+    "email": "trujillopennington@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8294353332,
+    "location": " Thynedale",
+    "placementCenter": " Cumberland",
+    "aadharcard": 397204560561,
+    "profession": "Retail",
+    "dob": "1986-04-10 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 75465,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Manning Pruitt",
+    "email": "manningpruitt@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9204553437,
+    "location": " Bluffview",
+    "placementCenter": " Muse",
+    "aadharcard": 452428739441,
+    "profession": "Civil Avitation",
+    "dob": "2007-02-13 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 83328,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Susanne Jacobs",
+    "email": "susannejacobs@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8105042674,
+    "location": " Franklin",
+    "placementCenter": " Tryon",
+    "aadharcard": 942394530536,
+    "profession": "Logistics Coordinator",
+    "dob": "1981-01-25 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 55942,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "White Garza",
+    "email": "whitegarza@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8375903471,
+    "location": " Cazadero",
+    "placementCenter": " Brenton",
+    "aadharcard": 455520364055,
+    "profession": "Full Stack Developer",
+    "dob": "2014-02-25 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 38913,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Larsen Hampton",
+    "email": "larsenhampton@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9305882905,
+    "location": " Shelby",
+    "placementCenter": " Cannondale",
+    "aadharcard": 588523067681,
+    "profession": "Retail",
+    "dob": "1985-08-23 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 26218,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Celeste Juarez",
+    "email": "celestejuarez@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9634572182,
+    "location": " Jenkinsville",
+    "placementCenter": " Odessa",
+    "aadharcard": 471134107229,
+    "profession": "Logistics Coordinator",
+    "dob": "1985-11-22 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 49931,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Traci Stewart",
+    "email": "tracistewart@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9035393276,
+    "location": " Chicopee",
+    "placementCenter": " Greenwich",
+    "aadharcard": 207453134643,
+    "profession": "Full Stack Developer",
+    "dob": "2000-07-08 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 79782,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Merritt Daugherty",
+    "email": "merrittdaugherty@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9444312175,
+    "location": " Dante",
+    "placementCenter": " Hollins",
+    "aadharcard": 554910409486,
+    "profession": "Retail",
+    "dob": "1982-03-30 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 87448,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Aisha Mayer",
+    "email": "aishamayer@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9405023899,
+    "location": " Axis",
+    "placementCenter": " Manitou",
+    "aadharcard": 979819873654,
+    "profession": "Full Stack Developer",
+    "dob": "1980-06-03 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 88879,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Gonzalez Barnes",
+    "email": "gonzalezbarnes@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8664832637,
+    "location": " Walker",
+    "placementCenter": " Nicholson",
+    "aadharcard": 298063788188,
+    "profession": "Logistics Coordinator",
+    "dob": "1996-10-12 ",
+    "gender": "male",
+    "maritialstatus": "Unmarried",
+    "centerCode": 36625,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Luann Garcia",
+    "email": "luanngarcia@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9734643777,
+    "location": " Rehrersburg",
+    "placementCenter": " Gila",
+    "aadharcard": 879254946400,
+    "profession": "Civil Avitation",
+    "dob": "2013-11-07 ",
+    "gender": "female",
+    "maritialstatus": "Unmarried",
+    "centerCode": 10330,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Hattie Cardenas",
+    "email": "hattiecardenas@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9515953877,
+    "location": " Hasty",
+    "placementCenter": " Thatcher",
+    "aadharcard": 629114266459,
+    "profession": "Full Stack Developer",
+    "dob": "1996-03-31 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 59186,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Wendi Valenzuela",
+    "email": "wendivalenzuela@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9135062172,
+    "location": " Shepardsville",
+    "placementCenter": " Glenshaw",
+    "aadharcard": 563482924374,
+    "profession": "Civil Avitation",
+    "dob": "1995-11-02 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 95314,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Melanie Raymond",
+    "email": "melanieraymond@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8575143648,
+    "location": " Vale",
+    "placementCenter": " Lavalette",
+    "aadharcard": 869383141636,
+    "profession": "Civil Avitation",
+    "dob": "2001-05-26 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 95735,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Mayra Maxwell",
+    "email": "mayramaxwell@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 9685242295,
+    "location": " Valmy",
+    "placementCenter": " Topanga",
+    "aadharcard": 446292641324,
+    "profession": "Full Stack Developer",
+    "dob": "1993-01-17 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 62157,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Arline Sawyer",
+    "email": "arlinesawyer@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8234722604,
+    "location": " Escondida",
+    "placementCenter": " Tetherow",
+    "aadharcard": 248671009877,
+    "profession": "Logistics Coordinator",
+    "dob": "2014-01-25 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 65785,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  },
+  {
+    "name": "Alana Mccullough",
+    "email": "alanamccullough@boilicon.com",
+    "pwd": "Password@123",
+    "mobile": 8404272565,
+    "location": " Greer",
+    "placementCenter": " Robinette",
+    "aadharcard": 575158437741,
+    "profession": "Logistics Coordinator",
+    "dob": "2008-08-07 ",
+    "gender": "female",
+    "maritialstatus": "Married",
+    "centerCode": 96754,
+    "skills": [
+      {
+        "skillname": "HTML",
+        "expertise": "Skilled",
+        "experience": 1
+      }
+    ],
+    "workexperience": [
+      {
+        "designation": "PE",
+        "workplace": "Wipro",
+        "location": "Pune",
+        "duration": null,
+        "skills": {}
+      }
+    ],
+    "projects": [
+      {
+        "name": "Samarth",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": [
+          "HTML, CSS"
+        ],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualification": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": 9
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": {
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA"
+    }
+  }
+]

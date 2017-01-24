@@ -20,7 +20,6 @@ function createNewPreferences(formobj, successCB, errorCB ) {
     let preferenceObj = new preference({
         candidateid: formobj.mobile,
         preferences:[]
-        // preferences:formobj.preferences.length!=0 ? formobj.preferences : []
     });
 
     preferenceObj.save(function(err, result) {
@@ -28,6 +27,7 @@ function createNewPreferences(formobj, successCB, errorCB ) {
 
             // console.log("erororupda");
             errorCB(err);
+            return;
         }
         successCB(result);
         // console.log(successCB);
