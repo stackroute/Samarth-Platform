@@ -132,7 +132,7 @@ function addMissingWorkFieldResponse(candidateid, workInstanceName, fieldname, r
 		if(durationField.includes(fieldname)){
        field = ('workexperience.$.duration.' + fieldname);
        // setObj['institute'].fieldname= response;
-    } 
+    }
    else {
      field = ('workexperience.$.' + fieldname);
     }
