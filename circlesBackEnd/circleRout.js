@@ -5,7 +5,7 @@ let async = require('async');
 
 router.get('/:entityname', function(req, res) {
     try {
-        // console.log(req.params);
+        console.log(req.params);
         circleProcessor.getCircle(req.params,
             function(data) {
                 res.json(data);
@@ -108,50 +108,6 @@ router.get('/getStats/:profs', function(req, res) {
             'Internal error occurred, please report or try later...!');
     }
 });
-// //////////////////////////////////////////////
-// router.get('/getStats/:entityname', function(req, res) {
-//     try {
-//         var arr =[];
-//         var entityname=req.params.entityname.split("-");
-//
-//         async.parallel({
-//             lookingCount: function(callback) {
-//                 circleNeo4jProcessor.getCount(entityname,
-//                     function(lookingCountobj) {
-//                         callback(null,lookingCountobj);
-//                     },
-//                     function(err) {
-//                         callback(err, null);
-//                     }
-//                     );
-//             }
-//         },
-//         function(err, results) {
-//         if (err) {
-//         console.log('ERR ----------------->: ', err);
-//         console.log('entityname');
-//         }
-//         else{
-//             let arr=[];
-//             for(var i=0; i<results.lookingCount.length;i++) {
-//                 let obj = {
-//                 "Centername":results.lookingCount[i].entityname
-//                 };
-//                 arr.push(obj);
-//                 obj = {};
-//             }
-//             res.status(200).json(arr);
-//         }
-//     }
-//     );
-//     }
-//     catch (err) {
-//         console.log("Internal Error Occurred inside catch");
-//         return res.status(500).send(
-//             'Internal error occurred, please report or try later...!');
-//     }
-// });
-///////////////////////////////////////////////////////////////////////
 
 router.post('/circlerelation',
     function(req, res) {
