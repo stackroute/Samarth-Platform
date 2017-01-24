@@ -11,6 +11,8 @@ let candidateneo = require('../candidate/candidateneoprocessor');
 let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
 
+let config = require('../config/config');
+
 router.get('/allcandidates',function(req, res) {
     try{
     candidate.find(function(err, candidates) {
@@ -53,12 +55,12 @@ router.get('/aws',function(req, res, next){
 },function (req,res) {
     try {
 
-        let config = new Object();
-        config.region = "ap-south-1";
-        config.secretAccessKey = "Ndm+yjnD949FcowVNHV7tjVI2PLiERT4XFV2nmzH";
-        config.accessKeyId = "AKIAIEJFMACVX4TI2O5A";
-        config.Bucket = "samarthuploads";
-        res.json(config);
+        let awsConfig = new Object();
+        awsConfig.region = config.REGION;
+        awsConfig.secretAccessKey = config.SECRETACCESSKEY;
+        awsConfig.accessKeyId = config.ACCESSKEYID;
+        awsConfig.Bucket = config.BUCKET;
+        res.json(awsConfig);
     } catch(e) {
         // statements
         console.log(e);
