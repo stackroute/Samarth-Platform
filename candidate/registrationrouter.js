@@ -9,6 +9,7 @@ let projectprocessor = require('../sectionproject/projectprocessor');
 let jobpreferencesProcessor=require('../sectionjobpreferences/jobpreferencesprocessor');
 let skillprocessor = require('../sectionskill/skillprocessor');
 let workexpprocessor = require('../sectionworkexperiance/workprocessor');
+let galleryprocessor = require('../sectionprofilegallery/galleryprocessor');
 let candidateneo = require('./candidateneoprocessor');
 let verificationprocessor = require('../verification/verificationprocesser');
 let authorization = require('../authorization/authorization');
@@ -147,6 +148,16 @@ router.post("/", function(req, res) {
                         },
                         jobpreferences: function(callback) {
                             jobpreferencesProcessor.createNewPreferences(req.body,
+                                function(preferenceobj) {
+                                    callback(null, preferenceobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            );
+                        },
+                        profilegallery: function(callback) {
+                            galleryprocessor.createNewGallery(req.body,
                                 function(preferenceobj) {
                                     callback(null, preferenceobj);
                                 },

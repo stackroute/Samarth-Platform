@@ -8,7 +8,7 @@ let gallerySchema = new Schema({
 		url: { type: String, required: true },
 		title: { type: String, required: true },
 		desc: { type: String, required: true },
-		uploadedon: {type: Date}
+		uploadedon: {type: Date, default: Date.now()}
 	}]
 });
 let gallery = mongoose.model('gallery', gallerySchema, 'profilegallery');
