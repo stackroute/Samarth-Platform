@@ -60,7 +60,7 @@ function inspectMissingProfileFields(candidateId, successCB, errorCB) {
             }, function(err) {
                 callback(err, null);
             });
-        }, //end  skill 
+        }, //end  skill
         qualification: function(callback) {
             console.log("qualification");
             educationMissingFinder.findMissingEducationFields(candidateId, function(result) {
@@ -123,7 +123,7 @@ function inspectMissingProfileFields(candidateId, successCB, errorCB) {
 }
 
 function updateMissingFieldResponse(candidateId, sectionName, instancename, fieldname, answer, callback) {
-            
+
                 let missingFieldResUpdateTasks = {
                     "skills": skillprocessor.addMissingSkillFieldResponse,
                     "qualification": educationProcessor.addMissingEducationFieldResponse,
@@ -156,8 +156,8 @@ function updateMissingFieldResponse(candidateId, sectionName, instancename, fiel
                         })
                 }
 
-                    //Check which section this response was for 
-                    //Call corresponding section's process's method to update the response in the corresponding instance 
+                    //Check which section this response was for
+                    //Call corresponding section's process's method to update the response in the corresponding instance
 
 }
 
