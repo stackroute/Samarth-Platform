@@ -37,12 +37,12 @@ function createNewSkill(formobj, sucessCB, errorCB) {
 	let skillObj = new skill({
 		candidateid: formobj.mobile,
 		skills: []
-		// skills: formobj.skills.length != 0 ? formobj.skills : []
 	});
 
 	skillObj.save(function(err, result) {
 		if (err) {
 			errorCB(err);
+			return;
 		}
 		sucessCB(result);
 

@@ -28,6 +28,7 @@ function createNewPreferences(formobj, successCB, errorCB ) {
 
             // console.log("erororupda");
             errorCB(err);
+            return;
         }
         successCB(result);
         // console.log(successCB);
