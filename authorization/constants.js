@@ -24,7 +24,7 @@
         EDUCATION:"education",
         SKILLS:"skills",
         WORKEXPERIENCE:"workexperience",
-        // GALLERY:"gallery",
+        GALLERY:"gallery",
         PROJECTS:"projects",
         COORDINATORUSERS : "coordinatorusers",
         COORDINATORS : "coordinators",
