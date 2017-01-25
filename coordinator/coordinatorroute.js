@@ -1,5 +1,6 @@
 let router = require('express').Router();
 let coordinatorprocessor = require('./coordinatorprocessor');
+
 let coordinatorneoprocessor = require('./coordinatorneoprocessor');
 let coordinator = require('./coordinatorschema');
 let circleProcessor = require('../circlesBackEnd/circleProcessor');
@@ -19,6 +20,7 @@ router.get('/profession', function(req, res)
             res.status(500).json(err);
         });
     } catch (err)
+
     {
 
         res.status(500).json(
@@ -27,6 +29,7 @@ router.get('/profession', function(req, res)
         });
     }
 });
+
 
 router.get('/role', function(req, res)
 {
@@ -40,6 +43,7 @@ router.get('/role', function(req, res)
             res.status(500).json(err);
         });
     } catch (err)
+
     {
 
         res.status(500).json(
@@ -48,6 +52,7 @@ router.get('/role', function(req, res)
         });
     }
 });
+
 
 router.get('/language', function(req, res)
 {
@@ -61,6 +66,7 @@ router.get('/language', function(req, res)
             res.status(500).json(err);
         });
     } catch (err)
+
     {
 
         res.status(500).json(
@@ -69,6 +75,7 @@ router.get('/language', function(req, res)
         });
     }
 });
+
 
 router.get('/location', function(req, res)
 {
@@ -82,6 +89,7 @@ router.get('/location', function(req, res)
             res.status(500).json(err);
         });
     } catch (err)
+
     {
 
         res.status(500).json(
@@ -92,7 +100,7 @@ router.get('/location', function(req, res)
 });
 
 router.get('/getcoordi', function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.ADMINS);
+    authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.ADMINS);
 },function(req,res){
 
     coordinatorprocessor.getcoordinator(function(getcoordinator){
@@ -147,8 +155,11 @@ router.post('/createcoordinator', function(req, res, next){
                 //     });
 
 
+                         coordinatorneoprocessor.getcoordiplace(req.body.placementCenter,
+                         req.body.mobile,function(err){
 
-                        
+
+                        });
                             //res.status(200).json(getNeoCenter);
 
                 circleProcessor.createRelation(req.body, function(err) {

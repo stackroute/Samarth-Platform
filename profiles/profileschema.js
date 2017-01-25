@@ -8,8 +8,12 @@ let profileSchema = new Schema({
 	updatedOn: { type: Date, default: Date.now},
 	createdBy: {type: String, default: 'user'},
 	updatedBy: {type: String, default: 'user'},
-	profession: {type: String}
-
+	profession: {type: String},
+	completion: {
+		overall: {type: Number, default: 10 },
+		sections: {}
+	}
 });
+
 let profiles = mongoose.model('profiles', profileSchema, 'profiles');
 module.exports = profiles;

@@ -17,7 +17,25 @@ var findMissingFields = function(candidateid, successCB, errorCB) {
         let skillFieldArray = getFieldsNames();
         console.log(skillFieldArray);
         let sectionQBoxQuestions = [];
- 
+
+        /*let completness = 0;
+        if(candidateSkills.skills.length >= 1) {
+            completness = 100;
+        }
+
+        process.nextTick(function(){
+            profileCalculator.updateProfileSectionCompletness(candidateid, 
+                '', 
+                completness, 
+                function(err, result){
+                    if(err) {
+                        console.log('Error in udpating completness for <sectionName> ': err);
+                    } else {
+                        console.log('Updated completness for <sectionName> ': result);
+                    }
+            })    
+        });*/
+        
         for (let i = 0; i < candidateSkills.skills.length; i++) {
 
             let skillData = candidateSkills.skills[i];
