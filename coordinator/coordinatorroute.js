@@ -148,11 +148,7 @@ router.post('/createcoordinator', function(req, res, next){
 
 
 
-                         coordinatorneoprocessor.getcoordiplace(req.body.placementCenter,
-                         req.body.mobile,function(err){
-
-
-                        });
+                        
                             //res.status(200).json(getNeoCenter);
 
                 circleProcessor.createRelation(req.body, function(err) {

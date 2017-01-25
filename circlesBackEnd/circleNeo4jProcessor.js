@@ -135,21 +135,22 @@ function(err, results) {
 
 createRelation = function(req, res) {
 	db.cypher({
-		query:'merge (n:coordinator{username:{username}}) FOREACH (prof in {profs} | merge (c:circle{name:prof}) merge (n)-[r:have_profession]->(c)) FOREACH (lang in {langs} | merge (lg:Language{name:lang.name}) merge (n) -[rt: knows{speak: lang.speak, read: lang.read, write: lang.write}]-> (lg))',
-		params: {
-			username: req.email,
-			profs: req.profession,
-			langs: req.language
-				// profession: reqprofession;
-			}
-		},
-		function(err, results) {
-			if (err) {
-				res(err);
-			}
-			res(results);
-		});
-};
+			query:'merge (n:coordinator{username:{username}, name: {username}}) merge (n)-[:memberOf]-(c:circle {name:{centercode}}) FOREACH (prof in {profs} | merge (c:circle{name:prof}) merge (n)-[r:have_profession]->(c)) FOREACH (lang in {langs} | merge (lg:Language{name:lang.name}) merge (n) -[rt: knows{speak: lang.speak, read: lang.read, write: lang.write}]-> (lg))',
+			params: {
+				username: req.email,
+				profs: req.profession,
+				langs: req.language,
+				centercode: req.placementCenter
+					// profession: reqprofession;
+				}
+			},
+			function(err, results) {
+				if (err) {
+					res(err);
+				}
+				res(results);
+			});
+	};
 module.exports = {
 	creacteNode: creacteNode,
 	createRelation: createRelation,

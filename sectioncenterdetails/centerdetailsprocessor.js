@@ -6,12 +6,12 @@ function createNewcenterdetails(formobj, successCB, errorCB) {
         centerCode: formobj.centerCode,
         centerLocation: formobj.centerLocation,
         email: formobj.email,
-        address: formobj.address,
+        region: formobj.region,
         mobile: formobj.mobile,
         cname: formobj.cname,
         centerType: formobj.centerType,
         status: formobj.status
-        
+
     });
     centerObj.save(function(err, postdetails) {
         console.log("hi"+postdetails);

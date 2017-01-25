@@ -6,7 +6,7 @@ let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
 
 router.post('/',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.CREATE,constants.CENTERDETAILS);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.CENTERDETAILS);
 },function(req,res){
 	var center=req.body;
 
@@ -25,8 +25,7 @@ router.post('/',function(req, res, next){
 
                         console.log("in mongo");
                         console.log(postdetails);
-                        var domain = "Placement Center";
-                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,domain, postdetails.cname, postdetails.address, postdetails.centerCode,function(err,success) {
+                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation, postdetails.cname, postdetails.region, postdetails.centerCode,function(err,success) {
                             if (err) {
                                     console.log(err);
                                 } else {
@@ -81,7 +80,7 @@ router.get('/particularCenter/:candidateid', function(req, res, next) {
     },
      function(error){
             res.status(500).json(error);
-    }) 
+    })
 })
 
     // Fetching all candidate details
@@ -146,6 +145,31 @@ router.get('/getcenterdetails',function(req, res, next){
         res.status(500).json({
             error: 'Internal error occurred, please report'
         });
+    }
+});
+
+// Find the circles for the specified domain typ
+router.get('/centercircles', function(req, res) {
+    try {
+      let domaintype = req.body;
+      centerdetailsneoprocessor.getCenterCirclesWithStats(
+				function sucessCB(circleColln) {
+            res.status(200).send(circleColln);
+        }, function errorCB(error) {
+            res.status(500).json(error);
+        }
+			)
+      // .then(function(circleColln){
+      //   res.send(circleColln);
+      // }, function(err){
+      //   res.status(500).send({error: "Internal error in finding requested data..!"});
+      // });
+    }
+    catch (err) {
+        console.log("Internal Error Occurred inside catch");
+        console.log(err);
+        return res.status(500).send(
+            'Internal error occurred, please report or try later...!');
     }
 });
 module.exports = router;
