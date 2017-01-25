@@ -19,7 +19,7 @@ const rbac = new RBAC({
     education:['create', 'read', 'edit', 'delete'],
     skills:['create', 'read', 'edit', 'delete'],
     workexperience:['create', 'read', 'edit', 'delete'],
-    // gallery:['create', 'read', 'edit', 'delete'],
+    gallery:['create', 'read', 'edit', 'delete'],
     projects:['create', 'read', 'edit', 'delete'],
     coordinators:['create', 'read', 'edit', 'delete'],
     coordinatorusers:['create', 'read', 'edit', 'delete'],
@@ -36,7 +36,8 @@ const rbac = new RBAC({
                 'create_workexperience','edit_workexperience','read_workexperience','delete_workexperience',
                 'create_projects','edit_projects','read_projects','delete_projects','read_jobs',
                 'create_centerdetails','read_centerdetails','edit_centerdetails','delete_centerdetails',
-                'create_skillcard','read_skillcard','edit_skillcard','delete_skillcard'],
+                'create_skillcard','read_skillcard','edit_skillcard','delete_skillcard',
+                'create_gallery','read_gallery','edit_gallery','delete_gallery'],
 
     // supervisor: ['read_sidenavbar','create_jobs', 'read_jobs','create_jobs','edit_jobs', 'delete_jobs'],
 
@@ -51,7 +52,7 @@ const rbac = new RBAC({
                   'create_skills','edit_skills','read_skills','delete_skills',
                   'create_workexperience','edit_workexperience','read_workexperience','delete_workexperience',
                   'create_projects','edit_projects','read_projects','read_jobs',
-                    'create_searchcandidate','read_searchcandidate'],
+                    'create_searchcandidate','read_searchcandidate','read_gallery'],
 
     admin: ['read_sidenavbar','create_coordinators', 'read_coordinators', 'edit_coordinators', 'delete_coordinators',
             'create_admins', 'read_admins', 'edit_admins', 'delete_admins',

@@ -6,7 +6,7 @@ let gallery = require('./galleryschema');
 let config = require('../config/config');
  
 router.get('/aws',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.SKILLCARD);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.GALLERY);
 },function (req,res) {
     try {
 
@@ -27,7 +27,7 @@ router.get('/aws',function(req, res, next){
 }); //end of get /aws
 
 router.get("/:candidateid", function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.SKILLS);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.GALLERY);
 },
 function(req, res) {
       try {
@@ -50,7 +50,7 @@ function(req, res) {
 });
 
 router.post('/:candidateid',function(req, res, next){
-	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.SKILLCARD);
+	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.GALLERY);
 },function (req,res) {
     try{
         console.log("********data while adding!!!");
