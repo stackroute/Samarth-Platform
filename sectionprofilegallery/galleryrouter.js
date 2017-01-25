@@ -61,9 +61,9 @@ router.post('/:candidateid',function(req, res, next){
 			res.status(500).send('Register the Candidate before adding gallery contents ');
 		} // end if
 		else {
-			galleryProcessor.addGallery(req.body, function() {
+			galleryProcessor.addGallery(req.body, function(result) {
 
-				res.status(201).json();
+				res.status(201).json(result);
 			}, function(err) {
 				res.status(500).json({ error: 'can\'t add gallery in the records' });
 			});
