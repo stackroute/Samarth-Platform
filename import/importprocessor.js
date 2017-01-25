@@ -1,6 +1,6 @@
 let importschema = require('./importschema');
 
-function createImportData(fileData,fileName, successPC, errorPC) {
+function importData(fileData,fileName, successPC, errorPC) {
     let importObj = new importschema({
         profileType: "candidate profile",
         status: "processing",
@@ -18,7 +18,7 @@ function createImportData(fileData,fileName, successPC, errorPC) {
     });
 }
 
-function getData(uploadedId,successCB, errorCB) {
+function getDataById(uploadedId,successCB, errorCB) {
     
      importschema.find({ _id: uploadedId }, function(error, result) {
             if (error) {
@@ -31,6 +31,6 @@ function getData(uploadedId,successCB, errorCB) {
 }
 
 module.exports = {
-    createImportData: createImportData,
-    getData: getData
+    importData: importData,
+    getDataById: getDataById
 };

@@ -25,8 +25,8 @@ router.post('/',function(req, res, next){
 
                         console.log("in mongo");
                         console.log(postdetails);
-                        var centerDomain = "centerDomain";
-                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,centerDomain, postdetails.cname, postdetails.address, postdetails.centerCode,function(err,success) {
+                        var domain = "Placement Center";
+                            centerdetailsneoprocessor.createNodes(postdetails.centerLocation,domain, postdetails.cname, postdetails.address, postdetails.centerCode,function(err,success) {
                             if (err) {
                                     console.log(err);
                                 } else {

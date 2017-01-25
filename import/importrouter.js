@@ -21,12 +21,12 @@ router.post('/', function(req, res, next){
     console.log(JSON.parse(sampleFile.data.toString('utf8')));
 
 
-    importprocessor.createImportData(JSON.parse(sampleFile.data.toString('utf8')),sampleFile.name,function(uploadedId){
+    importprocessor.importData(JSON.parse(sampleFile.data.toString('utf8')),sampleFile.name,function(uploadedId){
 
-			function pushdata(){
+			function pushuploadedId(){
 						client.rpush('profileImport', uploadedId);
 					}
-					pushdata();
+					pushuploadedId();
 					res.status(200).json(uploadedId);
 				},function(err){
 					res.status(500).send("server error...!");

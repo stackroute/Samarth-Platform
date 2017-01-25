@@ -54,14 +54,17 @@ getLocation = function(successCB, errCB) {
         }
     });
 };
+getcoordiplace=function(coordinatorId,centerDomain,SuccessCB,errorCB)
+    {
+        db.cypher({
 
-getPlacementCenter = function (Location, SuccessCB, errorCB) {
-     db.cypher({
+    query: 'MERGE (n:coordinator{name:{coordinatorId}})<-[rel:memberOf]-(c:circle{name:{centerDomain}}) ',
 
-            query: 'MATCH (n:Location{name:{Location}})<-[rel:memberOf]-(c:circle) RETURN c.name,c.cname',
-            params: {
-                Location: Location
-            },
+           params: {
+                centerDomain: centerDomain,
+                coordinatorId:coordinatorId
+
+           },
         }, function(err,results) {
          console.log(results);
          console.log("done");
@@ -74,12 +77,15 @@ getPlacementCenter = function (Location, SuccessCB, errorCB) {
          }
      });
 
-    };
+   };
+
+
+
 
 module.exports = {
     getLocation: getLocation,
     getLanguage: getLanguage,
     getRole: getRole,
-    getProfessions: getProfessions,
-    getPlacementCenter: getPlacementCenter
+    getcoordiplace:getcoordiplace,
+    getProfessions: getProfessions
 }

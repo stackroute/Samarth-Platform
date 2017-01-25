@@ -5,7 +5,7 @@ let async = require('async');
 
 router.get('/:entityname', function(req, res) {
     try {
-        // console.log(req.params);
+        console.log(req.params);
         circleProcessor.getCircle(req.params,
             function(data) {
                 res.json(data);
@@ -108,8 +108,9 @@ router.get('/getStats/:profs', function(req, res) {
             'Internal error occurred, please report or try later...!');
     }
 });
-// //////////////////////////////////////////////
-router.get('/getStats/:cname', function(req, res) {
+
+////////////////////////////////////////
+router.get('/getStats/:profs', function(req, res) {
     try {
         var arr =[];
         var profs=req.params.profs.split("-");
@@ -134,7 +135,14 @@ router.get('/getStats/:cname', function(req, res) {
             let arr=[];
             for(var i=0; i<results.lookingCount.length;i++) {
                 let obj = {
-                "Centername":results.lookingCount[i].cname
+                "profession":results.lookingCount[i].profession,
+                "Candidates": results.lookingCount[i].Candidates,
+                "Looking":results.lookingCount[i].Looking,
+                "applied":results.appliedCount[i].applied,
+                "placed":results.placedCount[i].placed,
+                "job":results.jobCount[i].job,
+                "expiredJobs":results.expiredJobCount[i].expiredjobs,
+                "availableJobs":results.jobCount[i].job - results.expiredJobCount[i].expiredjobs
                 };
                 arr.push(obj);
                 obj = {};
@@ -150,8 +158,7 @@ router.get('/getStats/:cname', function(req, res) {
             'Internal error occurred, please report or try later...!');
     }
 });
-///////////////////////////////////////////////////////////////////////
-
+///////////////////////////////////////////////////
 router.post('/circlerelation',
     function(req, res) {
         try {

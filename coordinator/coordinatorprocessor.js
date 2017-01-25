@@ -12,15 +12,16 @@ function createCoordinator(formobj, successPC, errorPC) {
         userRole: formobj.role,
         coordinatorProfession: formobj.profession,
         coordinatorLocation: formobj.location,
+        placementCenter:formobj.placementCenter,
         coordinatorGender: formobj.gender,
         coordinatorEmail: formobj.email,
         // coordinatorPwd: formobj.pwd,
         coordinatorLanguage: formobj.language
     });
 
-    coordinatorObj.save(function(err, postdetails) {
+   coordinatorObj.save(function(err, postdetails) {
 
-        if (err) {
+       if (err) {
             errorPC(err);
         } else {
             successPC(postdetails);
@@ -31,23 +32,23 @@ function createCoordinator(formobj, successPC, errorPC) {
 let insertCoordinator = function(newUser, callback, unauth) {
         let hashed_pwd = UserModel.methods.generateHash(newUser.pwd);
 
-        let newUserObj = new coordinatoruser({
+       let newUserObj = new coordinatoruser({
             email: newUser.email,
             password: hashed_pwd,
             role: newUser.role
         });
 
-        newUserObj.save(function(err, user) {
+       newUserObj.save(function(err, user) {
             if (err) {
                 callback(err, null);
                 return;
             }
 
-            if (!user) {
+           if (!user) {
                 callback('Unable to insert the user', null);
             }
 
-            callback(err, user);
+           callback(err, user);
         });
     }; // end of insertCoordinator
 
@@ -66,9 +67,10 @@ function updateCoordinator(coordi, sucessCB) {
         console.log(coordi);
         coordinator.update({ coordinatorId: coordi.mobile}, {
 
-                        $set: {
+                       $set: {
                                 'coordinatorName': coordi.name,
                                 'coordinatorLocation': coordi.location,
+                                'placementCenter': coordi.placementCenter,
                                 'coordinatorGender': coordi.gender,
                                 'coordinatorEmail': coordi.email,
                                 'coordinatorProfession': coordi.profession,
@@ -80,7 +82,7 @@ function updateCoordinator(coordi, sucessCB) {
                         sucessCB(' updated');
                 }
 
-        );
+       );
 }
 
 function getcoordinator(successCB, errorCB) {
