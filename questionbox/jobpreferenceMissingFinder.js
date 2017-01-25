@@ -3,7 +3,7 @@ let qboxprocessor = require('./qboxprocessor');
 let qboxquestionModel = require('./qboxquestions');
  
 var getFieldsNames = function() { 
-    return ['expected_salary','engagement_type','joining_date'];
+    return ['roles','locations','skills','expected_salary','engagement_type','joining_date'];
 }  
     console.log("heloooooooooooooo");
    
@@ -23,7 +23,7 @@ var findJobInfoMissingFields = function(candidateid, successCB, errorCB) {
 
             for (let j = 0; j < infoFieldArray.length; j++) {
       
-                if (jobInfoData[infoFieldArray[j]] == '' || jobInfoData[infoFieldArray[j]] == null ) {
+                if (jobInfoData[infoFieldArray[j]] == " " || jobInfoData[infoFieldArray[j]] == null || jobInfoData[infoFieldArray[j]] == undefined ) {
                     let qboxquestion = new qboxquestionModel({
                         candidateid: candidateid,
                         section: 'jobpreference',

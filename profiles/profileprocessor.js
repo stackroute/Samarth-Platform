@@ -50,6 +50,21 @@ function modifyprofile(profileobj, candidateid, successCB) {
     );
 }
 
+// function updateProfileSectionCompletness(candidateid, sectionName, completness, callback) {
+//     let updateObj = {completion: {}};
+//     updateObj.completion[sectionName] = completness; 
+//     profile.update({candidateid: candidateid }, 
+//         {$set: updateObj},
+//         function(err, updatedObj) {
+//             if(err) {
+//                 callback(err);
+//             } else {
+//                 callback(null, updatedObj);
+//             }
+//         }
+//     );
+// }
+
 function inspectMissingProfileFields(candidateId, successCB, errorCB) {
     console.log(" Service called with candidateid : "+ candidateId);
     let tasks = {
@@ -103,7 +118,6 @@ function inspectMissingProfileFields(candidateId, successCB, errorCB) {
                 callback(err, null);
             })
         }
-
     };
 
     try {
@@ -113,6 +127,10 @@ function inspectMissingProfileFields(candidateId, successCB, errorCB) {
             }
             console.log("Missing profile fields of candidate: "+ candidateId + " result: ",
                 result);
+
+            // process.nextTick(function(){
+            //     profileCalculator.calculateOverallCompletion(candidateId);
+            // })
 
             successCB(result);
         });
