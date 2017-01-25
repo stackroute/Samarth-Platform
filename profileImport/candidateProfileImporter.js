@@ -1,13 +1,9 @@
 let async = require('async');
 
-let neo4jConnection = require("../connections/neo4jconnection");
-let mongoose = require('mongoose');
-let db = neo4jConnection.getConnection();
-mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
 let candidateProcessor = require('../candidate/candidateprocessor');
 
-let candidateColln = require('../test/singleCandidateImportData.json');
+// let candidateColln = require('../test/singleCandidateImportData.json');
 let sillsProfileImport = require('./candidateSkillsProfileImporter');
 let qualificationsProfileImport = require('./candidateQualificationsProfileImporter');
 let projectsProfileImport = require('./candidateProjectsProfileImporter');
@@ -86,7 +82,7 @@ let importEachProfileSection = function(candidateObj, candidateImportObj) {
   return promise;
 }
 
-importCandidateProfileColln(candidateColln);
+//importCandidateProfileColln(candidateColln);
 
 module.exports = {
   importCandidateProfile: importCandidateProfile,
