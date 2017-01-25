@@ -109,6 +109,56 @@ router.get('/getStats/:profs', function(req, res) {
     }
 });
 
+////////////////////////////////////////
+router.get('/getStats/:profs', function(req, res) {
+    try {
+        var arr =[];
+        var profs=req.params.profs.split("-");
+
+        async.parallel({
+            lookingCount: function(callback) {
+                circleNeo4jProcessor.getCount(profs,
+                    function(lookingCountobj) {
+                        callback(null,lookingCountobj);
+                    },
+                    function(err) {
+                        callback(err, null);
+                    }
+                    );
+            }
+        },
+        function(err, results) {
+        if (err) {
+        console.log('ERR ----------------->: ', err);
+        }
+        else{
+            let arr=[];
+            for(var i=0; i<results.lookingCount.length;i++) {
+                let obj = {
+                "profession":results.lookingCount[i].profession,
+                "Candidates": results.lookingCount[i].Candidates,
+                "Looking":results.lookingCount[i].Looking,
+                "applied":results.appliedCount[i].applied,
+                "placed":results.placedCount[i].placed,
+                "job":results.jobCount[i].job,
+                "expiredJobs":results.expiredJobCount[i].expiredjobs,
+                "availableJobs":results.jobCount[i].job - results.expiredJobCount[i].expiredjobs
+                };
+                arr.push(obj);
+                obj = {};
+            }
+            res.status(200).json(arr);
+        }
+    }
+    );
+    }
+    catch (err) {
+        console.log("Internal Error Occurred inside catch");
+        return res.status(500).send(
+            'Internal error occurred, please report or try later...!');
+    }
+});
+///////////////////////////////////////////////////
 router.post('/circlerelation',
     function(req, res) {
         try {

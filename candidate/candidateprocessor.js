@@ -28,7 +28,6 @@ function createNewcandidate(formObj, successCB, errorCB) {
         "candidateid": formObj.mobile,
         /*"profession": formObj.profession*/
     });
-
     candidateObj.save(function(err, savedObj) {
         if (err) {
             // console.log('Error in saving candidate: ', err);
@@ -37,7 +36,6 @@ function createNewcandidate(formObj, successCB, errorCB) {
         successCB(savedObj);
     });
 }
-
 function initializeNewCandidateProfile(data, initCallback) {
     async.parallel({
             candidate: function(callback) {
@@ -137,7 +135,6 @@ function initializeNewCandidateProfile(data, initCallback) {
                 initCallback(err, null);
                 return;
             }
-
             candidateneo.createCandidate(data, function(result){
                 //success
                 initCallback(null, results.personalinfo);
@@ -152,9 +149,9 @@ function initializeNewCandidateProfile(data, initCallback) {
 
 function registerNewCandidate(data) {
     let promise = new Promise(function(resolve, reject) {
-        try {     
-        console.log('...............registerNewCandidate');       
-        console.log(data);       
+        try {
+        console.log('...............registerNewCandidate');
+        console.log(data);
             //create every section,candidate,profile if candidate is created for first time
             candidate.find({"candidateid": data.mobile},
                 function(err, candidate) {
@@ -162,7 +159,6 @@ function registerNewCandidate(data) {
                     if(err) {
                         reject(err);
                     }
-
                     if (candidate == "") {
                         initializeNewCandidateProfile(data, function(err, result) {
                             if (err) {

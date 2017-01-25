@@ -1,6 +1,7 @@
 let router = require('express').Router();
 let coordinatorprocessor = require('./coordinatorprocessor');
-// let coordinatorneoprocessor = require('./coordinatorneoprocessor');
+
+let coordinatorneoprocessor = require('./coordinatorneoprocessor');
 let coordinator = require('./coordinatorschema');
 let circleProcessor = require('../circlesBackEnd/circleProcessor');
 let circleNeo4jProcessor = require('../circlesBackEnd/circleNeo4jProcessor');
@@ -153,7 +154,15 @@ router.post('/createcoordinator', function(req, res, next){
                 //         }
                 //     });
 
-                //res.status(200).json(getNeoCenter);
+
+
+
+                         coordinatorneoprocessor.getcoordiplace(req.body.placementCenter,
+                         req.body.mobile,function(err){
+
+
+                        });
+                            //res.status(200).json(getNeoCenter);
 
                 circleProcessor.createRelation(req.body, function(err) {
                     if (err) {
