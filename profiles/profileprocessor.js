@@ -52,8 +52,8 @@ function modifyprofile(profileobj, candidateid, successCB) {
 
 // function updateProfileSectionCompletness(candidateid, sectionName, completness, callback) {
 //     let updateObj = {completion: {}};
-//     updateObj.completion[sectionName] = completness; 
-//     profile.update({candidateid: candidateid }, 
+//     updateObj.completion[sectionName] = completness;
+//     profile.update({candidateid: candidateid },
 //         {$set: updateObj},
 //         function(err, updatedObj) {
 //             if(err) {
@@ -109,15 +109,15 @@ function inspectMissingProfileFields(candidateId, successCB, errorCB) {
             }, function(err) {
                 callback(err, null);
             });
-        },
-        jobpreference: function(callback) {
-            console.log("jobpreference");
-            jobpreferenceMissingFinder.findJobInfoMissingFields(candidateId, function(result) {
-                callback(null, result);
-            }, function(err) {
-                callback(err, null);
-            })
         }
+        // jobpreference: function(callback) {
+        //     console.log("jobpreference");
+        //     jobpreferenceMissingFinder.findJobInfoMissingFields(candidateId, function(result) {
+        //         callback(null, result);
+        //     }, function(err) {
+        //         callback(err, null);
+        //     })
+        // }
     };
 
     try {
@@ -147,8 +147,8 @@ function updateMissingFieldResponse(candidateId, sectionName, instancename, fiel
                     "qualification": educationProcessor.addMissingEducationFieldResponse,
                     "personalinfo": personalInfoprocessor.addMissingPersonalInfoFieldResponse,
                     "project":  projectprocessor.addMissingProjectFieldResponse,
-                    "workexperience": workProcessor.addMissingWorkFieldResponse,
-                    "jobpreference" : jobpreferenceMissingFinder.addMissingJobpreferencesFieldResponse,
+                    "workexperience": workProcessor.addMissingWorkFieldResponse
+                    // "jobpreference" : jobpreferenceMissingFinder.addMissingJobpreferencesFieldResponse,
                 }
 
                 let closureObj = missingFieldResUpdateTasks[sectionName];

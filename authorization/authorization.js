@@ -37,7 +37,8 @@ const rbac = new RBAC({
                 'create_projects','edit_projects','read_projects','delete_projects','read_jobs',
                 'create_centerdetails','read_centerdetails','edit_centerdetails','delete_centerdetails',
                 'create_skillcard','read_skillcard','edit_skillcard','delete_skillcard',
-                'create_gallery','read_gallery','edit_gallery','delete_gallery'],
+                'create_gallery','read_gallery','edit_gallery','delete_gallery',
+              'create_jobprovider','edit_jobprovider','read_jobprovider'],
 
     // supervisor: ['read_sidenavbar','create_jobs', 'read_jobs','create_jobs','edit_jobs', 'delete_jobs'],
 
@@ -45,7 +46,7 @@ const rbac = new RBAC({
                   'create_reports', 'read_reports', 'edit_reports', 'delete_reports',
                   // 'create_jobpost', 'read_jobpost', 'edit_jobpost', 'delete_jobpost',
                   'create_candidates','edit_candidates','read_candidates',
-                  'create_jobprovider','edit_jobprovider','read_search',
+                  'create_jobprovider','edit_jobprovider',,'read_jobprovider','read_search',
                   'create_personalinfo','edit_personalinfo','read_personalinfo',
                   'create_jobpreferences','edit_jobpreferences','read_jobpreferences',
                   'create_education','edit_education','read_education','delete_education',
