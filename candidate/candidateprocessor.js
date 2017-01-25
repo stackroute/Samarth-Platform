@@ -10,15 +10,18 @@ let skillprocessor = require('../sectionskill/skillprocessor');
 let workexpprocessor = require('../sectionworkexperiance/workprocessor');
 let candidateneo = require('./candidateneoprocessor');
 let verificationprocessor = require('../verification/verificationprocesser');
+
 function getcandidate(candidateId, successCB, errorCB) {
     candidate.find({ candidateid: candidateId }, function(error, result) {
         if (error) {
             // console.log(error);
             errorCB(error);
         }
+
         successCB(result);
     });
 }
+
 function createNewcandidate(formObj, successCB, errorCB) {
     //console.log('formObj ------->',formObj);
     let candidateObj = new candidate({
@@ -124,6 +127,7 @@ function initializeNewCandidateProfile(data, initCallback) {
                     }
                 );
             },
+
         },
         function(err, results) {
             if (err) {
@@ -142,9 +146,12 @@ function initializeNewCandidateProfile(data, initCallback) {
         }
     ); //end of Async
 } // end of initializeNewCandidateProfile
+
 function registerNewCandidate(data) {
     let promise = new Promise(function(resolve, reject) {
-        try {            
+        try {
+        console.log('...............registerNewCandidate');
+        console.log(data);
             //create every section,candidate,profile if candidate is created for first time
             candidate.find({"candidateid": data.mobile},
                 function(err, candidate) {
@@ -170,18 +177,24 @@ function registerNewCandidate(data) {
             reject({ error: "Internal error occurred, please report or try later...!" });
         }
     });
+
     return promise;
 }
+
 function updatecandidate(newcandidateObj, candidateid, successCB, errorCB) {
     candidate.update({ candidateid: candidateid }, newcandidateObj,
         function() {
             successCB('candidate updated');
         }
+
     );
 }
+
 module.exports = {
+
     createNewcandidate: createNewcandidate,
     getcandidate: getcandidate,
     registerNewCandidate: registerNewCandidate,
     updatecandidate: updatecandidate
+
 };
