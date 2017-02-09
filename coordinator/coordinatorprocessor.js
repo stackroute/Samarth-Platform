@@ -90,11 +90,18 @@ function getcoordinator(successCB, errorCB) {
         if (err) {
             errorCB(err);
         }
-        console.log(getcoordinate);
-        successCB(getcoordinate);
+          successCB(getcoordinate);
     });
 }
 
+function getcoordinatordetails(coordinatorId,successCB, errorCB) {
+    coordinator.find({_id: coordinatorId}, function(err, getcoordinator) {
+        if (err) {
+            errorCB(err);
+        }
+         successCB(getcoordinator);
+    });
+}
 // function deleteCoordinator(coordinatorID, successCB) {
 //     console.log(coordinatorID);
 //     cooedinator.update({
@@ -115,5 +122,6 @@ module.exports = {
     insertCoordinator: insertCoordinator,
     getcoordinator:getcoordinator,
     getProfessions: getProfessions,
-    updateCoordinator:updateCoordinator
+    updateCoordinator:updateCoordinator,
+    getcoordinatordetails: getcoordinatordetails
 };

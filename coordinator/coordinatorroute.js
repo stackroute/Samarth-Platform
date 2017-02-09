@@ -111,6 +111,18 @@ router.get('/getcoordi', function(req, res, next){
     });
 })
 
+router.get('/getcoordinator/:coordinatorId', function(req, res, next){
+    authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.ADMINS);
+},function(req,res){
+
+    coordinatorprocessor.getcoordinatordetails(req.params.coordinatorId,function(getcoordinator){
+                res.status(200).json(getcoordinator);
+    },
+    function(error){
+            res.status(500).json(error);
+    });
+})
+
 router.post('/createcoordinator', function(req, res, next){
    authorization.isAuthorized(req, res, next, req.user._doc.userRole[0], constants.CREATE, constants.ADMINS);
    },function(req, res) {
@@ -212,8 +224,7 @@ router.post('/createcoordinator', function(req, res, next){
 });
 
 router.patch('/updatecoordinator/:coordinatorId', function(req, res) {
-    console.log(req.body)
-    console.log('in update '+req.body.mobile);
+    
     try {
         coordinator.find({
             coordinatorId: req.body.mobile

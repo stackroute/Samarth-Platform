@@ -35,7 +35,7 @@ const rbac = new RBAC({
                 'create_skills','edit_skills','read_skills','delete_skills',
                 'create_workexperience','edit_workexperience','read_workexperience','delete_workexperience',
                 'create_projects','edit_projects','read_projects','delete_projects','read_jobs',
-                'create_centerdetails','read_centerdetails','edit_centerdetails','delete_centerdetails',
+                'read_centerdetails',
                 'create_skillcard','read_skillcard','edit_skillcard','delete_skillcard',
                 'create_gallery','read_gallery','edit_gallery','delete_gallery',
               'create_jobprovider','edit_jobprovider','read_jobprovider'],
@@ -53,7 +53,8 @@ const rbac = new RBAC({
                   'create_skills','edit_skills','read_skills','delete_skills',
                   'create_workexperience','edit_workexperience','read_workexperience','delete_workexperience',
                   'create_projects','edit_projects','read_projects','read_jobs',
-                    'create_searchcandidate','read_searchcandidate','read_gallery'],
+                    'create_searchcandidate','read_searchcandidate','read_gallery',
+                    'create_centerdetails','read_centerdetails','edit_centerdetails'],
 
     admin: ['read_sidenavbar','create_coordinators', 'read_coordinators', 'edit_coordinators', 'delete_coordinators',
             'create_admins', 'read_admins', 'edit_admins', 'delete_admins',

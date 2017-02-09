@@ -63,11 +63,9 @@ getPlacementCenter = function (Location, SuccessCB, errorCB) {
                 Location: Location
             },
         }, function(err,results) {
-         console.log(results);
-         console.log("done");
-         if(err)
+           if(err)
          {
-             SuccessCB(err,null)
+             errorCB(err)
          }
          else{
              SuccessCB(results)
