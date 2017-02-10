@@ -89,7 +89,9 @@ router.post('/jobpost',function(req, res, next){
 					async.forEachOf(data, function(value, key, callback) {
 						if(Object.keys(value).includes('name')) {
 							if(value.name!==null){
+								
 								jobProfileProcessor.getJobsbyJobId(value.name,function successFn(result) {
+									
 									jobproviderprocessor.jobEdit(result[0].jobprovider, function sucessCB(results) {
 										jobProfile.logo=results[0].url;
 										jobProfile.jb=result[0];
