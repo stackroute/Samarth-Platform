@@ -227,7 +227,7 @@ router.patch('/updatecoordinator/:coordinatorId', function(req, res) {
     
     try {
         coordinator.find({
-            coordinatorId: req.body.mobile
+            coordinatorId: req.params.coordinatorId
         }, function(err, crdntrObj) {
             if (err) {
                 return res.send({ error: 'Something went wrong, please report' });

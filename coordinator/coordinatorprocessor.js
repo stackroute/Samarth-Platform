@@ -65,17 +65,17 @@ let insertCoordinator = function(newUser, callback, unauth) {
 
 function updateCoordinator(coordi, sucessCB) {
         console.log(coordi);
-        coordinator.update({ coordinatorId: coordi.mobile}, {
+        coordinator.update({ coordinatorId: coordi.coordinatorId}, {
 
                        $set: {
-                                'coordinatorName': coordi.name,
-                                'coordinatorLocation': coordi.location,
+                                'coordinatorName': coordi.coordinatorName,
+                                'coordinatorLocation': coordi.coordinatorLocation,
                                 'placementCenter': coordi.placementCenter,
-                                'coordinatorGender': coordi.gender,
+                                'coordinatorGender': coordi.coordinatorGender,
                                 'coordinatorEmail': coordi.email,
-                                'coordinatorProfession': coordi.profession,
-                                'coordinatorLanguage': coordi.language,
-                                'coordinatorRole': coordi.role
+                                'coordinatorProfession': coordi.coordinatorProfession,
+                                'coordinatorLanguage': coordi.coordinatorLanguage,
+                                'userRole': coordi.userRole
                         }
                 },
                 function() {
