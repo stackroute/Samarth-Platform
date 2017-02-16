@@ -54,13 +54,15 @@ const rbac = new RBAC({
                   'create_workexperience','edit_workexperience','read_workexperience','delete_workexperience',
                   'create_projects','edit_projects','read_projects','read_jobs',
                     'create_searchcandidate','read_searchcandidate','read_gallery',
-                    'create_centerdetails','read_centerdetails','edit_centerdetails'],
+                    'create_centerdetails','read_centerdetails','edit_centerdetails',
+                    'create_skillcard','read_skillcard','edit_skillcard','delete_skillcard'],
 
     admin: ['read_sidenavbar','create_coordinators', 'read_coordinators', 'edit_coordinators', 'delete_coordinators',
             'create_admins', 'read_admins', 'edit_admins', 'delete_admins',
             'create_supervisors', 'read_supervisors', 'edit_supervisors', 'delete_supervisors',
             'create_centerdetails','read_centerdetails','edit_centerdetails','delete_centerdetails',
-            'create_imports','create_searchcandidate','read_searchcandidate']
+            'create_imports','create_searchcandidate','read_searchcandidate',
+            'create_skillcard','read_skillcard','edit_skillcard','delete_skillcard']
 
 
 

@@ -18,7 +18,7 @@ function addGallery(formObj, successCB, errorCB) {
 				if (err) {
 						errorCB(err);
 				}
-				successCB(galleryObj);
+				successCB(result);
 
 				// Asynch method
 				// Save empObj to DB
