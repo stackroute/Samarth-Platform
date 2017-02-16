@@ -9,6 +9,7 @@ let projectprocessor = require('../sectionproject/projectprocessor');
 let jobpreferencesProcessor=require('../sectionjobpreferences/jobpreferencesprocessor');
 let skillprocessor = require('../sectionskill/skillprocessor');
 let workexpprocessor = require('../sectionworkexperiance/workprocessor');
+let galleryprocessor = require('../sectionprofilegallery/galleryprocessor');
 let candidateneo = require('./candidateneoprocessor');
 let candidatesearchprocessor = require('./newcandidateneoprocessor');
 let verificationprocessor = require('../verification/verificationprocesser');
@@ -119,8 +120,6 @@ router.post("/", function(req, res) {
                             personalInfoprocessor.createNewpersonalinfo(req.body,
                                 function(personalinfoobj) {
                                     callback(null, personalinfoobj);
-
-
                                 },
                                 function(err) {
                                     callback(err, null);
@@ -166,16 +165,27 @@ router.post("/", function(req, res) {
                                     callback(err, null);
                                 })
                         },
-                        // createcandidate: function(callback) {
-                        //     candidateneo.createCandidate(req.body,
-                        //         function(success) {
-                        //             callback(null,sucess);
-                        //         },
-                        //         function(err) {
-                        //             callback(err,null);
-                        //         }
-                        //         )
-                        // }
+                        jobpreferences: function(callback) {
+                            jobpreferencesProcessor.createNewPreferences(req.body,
+                                function(preferenceobj) {
+                                    callback(null, preferenceobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            );
+                        },
+                        profilegallery: function(callback) {
+                            galleryprocessor.createNewGallery(req.body,
+                                function(preferenceobj) {
+                                    callback(null, preferenceobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            );
+                        },
+
                     },
                     function(err, results) {
                         if (err) {
