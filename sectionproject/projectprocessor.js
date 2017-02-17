@@ -1,4 +1,6 @@
 let project = require('./projectschema');
+let mongoose = require('mongoose');
+let projectRelationBuilder = require('./projectRelationBuilder');
 
 function getProject(candidateId, successCB, errorCB) {
     project.find({ candidateid: candidateId }, function(error, result) {
@@ -65,14 +67,40 @@ function updateProject(projectName, oldProjectObj, candidateId, successCB) {
         }
     );
 }
-                                                        //, errorCB
-function deleteProject(candidateId, projectName, successCB) {
-    project.update({ candidateid: candidateId }, {
+ 
+// delete project from MONGO and call NEO query to delete the relation bw the candidateid and project                                                        
+function deleteProject(candidateId, projectName, successCB,errorCB) {
+
+    if (mongoose.connection.readyState == 1) {
+        
+        project.update({ candidateid: candidateId }, {
         $pull: { projects: { name: projectName } }
     }, function() {
-        successCB('project object deleted');
-    });
-}
+                        projectRelationBuilder.projectRelationDelete(candidateId,projectName,function(err, result) {
+
+                                        if (result) {
+                                                successCB('project object deleted');
+                                        }
+
+                                });
+                        successCB('project object deleted');
+                }
+    );//end update
+
+    } else {
+        
+        errorCB(err);
+    }
+
+
+
+
+    // project.update({ candidateid: candidateId }, {
+    //     $pull: { projects: { name: projectName } }
+    // }, function() {
+        
+    // });
+}//deleteProject ends
 
 //add project details after  entering into the question box into the existing records
 function addMissingProjectFieldResponse(candidateid, projectInstanceName, fieldname, response, successCB, errorCB) {

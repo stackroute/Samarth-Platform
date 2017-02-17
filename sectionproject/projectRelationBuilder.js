@@ -28,6 +28,26 @@ let projectRelationBuilder = function(candidateid, name,durationInMonths,locatio
     );
 };
 
+//projectRelationDelete deletes the relation from NEO for the corresponding candidateid and project
+let projectRelationDelete = function(candidateid, projectName,errCB) {
+  db.cypher({
+   query:'MATCH(c:Candidate {name:{candidateid}})-[r:Worked_on]->(w:Work{name:{projectName}}) DETACH DELETE r',
+    params: {
+      candidateid: candidateid,
+      projectName: projectName      
+    }
+  }, function(err, results) {
+    if (err){
+      errCB(err, null);
+    }
+     else {
+      errCB(null, results);
+    }
+  }
+  );
+}; //end projectRelationDelete
+
 module.exports = {
-    projectRelationBuilder: projectRelationBuilder
+    projectRelationBuilder: projectRelationBuilder,
+    projectRelationDelete: projectRelationDelete
 };
