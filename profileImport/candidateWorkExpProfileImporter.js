@@ -7,7 +7,7 @@ let workExpSectionImporter = function(candidateObj, candidateImportObj) {
 
   return function(workExpImportCallback) {
   
-    async.each(candidateImportObj.workexperience,
+    async.each(candidateImportObj.workexperiences,
     	function(workExpObj, callback){
     		workExpSectionImportAsyncIteratee(workExpObj, candidateObj.candidateid, callback)
     	},

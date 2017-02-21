@@ -13,8 +13,9 @@ let db = neo4jConnection.getConnection();
 let DesignationRelationBuilder = function(designation , workplace , location , candidateid, errCB) {
 	//console.log("*****************from skillRelationBuilder",candidateid);
 	//console.log("*****************from skillRelationBuilder",skill);
-
-
+console.log('Work experience indexing started');
+// console.log("Neo query");
+// console.log('MERGE(c:Candidate{name:'+candidateid+'})MERGE(rl:Role{name:'+designation+' , employer:'+workplace+'},location:'+location+'})MERGE(c)-[r:'+relationConfig.neorelationconfig()['IS_A']+']->(rl)');
 	db.cypher({
 	 query:'MERGE(c:Candidate{name:{candidateid}})MERGE(rl:Role{name:{designation} , employer:{employer},location:{location}})MERGE(c)-[r:'+relationConfig.neorelationconfig()['IS_A']+']->(rl)',
 		params: {
@@ -32,6 +33,7 @@ let DesignationRelationBuilder = function(designation , workplace , location , c
 		}
 	}
 	);
+	console.log('Work experience indexing completed');
 };
 
 //workexpRelationDelete deletes the relation from NEO for the corresponding candidateid

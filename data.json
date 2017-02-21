@@ -1,9 +1,9 @@
 [
   {
-    "name": "Sana",
-    "email": "sana@wipro.com",
+    "name": "",
+    "email": "yogi5@gmail.com",
     "pwd": "Password@123",
-    "mobile": "8146810905",
+    "mobile": "814681059",
     "location": " Delhi",
     "placementCenter":" Delhi" ,
     "aadharcard": 134710772211,
@@ -14,38 +14,200 @@
     "centerCode": 91643,
     "skills": [
       {
-        "skillname": "HTML",
+        "skillname": "Angular",
         "expertise": "Skilled",
         "experience": 1,
         "metadata": {}
+      },
+      {
+        "skillname": "Express Js",
+        "expertise": "Skilled",
+        "experience": 2,
+        "metadata": {}
+      },
+      {
+        "skillname": "Node JS",
+        "expertise": "Skilled",
+        "experience": 3,
+        "metadata": {}
       }
     ],
-    "workexperience": [
+    "workexperiences": [
       {
-        "designation": "PE",
-        "workplace": "Wipro",
-        "location": "Pune",
+        "designation": "Data analyst",
+        "workplace": "wipro",
+        "Location": "Kolkata",
         "duration": null,
-        "skills": {}
+        "skills": ["Angular"]
       }
     ],
     "projects": [
       {
-        "name": "Samarth",
+        "name": "Oxygen",
         "durationInMonths": 3,
         "location": "Pune",
-        "skills": {},
+        "skills": ["Angular"],
+        "client": "HCL Tech",
+        "role": "Developer"
+      },
+      {
+        "name": "BOT",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": ["Node"],
         "client": "HP",
         "role": "Developer"
       }
     ],
-    "qualification": [
+    "qualifications": [
       {
         "title": "BE",
         "batch": 2016,
         "academicType": "Graduation",
         "outcome": {
           "result": "9"
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      },
+      {
+        "title": "B Tech",
+        "batch": "2012",
+        "academicType": "Graduation",
+        "outcome": {
+          "result": "9"
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      },
+      {
+        "title": "M Tech",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": "23"
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      }
+    ],
+    "preferences": [{
+      "looking_jobs": "Yes",
+      "roles": "Developer",
+      "locations": "chandigarh",
+      "skills": "HTML",
+      "expected_salary": "15LPA",
+      "engagement_type": "abc",
+      "joining_date": null
+    }]
+  },
+  {
+    "name": "Basava",
+    "email": "yogi5@gmail.com",
+    "pwd": "Password@123",
+    "mobile": "814681060",
+    "location": " Delhi",
+    "placementCenter":" Delhi" ,
+    "aadharcard": 134710772211,
+    "profession": "Civil Avitation",
+    "dob": "2012-05-07 ",
+    "gender": "male",
+    "maritialstatus": "Married",
+    "centerCode": 91643,
+    "skills": [
+      {
+        "skillname": "Angular",
+        "expertise": "Skilled",
+        "experience": 1,
+        "metadata": {}
+      },
+      {
+        "skillname": "Express Js",
+        "expertise": "Skilled",
+        "experience": 2,
+        "metadata": {}
+      },
+      {
+        "skillname": "Node JS",
+        "expertise": "Skilled",
+        "experience": 3,
+        "metadata": {}
+      }
+    ],
+    "workexperiences": [
+      {
+        "designation": "Data analyst",
+        "workplace": "wipro",
+        "Location": "Kolkata",
+        "duration": null,
+        "skills": ["Angular"]
+      }
+    ],
+    "projects": [
+      {
+        "name": "Oxygen",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": ["Angular"],
+        "client": "HCL Tech",
+        "role": "Developer"
+      },
+      {
+        "name": "BOT",
+        "durationInMonths": 3,
+        "location": "Pune",
+        "skills": ["Node"],
+        "client": "HP",
+        "role": "Developer"
+      }
+    ],
+    "qualifications": [
+      {
+        "title": "BE",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": "9"
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      },
+      {
+        "title": "B Tech",
+        "batch": "2012",
+        "academicType": "Graduation",
+        "outcome": {
+          "result": "9"
+        },
+        "institute": {
+          "name": "CU",
+          "type": "College",
+          "location": "chandigarh",
+          "affiliation": "CU"
+        }
+      },
+      {
+        "title": "M Tech",
+        "batch": 2016,
+        "academicType": "Graduation",
+        "outcome": {
+          "result": "23"
         },
         "institute": {
           "name": "CU",

@@ -7,7 +7,7 @@ let qualificationSectionImporter = function(candidateObj, candidateImportObj) {
 
   return function(qualificationImportCallback) {
   
-    async.each(candidateImportObj.qualification,
+    async.each(candidateImportObj.qualifications,
     	function(qualificationObj, callback){
     		qualificationSectionImportAsyncIteratee(qualificationObj, candidateObj.candidateid, callback)
     	},
