@@ -4,6 +4,29 @@ let jobproviderprocessor = require('./jobproviderprocessor');
 const jobproviderneoprocessor = require('./jobproviderNeoProcessor');
 let authorization = require('../authorization/authorization');
 let constants = require('../authorization/constants');
+let config = require('../config/config');
+
+
+router.get('/aws',function(req, res, next){
+    authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.READ,constants.GALLERY);
+},function (req,res) {
+    try {
+
+        let awsConfig = new Object();
+        awsConfig.region = config.REGION;
+        awsConfig.secretAccessKey = config.SECRETACCESSKEY;
+        awsConfig.accessKeyId = config.ACCESSKEYID;
+        awsConfig.Bucket = config.BUCKET;
+        res.json(awsConfig);
+    } catch(e) {
+        // statements
+        console.log(e);
+        res.status(500).json({
+                    error: 'Error while fetching aws config data!'
+                });
+    }
+    /* body... */
+}); //end of get /aws
 
 
 router.post('/registeremployer',function(req, res, next){

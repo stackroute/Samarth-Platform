@@ -2,6 +2,7 @@ let router = require('express').Router();
 let employer = require('./employerschema');
 let employerProcessor = require('./employerproccessor');
 
+ 
 router.post('/registeremployer', function(req, res, next){
 	authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] ,constants.CREATE,constants.JOBPROVIDER);
 },

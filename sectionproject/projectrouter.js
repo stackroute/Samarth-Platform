@@ -108,4 +108,31 @@ function(req, res, next){
                 });
             }
 });
+
+// --------------delete from mongo and neo initiates from here---------------
+router.delete('/:candidateid/:projName', function(req, res, next){
+    authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.DELETE,constants.WORKEXPERIENCE);
+},
+function(req, res) {
+    try{
+    project.find({ candidateid: req.params.candidateid }, function(err, result) {
+        if (result === '') {
+            res.status(500).send('Add the project with the candidate id before deleting');
+        } else {
+                projectProcessor.deleteProject(req.params.candidateid, req.params.projName,function() {
+                res.status(201).json();
+            }, function(err) {
+                res.status(500).json({ error: 'can\'t delete project from the records' });
+            });
+            } // end else
+    }); //end find
+    } //end try
+            catch (err) {
+                res.status(500).json({
+                    error: 'Internal error occurred, please report'
+                });
+            } //end catch
+}); // end delete
+
+
  module.exports = router;
