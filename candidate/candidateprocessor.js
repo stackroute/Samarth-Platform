@@ -11,6 +11,7 @@ let workexpprocessor = require('../sectionworkexperiance/workprocessor');
 let candidateneo = require('./candidateneoprocessor');
 let verificationprocessor = require('../verification/verificationprocesser');
 let UserModel = require('./users');
+let galleryprocessor = require('../sectionprofilegallery/galleryprocessor');
 
 function getcandidate(candidateId, successCB, errorCB) {
     candidate.find({ candidateid: candidateId }, function(error, result) {
