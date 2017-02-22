@@ -157,6 +157,16 @@ function initializeNewCandidateProfile(data, initCallback) {
                     }
                 );
             },
+            profilegallery: function(callback) {
+                galleryprocessor.createNewGallery(req.body,
+                    function(preferenceobj) {
+                        callback(null, preferenceobj);
+                    },
+                    function(err) {
+                        callback(err, null);
+                    }
+                );
+            },
 
         },
         function(err, results) {
