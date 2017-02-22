@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost:27017/samarthplatformdb');
 
 let candidateProfileImporter = require('./profileImport/candidateProfileImporter');
 
-let totalNoOfCandidates = 0, totalNoFailed = 0, totalNoImported =0;
+
 let importedCandidates = [], failedCandidates = [];
 
 function candidateProfileImport(){
@@ -22,6 +22,7 @@ client.brpop("profileImport", 0, function(err, uploadedId) {
           		function(resData) {
           			// console.log(resData[0].data);
           			let obj = resData[0].data;
+                let totalNoOfCandidates = 0, totalNoFailed = 0, totalNoImported =0;
                 totalNoOfCandidates = obj.length;
                  candidateProfileImporter.importCandidateProfileColln(obj,
                       function(result) {
