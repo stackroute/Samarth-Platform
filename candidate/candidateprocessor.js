@@ -159,7 +159,7 @@ function initializeNewCandidateProfile(data, initCallback) {
                 );
             },
             profilegallery: function(callback) {
-                galleryprocessor.createNewGallery(req.body,
+                galleryprocessor.createNewGallery(data,
                     function(preferenceobj) {
                         callback(null, preferenceobj);
                     },
