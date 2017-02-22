@@ -23,7 +23,7 @@ let projectSectionImporter = function(candidateObj, candidateImportObj) {
 let projectSectionImportAsyncIteratee = function(projectObj, candidateid, callback) {
   console.log("Importing project Section..", candidateid, " project Obj ", projectObj);
 
-  let projectImportObj = { projects: [projectObj] };
+  let projectImportObj = { projects: [ projectObj ] };
 
   projectProcessor.addProject(projectImportObj,
     candidateid,

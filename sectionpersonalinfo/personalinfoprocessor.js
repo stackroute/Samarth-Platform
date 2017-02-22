@@ -4,6 +4,7 @@ let person = require('./personalinfoschema');
 function createNewpersonalinfo(formobj, successCB, errorCB) {
     let personObj = new person({
         candidateid: formobj.mobile,
+        regid : formobj.regid,
         name: formobj.name,
         dob: null,
         email: formobj.email,

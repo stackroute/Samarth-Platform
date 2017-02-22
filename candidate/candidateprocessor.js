@@ -10,6 +10,7 @@ let skillprocessor = require('../sectionskill/skillprocessor');
 let workexpprocessor = require('../sectionworkexperiance/workprocessor');
 let candidateneo = require('./candidateneoprocessor');
 let verificationprocessor = require('../verification/verificationprocesser');
+let UserModel = require('./users');
 
 function getcandidate(candidateId, successCB, errorCB) {
     candidate.find({ candidateid: candidateId }, function(error, result) {
@@ -21,6 +22,25 @@ function getcandidate(candidateId, successCB, errorCB) {
         successCB(result);
     });
 }
+
+function signup(formObj, successCB, errorCB) {
+    let newUserObj = new UserModel({
+        uname: formObj.mobile,
+        pwd: formObj.password,
+        status: 'active',
+        createdon: new Date(),
+        lastseenon: new Date()
+    });
+
+    newUserObj.save(function(err, user) {
+        if (err) {
+            console.error('Error in signup user ', err);
+            errorCB(err);
+         }
+         successCB(user);
+
+    });
+};
 
 function createNewcandidate(formObj, successCB, errorCB) {
     //console.log('formObj ------->',formObj);
@@ -38,6 +58,16 @@ function createNewcandidate(formObj, successCB, errorCB) {
 }
 function initializeNewCandidateProfile(data, initCallback) {
     async.parallel({
+            signup: function(callback) {
+                signup(data,
+                    function(candidateobj) {
+                        callback(null, candidateobj);
+                    },
+                    function(err) {
+                        callback(err, null);
+                    }
+                )
+            },
             candidate: function(callback) {
                 createNewcandidate(data,
                     function(candidateobj) {
@@ -195,6 +225,6 @@ module.exports = {
     createNewcandidate: createNewcandidate,
     getcandidate: getcandidate,
     registerNewCandidate: registerNewCandidate,
-    updatecandidate: updatecandidate
-
+    updatecandidate: updatecandidate,
+    signup : signup
 };

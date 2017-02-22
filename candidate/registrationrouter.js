@@ -45,7 +45,7 @@ router.get('/location', function(req, res) {
 // effective url /candidate/
 router.post("/", function(req, res) {
     try {
-        console.log("******************************************************888888888888",req.body);
+        // console.log("******************************************************888888888888",req.body);
         candidateneo.createCandidate(req.body, function(err, stat) {
             if (err) {
                 console.log(err);
