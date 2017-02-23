@@ -26,7 +26,8 @@ const rbac = new RBAC({
     centerdetails:['create', 'read', 'edit', 'delete'],
     skillcard : ['create', 'read', 'edit', 'delete'],
     reports : ['create', 'read', 'edit', 'delete'],
-    searchcandidate : ['create', 'read', 'edit', 'delete']
+    searchcandidate : ['create', 'read', 'edit', 'delete'],
+    configurations : ['create', 'read', 'edit', 'delete']
    },
   grants: {
     candidate : ['create_personalinfo','edit_personalinfo','read_personalinfo',
@@ -62,7 +63,8 @@ const rbac = new RBAC({
             'create_supervisors', 'read_supervisors', 'edit_supervisors', 'delete_supervisors',
             'create_centerdetails','read_centerdetails','edit_centerdetails','delete_centerdetails',
             'create_imports','create_searchcandidate','read_searchcandidate',
-            'create_skillcard','read_skillcard','edit_skillcard','delete_skillcard']
+            'create_skillcard','read_skillcard','edit_skillcard','delete_skillcard',
+            'create_configurations','read_configurations','edit_configurations','delete_configurations']
 
 
 

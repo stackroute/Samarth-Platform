@@ -40,6 +40,11 @@ let professiontoskillroutr = require('./professiontoskillsgraphdata/professionto
 let jobProfile=require('./jobServer/jobProfileRoute.js');
 const placementProcessRouter = require('./placementprocess/placementrouter.js');
 let centerdetailsrouter = require('./sectioncenterdetails/centerdetailsrouter.js');
+
+// -------configuration routes--------------
+let configurationRouter = require('./configuration/configurationRoute.js');
+
+
 /*var rubricRoute = require('./rubricbackend/rubricroute');
 var verificationRoute = require('./verification/verificationroute');
 var coordinatorRouter = require('./coordinator/coordinatorroute');
@@ -170,5 +175,6 @@ app.use('/profession', professiontoskillroutr);
 app.use('/jobProfile',jobProfile);
 app.use('/placementprocess',placementProcessRouter);
 app.use('/center',centerdetailsrouter);
+app.use('/configuration',configurationRouter);
 
 module.exports = app;

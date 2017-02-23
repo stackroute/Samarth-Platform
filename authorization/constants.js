@@ -29,5 +29,6 @@
         COORDINATORUSERS : "coordinatorusers",
         COORDINATORS : "coordinators",
         CENTERDETAILS:"centerdetails",
-        SKILLCARD :"skillcard"
+        SKILLCARD :"skillcard",
+        CONFIGURATIONS : "configurations"
   }
