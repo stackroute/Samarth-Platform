@@ -48,6 +48,28 @@ catch (err) {
    
 }); //end
 
+router.post('/location',function(req, res, next){
+    authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.CREATE,constants.CONFIGURATIONS);
+},function (req,res) {
+    try{
+        let locName = req.body.locName;
+        configurationNeoProcessor.addLocation(locName,                            
+                            function(location)
+                            {
+                                res.status(200).json(location);
+                            }, function(err)
+                            {
+                                res.status(500).json(err);
+                            });
+}
+catch (err) {
+                res.status(500).json({
+                    error: 'Internal error occurred, please report'
+                });
+            }
+   
+}); //end
+
 router.patch('/editprofession',function(req, res, next){
     authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.EDIT,constants.CONFIGURATIONS);
 },function (req,res) {
@@ -98,6 +120,31 @@ catch (err) {
    
 }); //end
 
+router.patch('/editlocation',function(req, res, next){
+    authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.EDIT,constants.CONFIGURATIONS);
+},function (req,res) {
+    try{
+        let oldLoc = req.body.oldLoc;
+        let newLoc = req.body.newLoc;
+        console.log("old:" + oldLoc);
+        console.log("new:" + newLoc);
+        configurationNeoProcessor.editLocation(oldLoc, newLoc,                            
+                            function(location)
+                            {
+                                res.status(200).json(location);
+                            }, function(err)
+                            {
+                                res.status(500).json(err);
+                            });
+}
+catch (err) {
+                res.status(500).json({
+                    error: 'Internal error occurred, please report'
+                });
+            }
+   
+}); //end
+
 
 router.delete('/delprofession/:profName',function(req, res, next){
     authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.DELETE,constants.CONFIGURATIONS);
@@ -129,6 +176,29 @@ router.delete('/dellanguage/:langName',function(req, res, next){
         // console.log(req.body.profName.profName);
         let langName = req.params.langName;
         configurationNeoProcessor.deleteLanguage(langName,                            
+                            function()
+                            {
+                                res.sendStatus(200);
+                            }, function(err)
+                            {
+                                res.status(500).json(err);
+                            });
+}
+catch (err) {
+                res.status(500).json({
+                    error: 'Internal error occurred, please report'
+                });
+            }
+   
+}); //end
+
+router.delete('/dellocation/:locName',function(req, res, next){
+    authorization.isAuthorized(req, res, next,req.user._doc.userRole[0] , constants.DELETE,constants.CONFIGURATIONS);
+},function (req,res) {
+    try{
+        // console.log(req.body.profName.profName);
+        let locName = req.params.locName;
+        configurationNeoProcessor.deleteLocation(locName,                            
                             function()
                             {
                                 res.sendStatus(200);

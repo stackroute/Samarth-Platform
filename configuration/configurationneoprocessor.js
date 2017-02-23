@@ -36,9 +36,26 @@ let addLanguage = function(langName,successCB,errCB) {
     );
 }
 
+let addLocation = function(locName,successCB,errCB) {
+    db.cypher({
+     query:'MERGE(l:Location{name:{locName}}) RETURN l.name as location',
+        params: {
+            locName: locName         
+        }
+    }, function(err, location) {
+        if (err){
+            errCB(err);
+        }
+         else {
+            successCB(location);
+        }
+    } 
+    );
+}
+
 let editProfession = function(oldp,newp, successCB,errCB) {
     db.cypher({
-     query:'MATCH(p:Profession{name:{oldp}}) SET p.name = {newp} RETURN p.name as profession',
+     query:'MERGE(p:Profession{name:{oldp}}) ON CREATE SET p.name = {newp} ON MATCH SET p.name = {newp} RETURN p.name as profession',
         params: {
             oldp: oldp,
             newp: newp        
@@ -56,7 +73,7 @@ let editProfession = function(oldp,newp, successCB,errCB) {
 
 let editLanguage = function(oldl,newl, successCB,errCB) {
     db.cypher({
-     query:'MATCH(l:Language{name:{oldl}}) SET l.name = {newl} RETURN l.name as language',
+     query:'MERGE(l:Language{name:{oldl}}) ON CREATE SET l.name = {newl} ON MATCH SET l.name = {newl} RETURN l.name as language',
         params: {
             oldl: oldl,
             newl: newl        
@@ -67,6 +84,24 @@ let editLanguage = function(oldl,newl, successCB,errCB) {
         }
          else {
             successCB(language);
+        }
+    } 
+    );
+}
+
+let editLocation = function(oldl,newl, successCB,errCB) {
+    db.cypher({
+     query:'MERGE(l:Location{name:{oldl}}) ON CREATE SET l.name = {newl} ON MATCH SET l.name = {newl} RETURN l.name as location',
+        params: {
+            oldl: oldl,
+            newl: newl        
+        }
+    }, function(err, location) {
+        if (err){
+            errCB(err);
+        }
+         else {
+            successCB(location);
         }
     } 
     );
@@ -106,11 +141,31 @@ let deleteLanguage = function(langName,successCB,errCB) {
     );
 }
 
+let deleteLocation = function(locName,successCB,errCB) {
+    db.cypher({
+     query:'MATCH(l:Location{name:{locName}}) DETACH DELETE l',
+        params: {
+            locName: locName         
+        }
+    }, function(err) {
+        if (err){
+            errCB(err);
+        }
+         else {
+            successCB();
+        }
+    } 
+    );
+}
+
 module.exports = {
     addProfession: addProfession,
     editProfession: editProfession,
     deleteProfession: deleteProfession,
     addLanguage: addLanguage,
     editLanguage: editLanguage,
-    deleteLanguage: deleteLanguage
+    deleteLanguage: deleteLanguage,
+    addLocation: addLocation,
+    editLocation: editLocation,
+    deleteLocation: deleteLocation
 };
