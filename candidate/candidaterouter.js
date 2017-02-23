@@ -78,6 +78,16 @@ router.post("/", function(req, res) {
             if (candidate == "") {
 
                 async.parallel({
+                        signup: function(callback) {
+                            candidateprocessor.signup(req.body,
+                                function(candidateobj) {
+                                    callback(null, candidateobj);
+                                },
+                                function(err) {
+                                    callback(err, null);
+                                }
+                            )
+                        },
                         candidate: function(callback) {
                             candidateprocessor.createNewcandidate(req.body,
                                 function(candidateobj) {

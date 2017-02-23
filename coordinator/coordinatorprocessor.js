@@ -6,6 +6,7 @@ let bCrypt = require('bcrypt-nodejs');
 let coordinatoruser = mongoose.model('coordinatorusers', UserModel);
 
 function createCoordinator(formobj, successPC, errorPC) {
+    insertCoordinator(formobj, successPC, errorPC);
     let coordinatorObj = new coordinator({
         coordinatorName: formobj.name,
         coordinatorId: formobj.mobile,
@@ -15,7 +16,6 @@ function createCoordinator(formobj, successPC, errorPC) {
         placementCenter:formobj.placementCenter,
         coordinatorGender: formobj.gender,
         coordinatorEmail: formobj.email,
-        // coordinatorPwd: formobj.pwd,
         coordinatorLanguage: formobj.language
     });
 
@@ -29,8 +29,8 @@ function createCoordinator(formobj, successPC, errorPC) {
     });
 }
 
-let insertCoordinator = function(newUser, callback, unauth) {
-        let hashed_pwd = UserModel.methods.generateHash(newUser.pwd);
+let insertCoordinator = function(newUser, successPC, errorPC) {
+        let hashed_pwd = UserModel.methods.generateHash(newUser.password);
 
        let newUserObj = new coordinatoruser({
             email: newUser.email,
@@ -40,15 +40,15 @@ let insertCoordinator = function(newUser, callback, unauth) {
 
        newUserObj.save(function(err, user) {
             if (err) {
-                callback(err, null);
+                errorPC(err);
                 return;
             }
 
            if (!user) {
-                callback('Unable to insert the user', null);
+                errorPC('Unable to insert the user');
             }
 
-           callback(err, user);
+           successPC(user);
         });
     }; // end of insertCoordinator
 

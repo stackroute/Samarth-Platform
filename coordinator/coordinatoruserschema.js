@@ -14,6 +14,15 @@ let login = mongoose.Schema({
     // functionality: [{ type: String, required: true }]
 });
 
+login.virtual('pwd')
+    .set(function(pwd) {
+        this.pwrd = pwd;
+        this.password = this.generateHash(pwd);
+    })
+    .get(function() {
+        return this.pwrd;
+    });
+
 // // generating a hash
 login.methods.generateHash = function(password) {
     return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
