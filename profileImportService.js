@@ -29,8 +29,8 @@ client.brpop("profileImport", 0, function(err, uploadedId) {
                         totalNoFailed = result.failedCandidates.length;
                         totalNoImported = result.importedCandidates.length;
                         console.log("Total no. of candidates : ", totalNoOfCandidates);
-                        console.log("Total no. of imported candidates : ", totalNoImported);
-                        console.log("Total no. of failed candidates : ", totalNoFailed);
+                        console.log("Total no. of imported candidates : ", result.importedCandidates.length);
+                        console.log("Total no. of failed candidates : ", result.failedCandidates.length);
                         // console.log("Result  ", result);
                        
                   },
