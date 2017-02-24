@@ -28,6 +28,32 @@ let createNodes = function (centerLocation,cname,region,centerCode,SuccessCB) {
 	});
 	};
 
+	let updateCenter = function (centerLocation,cname,region,centerCode,SuccessCB) {
+	console.log("HHHHHHHHHHHHhhh " + cname);
+	console.log(centerLocation,cname,region,centerCode);
+	var domain = "placementcenter";
+	db.cypher({
+		query: 'MATCH (n:circle{name:{centerCode}})-[r:memberOf]->(:Location) DELETE r SET n.cname = {cname}, n.region = {region}, n.domain = {domain} MERGE (l:Location{name:{centerLocation}}) MERGE(n)-[:memberOf]->(l)',
+		params: {
+			centerCode: centerCode,
+			centerLocation: centerLocation,
+			cname: cname,
+			domain: domain,
+			region: region
+		},
+		}, function(err,results) {
+		console.log("in hrer")
+	if(err)
+	{
+		  SuccessCB(err,null)
+	}
+		else{
+			console.log("hiiiiiiiiii in neo");
+		SuccessCB(null,results)
+		}
+	});
+	};
+
 	let getPlacementc = function (Location, SuccessCB, errorCB) {
 		console.log("In processor");
 		db.cypher({
@@ -73,5 +99,6 @@ let createNodes = function (centerLocation,cname,region,centerCode,SuccessCB) {
 module.exports = {
 	createNodes : createNodes,
 	getPlacementc : getPlacementc,
+	updateCenter: updateCenter,
 	getCenterCirclesWithStats : getCenterCirclesWithStats
 };

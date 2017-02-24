@@ -114,11 +114,26 @@ router.post('/update/:regId',function(req, res, next){
 }, function(req,res){
 
     centerdetailsprocessor.updateCenterdetails(req.params.regId,req.body,function(updatecenter){
+            // console.log("request body content:");
+            // console.log(req.body);
+            let centerLoc = req.body.centerLocation;
+            let centerName = req.body.cname;
+            let centerRegion = req.body.region;
+            let cCode = req.body.centerCode;
+            centerdetailsneoprocessor.updateCenter(centerLoc, centerName, centerRegion, cCode,function(err,success) {
+                            if (err) {
+                                    console.log(err);
+                                } else {
+                                    console.log("NO ERR");
+                                }
+                            });
             res.status(200).json(updatecenter);
     },
     function(error){
             res.status(500).json(error);
     });
+
+    
 })
     // Disable center details by admin
 router.post('/disable/:regId',function(req, res, next){
