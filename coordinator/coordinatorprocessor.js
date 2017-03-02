@@ -34,7 +34,7 @@ let insertCoordinator = function(newUser, successPC, errorPC) {
         let hashed_pwd = UserModel.methods.generateHash(newUser.password);
 
        let newUserObj = new coordinatoruser({
-            email: newUser.email,
+            email: newUser.coordinatorEmail,
             password: hashed_pwd,
             role: newUser.role
         });
