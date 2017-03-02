@@ -2,6 +2,7 @@ let coordinator = require('./coordinatorschema');
 let UserModel = require('./coordinatoruserschema');
 let mongoose = require('mongoose');
 let bCrypt = require('bcrypt-nodejs');
+let center = require('../sectioncenterdetails/centerdetailsschema');
 
 let coordinatoruser = mongoose.model('coordinatorusers', UserModel);
 
@@ -11,11 +12,11 @@ function createCoordinator(formobj, successPC, errorPC) {
         coordinatorName: formobj.name,
         coordinatorId: formobj.mobile,
         userRole: formobj.role,
-        coordinatorProfession: formobj.profession,
+        coordinatorProfession: formobj.coordinatorProfession,
         coordinatorLocation: formobj.location,
         placementCenter:formobj.placementCenter,
         coordinatorGender: formobj.gender,
-        coordinatorEmail: formobj.email,
+        coordinatorEmail: formobj.coordinatorEmail,
         coordinatorLanguage: formobj.language
     });
 
@@ -72,7 +73,7 @@ function updateCoordinator(coordi, sucessCB) {
                                 'coordinatorLocation': coordi.coordinatorLocation,
                                 'placementCenter': coordi.placementCenter,
                                 'coordinatorGender': coordi.coordinatorGender,
-                                'coordinatorEmail': coordi.email,
+                                'coordinatorEmail': coordi.coordinatorEmail,
                                 'coordinatorProfession': coordi.coordinatorProfession,
                                 'coordinatorLanguage': coordi.coordinatorLanguage,
                                 'userRole': coordi.userRole
@@ -102,6 +103,15 @@ function getcoordinatordetails(coordinatorId,successCB, errorCB) {
          successCB(getcoordinator);
     });
 }
+
+function getCenterdetails(centerCode, successCB, errorCB) {
+    center.find({ centerCode: centerCode }, function(err, getcenter) {
+        if (err) {
+            errorCB(err);
+        }
+        successCB(getcenter);
+    });
+}
 // function deleteCoordinator(coordinatorID, successCB) {
 //     console.log(coordinatorID);
 //     cooedinator.update({
@@ -123,5 +133,6 @@ module.exports = {
     getcoordinator:getcoordinator,
     getProfessions: getProfessions,
     updateCoordinator:updateCoordinator,
-    getcoordinatordetails: getcoordinatordetails
+    getcoordinatordetails: getcoordinatordetails,
+    getCenterdetails : getCenterdetails
 };

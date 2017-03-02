@@ -123,6 +123,18 @@ router.get('/getcoordinator/:coordinatorId', function(req, res, next){
   });
 })
 
+router.get('/getcenter/:centerCode', function(req, res, next){
+  authorization.isAuthorized(req, res, next,req.user._doc.userRole[0]  , constants.READ,constants.ADMINS);
+},function(req,res){
+
+  coordinatorprocessor.getCenterdetails(req.params.centerCode,function(center){
+    res.status(200).json(center);
+  },
+  function(error){
+    res.status(500).json(error);
+  });
+})
+
 router.post('/createcoordinator', function(req, res, next){
  authorization.isAuthorized(req, res, next, req.user._doc.userRole[0], constants.CREATE, constants.ADMINS);
 },function(req, res) {
