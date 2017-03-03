@@ -1,5 +1,7 @@
 let router = require('express').Router();
 let authByToken = require('./authbytoken');
+let redis = require("redis");
+let client = redis.createClient();
 
 // Effective url /auth/client
 router.post('/client', function(req, res) {
@@ -9,6 +11,7 @@ router.post('/client', function(req, res) {
                 if (err) {
                     return res.status(403).json(err);
                 }
+                
                 return res.json(token);
             },
             function(err) {
@@ -32,6 +35,7 @@ router.post('/candidate', function(req, res) {
                    // console.log('Err in authenticating ', err);
                     return res.status(403).json(err);
                 }
+                 client.rpush('profilecrawling',req.body.cid);
 
                 return res.json({
                     candidate: candidateProfile,
