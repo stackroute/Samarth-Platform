@@ -8,6 +8,7 @@ let gallerySchema = new Schema({
 		url: { type: String, required: true },
 		title: { type: String, required: true },
 		desc: { type: String, required: true },
+		filename: { type: String, required: true },
 		uploadedon: {type: Date, default: Date.now()}
 	}]
 });

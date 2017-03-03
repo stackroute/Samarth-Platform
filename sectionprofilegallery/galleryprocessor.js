@@ -7,11 +7,13 @@ let galleryneoprocessor = require("./galleryneoprocessor");
 function addGallery(formObj, successCB, errorCB) {
 		// This is a asynch op
 		// Go to DB and fetch record for specified empid
-
+		console.log("filename:");
+		console.log(formObj.FILENAME);
 				let galleryObj = {
 					url: formObj.URL,
 					title: formObj.TITLE,
-					desc: formObj.DESC
+					desc: formObj.DESC,
+					filename: formObj.FILENAME
 							}
 		gallery.update({ candidateid: formObj.CANDIDATEID }, { $push:
                                 { gallery: galleryObj } },function(err, result) {
