@@ -5,6 +5,7 @@ let CenterDetailsSchema = new Schema({
     centerLocation: { type: String },
     email: { type: String },
     region: { type: String },
+    address: { type: String},
     mobile: { type: Number, required: true },
     cname: { type: String },
     centerType: { type: String, enum: ['Headquarter','Regional','Nodal'] },

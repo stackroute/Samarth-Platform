@@ -7,6 +7,7 @@ function createNewcenterdetails(formobj, successCB, errorCB) {
         centerLocation: formobj.centerLocation,
         email: formobj.email,
         region: formobj.region,
+        address: formobj.address,
         mobile: formobj.mobile,
         cname: formobj.cname,
         centerType: formobj.centerType,

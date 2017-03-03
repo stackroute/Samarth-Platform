@@ -23,8 +23,8 @@ router.post('/',function(req, res, next){
                 // Does not exists
                  centerdetailsprocessor.createNewcenterdetails(center,function(postdetails){
 
-                        console.log("in mongo");
-                        console.log(postdetails);
+                        // console.log("in mongo");
+                        // console.log(postdetails);
                             centerdetailsneoprocessor.createNodes(postdetails.centerLocation, postdetails.cname, postdetails.region, postdetails.centerCode,function(err,success) {
                             if (err) {
                                     console.log(err);
