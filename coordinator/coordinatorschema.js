@@ -3,13 +3,13 @@ let Schema = mongoose.Schema;
 
 let coordinatorSchema = new Schema({
     coordinatorName: { type: String },
-    coordinatorId: { type: String, unique: true, required: true },
+    coordinatorId: { type: String },
     userRole: [ {type: String} ],
     coordinatorProfession: [ {type: String} ],
     coordinatorLocation: { type: String },
     placementCenter:{type: String},
     coordinatorGender: { type: String },
-    coordinatorEmail: { type: String },
+    coordinatorEmail: { type: String, unique: true, required: true },
     coordinatorLanguage: [
         {    name: {type : String},
             speak: {type : Boolean},
