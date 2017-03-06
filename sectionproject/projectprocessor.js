@@ -47,7 +47,7 @@ function addProject(oldProjectObj, candidateId, successCB) {
             if(err){
                 console.log(err);
             }
-            successCB(oldProjectObj, candidateId);
+            successCB(oldProjectObj.projects[0], candidateId);
         }
     );
 }
